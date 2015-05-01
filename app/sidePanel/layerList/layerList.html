@@ -1,0 +1,13 @@
+    <accordion-group heading="Layers">
+      <div ng-style="accordionHeight">
+      <div class="layer" ng-repeat="layer in layers | orderBy: 'title'" ng-model="layer" >
+      	<button class="btn" ng-class="{'btn-danger': !layer.visibility, 'btn-success': layer.visibility}" ng-click="layerToggle(layer)">{{((layer.visibility) ? 'On' : 'Off')}}</button><strong>{{layer.title}}</strong>
+    	  <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility" ng-change="opacityChanged(layer)"></slider>
+        <div class="sub-layer" ng-repeat="sublayer in layer.resourceInfo.layers" ng-model="sublayer" ng-show="layer.visibility">
+        <button class='btn' ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}</button>
+      	{{sublayer.name}}
+      	</div>
+      </div>      	
+      </div>
+
+    </accordion-group>

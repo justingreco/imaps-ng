@@ -1,0 +1,77 @@
+body, html {
+	height: 100%;
+	width: 100%;
+}
+
+.navbar {
+	margin-bottom: 0;
+}
+
+#map {
+	background-color: black;
+	position: fixed;
+	top:52px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+
+}
+
+.ng-pageslide {
+	background: rgba(255,255,255,0.8);
+	z-index: 1000; position: fixed;top: 52px !important; bottom: 0px; right: 0px; width: 0px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; 
+}
+
+.layer .btn {
+	margin-right: 6px;
+}
+
+.layer {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+.sub-layer {
+	margin-top: 6px;
+	margin-left: 10px;
+	margin-bottom: 6px;
+}
+
+slider {
+  position: relative;
+  height: 20px;
+  margin-top: 30px;
+  margin-right: 50px;
+  width: 95%;
+  display: block;
+}
+
+.bar {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  display: block;
+  background-color: #eee;
+  top: 0;
+}
+
+.pointer {
+  height: 100%;
+  width: 20px;
+  position: absolute;
+  display: block;
+  background: #ccc;
+  top: 0;
+}
+
+.bubble {
+  position: absolute;
+  top: -100%;
+  display: block;
+}
+
+
+/* Responsive: Portrait tablets and up */
+@media screen and (min-width: 768px) {
+
+}
