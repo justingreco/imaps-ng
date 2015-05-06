@@ -7,7 +7,7 @@
         <button class='btn' ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer, webmap)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}</button>
       	{{sublayer.name}}
         <div class="legend" ng-repeat="legendItem in sublayer.legend" ng-model="legend" ng-show="sublayer.defaultVisibility">
-          <img src="data:image/png;base64,{{legendItem.imageData}}"/>{{legendItem.values[0]}}
+          <img src="data:image/png;base64,{{legendItem.imageData}}" ng-style="{'opacity': layer.opacity}"/>{{legendItem.values[0]}}
         </div>        
       	</div>
 
