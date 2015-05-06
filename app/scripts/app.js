@@ -18,7 +18,8 @@ angular
     'ngTouch',
     'pageslide-directive',
     'ui.bootstrap',
-    'vr.directives.slider'
+    'vr.directives.slider',
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider

@@ -1,12 +1,16 @@
     <accordion-group heading="Layers">
       <div ng-style="accordionHeight">
       <div class="layer" ng-repeat="layer in layers | orderBy: 'title'" ng-model="layer" >
-      	<button class="btn" ng-class="{'btn-danger': !layer.visibility, 'btn-success': layer.visibility}" ng-click="layerToggle(layer)">{{((layer.visibility) ? 'On' : 'Off')}}</button><strong>{{layer.title}}</strong>
-    	  <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility" ng-change="opacityChanged(layer)"></slider>
+      	<button class="btn" ng-class="{'btn-danger': !layer.visibility, 'btn-success': layer.visibility}" ng-click="layerToggle(layer, webmap)">{{((layer.visibility) ? 'On' : 'Off')}}</button><strong>{{layer.title}}</strong>
+    	  <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility" ng-change="opacityChanged(layer, webmap)"></slider>
         <div class="sub-layer" ng-repeat="sublayer in layer.resourceInfo.layers" ng-model="sublayer" ng-show="layer.visibility">
-        <button class='btn' ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}</button>
+        <button class='btn' ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer, webmap)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}</button>
       	{{sublayer.name}}
+        <div class="legend" ng-repeat="legendItem in sublayer.legend" ng-model="legend" ng-show="sublayer.defaultVisibility">
+          <img src="data:image/png;base64,{{legendItem.imageData}}"/>{{legendItem.values[0]}}
+        </div>        
       	</div>
+
       </div>      	
       </div>
 

@@ -37,6 +37,10 @@ body, html {
 	margin-bottom: 6px;
 }
 
+.legend img {
+  margin-right: 6px;
+}
+
 slider {
   position: relative;
   height: 20px;

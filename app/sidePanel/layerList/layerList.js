@@ -1,5 +1,5 @@
 angular.module('imapsNgApp')
-.directive('layerList', function ($timeout, $window) {
+.directive('layerList', function ($timeout, $window, $filter, legend, localStorageService) {
 	return {
 		templateUrl: 'sidePanel/layerList/layerList.html',
 		restrict: 'E',
@@ -9,18 +9,32 @@ angular.module('imapsNgApp')
 					map.on('load', function (map) {
 						
 					});
-					$scope.layers = $scope.webmap.itemInfo.itemData.operationalLayers;
 
+					$scope.layers = $scope.webmap.itemInfo.itemData.operationalLayers;
+				angular.forEach($scope.layers, function (l) {
+						legend.getLegend(l.url, l.id).then(function (legend) {
+							var lyr = $filter('filter')($scope.layers, function (i) {
+								return i.id === legend.id;
+							})[0];
+							angular.forEach(lyr.resourceInfo.layers, function (subl, j) {
+								if (legend.layers[j]) {
+									subl.legend = legend.layers[j].legend;
+								}
+								
+							});
+						});
+					});
 					console.log($scope.layers);
 
 				}
 			});
 
-			$scope.layerToggle = function (layer) {
+			$scope.layerToggle = function (layer, webmap) {
 				layer.visibility = !layer.visibility;
 				$scope.map.getLayer(layer.id).setVisibility(layer.visibility);
+				//localStorageService.set('imaps_webmap', JSON.stringify($scope.webmap));
 			};
-			$scope.subLayerToggle = function (layer, sublayer) {
+			$scope.subLayerToggle = function (layer, sublayer, webmap) {
 				var visible = [];
 				sublayer.defaultVisibility = !sublayer.defaultVisibility;
 				visible = $scope.map.getLayer(layer.id).visibleLayers;
@@ -30,12 +44,18 @@ angular.module('imapsNgApp')
 				} else {
 					visible.splice(visible.indexOf(sublayer.id), 1);
 				}
+				if (visible.length === 0) {
+					visible = [-1];
+				}
 				$scope.map.getLayer(layer.id).setVisibleLayers(visible);
+				//localStorageService.set('imaps_webmap', JSON.stringify($scope.webmap));
 			};
 
-			$scope.opacityChanged = function (layer) {
+			$scope.opacityChanged = function (layer, webmap) {
 				$scope.map.getLayer(layer.id).setOpacity(layer.opacity);
-			}
+				//localStorageService.set('imaps_webmap', JSON.stringify($scope.webmap));
+			};
+
 		},
 		link: function (scope, element, attrs) {
 			var resetPanel = function () {
@@ -54,4 +74,19 @@ angular.module('imapsNgApp')
 
 		}
 	}
-});
+}).factory('legend', ['$http', '$q', function($http, $q){
+	var service = {getLegend:getLegend}
+	return service;
+	function getLegend (url, id) {
+		var deferred = $q.defer();
+		$http({
+			method: 'GET', 
+			url: url + '/legend',
+			params: {f: 'json'}
+		}).success(function (data) {
+			data.id = id;
+			deferred.resolve(data);
+		});
+		return deferred.promise;
+	}
+}]);
