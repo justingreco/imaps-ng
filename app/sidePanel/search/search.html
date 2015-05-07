@@ -1,0 +1,7 @@
+<div ng-style="accordionHeight" class="accordion">
+<select class="form-control input-sm" ng-options="search as search.label for search in searches" ng-model="selectedSearch">
+</select>
+<br/>
+<property-search ng-show="selectedSearch.value === 'property'"></property-search>
+<location-search ng-show="selectedSearch.value === 'location'"></location-search>
+</div>

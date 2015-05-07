@@ -64,14 +64,28 @@ angular.module('imapsNgApp')
 				if (headings.length > 0) {
 					var height = $window.innerHeight;
 					height -= headings.length * headings[0].offsetHeight;
-					scope.accordionHeight = {'height': height - element.parent().parent().parent().position().top - 30 + 'px', overflow: 'auto'};
-					console.log(scope.accordionHeight);
+					scope.accordionHeight = {'height': height - element.parent().parent().parent().position().top - 30 + 'px', overflow: 'none'};
 				}
 			};
 			$timeout(resetPanel.bind(element), 0);
-			angular.element($window).bind('resize', resetPanel.bind(element));
+/*			var w = angular.element($window)
+			angular.element($window).bind('resize', resetPanel.bind(element));*/
 
+	        var w = angular.element($window);
+	        scope.getWindowDimensions = function () {
+	            return {
+	                'h': w.height(),
+	                'w': w.width()
+	            };
+	        };
+	        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
+	            resetPanel();
 
+	        }, true);
+
+	        w.bind('resize', function () {
+	            scope.$apply();
+	        });
 		}
 	}
 }).factory('legend', ['$http', '$q', function($http, $q){

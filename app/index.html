@@ -10,6 +10,7 @@
     <!-- bower:css -->
     <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="components/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="components/angular-ui-grid/ui-grid.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
@@ -67,6 +68,9 @@
     <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="components/venturocket-angular-slider/build/angular-slider.js"></script>
     <script src="components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="components/typeahead.js/dist/typeahead.bundle.js"></script>
+    <script src="components/angular-typeahead/angular-typeahead.js"></script>
+    <script src="components/angular-ui-grid/ui-grid.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -76,9 +80,21 @@
         <script src="scripts/controllers/about.js"></script>
         <script src="appHeader/appHeader.js"></script>
         <script src="mapPanel/mapPanel.js"></script>
-        <script src="sidePanel/sidePanel.js"></script>   
+        <script src="sidePanel/sidePanel.js"></script>  
+        <script src="sidePanel/search/search.js"></script> 
+        <script src="sidePanel/propertySearch/propertySearch.js"></script>    
+        <script src="sidePanel/propertySearch/propertyResults/propertyResults.js"></script>   
+        <script src="sidePanel/propertySearch/propertyInfo/propertyInfo.js"></script>  
+        <script src="sidePanel/propertySearch/propertyPhotos/propertyPhotos.js"></script>  
+        <script src="sidePanel/propertySearch/propertyDeeds/propertyDeeds.js"></script>  
+        <script src="sidePanel/propertySearch/propertyTaxes/propertyTaxes.js"></script>  
+        <script src="sidePanel/propertySearch/propertyServices/propertyServices.js"></script>  
+        <script src="sidePanel/propertySearch/propertyAddresses/propertyAddresses.js"></script>                                  
+        <script src="sidePanel/locationSearch/locationSearch.js"></script>              
         <script src="sidePanel/layerList/layerList.js"></script>  
-        <script src="factories/config.js"></script>             
+        <script src="factories/config.js"></script>
+        <script src="factories/property.js"></script>
+
         <!-- endbuild -->
         <script src="http://js.arcgis.com/3.13/"></script>
 

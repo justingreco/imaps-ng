@@ -10,6 +10,7 @@
  */
 angular
   .module('imapsNgApp', [
+    'ui.grid',
     'ngAnimate',
     'ngCookies',
     'ngResource',
