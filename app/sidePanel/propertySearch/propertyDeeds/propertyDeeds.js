@@ -7,7 +7,7 @@ angular.module('imapsNgApp')
 
 		},
 		link: function (scope, element, attrs) {
-		
+			
 		}
 	}
 });

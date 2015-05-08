@@ -3,7 +3,8 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'sidePanel/propertySearch/propertySearch.html',
 		restrict: 'E',
-		controller: function ($scope, property) {
+		controller: function ($scope, $rootScope, $timeout, property) {
+
 			$scope.property = property;
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
 				
@@ -21,20 +22,38 @@ angular.module('imapsNgApp')
 
 			}
 
+			$scope.tabChanged = function (disable) {
+				angular.forEach($scope.tabs, function (t, i) {
+					if (i > 0) {
+						t.disabled = disable;						
+					}
+					t.highlighted = false;
+				});		
+				$scope.tab.highlighted = true;
+
+			}
+
 			var valueSelected = function (a, b, c) {
 				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
+					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;
+					$rootScope.$broadcast('accountUpdate', $scope.accounts);
 					if (accounts.Accounts.length === 1) {
 						$scope.tab = $scope.tabs[1];
 						$scope.pin = accounts.Accounts[0].pin;
 						$scope.reid = accounts.Accounts[0].reid;
+						$scope.account = accounts.Accounts[0];
+						$rootScope.$broadcast('pinUpdate', $scope.pin);
+				        $timeout(function () {
+				        	$scope.$broadcast('accountSelected', accounts.Accounts[0]);
+				    	});							
+						$scope.tabChanged(false);
+						
 					} else {
 						$scope.tab = $scope.tabs[0];
+						$scope.tabChanged(true);
 					}
-					angular.forEach($scope.tabs, function (t) {
-						t.highlighted = false;
-					});
-					$scope.tab.highlighted = true;
+
 				});
 			}	
 
@@ -44,7 +63,7 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=address&f=json&limit=5",
+					url: url + "?type=address&f=json",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
@@ -176,38 +195,46 @@ angular.module('imapsNgApp')
 						case "Info":
 						break;
 						case "Photos":
-							$scope.property.getPhotos($scope.reid).then(function (photos) {
-								console.log(photos.Photos);
+							$scope.property.getPhotos($scope.account.reid).then(function (photos) {
+								$scope.photos = photos.Photos;
 							});							
 						break;
 						case "Deeds":
+							$scope.property.getDeeds($scope.account.reid).then(function (deeds) {
+								$scope.deeds = deeds.Deeds;
+							});							
 						break;
 						case "Tax Info":
 						break;
 						case "Services":
 						break;
 						case "Addresses":
+							$scope.property.getAddresses($scope.account.pin, $scope.account.reid).then(function (addresses) {
+								$scope.addresses = addresses.Addresses;
+							});								
 						break;
 					}
 				}
 
 				$scope.tabClicked = function (tab) {
-					$scope.tab = tab;					
-					highlightTab(tab);
-					tabAction(tab);
+					if (!tab.disabled) {
+						$scope.tab = tab;					
+						highlightTab(tab);
+						tabAction(tab);						
+					}
 				};
 
 
 		},
 		link: function (scope, element, attrs) {
 			scope.tabs = [
-				{icon: 'list', title:'Results', highlighted: true},
-				{icon: 'info-sign', title:'Info', highlighted: false},
-				{icon: 'picture', title:'Photos', highlighted: false},
-				{icon: 'file', title:'Deeds', highlighted: false},
-				{icon: 'usd', title:'Tax Info', highlighted: false},		
-				{icon: 'flag', title:'Services', highlighted: false},		
-				{icon: 'home', title:'Addresses', highlighted: false}		
+				{icon: 'list', title:'Results', highlighted: true, disabled: false},
+				{icon: 'info-sign', title:'Info', highlighted: false, disabled: true},
+				{icon: 'picture', title:'Photos', highlighted: false, disabled: true},
+				{icon: 'file', title:'Deeds', highlighted: false, disabled: true},
+				{icon: 'usd', title:'Tax Info', highlighted: false, disabled: true},		
+				{icon: 'flag', title:'Services', highlighted: false, disabled: true},		
+				{icon: 'home', title:'Addresses', highlighted: false, disabled: true}		
 			];
 			scope.tab = scope.tabs[0];
 		}

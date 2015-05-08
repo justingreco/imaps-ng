@@ -64,11 +64,12 @@ layer-list .panel-body {
 
 .tabcontainer {
   position: absolute;
-  top: 72px;
+  top: 40px;
   left: 0px;
   bottom: 40px;
   width: 100%;
-  overflow: hidden;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 #proptabs {
@@ -94,6 +95,70 @@ layer-list .panel-body {
   text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
 }
 
+.ui-grid  {
+  bottom: 0px;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  left: 0px;
+  font-size: 9pt;
+}
+.ui-grid-top-panel {
+  background: transparent;
+}
+.ui-grid-row:nth-child(odd){
+  background-color: rgba(30, 30, 30, 0.8);
+}
+.ui-grid-row:nth-child(even) {
+  background-color: rgba(60, 60, 60, 0.8);
+}
+
+
+.ui-grid-row:nth-child(odd) .ui-grid-cell {
+  background-color: transparent;
+
+}
+.ui-grid-row:nth-child(even) .ui-grid-cell {
+  background-color: transparent;
+}
+.wrap {
+  white-space: normal;
+}
+
+.ui-grid-cell {
+  display : table-cell;
+  height: 100% !important;
+  overflow:visible;
+  position: static;
+  border: none;
+}
+.ui-grid-row {
+  display : table-row;
+  height: auto !important;
+  position: static;
+}
+
+.ui-grid-cell-content {
+    height: auto !important;
+  white-space: normal;
+  overflow:visible;
+}
+
+.ui-grid-menu-button {
+  height: 27px;
+  background-color: transparent;
+}
+
+.ui-grid-menu .ui-grid-menu-inner {
+  background-color: rgba(30, 30, 30, 0.8);
+}
+
+
+
+
+.disabledTab {
+  opacity: 0.05;
+}
 
 layer-list .panel-body {
   padding: 0 0 0 15px;

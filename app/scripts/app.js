@@ -20,7 +20,8 @@ angular
     'pageslide-directive',
     'ui.bootstrap',
     'vr.directives.slider',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'angular-loading-bar','ui.grid.selection','ui.grid.exporter'
   ])
   .config(function ($routeProvider) {
     $routeProvider
