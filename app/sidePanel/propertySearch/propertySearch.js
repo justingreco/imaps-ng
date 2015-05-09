@@ -204,6 +204,12 @@ angular.module('imapsNgApp')
 						case "Deeds":
 							$scope.property.getDeeds($scope.account.reid).then(function (deeds) {
 								$scope.deeds = deeds.Deeds;
+								$scope.plats = [];
+								angular.forEach($scope.deeds, function (deed) {
+									if (deed.bomDocNum) {
+										$scope.plats.push(deed);
+									}
+								});								
 							});							
 						break;
 						case "Tax Info":
@@ -220,9 +226,11 @@ angular.module('imapsNgApp')
 
 				$scope.tabClicked = function (tab) {
 					if (!tab.disabled) {
-						$scope.tab = tab;					
-						highlightTab(tab);
-						tabAction(tab);						
+							$scope.tab = tab;					
+							highlightTab(tab);
+							tabAction(tab);								
+
+					
 					}
 				};
 

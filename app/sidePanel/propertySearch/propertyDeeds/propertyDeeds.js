@@ -4,6 +4,7 @@ angular.module('imapsNgApp')
 		templateUrl: 'sidePanel/propertySearch/propertyDeeds/propertyDeeds.html',
 		restrict: 'E',
 		controller: function ($scope) {
+			console.log($scope.deeds);
 
 		},
 		link: function (scope, element, attrs) {
