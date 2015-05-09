@@ -35,5 +35,10 @@
   },
   "_source": "git://github.com/chieffancypants/angular-loading-bar.git",
   "_target": "~0.7.1",
+<<<<<<< HEAD
   "_originalSource": "angular-loading-bar"
+=======
+  "_originalSource": "angular-loading-bar",
+  "_direct": true
+>>>>>>> a75fc7138ac351b105d9e231569612c56180de77
 }

@@ -40,5 +40,10 @@
   },
   "_source": "git://github.com/bpampuch/pdfmake.git",
   "_target": "~0.1.18",
+<<<<<<< HEAD
   "_originalSource": "pdfmake"
+=======
+  "_originalSource": "pdfmake",
+  "_direct": true
+>>>>>>> a75fc7138ac351b105d9e231569612c56180de77
 }
