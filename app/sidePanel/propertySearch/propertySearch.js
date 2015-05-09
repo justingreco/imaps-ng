@@ -34,8 +34,10 @@ angular.module('imapsNgApp')
 			}
 
 			var valueSelected = function (a, b, c) {
+				c = ((c === 'streetname') ? 'street name':c);
 				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
 					$scope.fields = accounts.Fields;
+					console.log(accounts.Accounts.length);
 					$scope.accounts = accounts.Accounts;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
 					if (accounts.Accounts.length === 1) {

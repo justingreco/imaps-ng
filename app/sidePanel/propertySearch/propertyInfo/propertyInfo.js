@@ -34,7 +34,10 @@ angular.module('imapsNgApp')
 			    enableGridMenu: true,
 			    modifierKeysToMultiSelect: false,
 			    multiSelect: false,
-			    noUnselect: true,				
+			    noUnselect: true,
+			    gridMenuShowHideColumns: false,	
+			    enablePagination: false,
+			    paginationPageSizes: 1000,			    	
 			    columnDefs: [
 			      { field: 'field',
 			      	displayName: 'Field',

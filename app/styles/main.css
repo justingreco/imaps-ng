@@ -125,6 +125,9 @@ layer-list .panel-body {
   white-space: normal;
 }
 
+.ui-grid .ui-grid-render-container-body .ui-grid-canvas {
+  height: auto !important;
+}
 .ui-grid-cell {
   display : table-cell;
   height: 100% !important;
@@ -153,7 +156,12 @@ layer-list .panel-body {
   background-color: rgba(30, 30, 30, 0.8);
 }
 
-
+.ui-grid-menu-item:nth-child(2) {
+  display: none;
+}
+.ui-grid-menu-item:nth-child(4) {
+  display: none;
+}
 
 
 .disabledTab {
