@@ -4,6 +4,10 @@ body, html {
   overflow: hidden;
 }
 
+app-header {
+  overflow: hidden;
+}
+
 .navbar {
 	margin-bottom: 0;
   background-color: #222;
