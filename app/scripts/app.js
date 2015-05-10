@@ -21,7 +21,7 @@ angular
     'ui.bootstrap',
     'vr.directives.slider',
     'LocalStorageModule',
-    'angular-loading-bar','ui.grid.selection','ui.grid.exporter'
+    'angular-loading-bar','ui.grid.selection','ui.grid.exporter','ngTouch'
   ])
   .config(function ($routeProvider) {
     $routeProvider
