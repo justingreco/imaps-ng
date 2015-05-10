@@ -6,6 +6,7 @@ angular.module('imapsNgApp')
 		controller: function ($scope, $timeout) {
 			$scope.accounts = [];
 			$scope.resultOptions = {
+				rowHeight: 70,
 			    enableRowSelection: true,
 			    enableRowHeaderSelection: false,
 			    modifierKeysToMultiSelect: false,

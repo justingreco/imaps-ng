@@ -29,6 +29,7 @@ angular.module('imapsNgApp')
 			});			
 
 			$scope.infoOptions = {
+				rowHeight: 60,
 			    enableRowSelection: true,
 			    enableRowHeaderSelection: false,
 			    enableGridMenu: true,

@@ -125,7 +125,7 @@ layer-list .panel-body {
   white-space: normal;
 }
 
-.ui-grid .ui-grid-render-container-body .ui-grid-canvas {
+/*.ui-grid .ui-grid-render-container-body .ui-grid-canvas {
   height: auto !important;
 }
 .ui-grid-cell {
@@ -145,7 +145,7 @@ layer-list .panel-body {
     height: auto !important;
   white-space: normal;
   overflow:visible;
-}
+}*/
 
 .ui-grid-menu-button {
   height: 27px;
