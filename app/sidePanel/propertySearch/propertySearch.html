@@ -1,5 +1,5 @@
 <input id="searchInput" type="text" class="form-control input-sm twitterTypeahead" placeholder="Enter address, owner, PIN, REID, or street"/>
-<div class="tabcontainer">
+<div class="tabcontainer" ng-style="{'overflow-y': (tab.table) ? 'hidden': 'auto'}">
 	<property-results ng-show="tab.title == 'Results'"></property-results>
 	<property-info ng-if="tab.title == 'Info'"></property-info>
 	<property-photos ng-if="tab.title == 'Photos'"></property-photos>

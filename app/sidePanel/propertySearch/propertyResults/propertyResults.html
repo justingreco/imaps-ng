@@ -1,1 +1,7 @@
-<div ui-grid="resultOptions" ui-grid-selection ui-grid-auto-resize ui-grid-exporter ></div> 
+<!-- <div ui-grid="resultOptions" ui-grid-selection ui-grid-auto-resize ui-grid-exporter ></div>  -->
+<table st-table="accounts" st-safe-src="accountsSrc" class="table table-condensed">
+	<thead><th st-sort="siteAddress">Address</th><th st-sort="owner">Owner</th><th st-sort="pin">PIN</th>
+		<export-button array="accounts" filename="imaps_results.csv"></export-button>
+	</thead>
+	<tbody><tr ng-repeat="account in accounts" ng-model="account" ng-click="resultClicked(account)"><td>{{account.siteAddress}}</td><td>{{account.owner}}</td><td>{{account.pin}}</td></tr></tbody>
+</table>

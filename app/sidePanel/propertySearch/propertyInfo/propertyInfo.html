@@ -1,1 +1,8 @@
-<div ui-grid="infoOptions" ui-grid-auto-resize ui-grid-exporter ></div> 
+<!-- <div ui-grid="infoOptions" ui-grid-auto-resize ui-grid-exporter ></div> 
+ -->
+<table st-table="accountInfo" class="table table-condensed">
+	<thead><th>Field</th><th>Value</th>
+	<export-button array="accountInfo" filename="imaps_info.csv"></export-button>
+	</thead>
+	<tbody><tr ng-repeat="info in accountInfo" ng-model="info"><td>{{info.field}}</td><td>{{info.value}}</td></tr></tbody>
+</table>

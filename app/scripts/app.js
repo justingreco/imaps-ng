@@ -24,7 +24,10 @@ angular
     'angular-loading-bar',
     'ui.grid',
     'ui.grid.selection',
-    'ui.grid.exporter'
+    'ui.grid.exporter',
+    'smart-table'  ,
+    'anguFixedHeaderTable',
+    'ngCsv'
   ])
   .config(function ($routeProvider) {
     $routeProvider

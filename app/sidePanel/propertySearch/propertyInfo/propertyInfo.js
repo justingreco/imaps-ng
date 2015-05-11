@@ -28,7 +28,7 @@ angular.module('imapsNgApp')
 				formatAccountInfo(account);
 			});			
 
-			$scope.infoOptions = {
+/*			$scope.infoOptions = {
 				rowHeight: 60,
 			    enableRowSelection: true,
 			    enableRowHeaderSelection: false,
@@ -60,7 +60,7 @@ angular.module('imapsNgApp')
 			    onRegisterApi: function( gridApi ) {
 			      $scope.grid2Api = gridApi;		      
 			    }
-			  };			
+			  };	*/		
 		},
 		link: function (scope, element, attrs) {
 		

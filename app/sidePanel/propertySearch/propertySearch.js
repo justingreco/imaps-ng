@@ -4,7 +4,7 @@ angular.module('imapsNgApp')
 		templateUrl: 'sidePanel/propertySearch/propertySearch.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $timeout, property) {
-
+			$scope.hiddenOverflow = false;
 			$scope.property = property;
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
 				
@@ -39,6 +39,7 @@ angular.module('imapsNgApp')
 					$scope.fields = accounts.Fields;
 					console.log(accounts.Accounts.length);
 					$scope.accounts = accounts.Accounts;
+					$scope.accountsSrc = accounts.Accounts;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
 					if (accounts.Accounts.length === 1) {
 						$scope.tab = $scope.tabs[1];
@@ -238,13 +239,13 @@ angular.module('imapsNgApp')
 		},
 		link: function (scope, element, attrs) {
 			scope.tabs = [
-				{icon: 'list', title:'Results', highlighted: true, disabled: false},
-				{icon: 'info-sign', title:'Info', highlighted: false, disabled: true},
-				{icon: 'picture', title:'Photos', highlighted: false, disabled: true},
-				{icon: 'file', title:'Deeds', highlighted: false, disabled: true},
-				{icon: 'usd', title:'Tax Info', highlighted: false, disabled: true},		
-				{icon: 'flag', title:'Services', highlighted: false, disabled: true},		
-				{icon: 'home', title:'Addresses', highlighted: false, disabled: true}		
+				{icon: 'list', title:'Results', highlighted: true, disabled: false, table: true},
+				{icon: 'info-sign', title:'Info', highlighted: false, disabled: true, table: true},
+				{icon: 'picture', title:'Photos', highlighted: false, disabled: true, table: false},
+				{icon: 'file', title:'Deeds', highlighted: false, disabled: true, table: false},
+				{icon: 'usd', title:'Tax Info', highlighted: false, disabled: true, table: false},		
+				{icon: 'flag', title:'Services', highlighted: false, disabled: true, table: false},		
+				{icon: 'home', title:'Addresses', highlighted: false, disabled: true, table: true}		
 			];
 			scope.tab = scope.tabs[0];
 		}

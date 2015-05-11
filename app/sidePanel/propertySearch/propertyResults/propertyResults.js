@@ -5,7 +5,7 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $timeout) {
 			$scope.accounts = [];
-			$scope.resultOptions = {
+/*			$scope.resultOptions = {
 				rowHeight: 70,
 			    enableRowSelection: true,
 			    enableRowHeaderSelection: false,
@@ -49,7 +49,12 @@ angular.module('imapsNgApp')
 			    	});
 			      });			      
 			    }
-			  };
+			  };*/
+			  $scope.resultClicked = function (account) {
+			  	$scope.account = account;
+			  	$scope.tab = $scope.tabs[1];
+			  	$scope.$broadcast('accountSelected', account);
+			  }
 		},
 		link: function (scope, element, attrs) {
 		
