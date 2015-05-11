@@ -10,7 +10,7 @@
  */
 angular
   .module('imapsNgApp', [
-    'ng-Touch',
+    'ngTouch',
     'ngAnimate',
     'ngCookies',
     'ngResource',
