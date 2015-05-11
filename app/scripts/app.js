@@ -10,7 +10,7 @@
  */
 angular
   .module('imapsNgApp', [
-    'ui.grid',
+    'ng-Touch',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -21,7 +21,10 @@ angular
     'ui.bootstrap',
     'vr.directives.slider',
     'LocalStorageModule',
-    'angular-loading-bar','ui.grid.selection','ui.grid.exporter','ngTouch'
+    'angular-loading-bar',
+    'ui.grid',
+    'ui.grid.selection',
+    'ui.grid.exporter'
   ])
   .config(function ($routeProvider) {
     $routeProvider
