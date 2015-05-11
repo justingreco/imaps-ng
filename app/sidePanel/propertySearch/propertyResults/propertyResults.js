@@ -14,7 +14,7 @@ angular.module('imapsNgApp')
 			    noUnselect: true,
 			    enableGridMenu: true,
 			    gridMenuShowHideColumns: false,
-			    enablePagination: true,
+			    enablePagination: false,
 			    paginationPageSizes: 1000,				    
 			    columnDefs: [
 			      { field: 'siteAddress',
