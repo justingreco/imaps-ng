@@ -38,7 +38,7 @@ angular.module('imapsNgApp')
 						    symbol:{color:[0,0,0,0],outline:{color:color,
 						    width:3,type:"esriSLS",style:"esriSLSSolid"},
 						    type:"esriSFS",style:"esriSFSSolid"}});
-						$scope.geometry = f.geometry;
+						$scope.geometry = g.geometry;
 						gl.add(g);
 					});
 					$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
