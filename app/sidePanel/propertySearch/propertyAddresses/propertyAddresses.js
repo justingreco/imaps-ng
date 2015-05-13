@@ -23,7 +23,7 @@ angular.module('imapsNgApp')
 		  		{
 		  			field: 'address',
 		  			displayName: 'Address'
-		  		}			
+		  		}
 			]
 			$scope.addrGrid = {
 			  	data: [],
@@ -49,15 +49,12 @@ angular.module('imapsNgApp')
 						} else {
 							$scope.addrGrid.columnDefs = $scope.wakeCols;
 							$scope.rpid = null;
-						}						
+						}
 					}
 				}
-
-			});			  	
-		  
+			});
 		},
 		link: function (scope, element, attrs) {
-		
 		}
 	}
 });

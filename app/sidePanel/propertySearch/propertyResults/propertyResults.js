@@ -25,7 +25,7 @@ angular.module('imapsNgApp')
 			  			displayName: 'Owner'
 			  		},
 			  		{
-			  			field: 'pin', 
+			  			field: 'pin',
 			  			displayName: 'PIN'
 			  		}
 			  	],
@@ -33,17 +33,13 @@ angular.module('imapsNgApp')
 			  		$scope.resultClicked (row);
 			  	}
 			  };
-
 			  $scope.$watch('accounts', function (accounts) {
-
 			  });
-
 			  $scope.resultClicked = function (account) {
 			  	$scope.account = account;
 			  	$scope.tab = $scope.tabs[1];
 			  	$scope.$broadcast('accountSelected', account);
 			  }
-
 			var w = angular.element($window);
 	        $scope.getWindowDimensions = function () {
 	            return {
@@ -55,13 +51,11 @@ angular.module('imapsNgApp')
 	            $(".ngReactGridViewPort").css('max-height', $('.tabcontainer').height() - 70);
  				$(".ngReactGridViewPort").css('min-height', $('.tabcontainer').height() - 70);
 	        }, true);
-
 	        w.bind('resize', function () {
 	            $scope.$apply();
 	        });
 		},
 		link: function (scope, element, attrs) {
-
 		}
 	}
 });
