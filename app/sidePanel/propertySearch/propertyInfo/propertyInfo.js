@@ -3,10 +3,8 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'sidePanel/propertySearch/propertyInfo/propertyInfo.html',
 		restrict: 'E',
-		controller: function ($scope, $filter) {
-			//$scope.accountInfo = [];
-
-
+		controller: function ($scope, $filter, $timeout) {
+			$scope.accountInfo = [];
 			var formatAccountInfo = function (account) {
 				$scope.accountInfo = [];
 				$scope.tabChanged(false);
@@ -18,49 +16,51 @@ angular.module('imapsNgApp')
 					}
 					$scope.accountInfo.push({field: f.alias, value: account[f.field]});
 				});
-				//$scope.infoOptions.data = $scope.accountInfo;
+				$timeout(function() {
+					$scope.infoGrid.data = $scope.accountInfo;
+				});
 			}
 
 			if ($scope.account && !$scope.accountInfo) {
 				formatAccountInfo($scope.account);
 			}
 			$scope.$on('accountSelected', function (e, account) {
+				console.log(account);
 				formatAccountInfo(account);
-			});			
+			});	
 
-/*			$scope.infoOptions = {
-				rowHeight: 60,
-			    enableRowSelection: true,
-			    enableRowHeaderSelection: false,
-			    enableGridMenu: true,
-			    modifierKeysToMultiSelect: false,
-			    multiSelect: false,
-			    noUnselect: true,
-			    gridMenuShowHideColumns: false,	
-			    enablePagination: false,
-			    paginationPageSizes: 1000,			    	
-			    columnDefs: [
-			      { field: 'field',
-			      	displayName: 'Field',
-			      	enableSorting: false, 
-			      	enableHiding: false, 
-			      	enableColumnMenu: false,
-			      	cellTooltip: function(row){ 
-			      		return row.entity.field; }, 
-        			cellTemplate: '<div class="ui-grid-cell-contents wrap" white-space: normal title="TOOLTIP">{{COL_FIELD CUSTOM_FILTERS}}</div>' },
-			      { field: 'value',
-			      	enableSorting: false,
-			      	enableHiding: false, 
-			      	enableColumnMenu: false,
-			      	cellTooltip: function(row){ 
-			      		return row.entity.value; }, 
-        			cellTemplate: '<div class="ui-grid-cell-contents wrap" white-space: normal title="TOOLTIP">{{COL_FIELD CUSTOM_FILTERS}}</div>' }
-			    ],
-			    data: 'accountInfo',
-			    onRegisterApi: function( gridApi ) {
-			      $scope.grid2Api = gridApi;		      
-			    }
-			  };	*/		
+			  $scope.infoGrid = {
+			  	data: $scope.accountInfo,
+			  	showGridShowPerPage: false,
+			  	showGridSearch: false,
+			  	pageSize: 100,
+			  	pageSizes: [100],
+			  	height: $('.tabcontainer').height() - 70,
+			  	columnDefs: [
+			  		{
+			  			field: 'field',
+			  			displayName: 'Field',
+			  			sort: false
+			  		},
+			  		{
+			  			field: 'value',
+			  			displayName: 'Value', 
+			  			sort: false
+			  		}
+			  	]
+			  };		
+
+			  $scope.toggleProperty = function (forward) {
+			  	var current = $scope.accounts.indexOf($scope.account),
+			  		idx = (forward) ? current + 1 : current - 1;
+			  	if (idx === -1) {
+			  		idx = $scope.accounts.length - 1;
+			  	} else if (idx === $scope.accounts.length) {
+			  		idx = 0;
+			  	}
+			  	$scope.account = $scope.accounts[idx];
+			  	$scope.$broadcast('accountSelected', $scope.account);
+			  };			
 		},
 		link: function (scope, element, attrs) {
 		

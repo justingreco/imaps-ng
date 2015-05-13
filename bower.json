@@ -22,8 +22,10 @@
     "angular-loading-bar": "~0.7.1",
     "pdfmake": "~0.1.18",
     "angular-smart-table": "~2.0.3",
-    "angu-fixed-header-table": "~1.2.0",
-    "ng-csv": "~0.3.3"
+    "ng-csv": "~0.3.3",
+    "angular-scrollable-table": "*",
+    "ngReactGrid": "~0.7.0",
+    "react": "0.10.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

@@ -12,10 +12,12 @@
     <link rel="stylesheet" href="components/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="components/angular-ui-grid/ui-grid.css" />
     <link rel="stylesheet" href="components/angular-loading-bar/build/loading-bar.css" />
+    <link rel="stylesheet" href="components/ngReactGrid/build/css/ngReactGrid.css" />
     <!-- endbower -->
     <!-- endbuild -->
     <!-- build:css(.tmp) styles/main.css -->
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/typeahead.css">
     <!-- endbuild -->
     <link rel="stylesheet" href="http://js.arcgis.com/3.13/esri/css/esri.css">
 
@@ -28,9 +30,8 @@
     <!-- Add your site or application content here -->
       <app-header></app-header>
       <map-panel></map-panel>
-<side-panel pageslide ps-open="checked" class="ng-isolate-scope ng-pageslide">
-
-                </side-panel>
+        <side-panel pageslide ps-open="checked" class="ng-isolate-scope ng-pageslide">
+        </side-panel>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -76,35 +77,38 @@
     <script src="components/pdfmake/build/pdfmake.js"></script>
     <script src="components/pdfmake/build/vfs_fonts.js"></script>
     <script src="components/angular-smart-table/dist/smart-table.js"></script>
-    <script src="components/angu-fixed-header-table/angu-fixed-header-table.js"></script>
     <script src="components/ng-csv/build/ng-csv.min.js"></script>
+    <script src="components/angular-scrollable-table/angular-scrollable-table.js"></script>
+
+    <script src="components/react/react.js"></script>
+    <script src="components/ngReactGrid/build/js/ngReactGrid.min.js"></script>    
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js({.tmp,app}) scripts/scripts.js -->
-        <script src="scripts/app.js"></script>
-        <script src="scripts/controllers/main.js"></script>
-        <script src="scripts/controllers/about.js"></script>
-        <script src="appHeader/appHeader.js"></script>
-        <script src="exportButton/exportButton.js"></script>        
-        <script src="mapPanel/mapPanel.js"></script>
-        <script src="sidePanel/sidePanel.js"></script>  
-        <script src="sidePanel/search/search.js"></script> 
-        <script src="sidePanel/propertySearch/propertySearch.js"></script>    
-        <script src="sidePanel/propertySearch/propertyResults/propertyResults.js"></script>   
-        <script src="sidePanel/propertySearch/propertyInfo/propertyInfo.js"></script>  
-        <script src="sidePanel/propertySearch/propertyPhotos/propertyPhotos.js"></script>  
-        <script src="sidePanel/propertySearch/propertyDeeds/propertyDeeds.js"></script>  
-        <script src="sidePanel/propertySearch/propertyTaxes/propertyTaxes.js"></script>  
-        <script src="sidePanel/propertySearch/propertyServices/propertyServices.js"></script>  
-        <script src="sidePanel/propertySearch/propertyAddresses/propertyAddresses.js"></script>                                  
-        <script src="sidePanel/locationSearch/locationSearch.js"></script>              
-        <script src="sidePanel/layerList/layerList.js"></script>  
-        <script src="factories/config.js"></script>
-        <script src="factories/property.js"></script>
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="scripts/controllers/about.js"></script>
+    <script src="appHeader/appHeader.js"></script>
+    <script src="exportButton/exportButton.js"></script>        
+    <script src="mapPanel/mapPanel.js"></script>
+    <script src="sidePanel/sidePanel.js"></script>  
+    <script src="sidePanel/search/search.js"></script> 
+    <script src="sidePanel/propertySearch/propertySearch.js"></script>    
+    <script src="sidePanel/propertySearch/propertyResults/propertyResults.js"></script>   
+    <script src="sidePanel/propertySearch/propertyInfo/propertyInfo.js"></script>  
+    <script src="sidePanel/propertySearch/propertyPhotos/propertyPhotos.js"></script>  
+    <script src="sidePanel/propertySearch/propertyDeeds/propertyDeeds.js"></script>  
+    <script src="sidePanel/propertySearch/propertyTaxes/propertyTaxes.js"></script>  
+    <script src="sidePanel/propertySearch/propertyServices/propertyServices.js"></script>  
+    <script src="sidePanel/propertySearch/propertyAddresses/propertyAddresses.js"></script>                                  
+    <script src="sidePanel/locationSearch/locationSearch.js"></script>              
+    <script src="sidePanel/layerList/layerList.js"></script>  
+    <script src="factories/config.js"></script>
+    <script src="factories/property.js"></script>
 
-        <!-- endbuild -->
-        <script src="http://js.arcgis.com/3.13/"></script>
+    <!-- endbuild -->
+    <script src="http://js.arcgis.com/3.13/"></script>
 
 </body>
 </html>

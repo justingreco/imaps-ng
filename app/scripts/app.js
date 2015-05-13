@@ -25,9 +25,10 @@ angular
     'ui.grid',
     'ui.grid.selection',
     'ui.grid.exporter',
-    'smart-table'  ,
-    'anguFixedHeaderTable',
-    'ngCsv'
+    'smart-table',
+    'ngCsv',
+    'scrollable-table',
+    'ngReactGrid'
   ])
   .config(function ($routeProvider) {
     $routeProvider

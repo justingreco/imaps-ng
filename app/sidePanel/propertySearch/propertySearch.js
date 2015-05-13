@@ -22,6 +22,7 @@ angular.module('imapsNgApp')
 
 			}
 
+
 			$scope.tabChanged = function (disable) {
 				angular.forEach($scope.tabs, function (t, i) {
 					if (i > 0) {
@@ -30,9 +31,12 @@ angular.module('imapsNgApp')
 					t.highlighted = false;
 				});		
 				$scope.tab.highlighted = true;
-
 			}
 
+			$scope.$on('accountSelected', function (e, account) {
+				$scope.tabChanged(false);
+				$scope.$apply();
+			});	
 			var valueSelected = function (a, b, c) {
 				c = ((c === 'streetname') ? 'street name':c);
 				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
@@ -50,7 +54,7 @@ angular.module('imapsNgApp')
 				        $timeout(function () {
 				        	$scope.$broadcast('accountSelected', accounts.Accounts[0]);
 				    	});							
-						$scope.tabChanged(false);
+						
 						
 					} else {
 						$scope.tab = $scope.tabs[0];
