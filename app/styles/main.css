@@ -5,6 +5,8 @@ body, html {
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;      
+  -webkit-overflow-scrolling: touch;
+
 }
 
 app-header {
