@@ -73,7 +73,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			params: {
 				where: where,
 				returnGeometry: true,
-				outSR: 2264,
+				outSR: 4326,
 				f: "pjson"
 			}
 		}).success(deferred.resolve);
