@@ -29,7 +29,7 @@ angular.module('imapsNgApp')
 			}
 			$scope.$on('accountSelected', function (e, account) {
 				$scope.tabChanged(false);
-				$scope.$apply();
+				//$scope.$apply();
 			});
 			var valueSelected = function (a, b, c) {
 				c = ((c === 'streetname') ? 'street name':c);
@@ -199,8 +199,10 @@ angular.module('imapsNgApp')
 							});
 						break;
 						case "Tax Info":
+							window.open("http://services.wakegov.com/realestate/Account.asp?id=" + $scope.account.reid, "_blank");
 						break;
 						case "Services":
+							$scope.$broadcast('servicesClicked', $scope.geometry);
 						break;
 						case "Addresses":
 							$scope.property.getAddresses($scope.account.pin, $scope.account.reid).then(function (addresses) {

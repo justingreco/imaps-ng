@@ -17,12 +17,13 @@ app-header {
 	margin-bottom: 0;
   background-color: #222;
   overflow: hidden;
+  max-height: 50px;
 }
 
 #map {
 	background-color: black;
 	position: fixed;
-	top:52px;
+	top:50px;
 	bottom: 0;
 	right: 0;
 	left: 0;
@@ -162,6 +163,9 @@ layer-list .panel-body {
   right: 0;
 }
 
+.grid-footer .glyphicon {
+  cursor: pointer;
+}
 
 .disabledTab {
   opacity: 0.05;
@@ -173,7 +177,7 @@ layer-list .panel-body {
 
 .ng-pageslide {
 	background: rgba(255,255,255,0);
-	z-index: 1000; position: fixed;top: 52px !important; bottom: 0px; right: 0px; width: 0px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; 
+	z-index: 1000; position: fixed;top: 50px !important; bottom: 0px; right: 0px; width: 0px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; 
 }
 
 .layer .btn {

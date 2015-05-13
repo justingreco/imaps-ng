@@ -1,11 +1,18 @@
 angular.module('imapsNgApp')
-.directive('mapPanel', function () {
+.directive('mapPanel', function (cfpLoadingBar) {
 	return {
 		templateUrl: 'mapPanel/mapPanel.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope, property) {
 			$scope.property = property;
-			require(["esri/map", "esri/arcgis/utils","esri/SpatialReference", "esri/layers/GraphicsLayer", "dojo/domReady!"], function(Map, arcgisUtils,SpatialReference, GraphicsLayer) { 
+
+			var mapUpdating = function () {
+				cfpLoadingBar.start();
+			};
+			var mapUpdated = function () {
+				cfpLoadingBar.complete();
+			};
+			require(["esri/map", "esri/arcgis/utils","esri/SpatialReference", "esri/layers/GraphicsLayer", "dojo/on", "dojo/domReady!"], function(Map, arcgisUtils,SpatialReference, GraphicsLayer, on) { 
 			    arcgisUtils.createMap("0757b2fd0e6f44dd8d8fefbfc09aa8eb","map").then(function(response){
 			    	$scope.webmap = response;
 			    	$scope.map = response.map;
@@ -15,6 +22,9 @@ angular.module('imapsNgApp')
 			    	$scope.map.addLayer($scope.selectionSingle);
 			    	console.log(response);
 			    	$scope.$digest();
+
+			    	on($scope.map, 'update-start', mapUpdating);
+			    	on($scope.map, 'update-end', mapUpdated)
 			    });
 			});	
 
@@ -28,10 +38,10 @@ angular.module('imapsNgApp')
 						    symbol:{color:[0,0,0,0],outline:{color:color,
 						    width:3,type:"esriSLS",style:"esriSLSSolid"},
 						    type:"esriSFS",style:"esriSFSSolid"}});
-
+						$scope.geometry = f.geometry;
 						gl.add(g);
 					});
-					$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics));
+					$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
 				});
 			}
 

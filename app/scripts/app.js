@@ -22,29 +22,7 @@ angular
     'vr.directives.slider',
     'LocalStorageModule',
     'angular-loading-bar',
-    'ui.grid',
-    'ui.grid.selection',
-    'ui.grid.exporter',
-    'smart-table',
+    'cfp.loadingBar',
     'ngCsv',
-    'scrollable-table',
     'ngReactGrid'
-  ])
-  .config(function ($routeProvider) {
-    $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+  ]);

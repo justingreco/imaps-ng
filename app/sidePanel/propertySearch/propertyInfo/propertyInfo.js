@@ -3,13 +3,14 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'sidePanel/propertySearch/propertyInfo/propertyInfo.html',
 		restrict: 'E',
-		controller: function ($scope, $filter, $timeout) {
+		controller: function ($scope, $filter, $timeout, $rootScope) {
 			$scope.accountInfo = [];
 			var formatAccountInfo = function (account) {
 				$scope.accountInfo = [];
 				$scope.tabChanged(false);
 				$scope.pin = account.pin;
 				$scope.reid = account.reid;
+				$rootScope.$broadcast('pinUpdate', account.pin);
 				angular.forEach($scope.fields, function (f) {
 					if (f.type === 'currency') {
 						account[f.field] = $filter('currency')(account[f.field], '$', 0);
@@ -23,8 +24,8 @@ angular.module('imapsNgApp')
 			if ($scope.account && !$scope.accountInfo) {
 				formatAccountInfo($scope.account);
 			}
+
 			$scope.$on('accountSelected', function (e, account) {
-				console.log(account);
 				formatAccountInfo(account);
 			});	
 			$scope.infoGrid = {

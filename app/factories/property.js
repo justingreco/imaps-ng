@@ -2,7 +2,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins},
 		baseUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
-		propertyLayer = "http://mapstest.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
+		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 	return service;
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
@@ -73,7 +73,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			params: {
 				where: where,
 				returnGeometry: true,
-				outSR: 4326,
+				outSR: 2264,
 				f: "pjson"
 			}
 		}).success(deferred.resolve);

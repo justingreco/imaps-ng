@@ -24,8 +24,6 @@ angular.module('imapsNgApp')
 							});
 						});
 					});
-					console.log($scope.layers);
-
 				}
 			});
 
