@@ -1,1 +1,8 @@
-<h2>Services</h2>
+<div ng-repeat="cat in config.services.categories">
+	<h2>{{cat.title}}</h2>
+	<div ng-repeat="service in cat.services">
+		<strong>{{service.title}}</strong>
+		<br/>
+		<span>{{service.labels}}
+	</div>
+</div>

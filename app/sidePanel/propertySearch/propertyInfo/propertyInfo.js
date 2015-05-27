@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'sidePanel/propertySearch/propertyInfo/propertyInfo.html',
 		restrict: 'E',
-		controller: function ($scope, $filter, $timeout, $rootScope) {
+		controller: function ($scope, $filter, $timeout, $rootScope, property) {
 			$scope.accountInfo = [];
 			var formatAccountInfo = function (account) {
 				$scope.accountInfo = [];
@@ -17,16 +17,41 @@ angular.module('imapsNgApp')
 					}
 					$scope.accountInfo.push({field: f.alias, value: account[f.field]});
 				});
-				$timeout(function() {
-					$scope.infoGrid.data = $scope.accountInfo;
+
+			};
+
+			var getSepticPermits = function (pin) {
+				property.getSepticPermits(pin).then(function (data) {
+					if (data.SepticPermits.length > 0) {
+						angular.forEach(data.SepticPermits, function (permit) {
+							$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
+						});
+/*						$timeout(function() {
+							$scope.infoGrid.data = $scope.accountInfo;
+						});	*/					
+					}
+					getWellSamples(pin);
 				});
-			}
+			};
+			var getWellSamples = function (pin) {
+				property.getWellResults(pin).then(function (data) {
+					if (data.WellResults.length > 0) {
+						$scope.accountInfo.push({field: 'Well Samples', value: pin});
+					}
+					$timeout(function() {
+						$scope.infoGrid.data = $scope.accountInfo;
+					});						
+				});
+	
+			};			
+
 			if ($scope.account && !$scope.accountInfo) {
 				formatAccountInfo($scope.account);
 			}
 
 			$scope.$on('accountSelected', function (e, account) {
 				formatAccountInfo(account);
+				getSepticPermits(account.pin);				
 			});	
 			$scope.infoGrid = {
 				data: $scope.accountInfo,
@@ -44,7 +69,14 @@ angular.module('imapsNgApp')
 					{
 						field: 'value',
 						displayName: 'Value', 
-						sort: false
+						sort: false,
+						render: function (row) {
+							if (row.field === "Septic Permit") {
+								return React.DOM.a({href:"http://gisasp2.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value);
+							} else if (row.field === "Well Samples") {
+								return React.DOM.a({href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View");
+							}
+						}
 					}
 				]
 			};		

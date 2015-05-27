@@ -13,9 +13,14 @@ angular.module('imapsNgApp')
 			});
 			$scope.btnClick = function () {
 				$rootScope.checked = !$rootScope.checked;
+/*				if (!$rootScope.checked) {
+					$("base-map-panel").css('right', 0);
+				} else {
+					$("base-map-panel").css('right', 300);
+				}*/
+				
 			}
 			$scope.titleClick = function () {
-				console.log(this.$root.config);
 				this.title = this.$root.config.title;
 			}
 

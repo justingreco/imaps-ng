@@ -10,7 +10,8 @@
 angular.module('imapsNgApp')
   .controller('MainCtrl', function ($rootScope, config) {
   	$rootScope.checked = true;
-    config.loadConfig('../config/config.txt').then(function (data) {
+
+    config.loadConfig('config/config.json').then(function (data) {
     	$rootScope.config = data;
     });
   });

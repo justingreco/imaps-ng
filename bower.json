@@ -5,7 +5,7 @@
     "angular": "~1.2.0",
     "json3": "~3.3.1",
     "es5-shim": "~3.1.0",
-    "bootstrap": "~3.2.0",
+    "bootstrap": "3.3.4",
     "angular-resource": "~1.2.0",
     "angular-cookies": "~1.2.0",
     "angular-sanitize": "~1.2.0",
@@ -13,16 +13,16 @@
     "angular-touch": "~1.2.0",
     "angular-route": "~1.2.0",
     "leaflet": "~0.7.3",
-    "ng-pageslide": "~0.2.0",
     "angular-bootstrap": "~0.12.1",
     "venturocket-angular-slider": "~0.3.2",
     "angular-local-storage": "~0.1.5",
     "angular-typeahead": "~0.2.2",
     "angular-loading-bar": "~0.7.1",
-    "pdfmake": "~0.1.18",
     "ng-csv": "~0.3.3",
     "react": "0.10.0",
-    "ngReactGrid": "~0.7.0"
+    "ngReactGrid": "~0.7.0",
+    "turf": "~2.0.2",
+    "ng-pageslide": "~1.0.3"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

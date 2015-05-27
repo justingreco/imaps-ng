@@ -1,0 +1,770 @@
+{
+"title":"iMAPS",
+"subtitle":"City of Raleigh & Wake County",
+"map":{
+"extent":
+{
+"xmin":2001465.400000,
+"ymin":644117.900000,
+"xmax":2221323.300000,
+"ymax":846796.200000,
+"spatialReference":{"wkid":2264}
+},
+"geometry":"http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+"baselayers":
+[
+{
+"id":"basemap",
+"label":"Detailed",
+"type":"tiled",
+"visible":true,
+"opacity":1.00,
+"url":"http://maps.raleighnc.gov/ArcGIS/rest/services/BaseMapMobile/MapServer"
+},
+{
+"id":"basemapbasic",
+"label":"Basic",
+"type":"dynamic",
+"visible":false,
+"opacity":1.00,
+"url":"http://maps.raleighnc.gov/ArcGIS/rest/services/BaseMapBasic/MapServer"
+}
+],
+"imagelayers":
+[
+{
+ "id":"image2014",
+ "label":"2014",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2014/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2013",
+ "label":"2013",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2013/ImageServer",
+ "countywide":true
+},
+{
+ "id":"image2012",
+ "label":"2012",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2012/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2011",
+ "label":"2011",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2011/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2010",
+ "label":"2010",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2010/ImageServer",
+ "countywide":true
+},
+{
+ "id":"image2009",
+ "label":"2009",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2009/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2008",
+ "label":"2008",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2008/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2007",
+ "label":"2007",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2007/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2006",
+ "label":"2006",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2006/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2005",
+ "label":"2005",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2005/ImageServer",
+ "countywide":true
+},
+{
+ "id":"image2004",
+ "label":"2004",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2004/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image2002",
+ "label":"2002",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos2002/ImageServer",
+ "countywide":false
+},
+{
+ "id":"image1999",
+ "label":"1999",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos1999/ImageServer",
+ "countywide":true
+},
+{
+ "id":"image1988",
+ "label":"1988",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos1988/ImageServer",
+ "countywide":true
+},
+{
+ "id":"image1981",
+ "label":"1981",
+ "type":"tiled",
+ "visible":false,
+ "opacity":1.00,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Orthos10/Orthos1981/ImageServer",
+ "countywide":true
+}
+],"oplayers":[
+ {"id":"corporate",
+ "label":"Corporate Boundaries",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/Jurisdictions/MapServer",
+ "opacity":0.70,
+ "inlist":true},
+ {"id":"publicsafety",
+ "label":"Public Safety",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/PublicSafety/PublicSafety/MapServer",
+ "opacity":0.60,
+ "inlist":true}, 
+ {"id":"zoning",
+ "label":"Zoning",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/Zoning/MapServer",
+ "opacity":0.50,
+ "visiblelayers":[-1],
+ "minscale":76800,
+ "inlist":true},  
+ {"id":"leafcollection",
+ "label":"Leaf Collection Areas",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/PublicWorks/LeafCollection/MapServer",
+ "opacity":0.50,
+ "inlist":true},
+ {"id":"floodplains",
+ "label":"Floodplains",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/Floodplains/MapServer",
+ "opacity":0.60,
+  "minscale":76800,
+ "inlist":true,
+ "template":{
+  "fieldInfos":[
+    {"fieldName":"ZONE_IMAPS",
+    "label":"Zone"}
+  ]
+ }},    
+ {"id":"watersheds",
+ "label":"Watersheds",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/Watersheds/MapServer",
+ "opacity":0.50,
+ "inlist":true},  
+ {"id":"swiftcreek",
+ "label":"Swift Creek Critical Area",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/SwiftCreek/MapServer",
+ "opacity":0.75,
+ "inlist":true},  
+ {"id":"riparianbuffers",
+ "label":"Riparian Buffers",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/RiparianBuffers/MapServer",
+ "opacity":0.50,
+ "minscale":19200,
+ "inlist":true},  
+ {"id":"parcels",
+ "label":"Parcels",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Parcels/MapServer",
+ "opacity":1.00,
+ "minscale":9600,
+ "inlist":true}, 
+ {"id":"topography",
+ "label":"Topography",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/Topo/MapServer",
+ "opacity":1.00,
+ "minscale":4800,
+ "inlist":true}, 
+ {"id":"greenways",
+ "label":"Greenways",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Parks/Greenway/MapServer",
+ "opacity":1.00,
+ "inlist":true}, 
+ {"id":"bluelinestreams",
+ "label":"USGS Blueline Streams",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/USGS_Streams/MapServer",
+ "opacity":1.00,
+ "inlist":true},    
+ {"id":"easements",
+ "label":"Easements",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/PublicUtility/Easements/MapServer",
+ "opacity":1.00,
+ "minscale":19200,
+ "inlist":true}, 
+ {"id":"sewer",
+ "label":"Sewer",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/PublicUtility/SewerExternal/MapServer",
+ "opacity":1.00,
+ "minscale":19200,
+ "inlist":true},  
+ {"id":"stormwater",
+ "label":"Raleigh Stormwater",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/PublicWorks/Stormwater/MapServer",
+ "opacity":1.00,
+ "inlist":true},  
+  {"id":"streetplan",
+ "label":"Raleigh Streetplan",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/StreetPlan/MapServer",
+ "opacity":1.00,
+ "inlist":true}, 
+ {"id":"devplans",
+ "label":"Raleigh Development Plans",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/RalDevPlans/MapServer",
+ "opacity":1.00,
+ "minscale":19200,
+ "inlist":true}, 
+ {"id":"overlays",
+ "label":"Zoning Overlays",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/Overlays/MapServer",
+ "opacity":1.00,
+ "minscale":76800,
+ "inlist":true}, 
+ {"id":"subdivisions",
+ "label":"Subdivisions",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/Subdivisions/MapServer",
+ "opacity":1.00,
+ "minscale":19200,
+ "inlist":true},    
+ {"id":"septic",
+ "label":"Septic",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/SepticTanks/MapServer",
+ "opacity":1.00,
+ "minscale":38400,
+ "inlist":true}, 
+ {"id":"wells",
+ "label":"Wells",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Environmental/Wells/MapServer",
+ "opacity":1.00,
+ "minscale":19200,
+ "inlist":true},
+ {"id":"census",
+ "label":"Demographics",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Census/MapServer",
+ "opacity":1.00,
+ "inlist":true},   
+ {"id":"specialuse",
+ "label":"Special Zoning Uses",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/SpecialUse/MapServer",
+ "opacity":0.60,
+ "inlist":true},
+ {"id":"boundaries",
+ "label":"Boundaries",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Boundaries/MapServer",
+ "opacity":0.80,
+ "inlist":true},  
+ {"id":"urbanprogress",
+ "label":"Raleigh Urban Progress Zone",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/UrbanProgressZone/MapServer",
+ "opacity":0.50,
+ "minscale":76800,
+ "inlist":true},                        
+ {"id":"urbanform",
+ "label":"Raleigh Urban Form",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/UrbanForm/MapServer",
+ "opacity":0.80,
+ "minscale":100000,
+ "inlist":true},
+ {"id":"futurelanduse",
+ "label":"Raleigh Future Land Use",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/FutureLandUse/MapServer",
+ "opacity":0.60,
+ "inlist":true},
+ {"id":"redevelopment",
+ "label":"Raleigh Redevelopment Areas",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/RedevelopmentAreas/MapServer",
+ "opacity":1.00,
+ "minscale":76800,
+ "inlist":true},
+{"id":"permits",
+ "label":"Raleigh Permit History",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Planning/Permit_History/MapServer",
+ "opacity":1.00,
+ "minscale":38400,
+ "inlist":true},
+{"id":"poi",
+ "label":"Places of Interest",
+ "type":"dynamic",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/POI1/MapServer",
+ "opacity":1.00,
+ "minscale":76800,
+ "inlist":true} 
+],"labels": {"id":"labels",
+ "label":"Labels",
+ "type":"tiled",
+ "visible":false,
+ "url":"http://maps.raleighnc.gov/ArcGIS/rest/services/Labels/MapServer",
+ "opacity":1.00,
+ "inlist":false}
+},
+"tools":[
+ {
+  "id":"identify",
+  "label":"Identify",
+  "icon":"./img/info_default.png",
+  "toggle":true,
+  "script":"js/plugins/jquery.identify.js",
+  "plugin":"identify"  
+ },
+ {
+  "id":"select",  
+  "label":"Select",
+  "icon":"./img/select_point_default.png",
+  "toggle":true,
+  "script":"js/plugins/jquery.property-select.js",
+  "plugin":"propertySelect"  
+ }, 
+ {
+  "id":"streetview",  
+  "label":"Streetview",
+  "icon":"./img/streetview_default.png",
+  "toggle":true,
+  "script":"js/plugins/jquery.streetview.js",
+  "plugin":"streetview"  
+ },
+{
+  "id":"measure",  
+  "label":"Measure",
+  "icon":"./img/measure_default.png",
+  "toggle":false,
+  "script":"js/plugins/jquery.measure.js",
+  "plugin":"measure"
+ },
+ {
+  "id":"bookmarks",  
+  "label":"Bookmarks",
+  "toggle":false,
+  "icon":"./img/bookmark_default.png",
+  "script":"js/plugins/jquery.bookmarks.js",
+  "plugin":"bookmarks"
+ },
+ {
+  "id":"markup",    
+  "icon":"./img/markup_default.png",
+  "label":"Markup",
+  "toggle":false,
+  "script":"js/plugins/jquery.markup-dialog.js",
+  "plugin":"markup"
+ },
+ {
+  "id":"print",  
+  "label":"Print",
+  "icon":"./img/print_default.png",
+  "script":"js/plugins/jquery.print-dialog.js",  
+  "plugin":"print",
+  "toggle":false
+ }],
+"panel":
+{
+ "tools":[
+  {
+  	"label":"Property Search",
+    "divid":"propertydiv",
+    "script":"js/plugins/jquery.property-search.js",
+    "plugin":"propertySearch"
+  },
+  {
+  	"label":"Location Search",
+    "divid":"locationdiv",
+    "script":"js/plugins/jquery.location-search.js",
+    "plugin":"locationSearch"
+  },
+  {
+  	"label":"Layers",
+    "divid":"layersdiv",
+    "script":"js/plugins/jquery.layer-list.js",
+    "plugin":"layerlist" 
+  }
+ ]
+},
+"property":
+{
+  "soe":"http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE",
+  "realEstateOp":"RealEstateSearch",
+  "photoOp":"PhotoSearch",
+  "deedOp":"DeedSearch",
+  "addressOp":"AddressSearch",
+  "septicOp":"Septic Permits",
+  "propertyService":"http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/0",
+  "symbolMultiple":{
+    "type":"esriSFS",
+    "style":"esriSFSNull",
+    "color":[255,0,0],
+    "outline":{
+      "type":"esriSLS",
+      "style":"esriSLSSolid",
+      "color":[255,255,0],
+      "width":2
+    }
+  },
+  "symbolSingle":{
+    "type":"esriSFS",
+    "style":"esriSFSNull",
+    "color":[255,0,0],
+    "outline":{
+      "type":"esriSLS",
+      "style":"esriSLSSolid",
+      "color":[255,0,0],
+      "width":2
+    }
+  }
+},"location":
+{
+  "geocoder":"http://maps.raleighnc.gov/arcgis/rest/services/Locators/WakeLocator/GeocodeServer",
+  "intersections":"http://maps.raleighnc.gov/arcgis/rest/services/StreetsDissolved/MapServer/0",
+  "poi":"http://maps.raleighnc.gov/arcgis/rest/services/POI1/MapServer/0"
+},
+  "bookmarks":[
+    {"name":"Downtown Raleigh", "extent":
+      {
+    "xmin":2104769,
+    "ymin":736771,
+    "xmax":2109252,
+    "ymax":739662,
+    "spatialReference":{"wkid":2264}
+    }},
+    {"name":"Five Points", "extent":
+      {
+    "xmin":2103840,
+    "ymin":746959,
+    "xmax":2106084,
+    "ymax":748405,
+    "spatialReference":{"wkid":2264}
+    }}    
+  ],
+
+  "menu":{"items":[
+      {"title":"About", "items":[
+        {"title":"Disclaimer"},
+        {"title":"About"}
+      ]},
+      {"title":"Feedback", "items":[
+        {"title":"Feedback"},
+        {"title":"Survey"}
+      ]},
+      {"title":"Links", "items":[
+        {"title":"City of Raleigh", "url":"http://www.raleighnc.gov/"},
+        {"title":"Wake County", "url":"http://www.wakegov.com/"}
+      ]},
+      {"title":"Help", "items":[
+        {"title":"Help"},
+        {"title":"Quickstart Guide"}
+      ]}            
+    ]},
+    "services":{
+        "url": "http://maps.raleighnc.gov/ArcGIS/rest/services/Services/ServicesIMaps/MapServer/identify",
+        "categories": [
+            {"title": "Voting",
+                "services": [
+                    {
+                        "title": "Precinct [PRECINCT] Polling Place",
+                        "labels": "[POLL_PL];[ST_NUMBER] [ST_NAME:proper], [CITY:proper]",
+                        "layerId": 1,
+                        "url": ""
+                    },
+                    {
+                        "title": "State Senate District [DISTRICT]",
+                        "labels": "[NAME] ([PARTY]);<a href='[WEBSITE]' target='_blank'>Website</a>",
+                        "layerId": 2
+                    },
+                    {
+                        "title": "US House District [DISTRICT]",
+                        "labels": "[NAME] ([PARTY]);<a href='[WEBSITE]' target='_blank'>Website</a>",
+                        "layerId": 3
+                    },
+                    {
+                        "title": "State House District [DISTRICT]",
+                        "labels": "[NAME] ([PARTY]);<a href='[WEBSITE]' target='_blank'>Website</a>",
+                        "layerId": 4
+                    },
+                    {
+                        "title": "Wake County Commissioners District [DISTRICT]",
+                        "labels": "[NAME];<a href='http://www.wakegov.com/commissioners/districts/Pages/district[DISTRICT].aspx' target='_blank'>Website</a>",
+                        "layerId": 5
+                    },
+                    {
+                        "title": "Board of Education District [DISTRICT]",
+                        "labels": "[NAME];<a href='http://www.wcpss.net/Board/boeinfo.html' target='_blank'>Website</a>",
+                        "layerId": 6
+                    },
+                    {
+                        "title": "Raleigh Council District [DISTRICT]",
+                        "labels": "[NAME];<a href='http://www.raleighnc.gov/home/content/BoardsCommissions/Articles/CityCouncil.html' target='_blank'>Website</a>",
+                        "layerId": 7
+                    },
+                    {
+                        "title": "Cary Council District [DIST]",
+                        "labels": "[REP];<a href='http://www.townofcary.org/Departments/Town_Clerk_s_Office/Cary_Town_Council.htm' target='_blank'>Website</a>",
+                        "layerId": 8
+                    }
+                ]
+            },
+            {"title": "Planning",
+                "services": [
+                    {"title": "Angier Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 11
+                    },
+                    {"title": "Apex Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 12
+                    },
+                    {"title": "Cary Zoning",
+                        "labels": "[NAME]",
+                        "layerId": 13
+                    },
+                    {"title": "County Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 14
+                    },
+                    {"title": "Fuquay-Varina Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 15
+                    },
+                    {"title": "Garner Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 16
+                    },
+                    {"title": "Holly Springs Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 17
+                    },
+                    {"title": "Knightdale Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 18
+                    },
+                    {"title": "Morrisville Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 19
+                    },
+                    {"title": "Rolesville Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 20
+                    },
+                    {"title": "Wake Forest Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 21
+                    },
+                    {"title": "Wendell Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 22
+                    },
+                    {"title": "Zebulon Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 23
+                    },
+                    {"title": "City Limit",
+                        "labels": "[LONG_NAME:proper]",
+                        "layerId": 24
+                    },
+                    {"title": "Planning Jurisdiction (ETJ)",
+                        "labels": "[JURISDICTION:proper]",
+                        "layerId": 25
+                    },
+                    {"title": "Raleigh Annexation Year",
+                        "labels": "[CASE_YEAR]",
+                        "layerId": 27
+                    },
+                    {"title": "Raleigh Future Landuse",
+                        "labels": "[Land_Use]",
+                        "layerId": 28
+                    },{"title": "Subdivision",
+                        "labels": "[NAME:proper]",
+                        "layerId": 29
+                    },{"title": "Development Plans",
+                        "labels": "File #: [CASE];Name: [FILE_NAME:proper]",
+                        "layerId": 30
+                    }
+                ]
+            } ,
+            {"title": "Solid Waste",
+                "services": [
+                    {"title": "Collection Day",
+                        "labels": "[TRASH_COLLECTION_DAY];<a href='[URL]' target='_blank'>Website</a>;<a href='[HOLIDAY_URL]' target='_blank'>Holiday Schedule</a>",
+                        "layerId": 32
+                    },{
+                        "title": "Trash Collection Route",
+                        "labels": "[Trash Route]",
+                        "layerId": 33
+                    },{
+                        "title": "Yardwaste Collection Route",
+                        "labels": "[Yardwaste Route]",
+                        "layerId": 33
+                    },{
+                        "title": "Bi-Weekly Recycling Collection",
+                        "labels": "Route: [Recycling Route]",
+                        "layerId": 33
+                    },{
+                        "title": "Bi-Weekly Recycling Collection",
+                        "labels": "Collection Day: [Collection Day];Rollout Phase: <a href='http://www.raleighnc.gov/content/SolidWaste/Documents/[Collection Day:upper].pdf' target='_blank'>[PHASE]</a>;Rollout Start Date: [PHASE_DATE];Recycling Week: <a href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars2012/[Collection Day][WEEK].pdf' target='_blank'>[WEEK]</a>",
+                        "layerId": 34
+                    }
+                ]
+            },{"title": "Public Safety",
+                "services": [
+                    {"title": "Sheriff Zone",
+                    "labels": "[DISTRICT]",
+                    "layerId": 36},
+                    {"title": "Raleigh Police Beat",
+                    "labels": "[Name]",
+                    "layerId": 37},
+                    {"title": "Garner Police Beat",
+                    "labels": "[Name]",
+                    "layerId": 38},
+                    {"title": "Fire Insurance District",
+                    "labels": "[District]",
+                    "layerId": 39},
+                    {"title": "County Fire Response District",
+                    "labels": "[District]",
+                    "layerId": 40},
+                    {"title": "Raleigh Fire Response District",
+                    "labels": "[District]",
+                    "layerId": 41},
+                    {"title": "EMS Franchise District",
+                    "labels": "[District:proper]",
+                    "layerId": 42},
+                    {"title": "EMS Response District",
+                    "labels": "[District:proper]",
+                    "layerId": 43}
+                ]
+            },{"title": "Environmental",
+                "services": [
+                    {"title": "Floodplain",
+                    "labels": "[ZONE_IMAPS]",
+                    "layerId": 45},
+                    {"title": "Soils",
+                    "labels": "[NAME]",
+                    "layerId": 46},
+                    {"title": "Hydrologic Unit",
+                    "labels": "[HUC_CODE]",
+                    "layerId": 47},
+                    {"title": "Critical Wastershed",
+                    "labels": "[PROPWS]",
+                    "layerId": 48},
+                    {"title": "Drainage Basin",
+                    "labels": "[BASINS:proper]",
+                    "layerId": 50}
+                ]
+            },{"title": "City of Raleigh Assessments",
+                "services": [
+                    {"title": "Assement Liens",
+                    "labels": "Account #: [Account];Type: [Type];Status: [Status];Confirmed: [Confirmed Date];<a href='http://www.raleighnc.gov/home/content/Finance/Articles/OtherPaymentInformatio.html' target='_blank'>Website</a>",
+                    "layerId": 52}
+                ]
+            }
+        ]
+    }
+  }

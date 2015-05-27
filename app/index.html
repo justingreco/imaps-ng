@@ -29,9 +29,10 @@
     <!-- Add your site or application content here -->
       <app-header></app-header>
       <map-panel></map-panel>
-        <side-panel pageslide ps-open="checked" class="ng-isolate-scope ng-pageslide">
-        </side-panel>
-
+      <side-panel></side-panel>
+      <tool-panel></tool-panel>
+      <base-map-panel ng-style="{right: ((checked) ? '300px' : '0')}"></base-map-panel>
+      <overview-panel ng-style="{right: ((checked) ? '300px' : '0')}"></overview-panel>      
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -65,18 +66,17 @@
     <script src="components/angular-route/angular-route.js"></script>
     <script src="components/leaflet/dist/leaflet.js"></script>
     <script src="components/leaflet/dist/leaflet-src.js"></script>
-    <script src="components/ng-pageslide/dist/angular-pageslide-directive.js"></script>
     <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
     <script src="components/venturocket-angular-slider/build/angular-slider.js"></script>
     <script src="components/angular-local-storage/dist/angular-local-storage.js"></script>
     <script src="components/typeahead.js/dist/typeahead.bundle.js"></script>
     <script src="components/angular-typeahead/angular-typeahead.js"></script>
     <script src="components/angular-loading-bar/build/loading-bar.js"></script>
-    <script src="components/pdfmake/build/pdfmake.js"></script>
-    <script src="components/pdfmake/build/vfs_fonts.js"></script>
     <script src="components/ng-csv/build/ng-csv.min.js"></script>
     <script src="components/react/react.js"></script>
     <script src="components/ngReactGrid/build/js/ngReactGrid.min.js"></script>
+    <script src="components/turf/turf.min.js"></script>
+    <script src="components/ng-pageslide/dist/angular-pageslide-directive.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -87,7 +87,10 @@
     <script src="appHeader/appHeader.js"></script>
     <script src="exportButton/exportButton.js"></script>        
     <script src="mapPanel/mapPanel.js"></script>
-    <script src="sidePanel/sidePanel.js"></script>  
+    <script src="sidePanel/sidePanel.js"></script>
+        <script src="toolPanel/toolPanel.js"></script>  
+        <script src="baseMapPanel/baseMapPanel.js"></script>  
+        <script src="overviewPanel/overviewPanel.js"></script>  
     <script src="sidePanel/search/search.js"></script> 
     <script src="sidePanel/propertySearch/propertySearch.js"></script>    
     <script src="sidePanel/propertySearch/propertyResults/propertyResults.js"></script>   
@@ -102,7 +105,13 @@
     <script src="factories/config.js"></script>
     <script src="factories/property.js"></script>
 
+
+
     <!-- endbuild -->
+    <script src="scripts/jsonConverters.js"></script>
+    <script src="scripts/cycle.js"></script>
+    <script src="scripts/stringify.js"></script>
+    <script src="scripts/spToDd.js"></script>        
     <script src="http://js.arcgis.com/3.13/"></script>
 
 </body>

@@ -4,25 +4,25 @@ angular.module('imapsNgApp')
 		templateUrl: 'sidePanel/layerList/layerList.html',
 		restrict: 'E',
 		controller: function ($scope) {
+			var getLegend = function (l) {
+				legend.getLegend(l.url, l.id).then(function (legend) {
+					var lyr = $filter('filter')($scope.layers, function (i) {
+						return i.id === legend.id;
+					})[0];
+					angular.forEach(lyr.resourceInfo.layers, function (subl, j) {
+						if (legend.layers[j]) {
+							subl.legend = legend.layers[j].legend;
+						}
+					});
+				});	
+			};
 			$scope.$watch('map', function (map) {
 				if (map) {
-					map.on('load', function (map) {
-						
-					});
-
 					$scope.layers = $scope.webmap.itemInfo.itemData.operationalLayers;
-				angular.forEach($scope.layers, function (l) {
-						legend.getLegend(l.url, l.id).then(function (legend) {
-							var lyr = $filter('filter')($scope.layers, function (i) {
-								return i.id === legend.id;
-							})[0];
-							angular.forEach(lyr.resourceInfo.layers, function (subl, j) {
-								if (legend.layers[j]) {
-									subl.legend = legend.layers[j].legend;
-								}
-								
-							});
-						});
+					angular.forEach($scope.layers, function (l) {
+						if (l.visibility) {
+							getLegend(l);
+						}
 					});
 				}
 			});
@@ -30,7 +30,10 @@ angular.module('imapsNgApp')
 			$scope.layerToggle = function (layer, webmap) {
 				layer.visibility = !layer.visibility;
 				$scope.map.getLayer(layer.id).setVisibility(layer.visibility);
-				//localStorageService.set('imaps_webmap', JSON.stringify($scope.webmap));
+				if (layer.visibility && !layer.resourceInfo.layers[0].legend) {
+					getLegend(layer);
+				}
+				
 			};
 			$scope.subLayerToggle = function (layer, sublayer, webmap) {
 				var visible = [];
@@ -46,12 +49,10 @@ angular.module('imapsNgApp')
 					visible = [-1];
 				}
 				$scope.map.getLayer(layer.id).setVisibleLayers(visible);
-				//localStorageService.set('imaps_webmap', JSON.stringify($scope.webmap));
 			};
 
 			$scope.opacityChanged = function (layer, webmap) {
 				$scope.map.getLayer(layer.id).setOpacity(layer.opacity);
-				//localStorageService.set('imaps_webmap', JSON.stringify($scope.webmap));
 			};
 
 		},

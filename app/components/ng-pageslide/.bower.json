@@ -1,6 +1,6 @@
 {
   "name": "angular-pageslide-directive",
-  "version": "0.2.0",
+  "version": "1.0.3",
   "main": "dist/angular-pageslide-directive.js",
   "authors": [
     "Daniele Piccone <mail@danielepiccone.com> (http://www.danielepiccone.com)",
@@ -17,14 +17,14 @@
     "angular-mocks": "~1.3.13"
   },
   "homepage": "https://github.com/dpiccone/ng-pageslide",
-  "_release": "0.2.0",
+  "_release": "1.0.3",
   "_resolution": {
     "type": "version",
-    "tag": "v0.2.0",
-    "commit": "b6d6944ad609c3f4265c1d243ab735200ae13fe3"
+    "tag": "v1.0.3",
+    "commit": "34bbf705bdc8b109684836913328a0a1f6830f54"
   },
   "_source": "git://github.com/dpiccone/ng-pageslide.git",
-  "_target": "~0.2.0",
+  "_target": "~1.0.3",
   "_originalSource": "ng-pageslide",
   "_direct": true
 }

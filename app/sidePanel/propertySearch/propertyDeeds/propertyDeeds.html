@@ -2,15 +2,15 @@
 <strong>Deeds</strong>
 <div ng-repeat="deed in deeds" ng-model="deed" style="display:inline-text">
 	<span>{{deed.deedDocNum}}</span>
-	<a class="btn btn-default btn-sm" href="http://services.wakegov.com/booksweb/docview.aspx?docid={{deed.deedDocNum}}" target="_blank">View</a>
-	<a class="btn btn-default btn-sm" href="http://services.wakegov.com/booksweb/pdfview.aspx?docid={{deed.deedDocNum}}&RecordDate=" target="_blank">PDF</a>
+	<a class="btn btn-default btn-sm" ng-href="http://services.wakegov.com/booksweb/docview.aspx?docid={{deed.deedDocNum}}" target="_blank">View</a>
+	<a class="btn btn-default btn-sm" ng-href="http://services.wakegov.com/booksweb/pdfview.aspx?docid={{deed.deedDocNum}}&RecordDate=" target="_blank">PDF</a>
 </div>
 </div>
 <div ng-show="plats.length > 0">
 <strong>Maps &amp; Plats</strong>
 <div ng-repeat="plat in plats" ng-model="plat" style="display:inline-text">
 	<span>{{plat.bomDocNum}}</span>
-	<a class="btn btn-default btn-sm" href="http://services.wakegov.com/booksweb/docview.aspx?docid={{plat.bomDocNum}}" target="_blank">View</a>
-	<a class="btn btn-default btn-sm" href="http://services.wakegov.com/booksweb/pdfview.aspx?docid={{plat.bomDocNum}}&RecordDate=" target="_blank">PDF</a>
+	<a class="btn btn-default btn-sm" ng-href="http://services.wakegov.com/booksweb/docview.aspx?docid={{plat.bomDocNum}}" target="_blank">View</a>
+	<a class="btn btn-default btn-sm" ng-href="http://services.wakegov.com/booksweb/pdfview.aspx?docid={{plat.bomDocNum}}&RecordDate=" target="_blank">PDF</a>
 </div>
 </div>

@@ -25,4 +25,6 @@ angular
     'cfp.loadingBar',
     'ngCsv',
     'ngReactGrid'
-  ]);
+  ]).config(function (localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('imaps');
+  });

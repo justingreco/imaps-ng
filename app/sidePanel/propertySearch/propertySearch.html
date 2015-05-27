@@ -9,5 +9,5 @@
 	<property-addresses ng-show="tab.title == 'Addresses'"></property-addresses>
 </div>
 <div id="proptabs">
-	<span ng-model="tab" ng-repeat="tab in tabs" class="glyphicon glyphicon-{{tab.icon}}" ng-class="{highlighted: tab.highlighted, disabledTab: tab.disabled}" title="tab.title" ng-click="tabClicked(tab)" ng-disabled="tab.disabled"></span>
+	<span ng-model="tab" ng-repeat="tab in tabs" class="glyphicon glyphicon-{{tab.icon}}" ng-class="{highlighted: tab.highlighted, disabledTab: tab.disabled}" title="{{tab.title}}" ng-click="tabClicked(tab)" ng-disabled="tab.disabled"></span>
 </div>
