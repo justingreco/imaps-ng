@@ -78,12 +78,12 @@ angular.module('imapsNgApp')
 						}
 					    arcgisUtils.createMap(input,"map", {
 					    	geometryServiceURL: "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
-					    	fadeOnZoom: true,
+					    	mapOptions: {fadeOnZoom: true,
 					    	logo: false,
-					    	showAttribution: false,
-					    	sliderOrientation: 'horizontal',
-					    	sliderPosition: 'bottom-left'
-
+	          				showAttribution: false,
+				          	sliderPosition: "bottom-left",
+				          	sliderOrientation: "horizontal",
+				          	sliderStyle: "small"}
 					    }).then(webMapLoaded, function (err) {
 					    	console.log(err);
 					    });
