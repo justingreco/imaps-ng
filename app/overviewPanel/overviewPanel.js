@@ -11,26 +11,28 @@ angular.module('imapsNgApp')
 			});
 
 			$scope.overviewHeaderClick = function (checked) {
-				$rootScope.overviewChecked = !checked;				
+				$rootScope.overviewChecked = !checked;
 			}
 
 
 			$scope.$watch('map', function (map) {
 				if (map) {
 					require([
-				        "esri/dijit/OverviewMap"
-				      ], function (
-				        OverviewMap
-				      ) {
+						"esri/dijit/OverviewMap", "esri/layers/ArcGISTiledMapServiceLayer"
+					], function (
+						OverviewMap, ArcGISTiledMapServiceLayer
+					) {
 
 
-				        var overviewMapDijit = new OverviewMap({
-				          map: map,
-				          visible: true,
-				          width: '100%'
-				        }, "overview");
-				        overviewMapDijit.startup();
-				      });					
+						var overviewMapDijit = new OverviewMap({
+							map: map,
+							visible: true,
+							width: '180',
+							height: '180',
+							baseLayer: new ArcGISTiledMapServiceLayer("http://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer")
+						}, "overview");
+						overviewMapDijit.startup();
+					});
 				}
 
 			});
