@@ -27,4 +27,5 @@ angular
     'ngReactGrid'
   ]).config(function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('imaps');
+
   });
