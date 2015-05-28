@@ -18,8 +18,11 @@ angular.module('imapsNgApp')
 			var checkInsideRaleigh = function (bounds, point) {
 				require(["esri/geometry/Polygon"], function (Polygon) {
 					bounds = new Polygon(bounds);
-					var inRaleigh = bounds.contains(point);
-					$rootScope.$broadcast('raleighChecked', inRaleigh);
+					var inside = bounds.contains(point);
+					if ($scope.inRaleigh != inside) {
+						$scope.inRaleigh = bounds.contains(point);
+						$rootScope.$broadcast('raleighChecked', inside);
+					}
 				});
 			};
 			var extentChanged = function (e) {

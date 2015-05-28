@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'baseMapPanel/baseMapPanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope) {
+		controller: function ($scope, $rootScope, $filter) {
 			var baseloaded = false;
 			$scope.insideRaleigh = true;
 			$rootScope.mapsChecked = false;
@@ -25,10 +25,45 @@ angular.module('imapsNgApp')
 			}
 			$scope.$on('raleighChecked', function (e, inRaleigh) {
 				$scope.insideRaleigh = inRaleigh;
-				if (!$scope.insideRaleigh && $scope.basemap.name != '2013') {
-					$scope.basemap =  $scope.config.map.basemaps.images.layers[1];
-					$scope.basemapChanged($scope.basemap, "images");
+				if ($scope.basemapType === 'images') {
+					if (!inRaleigh) {
+						//in Wake
+						if ($scope.lastWakeYear) {
+							$scope.basemap = $scope.lastWakeYear;
+							$scope.basemapChanged($scope.lastWakeYear, 'images');
+						} else {
+							var basemaps = $filter('filter')($scope.config.map.basemaps.images.layers, function (basemap) {
+								return basemap.county === true;
+							});
+							$scope.basemap = basemaps[0];
+							$scope.basemapChanged($scope.basemap, 'images');
+						}
+
+						$scope.lastWakeYear = $scope.basemap;
+					} else {
+						//in Raleigh
+						if ($scope.lastRaleighYear) {
+							$scope.basemap = $scope.lastRaleighYear;
+							$scope.basemapChanged($scope.lastRaleighYear, 'images');
+						} else {
+							$scope.basemap = $scope.config.map.basemaps.images.layers[0];
+							$scope.basemapChanged($scope.basemap, 'images');
+						}
+						$scope.lastRaleighYear = $scope.basemap;
+					}
 				}
+
+
+				// $scope.insideRaleigh = inRaleigh;
+				// if (!inRaleigh && $scope.basemap.name != '2013' && $scope.basemapType === 'images') {
+				// 	$scope.basemap =  $scope.config.map.basemaps.images.layers[1];
+				// 	$scope.basemapChanged($scope.basemap, "images");
+				// } else if (inRaleigh) {
+				// 	if ($scope.lastRaleighYear) {
+				// 		$scope.basemapChanged($scope.lastRaleighYear, "images");
+				// 	}
+				// 	$scope.lastRaleighYear = $scope.basemap;
+				// }
 			});
 			$scope.basemapTypeClicked = function (type) {
 				if ($scope.basemapType != type) {
@@ -66,6 +101,12 @@ angular.module('imapsNgApp')
 						$scope.imageMap = basemap;
 					}
 					$scope.webmap.itemInfo.itemData.baseMap = esriBasemaps[basemap.id];
+
+					if (basemap.county) {
+						$scope.lastWakeYear = basemap;
+					} else {
+						$scope.lastRaleighYear = basemap;
+					}
 				});
 			}
 		}, link: function (scope, element, attr) {
