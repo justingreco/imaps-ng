@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'mapPanel/mapPanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, property, localStorageService, $filter) {
+		controller: function ($scope, $rootScope, property, localStorageService, $filter, mapUtils) {
 			$scope.property = property;
 			var mapUpdating = function () {
 				cfpLoadingBar.start();
@@ -15,54 +15,70 @@ angular.module('imapsNgApp')
 				localStorageService.set('imaps_webmap', stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
 				localStorageService.set('basemapId', $scope.map.getBasemap());
 			};
-			var extentChanged = function (e) {
-				var ll = spToDd($scope.map.extent.xmin, $scope.map.extent.ymin);
-				var tr = spToDd($scope.map.extent.xmax, $scope.map.extent.ymax);
-				$scope.webmap.itemInfo.item.extent = [ll.reverse(), tr.reverse()];
+			var checkInsideRaleigh = function (bounds, point) {
+				require(["esri/geometry/Polygon"], function (Polygon) {
+					bounds = new Polygon(bounds);
+					var inRaleigh = bounds.contains(point);
+					$rootScope.$broadcast('raleighChecked', inRaleigh);
+				});
 			};
+			var extentChanged = function (e) {
+				var ll = spToDd(e.extent.xmin, e.extent.ymin);
+				var tr = spToDd(e.extent.xmax, e.extent.ymax);
+				$scope.webmap.itemInfo.item.extent = [ll.reverse(), tr.reverse()];
+				if ($scope.raleighBounds) {
+					checkInsideRaleigh($scope.raleighBounds, e.extent.getCenter());
+				}
+			};
+			var setRaleighBounds = function () {
+				mapUtils.loadRaleighBounds('../data/raleigh.json').then(function (bounds) {
+					$scope.raleighBounds = bounds;
+					checkInsideRaleigh(bounds, $scope.map.extent.getCenter());
+				})
+			}
 			var webMapLoaded = function (response) {
+				setRaleighBounds();
 				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "dojo/on"], function (GraphicsLayer, esriBasemaps, Extent, on) {
-			    	$scope.webmap = response;
-			    	$scope.map = response.map;
-			    	$scope.selectionMultiple = new GraphicsLayer();
-			    	$scope.selectionSingle = new GraphicsLayer();
-			    	$scope.map.addLayer($scope.selectionMultiple);
-			    	$scope.map.addLayer($scope.selectionSingle);
-			    	$scope.$digest();
-			    	on($scope.map, 'update-start', mapUpdating);
-			    	on($scope.map, 'update-end', mapUpdated);
-			    	on($scope.map, 'extent-change', extentChanged)
-			    	on($scope.map, 'unload', mapUnloaded);
-			    	var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
-			    	angular.forEach(basemaps, function (basemap) {
-			    		var baselayers = [{url: basemap.url}];
-			    		if (!basemap.labels) {
-			    			baselayers.push({url: $scope.config.map.labels});
-			    		}
-			    		var base = {
-			    			baseMapLayers: baselayers,
-			    			title: basemap.name
-			    		};
-			    		esriBasemaps[basemap.id] = base;						
-			    	});
+					$scope.webmap = response;
+					$scope.map = response.map;
+					$scope.selectionMultiple = new GraphicsLayer();
+					$scope.selectionSingle = new GraphicsLayer();
+					$scope.map.addLayer($scope.selectionMultiple);
+					$scope.map.addLayer($scope.selectionSingle);
+					$scope.$digest();
+					on($scope.map, 'update-start', mapUpdating);
+					on($scope.map, 'update-end', mapUpdated);
+					on($scope.map, 'extent-change', extentChanged)
+					on($scope.map, 'unload', mapUnloaded);
+					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
+					angular.forEach(basemaps, function (basemap) {
+						var baselayers = [{url: basemap.url}];
+						if (!basemap.labels) {
+							baselayers.push({url: $scope.config.map.labels});
+						}
+						var base = {
+							baseMapLayers: baselayers,
+							title: basemap.name
+						};
+						esriBasemaps[basemap.id] = base;
+					});
 
-			    	var basetitle = $scope.webmap.itemInfo.itemData.baseMap.title;
-			    	var basemaps = $filter('filter')($scope.config.map.basemaps.streets.layers, function (layer) {
-			    		return basetitle === layer.name;
-			    	});
-			    	if (basemaps.length > 0) {
-			    		$scope.basemap = basemaps[0];
-			    		$scope.basemapType = "streets";
-			    	} else {
-			    		basemaps = $filter('filter')($scope.config.map.basemaps.images.layers, function (layer) {
-			    			return basetitle === layer.name;
-			    		});
-			    		if (basemaps.length > 0) {
-				    		$scope.basemap = basemaps[0];
-				    		$scope.basemapType = "images";
-			    		}
-			    	}
-
+					var basetitle = $scope.webmap.itemInfo.itemData.baseMap.title;
+					var basemaps = $filter('filter')($scope.config.map.basemaps.streets.layers, function (layer) {
+						return basetitle === layer.name;
+					});
+					if (basemaps.length > 0) {
+						$scope.basemap = basemaps[0];
+						$scope.basemapType = "streets";
+					} else {
+						basemaps = $filter('filter')($scope.config.map.basemaps.images.layers, function (layer) {
+							return basetitle === layer.name;
+						});
+						if (basemaps.length > 0) {
+							$scope.basemap = basemaps[0];
+							$scope.basemapType = "images";
+						}
+					}
 				});
 			}
 			$rootScope.$watch('config', function (config) {
@@ -76,55 +92,55 @@ angular.module('imapsNgApp')
 							webmap.itemData = localStorageService.get('imaps_webmap').itemInfo.itemData;
 							input = webmap;
 						}
-					    arcgisUtils.createMap(input,"map", {
-					    	geometryServiceURL: "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
-					    	mapOptions: {fadeOnZoom: true,
-					    	logo: false,
-	          				showAttribution: false,
-				          	sliderPosition: "bottom-left",
-				          	sliderOrientation: "horizontal",
-				          	sliderStyle: "small"}
-					    }).then(webMapLoaded, function (err) {
-					    	console.log(err);
-					    });
-					});
+						arcgisUtils.createMap(input,"map", {
+							geometryServiceURL: "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+							mapOptions: {fadeOnZoom: true,
+								logo: false,
+								showAttribution: false,
+								sliderPosition: "bottom-left",
+								sliderOrientation: "horizontal",
+								sliderStyle: "small"}
+							}).then(webMapLoaded, function (err) {
+								console.log(err);
+							});
+						});
+					}
+				});
+				var addGeometriesToMap = function (features, gl, color) {
+					require(["esri/graphic", "esri/graphicsUtils", "esri/SpatialReference"], function (Graphic, graphicsUtils, SpatialReference) {
+						var g = null;
+						gl.clear();
+						$scope.selectionSingle.clear();
+						angular.forEach(features, function (f) {
+							f.geometry.spatialReference = {wkid: $scope.config.map.wkid};
+							g = new Graphic({geometry: f.geometry,
+								symbol:{color:[0,0,0,0],outline:{color:color,
+									width:3,type:"esriSLS",style:"esriSLSSolid"},
+									type:"esriSFS",style:"esriSFSSolid"}});
+									$scope.geometry = g.geometry;
+									gl.add(g);
+								});
+								$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
+							});
+						}
+						$scope.$on('accountUpdate', function (e, accounts) {
+							var pins = [];
+							if (accounts) {
+								angular.forEach(accounts, function (a) {
+									pins.push("'" + a.pin + "'");
+								});
+								$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
+									addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
+								});
+							}
+						});
+						$scope.$on('pinUpdate', function (e, pin) {
+							$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
+								addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
+							});
+						});
+					},
+					link: function (scope, element, attrs) {
+					}
 				}
 			});
-			var addGeometriesToMap = function (features, gl, color) {
-				require(["esri/graphic", "esri/graphicsUtils", "esri/SpatialReference"], function (Graphic, graphicsUtils, SpatialReference) {
-					var g = null;
-					gl.clear();
-					$scope.selectionSingle.clear();
-					angular.forEach(features, function (f) {
-						f.geometry.spatialReference = {wkid: $scope.config.map.wkid};
- 						g = new Graphic({geometry: f.geometry,
-						    symbol:{color:[0,0,0,0],outline:{color:color,
-						    width:3,type:"esriSLS",style:"esriSLSSolid"},
-						    type:"esriSFS",style:"esriSFSSolid"}});
-						$scope.geometry = g.geometry;
-						gl.add(g);
-					});
-					$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
-				});
-			}
-			$scope.$on('accountUpdate', function (e, accounts) {
-				var pins = [];
-				if (accounts) {
-					angular.forEach(accounts, function (a) {
-						pins.push("'" + a.pin + "'");
-					});
-					$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
-						addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
-					});
-				}
-			});
-			$scope.$on('pinUpdate', function (e, pin) {
-				$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
-					addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
-				});
-			});
-		},
-		link: function (scope, element, attrs) {
-		}
-	}
-});

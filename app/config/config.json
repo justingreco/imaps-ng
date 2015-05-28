@@ -40,6 +40,7 @@
 					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2013/ImageServer",
 					"labels": false,
 					"tiled": true,
+					"county": true,
 					"id": "orthos-2013"
 				},
 				{
@@ -81,7 +82,7 @@
 					"tiled": true,
 					"county": false,
 					"id": "orthos-2008"
-				},		
+				},
 				{
 					"name": "2007",
 					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2007/ImageServer",
@@ -121,7 +122,7 @@
 					"tiled": true,
 					"county": false,
 					"id": "orthos-2002"
-				},	
+				},
 				{
 					"name": "1999",
 					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1999/ImageServer",
@@ -129,7 +130,7 @@
 					"tiled": true,
 					"county": true,
 					"id": "orthos-1999"
-				},	
+				},
 				{
 					"name": "1988",
 					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1988/ImageServer",
@@ -145,8 +146,8 @@
 					"tiled": true,
 					"county": true,
 					"id": "orthos-1981"
-				}																																														
-			]}			
+				}
+			]}
 		}
 	},
 "services":{
@@ -351,6 +352,6 @@
                 ]
             }
         ]
-    }	
+    }
 
 }
