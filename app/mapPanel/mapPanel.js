@@ -86,7 +86,9 @@ angular.module('imapsNgApp')
 			$rootScope.$watch('config', function (config) {
 				if (config) {
 					$scope.config = config;
-					require(["esri/map", "esri/arcgis/utils", "dojo/domReady!"], function(Map, arcgisUtils) {
+					require(["esri/map", "esri/arcgis/utils", "esri/config", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig) {
+						esriConfig.defaults.io.proxyUrl = "../scripts/proxy.php";
+						esriConfig.defaults.io.alwaysUseProxy = false;
 						var input = config.map.id;
 						if (localStorageService.get('imaps_webmap')) {
 							var webmap = {};

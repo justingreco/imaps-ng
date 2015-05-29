@@ -2,7 +2,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 
 	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
 		baseUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
-		serviceUrl = "http://mapstest.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
+		serviceUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
 		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 	return service;
 	function getRealEstate (type, values) {
@@ -60,17 +60,17 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		$http({
 			method: 'POST',
 			url: serviceUrl + "/identify",
-			data: {
+			params: {
 				f: "json",
-				geometry: geom,
+				geometry: stringify(geom),
 				geometryType: 'esriGeometryPolygon',
 				layers: 'all',
 				tolerance: 1,
-				mapExtent: extent,
+				mapExtent: stringify(extent),
 				imageDisplay: width + "," + height + ",96",
 				returnGeometry: false
 			},
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', 'Access-Control-Allow-Origin': '*'}
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'}
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
