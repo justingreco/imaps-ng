@@ -4,6 +4,17 @@
 	<div style="display:inline-block;font-size:16pt">
 		<span ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" ng-click="toolChanged(tool)"></span>
 	</div>
+	<div class="toolcontainer">
+		<identify-tool ng-show="tool.title == 'Identify'"></identify-tool>
+		<select-tool ng-show="tool.title == 'Property Select'"></select-tool>
+		<streetview-tool ng-show="tool.title == 'Streetview'"></streetview-tool>
+		<measure-tool ng-show="tool.title == 'Measure'"></measure-tool>
+		<bookmark-tool ng-show="tool.title == 'Bookmarks'"></bookmark-tool>
+		<draw-tool ng-show="tool.title == 'Draw'"></draw-tool>
+		<print-tool ng-show="tool.title == 'Print'"></print-tool>
+		<clear-tool ng-show="tool.title == 'Clear Map'"></clear-tool>
+
+	</div>
 </div>
 <!-- <div pageslide ps-open="toolsChecked" ps-side="top" ps-cloak="false" ps-class="ng-pageslide-tools" class="ng-isolate-scope">
 	<div style="width:40px;display:inline-block;">

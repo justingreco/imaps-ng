@@ -21,6 +21,7 @@ angular.module('imapsNgApp')
 					t.highlighted = false;
 				});
 				tool.highlighted = true;
+				$scope.tool = tool;
 			}
 
 		}, link: function (scope, element, attr) {
