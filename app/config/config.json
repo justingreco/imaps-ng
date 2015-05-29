@@ -183,7 +183,7 @@
                     },
                     {
                         "title": "Board of Education District [DISTRICT]",
-                        "labels": "[NAME];<a href='http://www.wcpss.net/Board/boeinfo.html' target='_blank'>Website</a>",
+                        "labels": "[NAME];<a href='http://eboard.eboardsolutions.com/AboutUs/AboutUs.aspx?S=920&TID=1' target='_blank'>Website</a>",
                         "layerId": 6
                     },
                     {
@@ -295,7 +295,7 @@
                         "layerId": 33
                     },{
                         "title": "Bi-Weekly Recycling Collection",
-                        "labels": "Collection Day: [Collection Day];Rollout Phase: <a href='http://www.raleighnc.gov/content/SolidWaste/Documents/[Collection Day:upper].pdf' target='_blank'>[PHASE]</a>;Rollout Start Date: [PHASE_DATE];Recycling Week: <a href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars2012/[Collection Day][WEEK].pdf' target='_blank'>[WEEK]</a>",
+                        "labels": "Collection Day: [Collection Day];Recycling Week: <a href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars/[Collection Day][WEEK].pdf' target='_blank'>[WEEK]</a>",
                         "layerId": 34
                     }
                 ]
@@ -332,7 +332,7 @@
                     "labels": "[ZONE_IMAPS]",
                     "layerId": 45},
                     {"title": "Soils",
-                    "labels": "[NAME]",
+                    "labels": "[NAME] - [DESCRIPTION]",
                     "layerId": 46},
                     {"title": "Hydrologic Unit",
                     "labels": "[HUC_CODE]",
