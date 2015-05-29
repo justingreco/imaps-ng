@@ -13,7 +13,6 @@ angular.module('imapsNgApp')
 			};
 			var mapUnloaded = function () {
 				localStorageService.set('imaps_webmap', stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
-				localStorageService.set('basemapId', $scope.map.getBasemap());
 			};
 			var checkInsideRaleigh = function (bounds, point) {
 				require(["esri/geometry/Polygon"], function (Polygon) {
