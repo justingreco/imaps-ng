@@ -46,20 +46,16 @@ angular.module('imapsNgApp')
 								c.services.push(s);
 							}
 						}
-
 					})
 					if (c.services.length > 0) {
-						$scope.display.categories.push(c);
+						$scope.propertyServices.categories.push(c);
 					}
-
 				});
-				console.log($scope.display);
 			};
 
 			$scope.$on('servicesClicked', function (e, geometry) {
-				$scope.display = {categories:[]};
+				$scope.propertyServices = {categories:[]};
 				require([
-
 				    "esri/graphic"
 				], function(Graphic) {
 		// 			var jsonConv = new esriConverter();
