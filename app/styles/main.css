@@ -10,11 +10,14 @@ body, html {
 }
 
 property-search a {
-	color: rgb(71,151,220);
+	color: rgb(0, 137, 255);
 }
 
 property-search a:visited {
-	color: rgb(71,151,220);
+	color: rgb(0, 137, 255);
+}
+property-search a:active {
+	color: rgb(0, 137, 255);
 }
 
 property-search a:hover {
