@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'sidePanel/propertySearch/propertyServices/propertyServices.html',
 		restrict: 'E',
-		controller: function ($scope, property, $filter) {
+		controller: function ($scope, property, $filter, mapUtils) {
 			var writeFields = function (line, atts) {
 				var cnt = line.split("[").length - 1;
 				var regExp = /\[(.*?)\]/;
@@ -58,19 +58,12 @@ angular.module('imapsNgApp')
 				require([
 				    "esri/graphic"
 				], function(Graphic) {
-		// 			var jsonConv = new esriConverter();
-		// 			var gj = {type: 'Feature', geometry: jsonConv.toGeoJson($scope.geometry)};
-		// 			var newgj = turf.buffer(gj, 2000, 'feet');
-		// 			jsonConv = new geoJsonConverter();
-		// 			var newgeom = jsonConv.toEsri(newgj);
-		// 			newgeom.features[0].symbol = {"color":[0,0,0,64],"outline":{"color":[0,0,0,255],
-    // "width":1,"type":"esriSLS","style":"esriSLSSolid"},
-    // "type":"esriSFS","style":"esriSFSSolid"};
-		// console.log(JSON.stringify(gj));
-		// console.log(JSON.stringify(newgj));
-		// 			var g = new Graphic(newgeom.features[0]);
-					property.getServices($scope.geometry, $scope.map.extent, $scope.map.width, $scope.map.height).then(function (response) {
-						handleResponse(response);
+					mapUtils.buffer($scope.config.map.geometryServiceUrl, $scope.geometry, 4326, -5, 9002).then(function (geoms) {
+						if (geoms.length > 0) {
+							property.getServices($scope.geometry, $scope.map.extent, $scope.map.width, $scope.map.height).then(function (response) {
+								handleResponse(response);
+							});
+						}
 					});
 				});
 			});

@@ -4,13 +4,25 @@ body, html {
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
-  -ms-user-select: none;      
+  -ms-user-select: none;
   -webkit-overflow-scrolling: touch;
 
 }
 
+property-search a {
+	color: rgb(71,151,220);
+}
+
+property-search a:visited {
+	color: rgb(71,151,220);
+}
+
+property-search a:hover {
+	color: yellow;
+}
+
 app-header {
-  overflow: hidden; 
+  overflow: hidden;
 }
 
 select {
@@ -81,8 +93,8 @@ select {
 
 .collapse-panel {
   color: white;
-    overflow: hidden; 
-    transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; 
+    overflow: hidden;
+    transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height;
 }
 
 side-panel {
@@ -94,7 +106,7 @@ tool-panel {
   top: 50px;
   left:0px;
   z-index: 100;
-  background-color: rgba(60,60,60,0.8); 
+  background-color: rgba(60,60,60,0.8);
   border-radius: 0 0 8px 0;
     -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
@@ -105,7 +117,7 @@ base-map-panel {
   top: 50px;
   right:300px;
   z-index: 100;
-  background-color: rgba(60,60,60,0.8);  
+  background-color: rgba(60,60,60,0.8);
   border-radius: 0 0  0 8px ;
   transition-property: right;
   transition: 0.5s;
@@ -118,7 +130,7 @@ overview-panel {
   bottom: 0;
   right:300px;
   z-index: 100;
-  background-color: rgba(60,60,60,0.8);  
+  background-color: rgba(60,60,60,0.8);
   border-radius: 8px 0  0  ;
   transition-property: right;
   transition: 0.5s;
@@ -211,11 +223,11 @@ base-map-panel img{
   height: 51px;
 }
 base-map-panel .collapse-panel {
-  padding: 0; 
+  padding: 0;
 }
 
 base-map-panel .collapse-panel.collapsed {
-  padding: 0 10px 10px 10px; 
+  padding: 0 10px 10px 10px;
   height: 200px;
 }
 
@@ -228,7 +240,7 @@ base-map-panel .collapse-panel.collapsed {
     cursor: pointer;
     -webkit-user-select: text;
     -moz-user-select: text;
-    -ms-user-select: text;  
+    -ms-user-select: text;
 }
 .ngReactGrid .ngReactGridFooter, .ngReactGrid table th, .ngReactGrid h1, .ngReactGrid .ngReactGridHeaderWrapper{
   margin-top: 0px;
@@ -284,7 +296,7 @@ z-index: 1000; position: fixed; width: 300px; height: 100%; overflow: hidden; tr
 
 .ng-pageslide-tools {
   background: rgba(255,255,255,0);
-  z-index: 1000; position: fixed;top: 100px !important; left: 0px; width: 0px; height: auto; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; 
+  z-index: 1000; position: fixed;top: 100px !important; left: 0px; width: 0px; height: auto; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height;
 
 }
 

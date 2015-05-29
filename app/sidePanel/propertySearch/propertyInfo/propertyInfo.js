@@ -28,7 +28,7 @@ angular.module('imapsNgApp')
 						});
 /*						$timeout(function() {
 							$scope.infoGrid.data = $scope.accountInfo;
-						});	*/					
+						});	*/
 					}
 					getWellSamples(pin);
 				});
@@ -40,10 +40,10 @@ angular.module('imapsNgApp')
 					}
 					$timeout(function() {
 						$scope.infoGrid.data = $scope.accountInfo;
-					});						
+					});
 				});
-	
-			};			
+
+			};
 
 			if ($scope.account && !$scope.accountInfo) {
 				formatAccountInfo($scope.account);
@@ -51,8 +51,14 @@ angular.module('imapsNgApp')
 
 			$scope.$on('accountSelected', function (e, account) {
 				formatAccountInfo(account);
-				getSepticPermits(account.pin);				
-			});	
+				if (account.city === 'RALEIGH')
+				{
+					$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
+				}
+				getSepticPermits(account.pin);
+
+
+			});
 			$scope.infoGrid = {
 				data: $scope.accountInfo,
 				showGridShowPerPage: false,
@@ -68,18 +74,27 @@ angular.module('imapsNgApp')
 					},
 					{
 						field: 'value',
-						displayName: 'Value', 
+						displayName: 'Value',
 						sort: false,
 						render: function (row) {
 							if (row.field === "Septic Permit") {
-								return React.DOM.a({href:"http://gisasp2.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value);
+								return React.DOM.a({href:"http://gisasp2.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value + " ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 							} else if (row.field === "Well Samples") {
-								return React.DOM.a({href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View");
+								return React.DOM.a({href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+							} else if (row.field === "Crime") {
+								return React.DOM.a({href: row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 							}
 						}
 					}
 				]
-			};		
+			};
+
+	//
+	//
+	// 		render: function() {
+	// return (
+	// 	<img src={'https://graph.facebook.com/' + this.props.username + '/picture'} />
+	// );
 			$scope.toggleProperty = function (forward) {
 				var current = $scope.accounts.indexOf($scope.account),
 					idx = (forward) ? current + 1 : current - 1;
@@ -90,10 +105,10 @@ angular.module('imapsNgApp')
 				}
 				$scope.account = $scope.accounts[idx];
 				$scope.$broadcast('accountSelected', $scope.account);
-			};			
+			};
 		},
 		link: function (scope, element, attrs) {
-		
+
 		}
 	}
 });
