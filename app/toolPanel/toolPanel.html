@@ -1,8 +1,8 @@
 <span class="collapse-header" ng-click="toolHeaderClick(toolsChecked)"><span class="glyphicon glyphicon-menu-down" ng-class="{'glyphicon-menu-down': !toolsChecked, 'glyphicon-menu-up': toolsChecked}"></span>Tools</span>
 <br/>
-<div class="collapse-panel" ng-style="{height: ((toolsChecked) ? '200px': 0)}">
-	<div style="width:40px;display:inline-block;">
-		<span class="glyphicon glyphicon-info-sign"></span>
+<div class="collapse-panel" ng-style="{height: ((toolsChecked) ? '200px': 0), width:((toolsChecked) ? '300px': '140px')}">
+	<div style="display:inline-block;font-size:16pt">
+		<span ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" ng-click="toolChanged(tool)"></span>
 	</div>
 </div>
 <!-- <div pageslide ps-open="toolsChecked" ps-side="top" ps-cloak="false" ps-class="ng-pageslide-tools" class="ng-isolate-scope">

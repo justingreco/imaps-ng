@@ -109,6 +109,10 @@ tool-panel {
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
 }
 
+tool-panel .glyphicon {
+	cursor: pointer;
+}
+
 base-map-panel {
   position: absolute;
   top: 50px;
@@ -200,7 +204,7 @@ layer-list .panel-body {
   cursor: pointer;
 }
 
-#proptabs .glyphicon.highlighted{
+.glyphicon.highlighted{
   -moz-text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
   text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
 }
@@ -295,6 +299,10 @@ z-index: 1000; position: fixed; width: 300px; height: 100%; overflow: hidden; tr
 
 tool-panel {
   color: white;
+}
+
+tool-panel .glyphicon {
+	padding: 4px;
 }
 
 .layer .btn {
