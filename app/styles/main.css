@@ -9,18 +9,12 @@ body, html {
 
 }
 
-property-search a {
+property-search a:not(.btn), property-search a:active:not(.btn), property-search a:visited:not(.btn) {
 	color: rgb(0, 137, 255);
 }
 
-property-search a:visited {
-	color: rgb(0, 137, 255);
-}
-property-search a:active {
-	color: rgb(0, 137, 255);
-}
 
-property-search a:hover {
+property-search a:hover:not(.btn) {
 	color: yellow;
 }
 
@@ -158,11 +152,7 @@ overview-panel {
 .btn-group {
   z-index: 1000;
 }
-.btn-default {
-  background-color: transparent;
-  color: white;
-}
-.btn-default:hover {
+.btn-default, .btn-default:hover, .btn-default:active, .btn-default:focus {
   background-color: transparent;
   color: white;
 }
