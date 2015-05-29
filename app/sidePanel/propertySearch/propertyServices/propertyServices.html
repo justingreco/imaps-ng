@@ -1,8 +1,10 @@
-<div ng-repeat="cat in config.services.categories">
-	<h2>{{cat.title}}</h2>
+<div ng-repeat="cat in display.categories">
+	<h3 class="lead">{{cat.title}}</h3>
 	<div ng-repeat="service in cat.services">
-		<strong>{{service.title}}</strong>
+		<u>{{service.title}}</u>
 		<br/>
-		<span>{{service.labels}}
+		<div ng-repeat="item in service.items">
+			<div ng-bind-html="item.labels"></div>
+		</div>
 	</div>
 </div>

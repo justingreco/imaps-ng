@@ -70,7 +70,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				imageDisplay: width + "," + height + ",96",
 				returnGeometry: false
 			},
-			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', 'Access-Control-Allow-Origin': ''}
+			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8', 'Access-Control-Allow-Origin': '*'}
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
