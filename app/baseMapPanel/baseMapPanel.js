@@ -73,8 +73,16 @@ angular.module('imapsNgApp')
 						if ($scope.imageMap) {
 							$scope.basemap = $scope.imageMap;
 						} else {
-							$scope.basemap = $scope.config.map.basemaps.images.layers[0];
-							$scope.imageMap = $scope.basemap;
+							if ($scope.inRaleigh) {
+								$scope.basemap = $scope.config.map.basemaps.images.layers[0];
+								$scope.imageMap = $scope.basemap;
+							} else {
+								var basemaps = $filter('filter')($scope.config.map.basemaps.images.layers, function (basemap) {
+									return basemap.county === true;
+								});
+								$scope.basemap = basemaps[0];
+								$scope.imageMap = $scope.basemap;
+							}
 						}
 					}
 				}
