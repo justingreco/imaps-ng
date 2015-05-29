@@ -25,6 +25,7 @@ angular.module('imapsNgApp')
 				});
 			};
 			var handleResponse = function (response) {
+				var label = "";
 				angular.forEach($scope.config.services.categories, function (category) {
 					var c = {title: category.title, services:[]};
 					angular.forEach(category.services, function (service) {
@@ -34,7 +35,11 @@ angular.module('imapsNgApp')
 							angular.forEach(results, function (result) {
 								var lines = service.labels.split(';');
 								angular.forEach(lines, function (line) {
-									s.items.push({labels: writeFields(line, result.attributes) + "<br/>"});
+									var label = writeFields(line, result.attributes) + "<br/>";
+									if (s.items.indexOf(label) === -1) {
+										s.items.push(label);
+									}
+
 								});
 							});
 							if (s.items.length > 0) {
