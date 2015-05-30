@@ -113,6 +113,10 @@ tool-panel .glyphicon {
 	cursor: pointer;
 }
 
+print-tool > form{
+	padding:10px;
+}
+
 base-map-panel {
   position: absolute;
   top: 50px;

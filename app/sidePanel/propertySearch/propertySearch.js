@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'sidePanel/propertySearch/propertySearch.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $timeout, property) {
+		controller: function ($scope, $rootScope, $timeout, property, $analytics) {
 			$scope.hiddenOverflow = false;
 			$scope.property = property;
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";

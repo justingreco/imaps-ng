@@ -2,7 +2,7 @@
   <button type="button" class="btn btn-default dropdown-toggle btn-xs" dropdown-toggle ng-disabled="disabled"><span class="caret"></span>
   </button>
   <ul class="dropdown-menu dropdown-menu-right" role="menu">
-    <li><a href="#" ng-csv="array" filename="{{filename}}">Export to CSV</a></li>
+    <li><a analytics-on="click" analytics-category="Property Search" analytics-event="CSV Exported" analytics-label="{{type}}" href="#" ng-csv="array" filename="{{filename}}">Export to CSV</a></li>
     <li><a href="#">Export to PDF</a></li>
   </ul>
 </div>

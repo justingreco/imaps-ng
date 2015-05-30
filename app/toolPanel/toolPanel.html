@@ -2,7 +2,7 @@
 <br/>
 <div class="collapse-panel" ng-style="{height: ((toolsChecked) ? '200px': 0), width:((toolsChecked) ? '300px': '140px')}">
 	<div style="display:inline-block;font-size:16pt">
-		<span ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" ng-click="toolChanged(tool)"></span>
+		<span analytics-on="click" analytics-category="Tools" analytics-event="Tool Changed" analytics-label="{{tool.title}}" ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" ng-click="toolChanged(tool)"></span>
 	</div>
 	<div class="toolcontainer">
 		<identify-tool ng-show="tool.title == 'Identify'"></identify-tool>
@@ -13,7 +13,6 @@
 		<draw-tool ng-show="tool.title == 'Draw'"></draw-tool>
 		<print-tool ng-show="tool.title == 'Print'"></print-tool>
 		<clear-tool ng-show="tool.title == 'Clear Map'"></clear-tool>
-
 	</div>
 </div>
 <!-- <div pageslide ps-open="toolsChecked" ps-side="top" ps-cloak="false" ps-class="ng-pageslide-tools" class="ng-isolate-scope">

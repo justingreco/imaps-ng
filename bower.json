@@ -22,7 +22,8 @@
     "react": "0.10.0",
     "ngReactGrid": "~0.7.0",
     "turf": "~2.0.2",
-    "ng-pageslide": "~1.0.3"
+    "ng-pageslide": "~1.0.3",
+    "angulartics": "~0.18.0"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'baseMapPanel/baseMapPanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $filter) {
+		controller: function ($scope, $rootScope, $filter, $analytics) {
 			var baseloaded = false;
 			$scope.insideRaleigh = true;
 			$rootScope.mapsChecked = false;
@@ -90,6 +90,7 @@ angular.module('imapsNgApp')
 				$scope.basemapType = type;
 			}
 			$scope.basemapChanged = function (basemap, basemapType) {
+				$analytics.eventTrack('Changed', {  category: 'Basemaps', label: basemap.id });
 				require(["esri/basemaps",], function (esriBasemaps) {
 					if (!baseloaded) {
 						if ($scope.map.getLayer("base0")) {

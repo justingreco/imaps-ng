@@ -24,7 +24,9 @@ angular
     'angular-loading-bar',
     'cfp.loadingBar',
     'ngCsv',
-    'ngReactGrid'
+    'ngReactGrid',
+    'angulartics',
+    'angulartics.google.analytics'
   ]).config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('imaps');
 
