@@ -19,7 +19,6 @@ property-search a:not(.btn), property-search a:active:not(.btn), property-search
 	color: rgb(0, 137, 255);
 }
 
-
 property-search a:hover:not(.btn) {
 	color: yellow;
 }
