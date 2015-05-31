@@ -12,27 +12,27 @@ angular.module('imapsNgApp')
 
 			$scope.overviewHeaderClick = function (checked) {
 				$rootScope.overviewChecked = !checked;
+				(checked) ? $scope.overview.hide() : $scope.overview.show();
 			}
 
 
 			$scope.$watch('map', function (map) {
 				if (map) {
 					require([
-						"esri/dijit/OverviewMap", "esri/layers/ArcGISTiledMapServiceLayer"
-					], function (
-						OverviewMap, ArcGISTiledMapServiceLayer
-					) {
+				        "esri/dijit/OverviewMap"
+				      ], function (
+				        OverviewMap
+				      ) {
 
 
-						var overviewMapDijit = new OverviewMap({
-							map: map,
-							visible: true,
-							width: '180',
-							height: '180',
-							baseLayer: new ArcGISTiledMapServiceLayer("http://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer")
-						}, "overview");
-						overviewMapDijit.startup();
-					});
+				        $scope.overview = new OverviewMap({
+				          map: map,
+				          visible: true,
+				          width: 180,
+									height: 180
+				        }, "overview");
+								$scope.overview.startup();
+				      });
 				}
 
 			});
