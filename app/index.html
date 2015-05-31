@@ -27,12 +27,15 @@
     <![endif]-->
 
     <!-- Add your site or application content here -->
+    <div class="wrapper">
       <app-header></app-header>
       <map-panel></map-panel>
       <side-panel></side-panel>
       <tool-panel ng-class="{'hidden-xs':checked}"></tool-panel>
       <base-map-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></base-map-panel>
       <overview-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></overview-panel>
+    </div>
+
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){

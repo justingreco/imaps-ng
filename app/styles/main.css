@@ -6,7 +6,12 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-overflow-scrolling: touch;
+}
 
+.wrapper {
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
 }
 
 property-search a:not(.btn), property-search a:active:not(.btn), property-search a:visited:not(.btn) {

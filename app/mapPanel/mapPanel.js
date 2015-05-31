@@ -33,7 +33,7 @@ angular.module('imapsNgApp')
 				}
 			};
 			var setRaleighBounds = function () {
-				mapUtils.loadRaleighBounds('../data/raleigh.json').then(function (bounds) {
+				mapUtils.loadRaleighBounds('data/raleigh.json').then(function (bounds) {
 					$scope.raleighBounds = bounds;
 					checkInsideRaleigh(bounds, $scope.map.extent.getCenter());
 				})
