@@ -5,9 +5,10 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $timeout, $window) {
 			$scope.accounts = [];
-			  $scope.$watch('accounts', function (accounts) {
-			  	$scope.resultGrid.data = accounts;
-			  });
+				$scope.$on('accountUpdate', function (e, accounts) {
+					$scope.accounts = accounts;
+					$scope.resultGrid.data = accounts;
+				});
 			  $scope.resultGrid = {
 			  	data: $scope.accounts,
 			  	showGridShowPerPage: false,

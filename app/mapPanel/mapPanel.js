@@ -43,7 +43,7 @@ angular.module('imapsNgApp')
 				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/Search", "dojo/on"], function (GraphicsLayer, esriBasemaps, Extent, Search, on) {
 					$scope.webmap = response;
 					$scope.map = response.map;
-					setRaleighBounds();					
+					setRaleighBounds();
 					$scope.selectionMultiple = new GraphicsLayer();
 					$scope.selectionSingle = new GraphicsLayer();
 					$scope.map.addLayer($scope.selectionMultiple);
@@ -97,7 +97,7 @@ angular.module('imapsNgApp')
 				if (config) {
 					$scope.config = config;
 					require(["esri/map", "esri/arcgis/utils", "esri/config", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig) {
-						esriConfig.defaults.io.proxyUrl = "../scripts/proxy.php";
+						esriConfig.defaults.io.proxyUrl = "http://maps.raleighnc.gov/parklocator/proxy.ashx";
 						esriConfig.defaults.io.alwaysUseProxy = false;
 						var input = config.map.id;
 						if (localStorageService.get('imaps_webmap')) {

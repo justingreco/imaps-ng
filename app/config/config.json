@@ -150,6 +150,55 @@
 			]}
 		}
 	},
+	"tools": {
+		"print": {
+			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/SaveToPDF/GPServer/SaveToPDF"
+		},
+		"bookmarks": [
+			{"name": "Downtown Raleigh",
+				"extent":{"xmin":2104769,
+				"ymin":736771,
+				"xmax":2109252,
+				"ymax":739663,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "NC State",
+				"extent":{"xmin":2094300,
+				"ymin":738100,
+				"xmax":738100,
+				"ymax":742700,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			}
+		]
+	},
 "services":{
         "url": "http://maps.raleighnc.gov/ArcGIS/rest/services/Services/ServicesIMaps/MapServer/identify",
         "categories": [

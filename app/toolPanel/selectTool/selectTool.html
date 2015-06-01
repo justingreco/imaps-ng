@@ -1,9 +1,14 @@
-<p class="btn-group">
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Point'">Point</label>
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Polygon'">Polygon</label>
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Line'">Line</label>
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Multi-Point'">Multi-Point</label>
-</p>
-<p style="display:inline-block">
-  <strong style="display:inline-block">Buffer Distance</strong> <input class="form-control input-sm" value="0" style="display:inline-block;width: 60px"/> <span style="display:inline-block">ft</span>
-</p>
+<div class="btn-group">
+    <label class="btn btn-default btn-sm" ng-model="selectType" btn-radio="'point'" ng-change="selectTypeChanged(selectType)">Point</label>
+    <label class="btn btn-default btn-sm" ng-model="selectType" btn-radio="'polygon'" ng-change="selectTypeChanged(selectType)">Polygon</label>
+    <label class="btn btn-default btn-sm" ng-model="selectType" btn-radio="'polyline'" ng-change="selectTypeChanged(selectType)">Line</label>
+    <label class="btn btn-default btn-sm" ng-model="selectType" btn-radio="'multipoint'" ng-change="selectTypeChanged(selectType)">Multi-Point</label>
+</div>
+<div><input type="checkbox" ng-model="freehand" ng-change="selectTypeChanged(selectType)"> Freehand?</div>
+
+<div ng-show="geometry">or</div>
+<div><button class="btn btn-default btn-sm" ng-show="geometry" ng-click="bufferProperty()">Buffer Property</button></div>
+
+<div style="display:inline-block">
+  <strong style="display:inline-block">Buffer Distance</strong> <input class="form-control input-sm" ng-model="selectBufferDist" value="0" style="display:inline-block;width: 60px"/> <span style="display:inline-block">ft</span>
+</div>

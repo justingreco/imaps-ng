@@ -107,7 +107,7 @@ tool-panel {
   position: absolute;
   top: 50px;
   left:0px;
-  z-index: 100;
+  z-index: 10000;
   background-color: rgba(60,60,60,0.8);
   border-radius: 0 0 8px 0;
     -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
@@ -120,6 +120,10 @@ tool-panel .glyphicon {
 
 print-tool > form{
 	padding:10px;
+}
+
+select-tool div {
+	margin: 10px;
 }
 
 base-map-panel {

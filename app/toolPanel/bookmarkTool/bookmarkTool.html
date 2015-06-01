@@ -1,1 +1,14 @@
-{{tool.title}}
+<div style="height:130px;overflow-y:auto">
+  <div ng-repeat="bookmark in config.tools.bookmarks">
+    <span class="col-xs-10" ng-click="goToBookmark(bookmark)">{{bookmark.name}}</span>
+    <button class="btn btn-sm btn-danger col-xs-2"><span class="glyphicon glyphicon-minus"></span></button>
+  </div>
+</div>
+<div>
+  <div class="col-xs-10">
+    <input class="form-control input-sm" placeholder="Bookmark Name"></span>
+  </div>
+  <div class="col-xs-2">
+    <button class="btn btn-sm btn-success"><span class="glyphicon glyphicon-plus"></span>Add</button>
+  </div>
+</div>

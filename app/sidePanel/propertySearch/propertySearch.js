@@ -31,6 +31,23 @@ angular.module('imapsNgApp')
 				$scope.tabChanged(false);
 				//$scope.$apply();
 			});
+
+			$rootScope.$on('accountUpdate', function (e, accounts) {
+				if (accounts.length === 1) {
+					$scope.tab = $scope.tabs[1];
+					$scope.pin = accounts[0].pin;
+					$scope.reid = accounts[0].reid;
+					$scope.account = accounts[0];
+					$rootScope.$broadcast('pinUpdate', $scope.pin);
+							$timeout(function () {
+								$scope.$broadcast('accountSelected', accounts[0]);
+						});
+				} else {
+					$scope.tab = $scope.tabs[0];
+					$scope.tabChanged(true);
+				}
+			});
+
 			var valueSelected = function (a, b, c) {
 				c = ((c === 'streetname') ? 'street name':c);
 				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
@@ -38,21 +55,12 @@ angular.module('imapsNgApp')
 					$scope.accounts = accounts.Accounts;
 					$scope.accountsSrc = accounts.Accounts;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
-					if (accounts.Accounts.length === 1) {
-						$scope.tab = $scope.tabs[1];
-						$scope.pin = accounts.Accounts[0].pin;
-						$scope.reid = accounts.Accounts[0].reid;
-						$scope.account = accounts.Accounts[0];
-						$rootScope.$broadcast('pinUpdate', $scope.pin);
-				        $timeout(function () {
-				        	$scope.$broadcast('accountSelected', accounts.Accounts[0]);
-				    	});
-					} else {
-						$scope.tab = $scope.tabs[0];
-						$scope.tabChanged(true);
-					}
+
 				});
 			}
+
+
+
 			var address = new Bloodhound({
 				datumTokenizer: function (datum) {
 			        return Bloodhound.tokenizers.whitespace(datum.value);

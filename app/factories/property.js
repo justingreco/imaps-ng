@@ -1,20 +1,21 @@
 angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http, $q){
 
-	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
-		baseUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
+	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
+		baseUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
-		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
+		propertyLayer = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 	return service;
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
 		$http({
-			method: 'GET',
+			method: 'POST',
 			url: baseUrl + "RealEstateSearch",
-			params: {
+			data: $.param({
 				type: type,
 				values: JSON.stringify(values),
 				f: "json"
-			}
+			}),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
@@ -103,12 +104,32 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		$http({
 			method: 'POST',
 			url: propertyLayer + "/0/query",
-			params: {
+			data: $.param({
 				where: where,
 				returnGeometry: true,
 				outSR: wkid,
-				f: "pjson"
-			}
+				f: "json"
+			}),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).success(deferred.resolve);
+		return deferred.promise;
+	}
+	function getPropertiesByGeometry (geom, type, wkid) {
+		var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: propertyLayer + "/0/query",
+			data: $.param({
+				where: '1=1',
+				geometry: stringify(geom),
+				returnGeometry: false,
+				outFields: 'PIN_NUM',
+				geometryType: type,
+				outSR: wkid,
+				f: "json"
+			}),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}

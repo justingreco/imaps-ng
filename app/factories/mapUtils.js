@@ -10,16 +10,22 @@ angular.module('imapsNgApp').factory('mapUtils', ['$http', '$q', function($http,
 		return deferred.promise;
 	}
 
-	function buffer (url, geom, wkid, distance, unit) {
+	function buffer (url, geoms, wkid, distance, unit, type) {
+		geoms = {geometryType: type, geometries: geoms};
 		var deferred = $q.defer();
 		$http({
-			method: 'GET',
-			url: url,
-			geometries: [geom],
-			outSR: wkid,
-			distances: [distance],
-			unit: unit,
-			unionResults: true
+			method: 'POST',
+			url: url+ '/buffer',
+			data: $.param({
+				geometries: stringify(geoms),
+				inSr: wkid,
+				outSR: wkid,
+				distances: distance,
+				unit: unit,
+				unionResults: true,
+				f: 'json'
+			}),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
