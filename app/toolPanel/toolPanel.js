@@ -10,8 +10,6 @@ angular.module('imapsNgApp')
 				$scope.toolsChecked = checked;
 			});
 
-
-
 			$scope.toolHeaderClick = function (checked) {
 				$rootScope.toolsChecked = !checked;
 			}
