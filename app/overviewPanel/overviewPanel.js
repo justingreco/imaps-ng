@@ -9,13 +9,10 @@ angular.module('imapsNgApp')
 			$rootScope.$watch('overviewChecked', function (checked) {
 				$scope.overviewChecked = checked;
 			});
-
 			$scope.overviewHeaderClick = function (checked) {
 				$rootScope.overviewChecked = !checked;
 				(checked) ? $scope.overview.hide() : $scope.overview.show();
 			}
-
-
 			$scope.$watch('map', function (map) {
 				if (map) {
 					require([
@@ -23,8 +20,6 @@ angular.module('imapsNgApp')
 				      ], function (
 				        OverviewMap, ArcGISTiledMapServiceLayer
 				      ) {
-
-
 				        $scope.overview = new OverviewMap({
 				          map: map,
 									baseLayer: new ArcGISTiledMapServiceLayer($scope.config.map.basemaps.streets.layers[0].url),
@@ -35,12 +30,8 @@ angular.module('imapsNgApp')
 								$scope.overview.startup();
 				      });
 				}
-
 			});
-
-
 		}, link: function (scope, element, attr) {
-
 		}
 	}
 });
