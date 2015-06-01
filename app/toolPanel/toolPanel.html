@@ -1,6 +1,6 @@
 <span class="collapse-header" ng-click="toolHeaderClick(toolsChecked)"><span class="glyphicon glyphicon-menu-down" ng-class="{'glyphicon-menu-down': !toolsChecked, 'glyphicon-menu-up': toolsChecked}"></span>Tools</span>
 <br/>
-<div class="collapse-panel" ng-style="{height: ((toolsChecked) ? '200px': 0), width:((toolsChecked) ? '300px': '140px')}">
+<div class="collapse-panel" ng-style="{height: ((toolsChecked) ? tool.height + 'px': 0), width:((toolsChecked) ? tool.width + 'px': '140px')}">
 	<div style="display:inline-block;font-size:16pt">
 		<span analytics-on="click" analytics-category="Tools" analytics-event="Tool Changed" analytics-label="{{tool.title}}" ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" ng-click="toolChanged(tool)"></span>
 	</div>

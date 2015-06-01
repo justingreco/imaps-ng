@@ -161,6 +161,22 @@ overview-panel {
   width: 100% !important;
 }
 
+.arcgisSearch {
+	position: absolute;
+	bottom: 6px;
+	left: 6px;
+	z-index: 1000;
+}
+
+.suggestionsMenu {
+	position: relative !important;
+	bottom: 190px;
+	left: 6px;
+}
+
+.esriSimpleSliderBL {
+	bottom: 50px !important;
+}
 
 .btn-group {
   z-index: 1000;

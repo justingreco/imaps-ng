@@ -39,10 +39,11 @@ angular.module('imapsNgApp')
 				})
 			}
 			var webMapLoaded = function (response) {
-				setRaleighBounds();
-				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "dojo/on"], function (GraphicsLayer, esriBasemaps, Extent, on) {
+
+				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/Search", "dojo/on"], function (GraphicsLayer, esriBasemaps, Extent, Search, on) {
 					$scope.webmap = response;
 					$scope.map = response.map;
+					setRaleighBounds();					
 					$scope.selectionMultiple = new GraphicsLayer();
 					$scope.selectionSingle = new GraphicsLayer();
 					$scope.map.addLayer($scope.selectionMultiple);
@@ -81,6 +82,15 @@ angular.module('imapsNgApp')
 							$scope.basemapType = "images";
 						}
 					}
+
+					var s = new Search({
+				            enableButtonMode: true, //this enables the search widget to display as a single button
+				            enableLabel: false,
+				            enableInfoWindow: false,
+				            showInfoWindowOnSelect: false,
+				            map: $scope.map
+				         }, "search");
+					s.startup();
 				});
 			}
 			$rootScope.$watch('config', function (config) {

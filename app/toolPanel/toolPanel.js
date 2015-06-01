@@ -32,14 +32,14 @@ angular.module('imapsNgApp')
 
 		}, link: function (scope, element, attr) {
 			scope.tools = [
-				{icon: 'info-sign', title:'Identify', highlighted: true},
-				{icon: 'hand-up', title:'Property Select', highlighted: false},
-				{icon: 'road', title:'Streetview', highlighted: false},
-				{icon: 'resize-horizontal', title:'Measure', highlighted: false},
-				{icon: 'bookmark', title:'Bookmarks', highlighted: false},
-				{icon: 'pencil', title:'Draw', highlighted: false},
-				{icon: 'print', title:'Print', highlighted: false},
-				{icon: 'trash', title:'Clear Map', highlighted: false}
+				{icon: 'info-sign', title:'Identify', highlighted: true, height: 60, width: 300},
+				{icon: 'hand-up', title:'Property Select', highlighted: false, height: 200, width: 300},
+				{icon: 'road', title:'Streetview', highlighted: false, height: 200, width: 300},
+				{icon: 'resize-horizontal', title:'Measure', highlighted: false, height: 200, width: 300},
+				{icon: 'bookmark', title:'Bookmarks', highlighted: false, height: 200, width: 300},
+				{icon: 'pencil', title:'Draw', highlighted: false, height: 200, width: 300},
+				{icon: 'print', title:'Print', highlighted: false, height: 300, width: 300},
+				{icon: 'trash', title:'Clear Map', highlighted: false, height: 34, width: 300}
 			];
 			scope.tool = scope.tools[0];
 		}
