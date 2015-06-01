@@ -17,12 +17,19 @@ angular.module('imapsNgApp')
 			}
 
 			$scope.toolChanged = function (tool) {
-				angular.forEach($scope.tools, function (t, i) {
-					t.highlighted = false;
+				require(['dojo/on'], function (on) {
+					angular.forEach($scope.tools, function (t, i) {
+						t.highlighted = false;
+					});
+					tool.highlighted = true;
+					$scope.tool = tool;
+					$scope.map.setInfoWindowOnClick(false);
+					if (tool.title === 'Identify') {
+						$scope.webmap.clickEventHandle = on($scope.map, 'click', $scope.webmap.clickEventListener);
+					} else {
+						$scope.webmap.clickEventHandle.remove();
+					}
 				});
-				tool.highlighted = true;
-				$scope.tool = tool;
-				$scope.map.setInfoWindowOnClick(false);
 			}
 
 		}, link: function (scope, element, attr) {
