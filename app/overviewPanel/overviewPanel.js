@@ -19,14 +19,15 @@ angular.module('imapsNgApp')
 			$scope.$watch('map', function (map) {
 				if (map) {
 					require([
-				        "esri/dijit/OverviewMap"
+				        "esri/dijit/OverviewMap", "esri/layers/ArcGISTiledMapServiceLayer"
 				      ], function (
-				        OverviewMap
+				        OverviewMap, ArcGISTiledMapServiceLayer
 				      ) {
 
 
 				        $scope.overview = new OverviewMap({
 				          map: map,
+									baseLayer: new ArcGISTiledMapServiceLayer($scope.config.map.basemaps.streets.layers[0].url),
 				          visible: true,
 				          width: 180,
 									height: 180
