@@ -4,5 +4,5 @@
 <div class="grid-footer">
 	<span ng-show="accounts.length > 1" analytics-on="click" analytics-category="Property Search" analytics-event="Toggle Button Clicked" analytics-label="Previous" class="glyphicon glyphicon-chevron-left" ng-click="toggleProperty(false)" title="Previous Property"></span>
 	<span ng-show="accounts.length > 1" analytics-on="click" analytics-category="Property Search" analytics-event="Toggle Button Clicked" analytics-label="Next" class="glyphicon glyphicon-chevron-right" ng-click="toggleProperty(true)" title="Next Property"></span>
-	<export-button array="accountInfo" type="info"></export-button>
+	<export-button array="accountInfo" type="info" headers="['Field', 'Value']" filename="imaps_info.csv"></export-button>
 </div>

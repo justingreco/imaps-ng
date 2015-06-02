@@ -4,10 +4,15 @@ angular.module('imapsNgApp')
 		templateUrl: 'sidePanel/propertySearch/propertyResults/propertyResults.html',
 		restrict: 'E',
 		controller: function ($scope, $timeout, $window) {
+			$scope.resultHeader = [];
 			$scope.accounts = [];
 				$scope.$on('accountUpdate', function (e, accounts) {
 					$scope.accounts = accounts;
 					$scope.resultGrid.data = accounts;
+					$scope.resultHeader = [];
+					angular.forEach($scope.fields, function (f) {
+						$scope.resultHeader.push(f.alias);
+					});
 				});
 			  $scope.resultGrid = {
 			  	data: $scope.accounts,

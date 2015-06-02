@@ -5,6 +5,7 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		scope: {
 			array: '=',
+			headers: '=',
 			filename: '@',
 			type: '@'
 		},
