@@ -34,6 +34,7 @@ angular.module('imapsNgApp')
 
 			$rootScope.$on('accountUpdate', function (e, accounts) {
 				$scope.account = null;
+				$scope.geometry = null;
 				if (accounts.length === 1) {
 					$scope.tab = $scope.tabs[1];
 					$scope.pin = accounts[0].pin;
