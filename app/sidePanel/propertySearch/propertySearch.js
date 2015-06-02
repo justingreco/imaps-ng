@@ -227,6 +227,9 @@ angular.module('imapsNgApp')
 							tabAction(tab);
 					}
 				};
+				$scope.clearTypeahead = function () {
+					$("#searchInput").typeahead('val', '')
+				}
 		},
 		link: function (scope, element, attrs) {
 			scope.tabs = [
