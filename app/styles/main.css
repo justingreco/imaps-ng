@@ -15,11 +15,11 @@ body, html {
 	position: fixed;
 }
 
-property-search a:not(.btn), property-search a:active:not(.btn), property-search a:visited:not(.btn) {
+.ps-link, .ps-link:active, .ps-link:visited {
 	color: rgb(0, 137, 255);
 }
 
-property-search a:hover:not(.btn) {
+.ps-link:hover {
 	color: yellow;
 }
 

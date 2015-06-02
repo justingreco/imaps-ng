@@ -212,37 +212,37 @@
                     },
                     {
                         "title": "State Senate District [DISTRICT]",
-                        "labels": "[NAME] ([PARTY]);<a href='[WEBSITE]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[NAME] ([PARTY]);<a class='ps-link' href='[WEBSITE]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 2
                     },
                     {
                         "title": "US House District [DISTRICT]",
-                        "labels": "[NAME] ([PARTY]);<a href='[WEBSITE]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[NAME] ([PARTY]);<a class='ps-link' href='[WEBSITE]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 3
                     },
                     {
                         "title": "State House District [DISTRICT]",
-                        "labels": "[NAME] ([PARTY]);<a href='[WEBSITE]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[NAME] ([PARTY]);<a class='ps-link' href='[WEBSITE]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 4
                     },
                     {
                         "title": "Wake County Commissioners District [DISTRICT]",
-                        "labels": "[NAME];<a href='http://www.wakegov.com/commissioners/districts/Pages/district[DISTRICT].aspx' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[NAME];<a class='ps-link' href='http://www.wakegov.com/commissioners/districts/Pages/district[DISTRICT].aspx' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 5
                     },
                     {
                         "title": "Board of Education District [DISTRICT]",
-                        "labels": "[NAME];<a href='http://eboard.eboardsolutions.com/AboutUs/AboutUs.aspx?S=920&TID=1' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[NAME];<a class='ps-link' href='http://eboard.eboardsolutions.com/AboutUs/AboutUs.aspx?S=920&TID=1' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 6
                     },
                     {
                         "title": "Raleigh Council District [DISTRICT]",
-                        "labels": "[NAME];<a href='http://www.raleighnc.gov/home/content/BoardsCommissions/Articles/CityCouncil.html' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[NAME];<a class='ps-link' href='http://www.raleighnc.gov/home/content/BoardsCommissions/Articles/CityCouncil.html' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 7
                     },
                     {
                         "title": "Cary Council District [DIST]",
-                        "labels": "[REP];<a href='http://www.townofcary.org/Departments/Town_Clerk_s_Office/Cary_Town_Council.htm' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[REP];<a class='ps-link' href='http://www.townofcary.org/Departments/Town_Clerk_s_Office/Cary_Town_Council.htm' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 8
                     }
                 ]
@@ -328,7 +328,7 @@
             {"title": "Solid Waste",
                 "services": [
                     {"title": "Collection Day",
-                        "labels": "[TRASH_COLLECTION_DAY];<a href='[URL]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>;<a href='[HOLIDAY_URL]' target='_blank'>Holiday Schedule <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "[TRASH_COLLECTION_DAY];<a class='ps-link' href='[URL]' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>;<a class='ps-link' href='[HOLIDAY_URL]' target='_blank'>Holiday Schedule <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 32
                     },{
                         "title": "Trash Collection Route",
@@ -344,7 +344,7 @@
                         "layerId": 33
                     },{
                         "title": "Bi-Weekly Recycling Collection",
-                        "labels": "Collection Day: [Collection Day];Recycling Week: <a href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars/[Collection Day][WEEK].pdf' target='_blank'>[WEEK] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "labels": "Collection Day: [Collection Day];Recycling Week: <a class='ps-link' href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars/[Collection Day][WEEK].pdf' target='_blank'>[WEEK] <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 34
                     }
                 ]
@@ -396,7 +396,7 @@
             },{"title": "City of Raleigh Assessments",
                 "services": [
                     {"title": "Assement Liens",
-                    "labels": "Account #: [Account];Type: [Type];Status: [Status];Confirmed: [Confirmed Date];<a href='http://www.raleighnc.gov/home/content/Finance/Articles/OtherPaymentInformatio.html' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
+                    "labels": "Account #: [Account];Type: [Type];Status: [Status];Confirmed: [Confirmed Date];<a class='ps-link' href='http://www.raleighnc.gov/home/content/Finance/Articles/OtherPaymentInformatio.html' target='_blank'>Website <span class='glyphicon glyphicon-new-window'></span></a>",
                     "layerId": 52}
                 ]
             }
