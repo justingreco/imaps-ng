@@ -221,6 +221,15 @@ property-search {
   overflow: none;
 }
 
+.typeahead-clear {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: #ddd;
+	cursor: pointer;
+	z-index: 1000;
+}
+
 
 layer-list .panel-body {
   overflow: auto;
