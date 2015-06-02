@@ -1,5 +1,5 @@
 <input id="searchInput" type="text" class="form-control input-sm twitterTypeahead" placeholder="Enter address, owner, PIN, REID, or street"/>
-<span class="typeahead-clear" ng-click="clearTypeahead()" class="glyphicon glyphicon-remove" title="Clear Input"></span>
+<span ng-click="clearTypeahead()" class="typeahead-clear glyphicon glyphicon-remove" title="Clear Input"></span>
 <div class="tabcontainer" ng-style="{'overflow-y': (tab.table) ? 'auto': 'auto'}">
 	<property-results ng-show="tab.title == 'Results'"></property-results>
 	<property-info ng-show="tab.title == 'Info'"></property-info>
