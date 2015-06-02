@@ -1,5 +1,5 @@
 angular.module('imapsNgApp')
-.directive('printTool', function () {
+.directive('printTool', function (cfpLoadingBar) {
 	return {
 		templateUrl: 'toolPanel/printTool/printTool.html',
 		restrict: 'E',
@@ -19,6 +19,8 @@ angular.module('imapsNgApp')
 			$scope.printOrient = $scope.printOrients[0];
 
 			$scope.printPDF = function (map, layers) {
+				$('#printBtn').button('loading');
+				cfpLoadingBar.start();
 				var layers = "";
 				var sublayers = "";
 				var opacities = "";
@@ -78,6 +80,8 @@ angular.module('imapsNgApp')
 					gp.submitJob(params, function (info) {
 						console.log(info);
 						gp.getResultData(info.jobId, 'Output_URL', function (data) {
+							$('#printBtn').button('reset');
+							cfpLoadingBar.complete();
 							window.open(data.value);
 						})
 					});

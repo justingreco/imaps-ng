@@ -207,6 +207,10 @@ overview-panel {
   color: white;
 }
 
+.btn-default.disabled {
+	color: #ddd;
+}
+
 
 property-search {
   position: absolute;
