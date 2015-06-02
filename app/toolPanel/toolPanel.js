@@ -32,7 +32,7 @@ angular.module('imapsNgApp')
 		}, link: function (scope, element, attr) {
 			scope.tools = [
 				{icon: 'info-sign', title:'Identify', highlighted: true, height: 60, width: 300},
-				{icon: 'hand-up', title:'Property Select', highlighted: false, height: 220, width: 280},
+				{icon: 'hand-up', title:'Property Select', highlighted: false, height: 180, width: 280},
 				{icon: 'road', title:'Streetview', highlighted: false, height: 300, width: 320},
 				{icon: 'resize-horizontal', title:'Measure', highlighted: false, height: 200, width: 300},
 				{icon: 'bookmark', title:'Bookmarks', highlighted: false, height: 240, width: 300},

@@ -68,8 +68,15 @@ angular.module('imapsNgApp')
 					}
 					toolbar.activate(type);
 				};
+
+				$scope.$watch('geometry', function (geometry) {
+					if ($scope.tool.title === 'Property Select') {
+						$scope.tool.height = (geometry) ? 250 : 180;
+					}
+				});
 				$scope.$watch('tool', function (tool) {
 					if (tool.title === 'Property Select') {
+						tool.height = ($scope.geometry) ? 250 : 180;
 						if (!toolbar) {
 							toolbar = new Draw($scope.map);
 							on(toolbar, 'draw-end', shapeDrawn);
