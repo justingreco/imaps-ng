@@ -125,13 +125,16 @@ angular.module('imapsNgApp')
 						var g = null;
 						gl.clear();
 						$scope.selectionSingle.clear();
+						if (features.length === 1) {
+							$scope.geometry = features[0].geometry;
+						}
 						angular.forEach(features, function (f) {
 							f.geometry.spatialReference = {wkid: $scope.config.map.wkid};
 							g = new Graphic({geometry: f.geometry,
 								symbol:{color:[0,0,0,0],outline:{color:color,
 									width:3,type:"esriSLS",style:"esriSLSSolid"},
 									type:"esriSFS",style:"esriSFSSolid"}});
-									$scope.geometry = g.geometry;
+
 									gl.add(g);
 								});
 								$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);

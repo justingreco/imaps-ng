@@ -22,6 +22,8 @@ angular.module('imapsNgApp')
 						pins.push(feature.attributes.PIN_NUM);
 					});
 					property.getRealEstate('pin', pins).then(function (data) {
+						$scope.account = null;
+						$scope.geometry = null;
 						$scope.fields = data.Fields;
 						$scope.accounts = data.Accounts;
 						$rootScope.$broadcast('accountUpdate', data.Accounts);

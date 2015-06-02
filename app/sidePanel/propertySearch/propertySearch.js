@@ -33,8 +33,6 @@ angular.module('imapsNgApp')
 			});
 
 			$rootScope.$on('accountUpdate', function (e, accounts) {
-				$scope.account = null;
-				$scope.geometry = null;
 				if (accounts.length === 1) {
 					$scope.tab = $scope.tabs[1];
 					$scope.pin = accounts[0].pin;
@@ -53,6 +51,8 @@ angular.module('imapsNgApp')
 			var valueSelected = function (a, b, c) {
 				c = ((c === 'streetname') ? 'street name':c);
 				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
+					$scope.account = null;
+					$scope.geometry = null;
 					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;
 					$scope.accountsSrc = accounts.Accounts;
