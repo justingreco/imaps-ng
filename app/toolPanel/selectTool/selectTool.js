@@ -62,9 +62,9 @@ angular.module('imapsNgApp')
 				$scope.selectTypeChanged = function (type) {
 					if ($scope.freehand && type.indexOf('point') === -1) {
 						type = 'freehand' + type;
+						$scope.map.disableMapNavigation();
 					}
 					toolbar.activate(type);
-					$scope.map.disableMapNavigation();
 				};
 				$scope.$watch('tool', function (tool) {
 					if (tool.title === 'Property Select') {
