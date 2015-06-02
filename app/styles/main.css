@@ -118,6 +118,23 @@ tool-panel .glyphicon {
 	cursor: pointer;
 }
 
+.map .tooltip {
+  width: 100px;
+  word-wrap: break-word;
+  position: absolute !important;
+  border: 1px solid #7EABCD;
+  background-color: rgba(0,0,0,0.5) !important;
+	color: white;
+  padding: 5px;
+  font-size: 9pt;
+  z-index: 9999;
+  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+	opacity: 1 !important;
+}
+
 print-tool > form{
 	padding:10px;
 }
