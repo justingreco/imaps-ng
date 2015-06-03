@@ -1,7 +1,7 @@
 <p class="btn-group">
-    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="'area'">Area</label>
-    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="'length'">Length</label>
-    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="'coordinates'">Coordinates</label>
+    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="{type: 'area', shape: 'polygon'}">Area</label>
+    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="{type: 'length', shape: 'polyline'}">Length</label>
+    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="{type: 'coordinates', shape: 'point'}">Coordinates</label>
 </p>
 <p>
   Units
