@@ -1,5 +1,12 @@
 <p class="btn-group">
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Area'">Area</label>
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Length'">Length</label>
-    <label class="btn btn-default btn-sm" ng-model="radioModel" btn-radio="'Coordinate'">Coordinate</label>
+    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="'area'">Area</label>
+    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="'length'">Length</label>
+    <label class="btn btn-default btn-sm" ng-model="measureType" btn-radio="'coordinates'">Coordinates</label>
+</p>
+<p>
+  Units
+  <select ng-options="unit as unit.label for unit in units | filter: filterUnits" ng-model="unit" ng-change="unitChanged(unit)" class="form-control input-sm"></select>
+</p>
+<p>
+  Measurement Results
 </p>
