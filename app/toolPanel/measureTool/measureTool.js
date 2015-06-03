@@ -21,7 +21,6 @@ angular.module('imapsNgApp')
 				{label: 'Degrees Minutes Seconds', name: 'DEGREE_MINUTE_SECONDS', type: 'coordinates', active: false},
 				{label: 'Feet', name: 'FEET', type: 'coordinates', active: false}
 			];
-			//$scope.unit = $scope.units[0];
 
 			$scope.filterUnits = function (unit) {
 				if ($scope.measureType) {
