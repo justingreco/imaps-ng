@@ -235,7 +235,7 @@ angular.module('imapsNgApp')
 			scope.tabs = [
 				{icon: 'list', title:'Results', highlighted: true, disabled: false, table: true},
 				{icon: 'info-sign', title:'Info', highlighted: false, disabled: true, table: true},
-				{icon: 'picture', title:'Photos', highlighted: false, disabled: true, table: false},
+				{icon: 'camera', title:'Photos', highlighted: false, disabled: true, table: false},
 				{icon: 'file', title:'Deeds', highlighted: false, disabled: true, table: false},
 				{icon: 'usd', title:'Tax Info', highlighted: false, disabled: true, table: false},
 				{icon: 'flag', title:'Services', highlighted: false, disabled: true, table: false},
