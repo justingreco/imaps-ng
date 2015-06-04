@@ -24,7 +24,7 @@ angular.module('imapsNgApp')
           center: loc,
           zoom: 18,
           mapTypeId: google.maps.MapTypeId.SATELLITE,
-          heading: 90,
+          heading: 0,
           tilt: 45,
           overviewMapControl: false,
           streetViewControl: false,
