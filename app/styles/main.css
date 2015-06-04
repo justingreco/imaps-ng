@@ -401,9 +401,29 @@ slider {
 	left: 6px;
 }
 
+
 .esriSimpleSliderBL {
 	bottom: 50px !important;
+	border-color: white !important;
 }
+
+.esriSimpleSliderBL div{
+	color: white;
+	background-color: rgba(60,60,60,0.8) ;
+	border-color: white !important;
+}
+.esriSimpleSliderBL div:hover{
+	color: rgba(71,151,220,1);
+	background-color: rgba(60,60,60,0.8) ;
+	border-color: rgba(71,151,220,1) !important;
+}
+.esriSimpleSliderDisabledButton {
+	color: #aaa !important;
+	background-color: #bbb !important;
+}
+
+
+
 .map .tooltip {
   width: 100px;
   word-wrap: break-word;
