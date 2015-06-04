@@ -422,6 +422,19 @@ slider {
 	background-color: #bbb !important;
 }
 
+.searchBtn {
+	background-color: rgba(60,60,60,0.8) !important;
+	border-color: white !important;
+}
+.searchIcon {
+	color: white;
+}
+.searchInput, .searchClose, .searchSpinner {
+	background-color: rgb(60, 60, 60) !important;
+  color: white !important;
+}
+
+
 
 
 .map .tooltip {
