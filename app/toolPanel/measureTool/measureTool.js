@@ -3,23 +3,56 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'toolPanel/measureTool/measureTool.html',
 		restrict: 'E',
-		controller: function ($scope, $filter) {
-			var fill, line, marker, gl, toolbar;
+		controller: function ($scope, $filter, $timeout) {
+			var fill, line, marker, gl, toolbar, measureGeom;
+			$scope.measurement = null;
+
+			var getCoordinate = function (x, y, unit) {
+				var dd = spToDd(x, y),
+					text = "";
+				if (unit === 'FEET') {
+					text = y.toFixed(4) + " N " + x.toFixed(4) + " E";
+				} else if (unit === 'DECIMAL_DEGREES') {
+					text = "Lat: " + dd[0].toFixed(6) + " Lng: " + dd[1].toFixed(6);
+				} else if (unit === 'DEGREE_MINUTE_SECONDS') {
+					var point = new GeoPoint(dd[1], dd[0]);
+					text = point.getLatDeg() + " " + point.getLonDeg();
+				}
+				return text;
+			};
+
+			var measure = function (geometry, unit) {
+				require(["esri/geometry/geometryEngine"], function (geometryEngine) {
+					var measurement = null;
+					measureGeom = geometry;
+					if (geometry.type === 'polygon') {
+						measurement = geometryEngine.planarArea(geometry, unit).toFixed(2);
+
+					} else if (geometry.type === 'polyline') {
+						measurement = geometryEngine.planarLength(geometry, unit).toFixed(2);
+					} else if (geometry.type === 'point') {
+						measurement = getCoordinate(geometry.x, geometry.y, unit);
+					}
+					$timeout(function () {
+						$scope.measurement = measurement;
+					});
+				});
+			};
 
 			var drawCompleted = function (e) {
 				var wkid = $scope.unit.wkid;
-				require(["esri/geometry/geometryEngine", "esri/units", "esri/graphic"], function(geometryEngine, units, Graphic)
+				require(["esri/units", "esri/graphic"], function(units, Graphic)
 				{
 					var g = new Graphic(e.geometry);
 					if (e.geometry.type === 'polygon') {
-						console.log(geometryEngine.planarArea(e.geometry, wkid));
+						measure(e.geometry, wkid);
 						g.setSymbol(fill);
 
 					} else if (e.geometry.type === 'polyline') {
-						console.log(geometryEngine.planarLength(e.geometry, wkid));
+						measure(e.geometry, wkid);
 						g.setSymbol(line);
 					} else if (e.geometry.type === 'point') {
-
+						measure(e.geometry, wkid);
 					}
 					gl.clear();
 					gl.add(g);
@@ -90,9 +123,9 @@ angular.module('imapsNgApp')
 				{label: 'Square Meters', name: 'SQUARE_METERS', wkid: 109404,type: 'area', active: false, multiplier: 1},
 				{label: 'Square Kilometers', name: 'KILOMETERS', wkid: 109414,type: 'area', active: false, multiplier: 0.000001},
 				{label: 'Square Yards', name: 'SQUARE_YARDS', wkid: 109443,type: 'area', active: false},
-				{label: 'Decimal Degrees', name: 'DECIMAL_DEGREES',type: 'coordinates', active: true},
-				{label: 'Degrees Minutes Seconds', name: 'DEGREE_MINUTE_SECONDS',type: 'coordinates', active: false},
-				{label: 'Feet', name: 'FEET',type: 'coordinates', active: false}
+				{label: 'Decimal Degrees', wkid: 'DECIMAL_DEGREES',type: 'coordinates', active: true},
+				{label: 'Degrees Minutes Seconds', wkid: 'DEGREE_MINUTE_SECONDS',type: 'coordinates', active: false},
+				{label: 'Feet', wkid: 'FEET',type: 'coordinates', active: false}
 			];
 
 			$scope.filterUnits = function (unit) {
@@ -110,6 +143,9 @@ angular.module('imapsNgApp')
 						$scope.unit = matches[0];
 					}
 					toolbar.activate(type.shape);
+					measureGeom = null;
+					$scope.measurement = '';
+					gl.clear();
 				}
 			});
 
@@ -122,6 +158,10 @@ angular.module('imapsNgApp')
 				});
 
 				unit.active = true;
+				if (measureGeom) {
+					measure(measureGeom, $scope.unit.wkid);
+				}
+
 			};
 
 			$scope.$watch('tool', function (tool) {

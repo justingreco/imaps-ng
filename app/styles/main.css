@@ -28,8 +28,8 @@ app-header {
 }
 
 select {
-  background-color: #666;
-  color: white;
+  background-color: #666 !important;
+  color: white !important;
 }
 
 .navbar {
@@ -142,6 +142,10 @@ print-tool > form{
 select-tool div {
 	margin: 10px;
 }
+measure-tool div {
+	margin: 10px;
+}
+
 
 base-map-panel {
   position: absolute;
@@ -202,9 +206,15 @@ overview-panel {
 .btn-group {
   z-index: 1000;
 }
-.btn-default, .btn-default:hover, .btn-default:active, .btn-default:focus {
+.btn-default, .btn-default:active, .btn-default:focus {
   background-color: transparent;
   color: white;
+}
+
+.btn-default:hover, .btn-default.active {
+	background-color: #666 !important;
+	border-color: rgba(71,151,220,1) !important;
+	color: rgba(71,151,220,1) !important;
 }
 
 .btn-default.disabled {
