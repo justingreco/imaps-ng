@@ -48,24 +48,24 @@ angular.module('imapsNgApp')
 										map: $scope.map
 								}, "search");
 
-					var sources = s.get("sources");
-					sources.push({
-	            featureLayer: new FeatureLayer("http://mapstest.raleighnc.gov/arcgis/rest/services/Planning/Subdivisions/MapServer/0"),
-	            searchFields: ["NAME"],
-	            displayField: "NAME",
-	            exactMatch: false,
-	            outFields: ["NAME"],
-	            name: "Subdivisions",
-	            placeholder: "Subdivision",
-	            maxResults: 5,
-	            maxSuggestions: 5,
-
-	            //Create an InfoTemplate and include three fields
-	            // infoTemplate: new InfoTemplate("Congressional District", "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"),
-	            enableSuggestions: true,
-	            minCharacters: 0
-	         });
-					s.set('sources', sources);
+					// var sources = s.get("sources");
+					// sources.push({
+	        //     featureLayer: new FeatureLayer("http://mapstest.raleighnc.gov/arcgis/rest/services/Planning/Subdivisions/MapServer/0"),
+	        //     searchFields: ["NAME"],
+	        //     displayField: "NAME",
+	        //     exactMatch: false,
+	        //     outFields: ["NAME"],
+	        //     name: "Subdivisions",
+	        //     placeholder: "Subdivision",
+	        //     maxResults: 5,
+	        //     maxSuggestions: 5,
+					//
+	        //     //Create an InfoTemplate and include three fields
+	        //     // infoTemplate: new InfoTemplate("Congressional District", "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"),
+	        //     enableSuggestions: true,
+	        //     minCharacters: 0
+	        //  });
+					//s.set('sources', sources);
 					s.startup();
 				});
 
