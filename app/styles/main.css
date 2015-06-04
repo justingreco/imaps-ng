@@ -146,16 +146,6 @@ tool-panel .glyphicon {
 	opacity: 1 !important;
 }
 
-print-tool > form{
-	padding:10px;
-}
-
-select-tool div {
-	margin: 10px;
-}
-measure-tool div {
-	margin: 10px;
-}
 
 .tool-wrapper {
 	margin: 10px;
