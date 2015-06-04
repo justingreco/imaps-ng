@@ -40,7 +40,8 @@ angular.module('imapsNgApp')
 			}
 			var webMapLoaded = function (response) {
 
-				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/Search", "dojo/on"], function (GraphicsLayer, esriBasemaps, Extent, Search, on) {
+				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/Search", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
+				function (GraphicsLayer, esriBasemaps, Extent, Search, HomeButton, LocateButton, on) {
 					$scope.webmap = response;
 					$scope.map = response.map;
 					setRaleighBounds();
@@ -91,6 +92,10 @@ angular.module('imapsNgApp')
 				            map: $scope.map
 				         }, "search");
 					s.startup();
+
+					var home = new HomeButton({map: $scope.map}, 'homeButton').startup();
+					var locate = new LocateButton({map: $scope.map}, 'locateButton').startup();
+
 				});
 			}
 			$rootScope.$watch('config', function (config) {

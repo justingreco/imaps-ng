@@ -434,8 +434,27 @@ slider {
   color: white !important;
 }
 
+#homeButton {
+  position: absolute;
+  bottom: 52px;
+  left: 75px;
+  z-index: 50;
+}
 
+.HomeButton .home {
+	background-color: rgba(60,60,60,0.8) !important;
+}
 
+#locateButton {
+	position: absolute;
+	bottom: 52px;
+	left: 112px;
+	z-index: 50;
+}
+
+.LocateButton .zoomLocateButton {
+	background-color: rgba(60,60,60,0.8) !important;
+}
 
 .map .tooltip {
   width: 100px;
