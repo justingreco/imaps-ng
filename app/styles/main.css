@@ -15,14 +15,6 @@ body, html {
 	position: fixed;
 }
 
-.ps-link, .ps-link:active, .ps-link:visited {
-	color: rgb(0, 137, 255);
-}
-
-.ps-link:hover {
-	color: yellow;
-}
-
 app-header {
   overflow: hidden;
 }
@@ -49,35 +41,41 @@ app-header {
 
 }
 
-.panel-default > .panel-heading {
-  background: rgb(84,134,50);
-  -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
-  box-shadow: 0 0 16px rgba(0,0,0,0.8);
-  border: none;
-  margin-top: 0 !important;
-  color: white;
-  border-radius: 0;
+/*hyperlinks*/
+.ps-link, .ps-link:active, .ps-link:visited {
+	color: rgb(0, 137, 255);
 }
 
-.panel-default {
-  border: none;
+.ps-link:hover {
+	color: yellow;
 }
 
-.accordion {
-  position: relative;
-  overflow: none;
+/*BootStrap overwrites*/
+/*buttons*/
+.btn-group {
+  z-index: 1000;
 }
-
-.panel {
+.btn-default, .btn-default:active, .btn-default:focus {
   background-color: transparent;
-}
-
-.panel-body {
-  background-color: rgba(60,60,60,0.8);
   color: white;
-  border: none !important;
 }
 
+.btn-default:hover, .btn-default.active {
+	background-color: rgb(60, 60, 60) !important;
+	border-color: rgba(71,151,220,1) !important;
+	color: rgba(71,151,220,1) !important;
+}
+
+.btn-default.disabled {
+	color: #ddd;
+}
+
+.glyphicon.highlighted{
+  -moz-text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
+  text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
+}
+
+/*map panels*/
 .collapse-header {
   color: white;
   font-size: 16pt;
@@ -99,59 +97,7 @@ app-header {
     transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height;
 }
 
-side-panel {
-  z-index: 101;
-}
-
-tool-panel {
-  position: absolute;
-  top: 50px;
-  left:0px;
-  z-index: 10000;
-  background-color: rgba(60,60,60,0.8);
-  border-radius: 0 0 8px 0;
-    -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
-  box-shadow: 0 0 16px rgba(0,0,0,0.8);
-}
-
-tool-panel .glyphicon {
-	cursor: pointer;
-}
-
-.bookmark-name {
-	display: inline-block;
-	width: 230px;
-	cursor: pointer;
-}
-
-.bookmark-input {
-	display: inline-block;
-	width: 210px;
-}
-
-.map .tooltip {
-  width: 100px;
-  word-wrap: break-word;
-  position: absolute !important;
-  border: 1px solid #7EABCD;
-  background-color: rgba(0,0,0,0.5) !important;
-	color: white;
-  padding: 5px;
-  font-size: 9pt;
-  z-index: 9999;
-  -o-border-radius: 4px;
-  -moz-border-radius: 4px;
-  -webkit-border-radius: 4px;
-  border-radius: 4px;
-	opacity: 1 !important;
-}
-
-
-.tool-wrapper {
-	margin: 10px;
-}
-
-
+/*basemap panel*/
 base-map-panel {
   position: absolute;
   top: 50px;
@@ -164,7 +110,62 @@ base-map-panel {
     -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
 }
+.selected-basemap img{
+  -moz-box-shadow: 0px 0px 23px 0px rgba(71,151,220,1);
+  box-shadow: 0px 0px 23px 0px rgba(71,151,220,1);
+}
+base-map-panel img{
+  margin: 5px;
+  width: 76px;
+  height: 51px;
+}
+base-map-panel .collapse-panel {
+  padding: 0;
+}
+base-map-panel .collapse-panel.collapsed {
+  padding: 0 10px 10px 10px;
+  height: 200px;
+}
+.basemap-type {
+  cursor: pointer;
+}
 
+/*tool panel*/
+tool-panel {
+  position: absolute;
+  top: 50px;
+  left:0px;
+  z-index: 10000;
+	color: white;
+  background-color: rgba(60,60,60,0.8);
+  border-radius: 0 0 8px 0;
+  -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
+  box-shadow: 0 0 16px rgba(0,0,0,0.8);
+}
+
+tool-panel .glyphicon {
+	cursor: pointer;
+	padding: 4px;
+}
+
+.tool-wrapper {
+	margin: 10px;
+}
+
+/*bookmark tool*/
+.bookmark-name {
+	display: inline-block;
+	width: 230px;
+	cursor: pointer;
+}
+.bookmark-input {
+	display: inline-block;
+	width: 210px;
+}
+
+
+
+/*overview panel*/
 overview-panel {
   position: absolute;
   bottom: 0;
@@ -191,121 +192,9 @@ overview-panel {
   width: 100% !important;
 }
 
-.arcgisSearch {
-	position: absolute;
-	bottom: 6px;
-	left: 6px;
-	z-index: 1000;
-}
-
-.suggestionsMenu {
-	position: relative !important;
-	bottom: 190px;
-	left: 6px;
-}
-
-.esriSimpleSliderBL {
-	bottom: 50px !important;
-}
-
-.btn-group {
-  z-index: 1000;
-}
-.btn-default, .btn-default:active, .btn-default:focus {
-  background-color: transparent;
-  color: white;
-}
-
-.btn-default:hover, .btn-default.active {
-	background-color: rgb(60, 60, 60) !important;
-	border-color: rgba(71,151,220,1) !important;
-	color: rgba(71,151,220,1) !important;
-}
-
-.btn-default.disabled {
-	color: #ddd;
-}
 
 
-property-search {
-  position: absolute;
-  top: 40px;
-  bottom: 0;
-  right: 0;
-  left: 0;
-  overflow: none;
-}
-
-.typeahead-clear {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	color: #ddd;
-	cursor: pointer;
-	z-index: 1000;
-}
-
-
-layer-list .panel-body {
-  overflow: auto;
-}
-
-.tabcontainer {
-  position: absolute;
-  top: 40px;
-  left: 0px;
-  bottom: 40px;
-  width: 100%;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-#proptabs {
-  position: absolute;
-  bottom: -15px;
-  left: -15px;
-  right: -15px;
-  height: 40px;
-  background: #444;
-  display: inline-block;
-  padding-right: 12px;
-  padding-left: 12px;
-}
-
-#proptabs .glyphicon {
-  font-size: 16pt;
-  margin: 6px;
-  cursor: pointer;
-}
-
-.glyphicon.highlighted{
-  -moz-text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
-  text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
-}
-
-.selected-basemap img{
-  -moz-box-shadow: 0px 0px 23px 0px rgba(71,151,220,1);
-  box-shadow: 0px 0px 23px 0px rgba(71,151,220,1);
-}
-
-base-map-panel img{
-  margin: 5px;
-  width: 76px;
-  height: 51px;
-}
-base-map-panel .collapse-panel {
-  padding: 0;
-}
-
-base-map-panel .collapse-panel.collapsed {
-  padding: 0 10px 10px 10px;
-  height: 200px;
-}
-
-.basemap-type {
-  cursor: pointer;
-}
-
+/*overwrite react grid classes*/
 .ngReactGrid {
     padding: 0;
     cursor: pointer;
@@ -341,6 +230,86 @@ base-map-panel .collapse-panel.collapsed {
   width:65%;
 }
 
+
+/*side panel*/
+side-panel {
+  z-index: 101;
+}
+.ng-pageslide-right {
+	background: rgba(255,255,255,0);
+	z-index: 1000; position: fixed; width: 300px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; top: 50px !important; bottom: 0px; right: 0px;
+	}
+.panel-default > .panel-heading {
+  background: rgb(84,134,50);
+  -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
+  box-shadow: 0 0 16px rgba(0,0,0,0.8);
+  border: none;
+  margin-top: 0 !important;
+  color: white;
+  border-radius: 0;
+}
+.panel-default {
+  border: none;
+}
+.accordion {
+  position: relative;
+  overflow: none;
+}
+.panel {
+  background-color: transparent;
+}
+.panel-body {
+  background-color: rgba(60,60,60,0.8);
+  color: white;
+  border: none !important;
+}
+/*property search*/
+property-search {
+  position: absolute;
+  top: 40px;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  overflow: none;
+}
+
+.typeahead-clear {
+	position: absolute;
+	top: 8px;
+	right: 8px;
+	color: #ddd;
+	cursor: pointer;
+	z-index: 1000;
+}
+
+.tabcontainer {
+  position: absolute;
+  top: 40px;
+  left: 0px;
+  bottom: 40px;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+#proptabs {
+  position: absolute;
+  bottom: -15px;
+  left: -15px;
+  right: -15px;
+  height: 40px;
+  background: #444;
+  display: inline-block;
+  padding-right: 12px;
+  padding-left: 12px;
+}
+
+#proptabs .glyphicon {
+  font-size: 16pt;
+  margin: 6px;
+  cursor: pointer;
+}
+
 .grid-footer {
   position: absolute;
   bottom: 0;
@@ -356,50 +325,31 @@ base-map-panel .collapse-panel.collapsed {
   opacity: 0.05;
 }
 
+
+/*layer list*/
 layer-list .panel-body {
   padding: 0 0 0 15px;
+	overflow: auto;
 }
-
-.ng-pageslide-right {
-	background: rgba(255,255,255,0);
-z-index: 1000; position: fixed; width: 300px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; top: 50px !important; bottom: 0px; right: 0px;
-}
-
-.ng-pageslide-tools {
-  background: rgba(255,255,255,0);
-  z-index: 1000; position: fixed;top: 100px !important; left: 0px; width: 0px; height: auto; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height;
-
-}
-
-tool-panel {
-  color: white;
-}
-
-tool-panel .glyphicon {
-	padding: 4px;
-}
-
 .layer .btn {
 	margin-right: 6px;
 }
-
 .layer {
 	margin-top: 6px;
 	margin-bottom: 6px;
 }
-
 .sub-layer {
 	margin-top: 6px;
 	margin-left: 10px;
 	margin-bottom: 6px;
 }
-
 .legend img {
   margin-right: 6px;
   height: 20px;
   width: 20px;
 }
 
+/*opacity slider*/
 slider {
   position: relative;
   height: 20px;
@@ -433,8 +383,42 @@ slider {
   display: block;
 }
 
+/*overwrite Esri classes*/
 .esriPopup .titleButton.maximize {
   display: none;
+}
+
+.arcgisSearch {
+	position: absolute;
+	bottom: 6px;
+	left: 6px;
+	z-index: 1000;
+}
+
+.suggestionsMenu {
+	position: relative !important;
+	bottom: 190px;
+	left: 6px;
+}
+
+.esriSimpleSliderBL {
+	bottom: 50px !important;
+}
+.map .tooltip {
+  width: 100px;
+  word-wrap: break-word;
+  position: absolute !important;
+  border: 1px solid #7EABCD;
+  background-color: rgba(0,0,0,0.5) !important;
+	color: white;
+  padding: 5px;
+  font-size: 9pt;
+  z-index: 9999;
+  -o-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+	opacity: 1 !important;
 }
 
 
