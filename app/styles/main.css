@@ -118,6 +118,17 @@ tool-panel .glyphicon {
 	cursor: pointer;
 }
 
+.bookmark-name {
+	display: inline-block;
+	width: 230px;
+	cursor: pointer;
+}
+
+.bookmark-input {
+	display: inline-block;
+	width: 210px;
+}
+
 .map .tooltip {
   width: 100px;
   word-wrap: break-word;
@@ -143,6 +154,10 @@ select-tool div {
 	margin: 10px;
 }
 measure-tool div {
+	margin: 10px;
+}
+
+.tool-wrapper {
 	margin: 10px;
 }
 
