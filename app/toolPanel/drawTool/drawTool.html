@@ -1,8 +1,9 @@
 <div class="tool-wrapper">
 <p class="btn-group">
-    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="'Point'">Point</label>
-    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="'Polygon'">Polygon</label>
-    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="'Line'">Line</label>
-    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="'Text'">Text</label>    
+    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="{name:'Point', shape: 'point'}">Point</label>
+    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="{name:'Poylgon', shape: 'polygon'}">Polygon</label>
+    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="{name:'Line', shape: 'polyline'}">Line</label>
+    <label class="btn btn-default btn-sm" ng-model="drawType" btn-radio="{name:'Text', shape: 'point'}">Text</label>
 </p>
+<textarea ng-model="drawText" ng-show="drawType.name == 'Text'" class="form-control input-sm"></textarea>
 </div>
