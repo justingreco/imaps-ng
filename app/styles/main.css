@@ -27,8 +27,8 @@ app-header {
   overflow: hidden;
 }
 
-select {
-  background-color: #666 !important;
+.form-control {
+	background-color: rgb(60, 60, 60) !important;
   color: white !important;
 }
 
@@ -212,7 +212,7 @@ overview-panel {
 }
 
 .btn-default:hover, .btn-default.active {
-	background-color: #666 !important;
+	background-color: rgb(60, 60, 60) !important;
 	border-color: rgba(71,151,220,1) !important;
 	color: rgba(71,151,220,1) !important;
 }

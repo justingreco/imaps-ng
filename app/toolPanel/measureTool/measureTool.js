@@ -27,7 +27,6 @@ angular.module('imapsNgApp')
 					measureGeom = geometry;
 					if (geometry.type === 'polygon') {
 						measurement = geometryEngine.planarArea(geometry, unit).toFixed(2);
-
 					} else if (geometry.type === 'polyline') {
 						measurement = geometryEngine.planarLength(geometry, unit).toFixed(2);
 					} else if (geometry.type === 'point') {
@@ -53,6 +52,7 @@ angular.module('imapsNgApp')
 						g.setSymbol(line);
 					} else if (e.geometry.type === 'point') {
 						measure(e.geometry, wkid);
+						g.setSymbol(marker);
 					}
 					gl.clear();
 					gl.add(g);
@@ -61,7 +61,7 @@ angular.module('imapsNgApp')
 			};
 
 			var init = function () {
-				require(["esri/toolbars/draw", "esri/layers/GraphicsLayer", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "dojo/on"], function (Draw, GraphicsLayer, SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, on) {
+				require(["esri/toolbars/draw", "esri/layers/GraphicsLayer", "esri/symbols/PictureMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "dojo/on"], function (Draw, GraphicsLayer, PictureMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, on) {
 					gl = new GraphicsLayer();
 					$scope.map.addLayer(gl);
 					fill = new SimpleFillSymbol({
@@ -81,20 +81,12 @@ angular.module('imapsNgApp')
 						"color": [31,117,254,255],
 						"width": 3
 					});
-					marker = new SimpleMarkerSymbol({
-					"type": "esriSMS",
-					 "style": "esriSMSSquare",
-					 "color": [76,115,0,255],
-					 "size": 8,
-					 "angle": 0,
-					 "xoffset": 0,
-					 "yoffset": 0,
-					 "outline":
-					  {
-					  "color": [152,230,0,255],
-					   "width": 1
-					  }
-					});
+					marker =  new PictureMarkerSymbol({
+				    "url":"images/esriGreenPin16x26.png",
+				    "height":26,
+				    "width":16,
+				    "type":"esriPMS"
+				  });
 
 					toolbar = new Draw($scope.map);
 					toolbar.setFillSymbol(fill);
@@ -137,7 +129,7 @@ angular.module('imapsNgApp')
 			$scope.$watch('measureType', function (type) {
 				if (type) {
 					var matches = $filter('filter')($scope.units, function (u) {
-						return u.type === type && u.active;
+						return u.type === type.type && u.active;
 					});
 					if (matches.length > 0) {
 						$scope.unit = matches[0];
