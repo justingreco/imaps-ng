@@ -38,10 +38,42 @@ angular.module('imapsNgApp')
 					checkInsideRaleigh(bounds, $scope.map.extent.getCenter());
 				})
 			}
+			var buildSearch = function () {
+				require(["esri/dijit/Search", "esri/layers/FeatureLayer"], function (Search, FeatureLayer){
+					var s = new Search({
+										enableButtonMode: true, //this enables the search widget to display as a single button
+										enableLabel: false,
+										enableInfoWindow: false,
+										showInfoWindowOnSelect: false,
+										map: $scope.map
+								}, "search");
+
+					var sources = s.get("sources");
+					sources.push({
+	            featureLayer: new FeatureLayer("http://mapstest.raleighnc.gov/arcgis/rest/services/Planning/Subdivisions/MapServer/0"),
+	            searchFields: ["NAME"],
+	            displayField: "NAME",
+	            exactMatch: false,
+	            outFields: ["NAME"],
+	            name: "Subdivisions",
+	            placeholder: "Subdivision",
+	            maxResults: 5,
+	            maxSuggestions: 5,
+
+	            //Create an InfoTemplate and include three fields
+	            // infoTemplate: new InfoTemplate("Congressional District", "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"),
+	            enableSuggestions: true,
+	            minCharacters: 0
+	         });
+					s.set('sources', sources);
+					s.startup();
+				});
+
+			};
 			var webMapLoaded = function (response) {
 
-				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/Search", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
-				function (GraphicsLayer, esriBasemaps, Extent, Search, HomeButton, LocateButton, on) {
+				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
+				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, LocateButton, on) {
 					$scope.webmap = response;
 					$scope.map = response.map;
 					setRaleighBounds();
@@ -84,14 +116,8 @@ angular.module('imapsNgApp')
 						}
 					}
 
-					var s = new Search({
-				            enableButtonMode: true, //this enables the search widget to display as a single button
-				            enableLabel: false,
-				            enableInfoWindow: false,
-				            showInfoWindowOnSelect: false,
-				            map: $scope.map
-				         }, "search");
-					s.startup();
+					buildSearch();
+
 
 					var home = new HomeButton({map: $scope.map}, 'homeButton').startup();
 				//	var locate = new LocateButton({map: $scope.map}, 'locateButton').startup();
