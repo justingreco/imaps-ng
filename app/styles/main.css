@@ -306,7 +306,7 @@ property-search {
 
 #proptabs .glyphicon {
   font-size: 16pt;
-  margin: 6px;
+  margin: 6px 12px 6px 6px;
   cursor: pointer;
 }
 
