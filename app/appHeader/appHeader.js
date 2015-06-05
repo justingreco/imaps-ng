@@ -13,15 +13,15 @@ angular.module('imapsNgApp')
 			});
 
 			var openFeedback = function () {
-
+				$("feedback .modal").modal('show');
 			};
 
 			var openAbout = function () {
-
+				$("about .modal").modal('show');
 			};
 
 			var openDisclaimer = function () {
-
+				$("disclaimer .modal").modal('show');
 			};
 
 			$scope.headerClick = function (item) {

@@ -19,6 +19,23 @@ app-header {
   overflow: hidden;
 }
 
+disclaimer blockquote {
+	border: none;
+}
+
+disclaimer img {
+	margin: 20px;
+}
+
+feedback textarea {
+	max-width: 100%;
+	max-height: 500px;
+}
+
+.modal .glyphicon {
+	color: white;
+}
+
 .form-control {
 	background-color: rgb(60, 60, 60) !important;
   color: white !important;
@@ -29,6 +46,11 @@ app-header {
   background-color: #222;
 
 
+}
+
+.modal-content {
+	background-color: rgb(60,60,60);
+	color: white;
 }
 
 #map {
@@ -66,8 +88,10 @@ app-header {
 	color: rgba(71,151,220,1) !important;
 }
 
-.btn-default.disabled {
-	color: #ddd;
+.btn-default.disabled, .btn-default[disabled] {
+	color: #fff;
+	background-color: black;
+	opacity: 0.1;
 }
 
 .glyphicon.highlighted{
