@@ -9,6 +9,10 @@ angular.module('imapsNgApp')
 			$rootScope.$watch('checked', function (checked) {
 				$scope.checked = checked;
 			});
+			$timeout(function () {
+				$("pageslide").prependTo(".wrapper");
+
+			});
 		}, link: function (scope, element, attr) {
 
 		}

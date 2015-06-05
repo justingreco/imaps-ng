@@ -150,6 +150,42 @@
 			]}
 		}
 	},
+	"header": {
+		"menus": [
+			{"label": "About", "items":
+				[
+					{"label": "Disclaimer", "click": "openDisclaimer()"},
+					{"label": "About", "click": "openAbout()"}
+				]
+			},
+			{"label": "Feedback", "items":
+				[
+					{"label": "Feedback", "click": "openFeedback()"},
+					{"label": "Survey", "href": "https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dEljaElEa05od2FRc2ZKVm5vVzVSQ1E6MQ#gid=0"}
+				]
+			},
+			{"label": "Links", "items":
+				[
+					{"label": "City of Raleigh", "href": "http://www.raleighnc.gov"},
+					{"label": "Wake County", "href": "http://www.wakegov.com"},
+					{"label": "Raleigh GIS", "href": "http://www.raleighnc.gov/business/content/ITechAdmin/Articles/GeographicInformationServices.html"},
+					{"label": "Wake GIS", "href": "http://www.wakegov.com/gis/Pages/default.aspx"}
+				]
+			},
+			{"label": "Data Download", "items":
+				[
+					{"label": "Raleigh Open GIS Data", "href": "http://data.ral.opendata.arcgis.com/"},
+					{"label": "Wake Open Data Beta", "href": "http://data.wake.opendata.arcgis.com/"},
+					{"label": "Raleigh Open Data", "href": "https://data.raleighnc.gov/"}
+				]
+			},
+			{"label": "Help", "items":
+				[
+					{"label": "iMAPS Help", "href": ""}
+				]
+			}
+		]
+	},
 	"tools": {
 		"print": {
 			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/SaveToPDF/GPServer/SaveToPDF"

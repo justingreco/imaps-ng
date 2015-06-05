@@ -27,8 +27,8 @@ app-header {
 .navbar {
 	margin-bottom: 0;
   background-color: #222;
-  overflow: hidden;
-  max-height: 50px;
+
+
 }
 
 #map {
