@@ -15,12 +15,10 @@
 					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">{{menu.label}} <span class="caret"></span></a>
 					<ul class="dropdown-menu" role="menu">
 						<li ng-if="item.href" ng-repeat="item in menu.items"><a href="{{item.href}}" target="_blank">{{item.label}}</a></li>
-						<li ng-if="item.click" ng-repeat="item in menu.items"><a ng-click="headerClick(item.label)" href="javascript:void(0)" target="_blank">{{item.label}}</a></li>					
+						<li ng-if="item.click" ng-repeat="item in menu.items"><a ng-click="headerClick(item.label)" href="javascript:void(0)" target="_blank">{{item.label}}</a></li>
 					</ul>
 				</li>
-				<li>
-					<a class="btn btn-default" ng-click="btnClick()" href="#">{{(checked) ? 'Hide' : 'Show'}}</a></li>
-				</li>
+
 			</ul>
 		</div>
 	</div>

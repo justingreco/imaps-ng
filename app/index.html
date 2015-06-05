@@ -30,6 +30,7 @@
     <div class="wrapper">
       <app-header></app-header>
       <map-panel></map-panel>
+      <toggle-button ng-style="{'top': toggleTop}" ng-class="{'toggle-expanded': checked, 'toggle-collapsed': !checked}"></toggle-button>
       <side-panel></side-panel>
       <tool-panel ng-class="{'hidden-xs':checked}"></tool-panel>
       <base-map-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></base-map-panel>
@@ -116,6 +117,7 @@
     <script src="exportButton/exportButton.js"></script>
     <script src="mapPanel/mapPanel.js"></script>
     <script src="sidePanel/sidePanel.js"></script>
+    <script src="sidePanel/toggleButton/toggleButton.js"></script>
     <script src="toolPanel/toolPanel.js"></script>
     <script src="baseMapPanel/baseMapPanel.js"></script>
     <script src="overviewPanel/overviewPanel.js"></script>
