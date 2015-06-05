@@ -16,9 +16,12 @@ angular.module('imapsNgApp')
           message: text,
           from: '',
           to: ''
-        }});
+        }}).success(function () {
+          $scope.feedbackText = "";
+          $scope.feedbackEmail = "";
+          $("feedback .modal").modal('hide');
+        });
       };
-
 		}
 	}
 });
