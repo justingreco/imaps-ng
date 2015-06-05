@@ -4,6 +4,76 @@ angular.module('imapsNgApp')
 		templateUrl: 'toolPanel/printTool/printTool.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $filter) {
+			var account = {};
+			$scope.printAtts = false;
+
+			var getGraphics = function (params) {
+				var gl = $scope.map.getLayer('drawGraphics'),
+					ptCnt = 0,
+					lnCnt = 0,
+					pyCnt = 0,
+					lbCnt = 0,
+					points = {geometryType: 'esriGeometryPoint', features: []},
+					lines = {geometryType: 'esriGeometryPolyline', features: []},
+					polygons = {geometryType: 'esriGeometryPolygon', features: []},
+					labels = {geometryType: 'esriGeometryPoint', features: []};
+				if (gl) {
+					angular.forEach(gl.graphics, function (g) {
+						switch (g.symbol.type) {
+							case 'simplemarkersymbol':
+								points.features.push({geometry: g.geometry, attributes: g.attributes});
+								ptCnt += 1;
+							break;
+							case 'simplelinesymbol':
+								lines.features.push({geometry: g.geometry, attributes: g.attributes});
+								lnCnt += 1;
+							break;
+							case 'simplefillsymbol':
+								polygons.features.push({geometry: g.geometry, attributes: g.attributes});
+								pyCnt += 1;
+							break;
+							case 'textsymbol':
+								labels.features.push({geometry: g.geometry, attributes: g.attributes});
+								lbCnt += 1;
+							break;
+						}
+					});
+				}
+				params['Graphic_Points'] = stringify(points);
+				params['Graphic_Lines'] = stringify(lines);
+				params['Graphic_Polygons'] = stringify(polygons);
+				params['Graphic_Labels'] = stringify(labels);
+				params['Graphics_Count'] = ptCnt + ';' + lnCnt + ';' + pyCnt + ';' + lbCnt + ';';
+				return params;
+			};
+
+			var getAttributes = function () {
+				var atts = "";
+				if ($scope.$parent.accountInfo && $scope.printAtts) {
+					angular.forEach($scope.$parent.accountInfo, function (info) {
+						atts += info.field + ': ' + info.value + ';';
+					});
+				}
+
+				return atts;
+			};
+			var getPins = function () {
+				var pins = "";
+				if ($scope.$parent.account) {
+					pins += $scope.$parent.account.pin + ";";
+				}
+				if ($scope.accounts) {
+					angular.forEach($scope.accounts, function (a, i) {
+						if (i < $scope.accounts.length - 1) {
+							pins += a.pin + ",";
+						} else {
+							pins += a.pin;
+						}
+					});
+				}
+				return pins;
+			};
+
 			$scope.printTitle = "";
 			$scope.printSizes = [
 				{value: '8.5x11', label:'8.5"x11"'},
@@ -74,8 +144,12 @@ angular.module('imapsNgApp')
 						"Definition_Expressions": defExps,
 						"Transparency_Values": opacities,
 						"Extent": $scope.map.extent.xmin +";" + $scope.map.extent.ymin +";" + $scope.map.extent.xmax +";" + $scope.map.extent.ymax +";",
-						Scale: scaleUtils.getScale($scope.map)
+						Scale: parseInt(scaleUtils.getScale($scope.map)),
+						PIN: getPins(),
+						Attributes: getAttributes()
 					};
+
+					params = getGraphics(params);
 					console.log(params);
 					gp.submitJob(params, function (info) {
 						console.log(info);

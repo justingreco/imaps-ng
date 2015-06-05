@@ -10,6 +10,7 @@ angular.module('imapsNgApp')
 				require(["esri/units", "esri/graphic"], function(units, Graphic)
 				{
 					var g = new Graphic(e.geometry);
+					g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer'})
 					if (e.geometry.type === 'polygon') {
 						g.setSymbol(fill);
 					} else if (e.geometry.type === 'polyline') {
@@ -21,6 +22,7 @@ angular.module('imapsNgApp')
 							console.log($scope.drawText);
 							textSymbol.setText($scope.drawText);
 							g.setSymbol(textSymbol);
+							g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer', 'label': $scope.drawText})
 						}
 					}
 					gl.add(g);

@@ -17,7 +17,7 @@ angular.module('imapsNgApp')
 				// 	}
 					$scope.accountInfo.push({field: f.alias, value: account[f.field]});
 				});
-
+				$rootScope.accountInfo = $scope.accountInfo;
 			};
 
 			var getSepticPermits = function (pin) {
@@ -50,6 +50,7 @@ angular.module('imapsNgApp')
 			}
 
 			$scope.$on('accountSelected', function (e, account) {
+				$rootScope.account = account;
 				formatAccountInfo(account);
 				if (account.city === 'RALEIGH')
 				{
