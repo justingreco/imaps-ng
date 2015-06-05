@@ -153,6 +153,9 @@ tool-panel .glyphicon {
 }
 
 /*bookmark tool*/
+.bookmark {
+	margin-bottom: 4px;
+}
 .bookmark-name {
 	display: inline-block;
 	width: 230px;
