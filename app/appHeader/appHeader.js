@@ -9,8 +9,35 @@ angular.module('imapsNgApp')
 				if (config) {
 					$scope.title = config.title;
 				}
-				
+
 			});
+
+			var openFeedback = function () {
+
+			};
+
+			var openAbout = function () {
+
+			};
+
+			var openDisclaimer = function () {
+
+			};
+
+			$scope.headerClick = function (item) {
+				switch (item) {
+					case 'Feedback':
+						openFeedback();
+					break;
+					case 'About':
+						openAbout();
+					break;
+					case 'Disclaimer':
+						openDisclaimer();
+					break;
+				}
+			};
+
 			$scope.btnClick = function () {
 				$rootScope.checked = !$rootScope.checked;
 /*				if (!$rootScope.checked) {
@@ -18,11 +45,11 @@ angular.module('imapsNgApp')
 				} else {
 					$("base-map-panel").css('right', 300);
 				}*/
-				
-			}
+
+			};
 			$scope.titleClick = function () {
 				this.title = this.$root.config.title;
-			}
+			};
 
 		}
 	}

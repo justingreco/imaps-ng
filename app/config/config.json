@@ -154,13 +154,13 @@
 		"menus": [
 			{"label": "About", "items":
 				[
-					{"label": "Disclaimer", "click": "openDisclaimer()"},
-					{"label": "About", "click": "openAbout()"}
+					{"label": "Disclaimer", "click": true},
+					{"label": "About", "click": true}
 				]
 			},
 			{"label": "Feedback", "items":
 				[
-					{"label": "Feedback", "click": "openFeedback()"},
+					{"label": "Feedback", "click": true},
 					{"label": "Survey", "href": "https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dEljaElEa05od2FRc2ZKVm5vVzVSQ1E6MQ#gid=0"}
 				]
 			},
