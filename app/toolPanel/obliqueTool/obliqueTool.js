@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'toolPanel/obliqueTool/obliqueTool.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope) {
+		controller: function ($scope, $rootScope, $timeout) {
 			var oblique = null;
 			$scope.obliqueFull = false;
 			var sideOpen = $rootScope.checked;
@@ -31,7 +31,9 @@ angular.module('imapsNgApp')
           mapTypeControl: false
         };
         oblique = new google.maps.Map(document.getElementById('obliqueMap'), options);
-
+				$timeout(function () {
+					google.maps.event.trigger(oblique, 'resize');
+				})
 			};
 			var mapClick = function (e) {
 				var dd = spToDd(e.mapPoint.x, e.mapPoint.y);
