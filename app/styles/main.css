@@ -513,7 +513,7 @@ slider {
 }
 
 
-toggle-button {
+toggle-button div{
 	cursor: pointer;
 	color: white;
 	font-size: 16pt;

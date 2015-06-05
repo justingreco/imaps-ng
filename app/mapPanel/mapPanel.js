@@ -117,7 +117,7 @@ angular.module('imapsNgApp')
 					}
 
 					buildSearch();
-
+					$('#loading').remove();
 
 					var home = new HomeButton({map: $scope.map}, 'homeButton').startup();
 				//	var locate = new LocateButton({map: $scope.map}, 'locateButton').startup();
