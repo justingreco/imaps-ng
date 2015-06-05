@@ -166,6 +166,12 @@ tool-panel .glyphicon {
 	width: 210px;
 }
 
+/*draw tool*/
+draw-tool textarea {
+	max-width: 100%;
+	max-height: 90px;
+	min-height: 90px;
+}
 
 
 /*overview panel*/

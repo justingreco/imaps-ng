@@ -12,7 +12,6 @@ angular.module('imapsNgApp')
 					var g = new Graphic(e.geometry);
 					if (e.geometry.type === 'polygon') {
 						g.setSymbol(fill);
-
 					} else if (e.geometry.type === 'polyline') {
 						g.setSymbol(line);
 					} else if (e.geometry.type === 'point') {
@@ -23,16 +22,14 @@ angular.module('imapsNgApp')
 							textSymbol.setText($scope.drawText);
 							g.setSymbol(textSymbol);
 						}
-
 					}
-					//gl.clear();
 					gl.add(g);
 				});
 
 			};
 			var init = function () {
 				require(["esri/toolbars/draw", "esri/layers/GraphicsLayer", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/on"], function (Draw, GraphicsLayer, SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, TextSymbol, on) {
-					gl = new GraphicsLayer();
+					gl = new GraphicsLayer({id: 'drawGraphics'});
 					$scope.map.addLayer(gl);
 					fill = new SimpleFillSymbol({
 					  "type": "esriSFS",
@@ -94,7 +91,11 @@ angular.module('imapsNgApp')
 					toolbar.setMarkerSymbol(marker);
 					on(toolbar, 'draw-end', drawCompleted);
 				});
-			}
+			};
+
+			$scope.undo = function () {
+				gl.remove(gl.graphics[gl.graphics.length - 1]);
+			};
 
 			$scope.$watch('map', function (map) {
 				if (map) {
@@ -105,16 +106,20 @@ angular.module('imapsNgApp')
 			$scope.$watch('drawType', function (type) {
 				if (type) {
 					toolbar.activate(type.shape);
-
+					$scope.tool.height = (type.name === 'Text') ? 200 : 90;
 					//gl.clear();
 				}
 			});
 
 			$scope.$watch('tool', function (tool) {
 				if (tool.title === 'Draw') {
-					//tool.height = ($scope.geometry) ? 250 : 180;
 					if (!toolbar) {
 						toolbar = new Draw($scope.map);
+					}
+					if ($scope.drawType) {
+						tool.height = ($scope.drawType.name === 'Text') ? 200 : 90;
+					} else {
+						tool.height = 90;
 					}
 				} else {
 					if (toolbar) {
