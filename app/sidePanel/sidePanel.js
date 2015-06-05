@@ -10,8 +10,8 @@ angular.module('imapsNgApp')
 				$scope.checked = checked;
 			});
 			$timeout(function () {
-				$("pageslide").prependTo(".wrapper");
-
+				//$("pageslide").appendTo(".wrapper");
+				$("app-header").appendTo("body");
 			});
 		}, link: function (scope, element, attr) {
 
