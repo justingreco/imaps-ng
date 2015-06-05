@@ -43,6 +43,7 @@ angular.module('imapsNgApp')
 				});
 			});
 			$scope.goFull = function () {
+				$("app-header").hide();
 				$scope.streetviewFull = true;
 				$("#streetview").css("position", "fixed").css("top", 0).css("bottom", 0).css("left", 0).css("right", 0).css("z-index", 10000).css("height", "auto");
 				sideOpen = $rootScope.checked;
@@ -50,6 +51,7 @@ angular.module('imapsNgApp')
 				google.maps.event.trigger(panorama, 'resize');
 			}
 			$scope.minimizeStreetview = function () {
+				$("app-header").show();
 				$scope.streetviewFull = false;
 				$("#streetview").css("position", "relative").css("top", 0).css("bottom", 0).css("left", 0).css("right", 0).css("z-index", 10000).css("height", "240px");
 				$rootScope.checked = sideOpen;

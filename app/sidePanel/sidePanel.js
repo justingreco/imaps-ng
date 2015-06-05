@@ -11,7 +11,7 @@ angular.module('imapsNgApp')
 			});
 			$timeout(function () {
 				//$("pageslide").appendTo(".wrapper");
-				$("app-header").appendTo("body");
+			//	$(".wrapper").appendTo("body");
 			});
 		}, link: function (scope, element, attr) {
 
