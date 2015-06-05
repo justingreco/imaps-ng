@@ -10,7 +10,6 @@ angular.module('imapsNgApp')
 		}, link: function (scope, element, attr) {
 			var w = angular.element($window);
 			var moveToggle = function (newValue) {
-				console.log(newValue.h/2 - 52);
 				scope.toggleTop = newValue.h/2 - 52;
 			};
 			scope.getWindowDimensions = function () {

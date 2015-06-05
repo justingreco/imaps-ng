@@ -518,7 +518,6 @@ toggle-button {
 	color: white;
 	font-size: 16pt;
 	position: absolute;
-	top: 300px;
 	background-color: rgba(60,60,60,.8);
 	padding: 0.5em .25em 0.5em 0.25em;
 	border-radius: 5px 0 0 5px;
