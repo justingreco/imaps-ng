@@ -5,6 +5,11 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $http) {
       $scope.feedbackText = "";
+      var closeForm = function () {
+        $scope.feedbackText = "";
+        $scope.feedbackEmail = "";
+        $("feedback .modal").modal('hide');
+      };
       $scope.sendFeedback = function (email, text) {
         $http({url: 'http://maps.raleighnc.gov/php/mail.php',
         method: 'GET',
@@ -16,11 +21,7 @@ angular.module('imapsNgApp')
           message: text,
           from: '',
           to: ''
-        }}).success(function () {
-          $scope.feedbackText = "";
-          $scope.feedbackEmail = "";
-          $("feedback .modal").modal('hide');
-        });
+        }}).success(closeForm).error(closeForm);
       };
 		}
 	}
