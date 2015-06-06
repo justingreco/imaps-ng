@@ -4,6 +4,7 @@ angular.module('imapsNgApp')
 		templateUrl: 'appHeader/appHeader.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope) {
+			$("app-header").appendTo('body');
 			$rootScope.checked = true;
 			$rootScope.$watch('config', function (config) {
 				if (config) {
