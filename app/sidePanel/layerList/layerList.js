@@ -14,11 +14,11 @@ angular.module('imapsNgApp')
 							subl.legend = legend.layers[j].legend;
 						}
 					});
-				});	
+				});
 			};
-			$scope.$watch('map', function (map) {
-				if (map) {
-					$scope.layers = $scope.webmap.itemInfo.itemData.operationalLayers;
+			$scope.$watch('webmap', function (webmap) {
+				if (webmap) {
+					$scope.layers = webmap.itemInfo.itemData.operationalLayers;
 					angular.forEach($scope.layers, function (l) {
 						if (l.visibility) {
 							getLegend(l);
@@ -33,7 +33,7 @@ angular.module('imapsNgApp')
 				if (layer.visibility && !layer.resourceInfo.layers[0].legend) {
 					getLegend(layer);
 				}
-				
+
 			};
 			$scope.subLayerToggle = function (layer, sublayer, webmap) {
 				var visible = [];
@@ -48,6 +48,11 @@ angular.module('imapsNgApp')
 				if (visible.length === 0) {
 					visible = [-1];
 				}
+
+				layer.layerObject.visibleLayers = visible;
+				layer.layerObject._defaultVisibleLayers = visible;
+
+				$scope.webmap.itemInfo.itemData.operationalLayers = $scope.layers;
 				$scope.map.getLayer(layer.id).setVisibleLayers(visible);
 			};
 
@@ -59,7 +64,7 @@ angular.module('imapsNgApp')
 		link: function (scope, element, attrs) {
 			var resetPanel = function () {
 				var headings = document.getElementsByClassName('panel-heading');
-				var body = document.getElementsByClassName('panel-body') 
+				var body = document.getElementsByClassName('panel-body')
 				if (headings.length > 0) {
 					var height = $window.innerHeight;
 					height -= headings.length * headings[0].offsetHeight;
@@ -93,7 +98,7 @@ angular.module('imapsNgApp')
 	function getLegend (url, id) {
 		var deferred = $q.defer();
 		$http({
-			method: 'GET', 
+			method: 'GET',
 			url: url + '/legend',
 			params: {f: 'json'}
 		}).success(function (data) {

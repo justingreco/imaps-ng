@@ -70,11 +70,34 @@ angular.module('imapsNgApp')
 				});
 
 			};
+
+			var setLayerVisibileLayers = function () {
+				angular.forEach($scope.map.layerIds, function (id) {
+					if (localStorageService.get('imaps_webmap')) {
+						var layer = $scope.map.getLayer(id);
+						if (layer.visibleLayers) {
+							var webmap = localStorageService.get('imaps_webmap');
+							var opLyr = $filter('filter')(webmap.itemInfo.itemData.operationalLayers, function (l) {
+								return layer.id  === l.id;
+							});
+							if (opLyr.length > 0) {
+								opLyr = opLyr[0];
+								layer.setVisibleLayers(opLyr.layerObject.visibleLayers);
+							}
+						}
+					}
+				});
+			};
+
 			var webMapLoaded = function (response) {
 
 				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
 				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, LocateButton, on) {
-					$scope.webmap = response;
+					if (localStorageService.get('imaps_webmap')) {
+						$scope.webmap = localStorageService.get('imaps_webmap');
+					} else {
+						$scope.webmap = response;
+					}
 					$scope.map = response.map;
 					setRaleighBounds();
 					$scope.selectionMultiple = new GraphicsLayer();
@@ -86,6 +109,7 @@ angular.module('imapsNgApp')
 					on($scope.map, 'update-end', mapUpdated);
 					on($scope.map, 'extent-change', extentChanged)
 					on($scope.map, 'unload', mapUnloaded);
+					setLayerVisibileLayers();
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
