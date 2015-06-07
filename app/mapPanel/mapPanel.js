@@ -95,6 +95,8 @@ angular.module('imapsNgApp')
 				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, LocateButton, on) {
 					if (localStorageService.get('imaps_webmap')) {
 						$scope.webmap = localStorageService.get('imaps_webmap');
+						$scope.webmap.clickEventHandle = response.clickEventHandle;
+						$scope.webmap.clickEventListener = response.clickEventListener;
 					} else {
 						$scope.webmap = response;
 					}
