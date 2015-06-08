@@ -306,6 +306,12 @@ property-search {
   overflow: none;
 }
 
+.typeahead::ms-clear{
+	display: none;
+	width : 0;
+	height: 0;
+}
+
 .typeahead-clear {
 	position: absolute;
 	top: 8px;
