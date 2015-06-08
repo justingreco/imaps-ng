@@ -35,6 +35,7 @@ angular.module('imapsNgApp')
 					"spatialReference":{"wkid": $scope.map.spatialReference.wkid}}
 				};
 				$scope.config.tools.bookmarks.push(bm);
+				$scope.bookmarkName = '';
 				storeBookmarks();
 			};
 
