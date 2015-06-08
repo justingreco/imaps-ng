@@ -6,6 +6,9 @@ body, html {
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-overflow-scrolling: touch;
+	background-color: #3D4044;
+	-webkit-transition: background-color 0.6s ease-in-out 0s;
+  transition: background-color 0.6s ease-in-out 0s;
 }
 
 .wrapper {
@@ -61,6 +64,89 @@ feedback textarea {
 	right: 0;
 	left: 0;
 
+}
+
+
+#loadingBackground {
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		margin: auto auto;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		background-color: #3D4044;
+	z-index: 10000;
+}
+#loading {
+	width: 60px;
+		height: 60px;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 60px;
+		right: 0;
+		margin: auto auto;
+		-webkit-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+		background-color: #3D4044;
+	z-index: 10000;
+}
+
+.spinner {
+	width: 40px;
+	height: 40px;
+
+	position: relative;
+	margin: auto auto;
+}
+
+.double-bounce1, .double-bounce2 {
+	width: 100%;
+	height: 100%;
+	border-radius: 50%;
+	background-color: #fff;
+	opacity: 0.6;
+	position: absolute;
+	top: 0;
+	left: 0;
+
+	-webkit-animation: bounce 2.0s infinite ease-in-out;
+	animation: bounce 2.0s infinite ease-in-out;
+}
+
+.double-bounce2 {
+	-webkit-animation-delay: -1.0s;
+	animation-delay: -1.0s;
+}
+
+@-webkit-keyframes bounce {
+	0%, 100% { -webkit-transform: scale(0.0) }
+	50% { -webkit-transform: scale(1.0) }
+}
+
+@keyframes bounce {
+	0%, 100% {
+		transform: scale(0.0);
+		-webkit-transform: scale(0.0);
+	} 50% {
+		transform: scale(1.0);
+		-webkit-transform: scale(1.0);
+	}
+}
+
+#loading img{
+	text-align: center;
+  position: relative;
+  top: 10px;
+  height: 80px;
+  left: -5px;
+  -webkit-filter: drop-shadow(0px 0px 2px rgba(255,255,255,1));
 }
 
 /*hyperlinks*/
