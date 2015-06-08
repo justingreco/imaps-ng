@@ -128,6 +128,7 @@ angular.module('imapsNgApp')
 
 			$scope.$watch('measureType', function (type) {
 				if (type) {
+					$scope.tool.height = 200;
 					var matches = $filter('filter')($scope.units, function (u) {
 						return u.type === type.type && u.active;
 					});
@@ -138,6 +139,8 @@ angular.module('imapsNgApp')
 					measureGeom = null;
 					$scope.measurement = '';
 					gl.clear();
+				} else {
+					$scope.tool.height = 88;
 				}
 			});
 
@@ -161,6 +164,11 @@ angular.module('imapsNgApp')
 					//tool.height = ($scope.geometry) ? 250 : 180;
 					if (!toolbar) {
 						toolbar = new Draw($scope.map);
+					}
+					if ($scope.measureType) {
+						tool.height = 200;
+					} else {
+						tool.height = 88;
 					}
 				} else {
 					if (toolbar) {
