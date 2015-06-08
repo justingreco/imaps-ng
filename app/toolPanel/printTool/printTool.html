@@ -16,12 +16,12 @@
   </div>
   <div class="form-group">
     <label for="printScale" class="col-xs-2 control-label">Scale</label>
-    <div class="col-xs-5">
+    <div ng-class="{'col-xs-5': printScale.custom, 'col-xs-10': !printScale.custom}">
       <select class="form-control input-sm" id="printScale" ng-options="printScale as printScale.label for printScale in printScales" ng-model="printScale"></select>
     </div>
-    <div class="col-xs-5">
+    <div class="col-xs-5" ng-if="printScale.custom">
       <span style="display:inline-block">1" = </span>
-      <input class="form-control input-sm" id="customScale" ng-model="printScale" style="width:50px;display:inline-block"></select>
+      <input ng-required="printScale.custom" max="30000" min="25" class="form-control input-sm" id="customScale" ng-model="printScale.value" style="width:50px;display:inline-block" type="number" name="number"/>
       <span style="display:inline-block">'</span>
     </div>
   </div>
@@ -36,7 +36,7 @@
   </div>
   <div class="form-group">
     <div class="col-xs-offset-2 col-xs-10">
-      <button id="printBtn" type="submit" class="btn btn-default" ng-click="printPDF(map, layers)" data-loading-text="Printing...">Print</button>
+      <button ng-disabled="printScale.custom && !printScale.value" id="printBtn" type="submit" class="btn btn-default" ng-click="printPDF(map, layers)" data-loading-text="Printing...">Print</button>
     </div>
   </div>
 </form>

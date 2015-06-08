@@ -6,6 +6,34 @@ angular.module('imapsNgApp')
 		controller: function ($scope, $rootScope, $filter) {
 			var account = {};
 			$scope.printAtts = false;
+			$scope.printTitle = "";
+			$scope.printSizes = [
+				{value: '8.5x11', label:'8.5"x11"'},
+				{value: '11x17', label:'11"x17"'},
+				{value: '24x36', label:'24"x36"'},
+				{value: '36x48', label:'36"x48"'}
+			];
+			$scope.printSize = $scope.printSizes[0];
+			$scope.printOrients = [
+				{value: 'landscape', label:'Landscape'},
+				{value: 'portait', label:'Portait'}
+			];
+			$scope.printOrient = $scope.printOrients[0];
+			$scope.printScales = [
+				{label: 'Current Scale', value: 0, current: true},
+				{label: '1" = ' + "50'" , value: 600},
+				{label: '1" = ' + "100'" , value: 1200},
+				{label: '1" = ' + "200'" , value: 2400},
+				{label: '1" = ' + "400'" , value: 4800},
+				{label: '1" = ' + "800'" , value: 9600},
+				{label: '1" = ' + "1,600'" , value: 17200},
+				{label: '1" = ' + "3,200'" , value: 38400},
+				{label: '1" = ' + "6,400'" , value: 76800},
+				{label: '1" = ' + "12,800'" , value: 153600},
+				{label: '1" = ' + "25,600'" , value: 307200},
+				{label: 'Custom', value: undefined, custom: true}
+			];
+			$scope.printScale = $scope.printScales[0];
 
 			var getGraphics = function (params) {
 				var gl = $scope.map.getLayer('drawGraphics'),
@@ -74,19 +102,15 @@ angular.module('imapsNgApp')
 				return pins;
 			};
 
-			$scope.printTitle = "";
-			$scope.printSizes = [
-				{value: '8.5x11', label:'8.5"x11"'},
-				{value: '11x17', label:'11"x17"'},
-				{value: '24x36', label:'24"x36"'},
-				{value: '36x48', label:'36"x48"'}
-			];
-			$scope.printSize = $scope.printSizes[0];
-			$scope.printOrients = [
-				{value: 'landscape', label:'Landscape'},
-				{value: 'portait', label:'Portait'}
-			];
-			$scope.printOrient = $scope.printOrients[0];
+			var getScale = function (scaleUtils) {
+				var scale = $scope.printScale.value;
+				if ($scope.printScale.current) {
+					scale = parseInt(scaleUtils.getScale($scope.map));
+				} else if ($scope.printScale.custom) {
+					scale = scale * 12;
+				}
+				return scale;
+			};
 
 			$scope.printPDF = function (map, layers) {
 				$('#printBtn').button('loading');
@@ -106,8 +130,6 @@ angular.module('imapsNgApp')
 					layerTypes += "tiled;";
 					defExps += ";";
 				});
-
-
 				var visibleLyrs = $filter('filter')($scope.webmap.itemInfo.itemData.operationalLayers, function (l) {
 					return l.visibility === true;
 				});
@@ -131,7 +153,6 @@ angular.module('imapsNgApp')
 						sublayers += ";";
 					}
 				});
-
 				require(["esri/geometry/scaleUtils", "esri/tasks/Geoprocessor"], function(scaleUtils, Geoprocessor) {
 					var gp = new Geoprocessor($scope.config.tools.print.url);
 					var params = {
@@ -144,11 +165,10 @@ angular.module('imapsNgApp')
 						"Definition_Expressions": defExps,
 						"Transparency_Values": opacities,
 						"Extent": $scope.map.extent.xmin +";" + $scope.map.extent.ymin +";" + $scope.map.extent.xmax +";" + $scope.map.extent.ymax +";",
-						Scale: parseInt(scaleUtils.getScale($scope.map)),
+						Scale: getScale(scaleUtils),
 						PIN: getPins(),
 						Attributes: getAttributes()
 					};
-
 					params = getGraphics(params);
 					console.log(params);
 					gp.submitJob(params, function (info) {
@@ -159,7 +179,6 @@ angular.module('imapsNgApp')
 							window.open(data.value);
 						})
 					});
-
 				});
 			};
 
