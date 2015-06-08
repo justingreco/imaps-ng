@@ -127,20 +127,22 @@ angular.module('imapsNgApp')
 			};
 
 			$scope.$watch('measureType', function (type) {
+				if ($scope.tool.name === "Measure") {
 				if (type) {
-					$scope.tool.height = 200;
-					var matches = $filter('filter')($scope.units, function (u) {
-						return u.type === type.type && u.active;
-					});
-					if (matches.length > 0) {
-						$scope.unit = matches[0];
+						$scope.tool.height = 200;
+						var matches = $filter('filter')($scope.units, function (u) {
+							return u.type === type.type && u.active;
+						});
+						if (matches.length > 0) {
+							$scope.unit = matches[0];
+						}
+						toolbar.activate(type.shape);
+						measureGeom = null;
+						$scope.measurement = '';
+						gl.clear();
+					} else {
+					  $scope.tool.height = 88;
 					}
-					toolbar.activate(type.shape);
-					measureGeom = null;
-					$scope.measurement = '';
-					gl.clear();
-				} else {
-					$scope.tool.height = 88;
 				}
 			});
 
