@@ -173,7 +173,7 @@ angular.module('imapsNgApp')
 				} else {
 					if (toolbar) {
 						toolbar.deactivate();
-						//$scope.selectType = '';
+						$scope.measureType = null;
 					}
 				}
 			});
