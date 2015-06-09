@@ -22,6 +22,26 @@ app-header {
   overflow: hidden;
 }
 
+.navbar-brand {
+	float: left;
+height: 50px;
+padding: 15px 15px;
+font-size: 18px;
+line-height: 20px;
+color: #fff;
+text-decoration: none;
+font-weight: normal;
+/* text-transform: uppercase; */
+letter-spacing: 0.4em;
+-webkit-transition: letter-spacing 0.5s;
+transition: letter-spacing 0.5s;
+font-size: 2em;
+font-weight: bold;
+}
+
+.navbar-brand:hover {
+	letter-spacing: 0.2em;
+}
 disclaimer blockquote {
 	border: none;
 }
