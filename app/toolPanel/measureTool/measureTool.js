@@ -127,7 +127,7 @@ angular.module('imapsNgApp')
 			};
 
 			$scope.$watch('measureType', function (type) {
-				if ($scope.tool.name === "Measure") {
+				if ($scope.tool.title === "Measure") {
 				if (type) {
 						$scope.tool.height = 200;
 						var matches = $filter('filter')($scope.units, function (u) {
