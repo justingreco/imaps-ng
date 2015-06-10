@@ -76,6 +76,11 @@ feedback textarea {
 	color: white;
 }
 
+.panel-group .panel + .panel {
+	margin-top:0 !important;
+}
+
+
 #map {
 	background-color: black;
 	position: fixed;

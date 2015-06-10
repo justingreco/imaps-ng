@@ -1,5 +1,4 @@
-<accordion-group heading="Layers">
-  <div ng-style="accordionHeight">
+  <div ng-style="accordionHeight" class="panel-contain">
   <div class="layer" ng-repeat="layer in layers | orderBy: 'title'" ng-model="layer" >
   	<button analytics-on="click" analytics-if="!layer.visibility" analytics-category="Layers" analytics-event="Turned On" analytics-label="{{layer.title}}" class="btn" ng-class="{'btn-danger': !layer.visibility, 'btn-success': layer.visibility}" ng-click="layerToggle(layer, webmap)">{{((layer.visibility) ? 'On' : 'Off')}}</button><strong>{{layer.title}}</strong>
 	  <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility" ng-change="opacityChanged(layer, webmap)"></slider>
@@ -12,4 +11,3 @@
   	</div>
   </div>
   </div>
-</accordion-group>

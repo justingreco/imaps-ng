@@ -2,7 +2,7 @@ angular.module('imapsNgApp')
 .directive('search', function () {
 	return {
 		templateUrl: 'sidePanel/search/search.html',
-		restrict: 'E',
+		restrict: 'EA',
 		controller: function ($scope) {
 
 		},

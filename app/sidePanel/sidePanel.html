@@ -1,9 +1,12 @@
 <pageslide ps-open="checked" ps-side="right" ps-cloak="false" ps-speed="0.5" ps-class="ng-pageslide-right" ps-speed="0.25" class="ng-isolate-scope">
   <accordion close-others="true">
-    <accordion-group heading="Search" is-open="true" is-disabled="status.isFirstDisabled">
+    <accordion-group heading="Search" is-open="searchDir.open">
       <search>
       </search>
     </accordion-group>
-    <layer-list></layer-list>
+    <accordion-group heading="Layers" is-open="layersDir.open">
+      <layer-list>
+      </layer-list>
+    </accordion-group>
   </accordion>
 </pageslide>

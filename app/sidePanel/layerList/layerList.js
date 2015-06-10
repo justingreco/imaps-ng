@@ -2,7 +2,7 @@ angular.module('imapsNgApp')
 .directive('layerList', function ($timeout, $window, $filter, legend, localStorageService) {
 	return {
 		templateUrl: 'sidePanel/layerList/layerList.html',
-		restrict: 'E',
+		restrict: 'EA',
 		controller: function ($scope) {
 			var getLegend = function (l) {
 				legend.getLegend(l.url, l.id).then(function (legend) {
@@ -62,34 +62,7 @@ angular.module('imapsNgApp')
 
 		},
 		link: function (scope, element, attrs) {
-			var resetPanel = function () {
-				var headings = document.getElementsByClassName('panel-heading');
-				var body = document.getElementsByClassName('panel-body')
-				if (headings.length > 0) {
-					var height = $window.innerHeight;
-					height -= headings.length * headings[0].offsetHeight;
-					scope.accordionHeight = {'height': height - element.parent().parent().parent().position().top - 30 + 'px', overflow: 'none'};
-				}
-			};
-			$timeout(resetPanel.bind(element), 0);
-/*			var w = angular.element($window)
-			angular.element($window).bind('resize', resetPanel.bind(element));*/
 
-	        var w = angular.element($window);
-	        scope.getWindowDimensions = function () {
-	            return {
-	                'h': w.height(),
-	                'w': w.width()
-	            };
-	        };
-	        scope.$watch(scope.getWindowDimensions, function (newValue, oldValue) {
-	            resetPanel();
-
-	        }, true);
-
-	        w.bind('resize', function () {
-	            scope.$apply();
-	        });
 		}
 	}
 }).factory('legend', ['$http', '$q', function($http, $q){
