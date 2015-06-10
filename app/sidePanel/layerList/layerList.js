@@ -60,6 +60,10 @@ angular.module('imapsNgApp')
 				$scope.map.getLayer(layer.id).setOpacity(layer.opacity);
 			};
 
+			$scope.translate = function(value) {
+			    return (value * 100).toFixed(0) + '%';
+		  };
+
 		},
 		link: function (scope, element, attrs) {
 
