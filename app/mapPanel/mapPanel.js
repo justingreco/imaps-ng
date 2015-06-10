@@ -39,7 +39,7 @@ angular.module('imapsNgApp')
 				})
 			}
 			var buildSearch = function () {
-				require(["esri/dijit/Search", "esri/layers/FeatureLayer"], function (Search, FeatureLayer){
+				require(["esri/dijit/Search", "esri/layers/FeatureLayer", "esri/tasks/locator"], function (Search, FeatureLayer, Locator){
 					var s = new Search({
 										enableButtonMode: true, //this enables the search widget to display as a single button
 										enableLabel: false,
@@ -48,24 +48,35 @@ angular.module('imapsNgApp')
 										map: $scope.map
 								}, "search");
 
-					// var sources = s.get("sources");
-					// sources.push({
-	        //     featureLayer: new FeatureLayer("http://mapstest.raleighnc.gov/arcgis/rest/services/Planning/Subdivisions/MapServer/0"),
-	        //     searchFields: ["NAME"],
-	        //     displayField: "NAME",
-	        //     exactMatch: false,
-	        //     outFields: ["NAME"],
-	        //     name: "Subdivisions",
-	        //     placeholder: "Subdivision",
-	        //     maxResults: 5,
-	        //     maxSuggestions: 5,
-					//
-	        //     //Create an InfoTemplate and include three fields
-	        //     // infoTemplate: new InfoTemplate("Congressional District", "District ID: ${DISTRICTID}</br>Name: ${NAME}</br>Party Affiliation: ${PARTY}"),
-	        //     enableSuggestions: true,
-	        //     minCharacters: 0
-	        //  });
-					//s.set('sources', sources);
+								var sources = [
+								  {
+								     locator: new Locator('http://maps.raleighnc.gov/arcgis/rest/services/Locators/Locator/GeocodeServer'),
+								     singleLineFieldName: "Single Line Input",
+								     name: "Custom Geocoding Service",
+								     localSearchOptions: {
+								     minScale: 300000,
+								     distance: 50000
+								     },
+								     placeholder: "Search Geocoder",
+								     maxResults: 3,
+								     maxSuggestions: 6,
+								     enableSuggestions: false,
+								     minCharacters: 0
+								}, {
+								     featureLayer: new FeatureLayer("http://maps.raleighnc.gov/arcgis/rest/services/Planning/Subdivisions/MapServer/0", {
+								    outFields: ["*"]
+								  }),
+								    searchFields: ["NAME"],
+								    displayField: "NAME",
+								    exactMatch: false,
+								    outFields: ["*"],
+								    maxResults: 6,
+								    maxSuggestions: 6,
+								    enableSuggestions: true,
+								    minCharacters: 0
+								   }
+								];
+					s.set('sources', sources);
 					s.startup();
 				});
 
