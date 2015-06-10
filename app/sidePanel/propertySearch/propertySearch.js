@@ -52,7 +52,7 @@ angular.module('imapsNgApp')
 				c = ((c === 'streetname') ? 'street name':c);
 				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
 					$scope.account = null;
-					$scope.geometry = null;
+					//$scope.geometry = null;
 					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;
 					$scope.accountsSrc = accounts.Accounts;

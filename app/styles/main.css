@@ -17,7 +17,9 @@ body, html {
 	overflow: hidden;
 	position: fixed;
 }
-
+.loading-bar-spinner {
+	right: 10px !important;
+}
 app-header {
   overflow: hidden;
 }
@@ -410,7 +412,7 @@ side-panel {
 /*property search*/
 property-search {
   position: absolute;
-  top: 40px;
+  top: 0px;
   bottom: 0;
   right: 0;
   left: 0;

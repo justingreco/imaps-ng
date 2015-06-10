@@ -58,7 +58,7 @@ angular.module('imapsNgApp')
 				require([
 				    "esri/graphic"
 				], function(Graphic) {
-					mapUtils.buffer($scope.config.map.geometryServiceUrl, [$scope.geometry], 4326, -5, 9002).then(function (geoms) {
+					mapUtils.buffer($scope.config.map.geometryServiceUrl, [$scope.geometry], 2264, -5, 9002).then(function (geoms) {
 						if (geoms.length > 0) {
 							property.getServices($scope.geometry, $scope.map.extent, $scope.map.width, $scope.map.height).then(function (response) {
 								handleResponse(response);
