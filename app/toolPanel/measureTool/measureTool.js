@@ -272,7 +272,9 @@ angular.module('imapsNgApp')
 						convertLengths(unit, oldUnit);
 					}
 					if ($scope.measureType.type === 'coordinates') {
-						updateCurrentCoordinate(currentPt, $scope.unit.wkid);
+						if (current) {
+							updateCurrentCoordinate(current, $scope.unit.wkid);
+						}
 					}
 				}
 
