@@ -9,7 +9,7 @@ angular.module('imapsNgApp')
 				bufferShape($scope.geometry, "esriGeometryPolygon");
 			}
 			var bufferShape = function (geom, type) {
-				mapUtils.buffer($scope.config.map.geometryServiceUrl, [geom], $scope.map.spatialReference.wkid, parseInt($scope.selectBufferDist), 9002, type).then(function (data) {
+				mapUtils.buffer($scope.config.map.geometryServiceUrl, [geom], 2264, parseInt($scope.selectBufferDist), 9002, type).then(function (data) {
 					if (data.geometries.length > 0) {
 						searchForProperties(data.geometries[0], "esriGeometryPolygon", $scope.map.spatialReference.wkid);
 					}
