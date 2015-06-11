@@ -10,11 +10,11 @@ angular.module('imapsNgApp')
 				lastSegment = 0,
 				clickPt = null,
 				clickHandle = null,
-				moveHandle = null;
-			$scope.measurement = null;
-
-
-
+				moveHandle = null,
+				coordHandle = null;
+			$scope.measurement = '--';
+			$scope.currentCoords = '',
+				current = null;
 
 			var getCoordinate = function (x, y, unit) {
 				var dd = spToDd(x, y),
@@ -73,7 +73,7 @@ angular.module('imapsNgApp')
 			var stopLengthMeasure = function () {
 				if (moveHandle) {
 					moveHandle.remove();
-					moveHandle = null;					
+					moveHandle = null;
 				}
 
 				clickPt = null;
@@ -129,6 +129,31 @@ angular.module('imapsNgApp')
 				});
 			};
 
+			var updateCurrentCoordinate = function (pt, unit) {
+				coord = getCoordinate(pt.x, pt.y, unit);
+				$timeout(function () {
+					$scope.currentCoords = coord;
+				});
+			};
+
+			var stopDisplayCoordinates = function () {
+				if (coordHandle) {
+					coordHandle.remove();
+					coordHandle = null;
+					currentPt = null;
+				}
+			};
+
+			var startDisplayingCoordinates = function () {
+				require(['dojo/on'], function (on) {
+					var coord = '';
+					coordHandle = on($scope.map, 'mouse-move', function (e) {
+						currentPt = e.mapPoint;
+						updateCurrentCoordinate(e.mapPoint, $scope.unit.wkid);
+					});
+				});
+			};
+
 			var init = function () {
 				require(["esri/toolbars/draw", "esri/layers/GraphicsLayer", "esri/symbols/PictureMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "dojo/on"], function (Draw, GraphicsLayer, PictureMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, on) {
 					gl = new GraphicsLayer();
@@ -178,12 +203,12 @@ angular.module('imapsNgApp')
 				{label: 'Meters', name: 'METERS', wkid: 9001,type: 'length', active: false, multiplier: 1, abbr: 'm'},
 				{label: 'Kilometers', name: 'KILOMETERS', wkid: 9036,type: 'length', active: false, multiplier: 0.001, abbr: 'km'},
 				{label: 'Yards', name: 'YARDS', wkid: 109002,type: 'length', active: false, multiplier: 1.09361, abbr: 'yd'},
-				{label: 'Square Feet', name: 'SQUARE_FEET', wkid: 109405,type: 'area', active: true, multiplier: 10.7639, abbr: 'sqft'},
+				{label: 'Square Feet', name: 'SQUARE_FEET', wkid: 109405,type: 'area', active: true, multiplier: 10.7639, abbr: 'ft²'},
 				{label: 'Acres', name: 'ACRES', wkid: 109403,type: 'area', active: false, multiplier: 0.000247105, abbr: 'acre'},
-				{label: 'Square Miles', name: 'SQUARE_MILES', wkid: 109413,type: 'area', active: false, multiplier: 0.000000386102, abbr: 'mi^2'},
-				{label: 'Square Meters', name: 'SQUARE_METERS', wkid: 109404,type: 'area', active: false, multiplier: 1, abbr: 'm^2'},
-				{label: 'Square Kilometers', name: 'KILOMETERS', wkid: 109414,type: 'area', active: false, multiplier: 0.000001, abbr: 'km^2'},
-				{label: 'Square Yards', name: 'SQUARE_YARDS', wkid: 109443,type: 'area', active: false, abbr: 'yd^2'},
+				{label: 'Square Miles', name: 'SQUARE_MILES', wkid: 109413,type: 'area', active: false, multiplier: 0.000000386102, abbr: 'mi²'},
+				{label: 'Square Meters', name: 'SQUARE_METERS', wkid: 109404,type: 'area', active: false, multiplier: 1, abbr: 'm²'},
+				{label: 'Square Kilometers', name: 'KILOMETERS', wkid: 109414,type: 'area', active: false, multiplier: 0.000001, abbr: 'km²'},
+				{label: 'Square Yards', name: 'SQUARE_YARDS', wkid: 109443,type: 'area', active: false, abbr: 'yd²'},
 				{label: 'Decimal Degrees', wkid: 'DECIMAL_DEGREES',type: 'coordinates', active: true},
 				{label: 'Degrees Minutes Seconds', wkid: 'DEGREE_MINUTE_SECONDS',type: 'coordinates', active: false},
 				{label: 'Feet', wkid: 'FEET',type: 'coordinates', active: false}
@@ -198,7 +223,7 @@ angular.module('imapsNgApp')
 			$scope.$watch('measureType', function (type) {
 				if ($scope.tool.title === "Measure") {
 				if (type) {
-						$scope.tool.height = 200;
+						$scope.tool.height = 250;
 						var matches = $filter('filter')($scope.units, function (u) {
 							return u.type === type.type && u.active;
 						});
@@ -210,11 +235,18 @@ angular.module('imapsNgApp')
 							startLengthMeasure();
 						} else {
 							stopLengthMeasure();
-							clickHandle.remove();
-							clickHandle = null;
+							if (clickHandle) {
+								clickHandle.remove();
+								clickHandle = null;
+							}
+						}
+						if (type.type === 'coordinates') {
+							startDisplayingCoordinates();
+						} else {
+							stopDisplayCoordinates();
 						}
 						measureGeom = null;
-						$scope.measurement = '';
+						$scope.measurement = '--';
 						gl.clear();
 					} else {
 					  $scope.tool.height = 88;
@@ -239,6 +271,9 @@ angular.module('imapsNgApp')
 					if ($scope.measureType.shape === 'polyline' && oldUnit) {
 						convertLengths(unit, oldUnit);
 					}
+					if ($scope.measureType.type === 'coordinates') {
+						updateCurrentCoordinate(currentPt, $scope.unit.wkid);
+					}
 				}
 
 
@@ -251,7 +286,7 @@ angular.module('imapsNgApp')
 						toolbar = new Draw($scope.map);
 					}
 					if ($scope.measureType) {
-						tool.height = 200;
+						tool.height = 250;
 					} else {
 						tool.height = 88;
 					}
@@ -260,6 +295,7 @@ angular.module('imapsNgApp')
 						toolbar.deactivate();
 						$scope.measureType = null;
 						stopLengthMeasure();
+						stopDisplayCoordinates();
 						if (clickHandle) {
 							clickHandle.remove();
 							clickHandle = null;
