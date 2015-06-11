@@ -108,7 +108,7 @@ angular.module('imapsNgApp')
 			$scope.$watch('drawType', function (type) {
 				if (type) {
 					toolbar.activate(type.shape);
-					$scope.tool.height = (type.name === 'Text') ? 200 : 90;
+					$scope.tool.height = (type.name === 'Text') ? 246 : 136;
 					//gl.clear();
 				}
 			});
@@ -119,9 +119,9 @@ angular.module('imapsNgApp')
 						toolbar = new Draw($scope.map);
 					}
 					if ($scope.drawType) {
-						tool.height = ($scope.drawType.name === 'Text') ? 200 : 90;
+						tool.height = ($scope.drawType.name === 'Text') ? 246 : 136;
 					} else {
-						tool.height = 90;
+						tool.height = 136;
 					}
 				} else {
 					if (toolbar) {
