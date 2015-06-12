@@ -61,7 +61,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		$http({
 			method: 'POST',
 			url: serviceUrl + "/identify",
-			params: {
+			data: $.param({
 				f: "json",
 				geometry: stringify(geom),
 				geometryType: 'esriGeometryPolygon',
@@ -70,7 +70,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				mapExtent: stringify(extent),
 				imageDisplay: width + "," + height + ",96",
 				returnGeometry: false
-			},
+			}),
 			headers: { 'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8'}
 		}).success(deferred.resolve);
 		return deferred.promise;

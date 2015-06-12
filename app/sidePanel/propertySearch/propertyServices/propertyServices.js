@@ -53,18 +53,17 @@ angular.module('imapsNgApp')
 				});
 			};
 
-			$scope.$on('servicesClicked', function (e, geometry) {
+			$scope.$on('servicesClicked', function (e, geom) {
 				$scope.propertyServices = {categories:[]};
-				require([
-				    "esri/graphic"
-				], function(Graphic) {
-					mapUtils.buffer($scope.config.map.geometryServiceUrl, [$scope.geometry], 2264, -5, 9002).then(function (geoms) {
-						if (geoms.length > 0) {
-							property.getServices($scope.geometry, $scope.map.extent, $scope.map.width, $scope.map.height).then(function (response) {
-								handleResponse(response);
-							});
-						}
-					});
+
+				require(['esri/geometry/geometryEngine', 'esri/geometry/Polygon'], function (GeometryEngine, Polygon) {
+					if  (!geom.type) {
+							geom = new  Polygon(geom);
+					}
+					var buffer = GeometryEngine.buffer(geom, -5, 9002, true);
+						property.getServices(buffer, $scope.map.extent, $scope.map.width, $scope.map.height).then(function (response) {
+							handleResponse(response);
+						});
 				});
 			});
 		},
