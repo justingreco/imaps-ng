@@ -31,7 +31,7 @@ angular.module('imapsNgApp')
 			  	showGridSearch: false,
 			  	pageSize: 10000,
 			  	pageSizes: [10000],
-			  	height: $('.tabcontainer').height() - 70,
+			  	height: $('.tabcontainer').height() - 62,
 			  	columnDefs: $scope.raleighCols
 			  };
 			$scope.$watch('addresses', function (addresses) {

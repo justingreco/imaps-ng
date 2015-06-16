@@ -148,7 +148,7 @@ angular.module('imapsNgApp')
 				source: address.ttAdapter()
 			};
 			$scope.searchValue = null;
-			$("#searchInput").typeahead({hint: true, highlight: true, minLength: 1},
+			$("#searchInput").typeahead({hint: true, highlight: true, minLength: 3},
 				{name:'address',
 				displayKey:'value',
 				source:address.ttAdapter(),
