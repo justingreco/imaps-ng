@@ -172,7 +172,7 @@ fieldset[disabled] .twitter-typeahead .tt-input {
   clear: both;
   font-weight: normal;
   line-height: 1.42857143;
-  color: #333333;
+  color: #fff;
   white-space: nowrap;
 }
 .tt-dropdown-menu .tt-suggestion.tt-cursor {
@@ -182,12 +182,12 @@ fieldset[disabled] .twitter-typeahead .tt-input {
   color: #262626;
 }
 .tt-dropdown-menu .tt-suggestion.tt-cursor a {
-  color: #262626;
+  color: #fff;
 }
 .tt-dropdown-menu .tt-suggestion p {
   margin: 0;
 }
 .tt-dropdown-menu h5 {
-  color: #000;
+  color: #fff;
   margin-left: 5px;
 }

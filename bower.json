@@ -25,7 +25,8 @@
     "ng-pageslide": "~1.0.3",
     "angulartics": "~0.18.0",
     "spinkit": "~1.0.1",
-    "js-quantities": "~1.5.0"
+    "js-quantities": "~1.5.0",
+    "typeahead.js": "0.10.5"
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",

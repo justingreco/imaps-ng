@@ -39,43 +39,33 @@ angular.module('imapsNgApp')
 				})
 			}
 			var buildSearch = function () {
-				require(["esri/dijit/Search", "esri/layers/FeatureLayer", "esri/tasks/locator"], function (Search, FeatureLayer, Locator){
+				require(["esri/dijit/Search", "esri/layers/FeatureLayer", "esri/tasks/locator", "esri/geometry/Extent", "esri/SpatialReference"], function (Search, FeatureLayer, Locator, Extent, SpatialReference){
 					var s = new Search({
-										enableButtonMode: true, //this enables the search widget to display as a single button
+										enableButtonMode: false, //this enables the search widget to display as a single button
 										enableLabel: false,
 										enableInfoWindow: false,
 										showInfoWindowOnSelect: false,
 										map: $scope.map
 								}, "search");
 
-								var sources = [
-								  {
-								     locator: new Locator('http://maps.raleighnc.gov/arcgis/rest/services/Locators/Locator/GeocodeServer'),
-								     singleLineFieldName: "Single Line Input",
-								     name: "Custom Geocoding Service",
-								     localSearchOptions: {
-								     minScale: 300000,
-								     distance: 50000
-								     },
-								     placeholder: "Search Geocoder",
-								     maxResults: 3,
-								     maxSuggestions: 6,
-								     enableSuggestions: false,
-								     minCharacters: 0
-								}, {
+         						var sources = s.get("sources");
+         						sources[0].searchExtent = new Extent(-78.998349, 35.516074, -78.244593, 36.080189, new SpatialReference(4326));
+								sources.push({
 								     featureLayer: new FeatureLayer("http://maps.raleighnc.gov/arcgis/rest/services/Planning/Subdivisions/MapServer/0", {
 								    outFields: ["*"]
 								  }),
 								    searchFields: ["NAME"],
 								    displayField: "NAME",
+					
+								     name: "Subdivision",
+
 								    exactMatch: false,
 								    outFields: ["*"],
 								    maxResults: 6,
 								    maxSuggestions: 6,
 								    enableSuggestions: true,
 								    minCharacters: 0
-								   }
-								];
+								   });
 					s.set('sources', sources);
 					s.startup();
 				});

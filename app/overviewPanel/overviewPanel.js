@@ -27,7 +27,8 @@ angular.module('imapsNgApp')
 				          width: 180,
 									height: 180
 				        }, "overview");
-								$scope.overview.startup();
+						$scope.overview.startup();
+						$scope.overview.hide();
 				      });
 				}
 			});

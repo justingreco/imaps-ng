@@ -1,6 +1,12 @@
-<input id="searchInput" type="text" class="form-control input-sm twitterTypeahead" placeholder="Enter address, owner, PIN, REID, or street"/>
-<span ng-click="clearTypeahead()" class="typeahead-clear glyphicon glyphicon-remove" title="Clear Input"></span>
-<div class="tabcontainer" ng-style="{'overflow-y': (tab.table) ? 'auto': 'auto'}">
+
+<div class="input-group">
+	<span class="input-group-addon glyphicon glyphicon-search"></span>
+	<input id="searchInput" type="text" class="form-control input-sm twitterTypeahead" placeholder="Enter address, owner, PIN, REID, or street"/>
+	<span class="input-group-addon glyphicon glyphicon-remove" ng-click="clearTypeahead()"></span>
+
+</div>
+<!-- <span ng-click="clearTypeahead()" class="typeahead-clear glyphicon glyphicon-remove" title="Clear Input"></span>
+ --><div class="tabcontainer" ng-style="{'overflow-y': (tab.table) ? 'auto': 'auto'}">
 	<property-results ng-show="tab.title == 'Results'"></property-results>
 	<property-info ng-show="tab.title == 'Info'"></property-info>
 	<property-photos ng-show="tab.title == 'Photos'"></property-photos>
