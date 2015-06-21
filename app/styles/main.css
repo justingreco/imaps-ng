@@ -76,10 +76,18 @@ feedback textarea {
 }
 
 .form-control {
-	background-color: #b6b6b6 !important;
-  color: black !important;
+	background-color: rgb(60, 60, 60) !important;
+  color: white !important;
   border-radius: 0;
+  border-color: rgb(204, 204, 204);
+}
+
+.twitterTypeahead {
   border: none;
+}
+
+.input-group {
+  border: solid rgb(204, 204, 204) 1px;
 }
 
 .navbar {
@@ -574,7 +582,7 @@ slider {
 
 .suggestionsMenu {
 	position: absolute !important;
-	bottom: 190px;
+	bottom: 40px;
 	left: 6px;
 }
 
@@ -714,8 +722,8 @@ border-radius: 0 !important;
   width: 100%;
 }
 .input-group-addon {
-  background: #b6b6b6;
-  color: #666;
+  background: rgb(60, 60, 60);
+  color: white;
   border: none;
   margin: 0;
   padding: 0 4px 0 4px;

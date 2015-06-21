@@ -308,7 +308,11 @@ module.exports = function (grunt) {
             '*.html',
             'views/{,*/}*.html',
             'images/{,*/}*.{webp}',
-            'fonts/*'
+            'images/*',            
+            'fonts/*',
+            'directives/**/*.html',
+            'data/*',
+            'config/*'
           ]
         }, {
           expand: true,
@@ -317,7 +321,7 @@ module.exports = function (grunt) {
           src: ['generated/*']
         }, {
           expand: true,
-          cwd: 'bower_components/bootstrap/dist',
+          cwd: 'app/components/bootstrap/dist',
           src: 'fonts/*',
           dest: '<%= yeoman.dist %>'
         }]

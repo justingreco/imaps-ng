@@ -6,7 +6,7 @@
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
-    <!-- build:css(.) styles/vendor.css -->
+    <!-- build:css(app/.) styles/vendor.css -->
     <!-- bower:css -->
     <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="components/leaflet/dist/leaflet.css" />
@@ -70,7 +70,7 @@
     <![endif]-->
     <!-- endbuild -->
 
-    <!-- build:js(.) scripts/vendor.js -->
+    <!-- build:js(app/.) scripts/vendor.js -->
     <!-- bower:js -->
     <script src="components/jquery/dist/jquery.js"></script>
     <script src="components/es5-shim/es5-shim.js"></script>
@@ -117,59 +117,60 @@
     <script src="components/angulartics/src/angulartics-intercom.js"></script>
     <script src="components/js-quantities/src/quantities.js"></script>
     <!-- endbower -->
-    <!-- endbuild -->
+    <script src="scripts/geopoint.js"></script>
+    <script src="scripts/jquery.overlaps.js"></script>
 
+
+    <script src="scripts/jsonConverters.js"></script>
+    <script src="scripts/cycle.js"></script>
+    <script src="scripts/stringify.js"></script>        
+    <!-- endbuild -->
+    <script src="http://js.arcgis.com/3.13/"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
     <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/controllers/main.js"></script>
     <script src="scripts/controllers/about.js"></script>
-    <script src="appHeader/appHeader.js"></script>
-    <script src="appHeader/feedback/feedback.js"></script>
-    <script src="appHeader/disclaimer/disclaimer.js"></script>
-    <script src="appHeader/about/about.js"></script>
-    <script src="exportButton/exportButton.js"></script>
-    <script src="mapPanel/mapPanel.js"></script>
-    <script src="sidePanel/sidePanel.js"></script>
-    <script src="sidePanel/toggleButton/toggleButton.js"></script>
-    <script src="toolPanel/toolPanel.js"></script>
-    <script src="baseMapPanel/baseMapPanel.js"></script>
-    <script src="overviewPanel/overviewPanel.js"></script>
-    <script src="sidePanel/search/search.js"></script>
-    <script src="sidePanel/propertySearch/propertySearch.js"></script>
-    <script src="sidePanel/propertySearch/propertyResults/propertyResults.js"></script>
-    <script src="sidePanel/propertySearch/propertyInfo/propertyInfo.js"></script>
-    <script src="sidePanel/propertySearch/propertyPhotos/propertyPhotos.js"></script>
-    <script src="sidePanel/propertySearch/propertyDeeds/propertyDeeds.js"></script>
-    <script src="sidePanel/propertySearch/propertyTaxes/propertyTaxes.js"></script>
-    <script src="sidePanel/propertySearch/propertyServices/propertyServices.js"></script>
-    <script src="sidePanel/propertySearch/propertyAddresses/propertyAddresses.js"></script>
-    <script src="sidePanel/locationSearch/locationSearch.js"></script>
-    <script src="sidePanel/layerList/layerList.js"></script>
-    <script src="toolPanel/bookmarkTool/bookmarkTool.js"></script>
-    <script src="toolPanel/clearTool/clearTool.js"></script>
-    <script src="toolPanel/drawTool/drawTool.js"></script>
-    <script src="toolPanel/identifyTool/identifyTool.js"></script>
-    <script src="toolPanel/measureTool/measureTool.js"></script>
-    <script src="toolPanel/printTool/printTool.js"></script>
-    <script src="toolPanel/selectTool/selectTool.js"></script>
-    <script src="toolPanel/streetviewTool/streetviewTool.js"></script>
-    <script src="toolPanel/obliqueTool/obliqueTool.js"></script>
+    <script src="directives/appHeader/appHeader.js"></script>
+    <script src="directives/appHeader/feedback/feedback.js"></script>
+    <script src="directives/appHeader/disclaimer/disclaimer.js"></script>
+    <script src="directives/appHeader/about/about.js"></script>
+    <script src="directives/exportButton/exportButton.js"></script>
+    <script src="directives/mapPanel/mapPanel.js"></script>
+    <script src="directives/sidePanel/sidePanel.js"></script>
+    <script src="directives/sidePanel/toggleButton/toggleButton.js"></script>
+    <script src="directives/toolPanel/toolPanel.js"></script>
+    <script src="directives/baseMapPanel/baseMapPanel.js"></script>
+    <script src="directives/overviewPanel/overviewPanel.js"></script>
+    <script src="directives/sidePanel/search/search.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertySearch.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyResults/propertyResults.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyInfo/propertyInfo.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyPhotos/propertyPhotos.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyDeeds/propertyDeeds.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyTaxes/propertyTaxes.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyServices/propertyServices.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyAddresses/propertyAddresses.js"></script>
+    <script src="directives/sidePanel/locationSearch/locationSearch.js"></script>
+    <script src="directives/sidePanel/layerList/layerList.js"></script>
+    <script src="directives/toolPanel/bookmarkTool/bookmarkTool.js"></script>
+    <script src="directives/toolPanel/clearTool/clearTool.js"></script>
+    <script src="directives/toolPanel/drawTool/drawTool.js"></script>
+    <script src="directives/toolPanel/identifyTool/identifyTool.js"></script>
+    <script src="directives/toolPanel/measureTool/measureTool.js"></script>
+    <script src="directives/toolPanel/printTool/printTool.js"></script>
+    <script src="directives/toolPanel/selectTool/selectTool.js"></script>
+    <script src="directives/toolPanel/streetviewTool/streetviewTool.js"></script>
+    <script src="directives/toolPanel/obliqueTool/obliqueTool.js"></script>
     <script src="factories/config.js"></script>
     <script src="factories/property.js"></script>
     <script src="factories/mapUtils.js"></script>
-
+    <script src="scripts/spToDd.js"></script>
+    <script src="scripts/esri.symbol.MultiLineTextSymbol.js"></script>
 
 
     <!-- endbuild -->
-    <script src="scripts/jsonConverters.js"></script>
-    <script src="scripts/cycle.js"></script>
-    <script src="scripts/stringify.js"></script>
-    <script src="scripts/spToDd.js"></script>
-    <script src="scripts/geopoint.js"></script>
-    <script src="scripts/jquery.overlaps.js"></script>
-    <script src="http://js.arcgis.com/3.13/"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
-    <script src="scripts/esri.symbol.MultiLineTextSymbol.js"></script>
+
 
 
 </body>
