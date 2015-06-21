@@ -1,0 +1,10 @@
+<div ng-repeat="cat in propertyServices.categories">
+	<h3 class="lead">{{cat.title}}</h3>
+	<div ng-repeat="service in cat.services">
+		<u>{{service.title}}</u>
+		<br/>
+		<div ng-repeat="item in service.items" style="margin-left: 1em;">
+			<div ng-bind-html="item"></div>
+		</div>
+	</div>
+</div>
