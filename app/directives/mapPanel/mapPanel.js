@@ -5,6 +5,7 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $rootScope, property, localStorageService, $filter, mapUtils) {
 			$scope.property = property;
+			var oldItemInfo = null;
 			var mapUpdating = function () {
 				cfpLoadingBar.start();
 			};
@@ -74,11 +75,18 @@ angular.module('imapsNgApp')
 
 			var setLayerVisibileLayers = function () {
 				angular.forEach($scope.map.layerIds, function (id) {
-					if (localStorageService.get('imaps_webmap')) {
+					var itemInfo = null;
+					if (oldItemInfo) {
+						itemInfo = oldItemInfo;
+					} else {
+						if (localStorageService.get('imaps_webmap')) {
+							itemInfo = localStorageService.get('imaps_webmap').itemInfo
+						}
+					}
+					if (itemInfo) {
 						var layer = $scope.map.getLayer(id);
 						if (layer.visibleLayers) {
-							var webmap = localStorageService.get('imaps_webmap');
-							var opLyr = $filter('filter')(webmap.itemInfo.itemData.operationalLayers, function (l) {
+							var opLyr = $filter('filter')(itemInfo.itemData.operationalLayers, function (l) {
 								return layer.id  === l.id;
 							});
 							if (opLyr.length > 0) {
@@ -152,6 +160,21 @@ angular.module('imapsNgApp')
 
 				});
 			}
+
+			var compareOpLayers = function (itemInfo, storedInfo) {
+				var storedLayer = null;
+				angular.forEach(itemInfo.itemData.operationalLayers, function (l) {
+					storedLayer = $filter('filter')(storedInfo.itemData.operationalLayers, function (sl) {
+						return l.id === sl.id;
+					});
+					if (storedLayer.length > 0) {
+						storedLayer  = storedLayer[0];
+						l.opacity = storedLayer.opacity;
+						l.visibility = storedLayer.visibility;
+					}					
+				});
+			};
+
 			$rootScope.$watch('config', function (config) {
 				if (config) {
 					$scope.config = config;
@@ -159,22 +182,37 @@ angular.module('imapsNgApp')
 						esriConfig.defaults.io.proxyUrl = "http://maps.raleighnc.gov/parklocator/proxy.ashx";
 						esriConfig.defaults.io.alwaysUseProxy = false;
 						var input = config.map.id;
-						if (localStorageService.get('imaps_webmap')) {
-							var webmap = {};
-							webmap.item = localStorageService.get('imaps_webmap').itemInfo.item;
-							webmap.itemData = localStorageService.get('imaps_webmap').itemInfo.itemData;
-							input = webmap;
-						}
-						arcgisUtils.createMap(input,"map", {
-							geometryServiceURL: "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
-							mapOptions: {fadeOnZoom: true,
-								logo: false,
-								showAttribution: false,
-								sliderPosition: "bottom-left",
-								sliderOrientation: "horizontal",
-								sliderStyle: "small"}
-							}).then(webMapLoaded, function (err) {
-								console.log(err);
+						
+						var itemDeferred = arcgisUtils.getItem(config.map.id);
+
+						itemDeferred.addCallback(function (itemInfo) {
+							var input =  itemInfo;
+							if (localStorageService.get('imaps_webmap')) {
+								if (itemInfo.item.modified === localStorageService.get('imaps_webmap').itemInfo.item.modified) {
+									var webmap = {};
+									webmap.item = localStorageService.get('imaps_webmap').itemInfo.item;
+									webmap.itemData = localStorageService.get('imaps_webmap').itemInfo.itemData;
+									input = webmap;
+								} else {
+									itemInfo.item.extent = localStorageService.get('imaps_webmap').itemInfo.item.extent;
+									itemInfo.itemData.baseMap = localStorageService.get('imaps_webmap').itemInfo.itemData.baseMap;
+									itemInfo = compareOpLayers(itemInfo, localStorageService.get('imaps_webmap').itemInfo);
+									oldItemInfo = localStorageService.get('imaps_webmap').itemInfo;
+									localStorageService.remove('imaps_webmap');
+
+								}		
+							}
+							arcgisUtils.createMap(input,"map", {
+								geometryServiceURL: "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+								mapOptions: {fadeOnZoom: true,
+									logo: false,
+									showAttribution: false,
+									sliderPosition: "bottom-left",
+									sliderOrientation: "horizontal",
+									sliderStyle: "small"}
+								}).then(webMapLoaded, function (err) {
+									console.log(err);
+								});
 							});
 						});
 					}
