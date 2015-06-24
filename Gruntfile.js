@@ -204,8 +204,14 @@ module.exports = function (grunt) {
       html: ['<%= yeoman.dist %>/{,*/}*.html', '<%= yeoman.dist %>/directives/**/*.html'],
       css: ['<%= yeoman.dist %>/styles/{,*/}*.css'],
       json: ['<%= yeoman.dist %>/config/{,*/}*.json'],
+      js: '<%= yeoman.dist %>/scripts/*.js',
       options: {
-        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images']
+        assetsDirs: ['<%= yeoman.dist %>','<%= yeoman.dist %>/images'],
+        patterns: {
+          js: [
+              [/(images\/.*?\.(?:gif|jpeg|jpg|png|webp|svg))/gm, 'Update the JS to reference our revved images']
+          ]
+        }
       }
     },
 
@@ -242,7 +248,15 @@ module.exports = function (grunt) {
           cwd: '<%= yeoman.app %>/images',
           src: '{,*/}*.{png,jpg,jpeg,gif}',
           dest: '<%= yeoman.dist %>/images'
-        }]
+        },
+        {
+          expand: true,
+          flatten: true,
+          cwd: '<%= yeoman.app %>/components',
+          src: '**/*.{png,jpg,jpeg,gif}',
+          dest: '<%= yeoman.dist %>/img'
+        }
+        ]
       }
     },
 

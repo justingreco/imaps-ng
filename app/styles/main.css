@@ -11,6 +11,50 @@ body, html {
   transition: background-color 0.6s ease-in-out 0s;
 }
 
+.select-wrapper select {
+  background-color: transparent !important;
+  width: 100%;
+  line-height: 20px;
+  padding: 5px;
+  font-size: 12px;
+  border: 0;
+  border-radius: 0;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  color: #000;
+  outline: none;
+  border: none !important;
+  -webkit-box-shadow: none !important;
+  -moz-box-shadow: none !important;
+  box-shadow: none !important;  
+  cursor: pointer;
+}
+
+.open-heading .panel-heading{
+  background-color: #008093 !important;
+}
+
+.select-wrapper {
+  width: 100%;
+  overflow: hidden;
+  background: url("../images/downArrow.png") no-repeat right #fff;
+  background-position-x: 95%;
+  -moz-background-position-x: 95%;  
+  padding: 0;
+  cursor: pointer;
+}
+
+.page-header {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.lead {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
 
 .accordion-toggle .icon {
 	vertical-align: bottom;
@@ -502,6 +546,14 @@ property-search {
 
 .disabledTab {
   opacity: 0.05;
+}
+
+.service-item {
+  margin-bottom: 10px;
+}
+
+.service-item strong {
+  font-weight: bolder;
 }
 
 

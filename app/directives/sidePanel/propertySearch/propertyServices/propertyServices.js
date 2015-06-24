@@ -7,6 +7,7 @@ angular.module('imapsNgApp')
 			var writeFields = function (line, atts) {
 				var cnt = line.split("[").length - 1;
 				var regExp = /\[(.*?)\]/;
+				var m = null;
 				for (var i = 0;i < cnt;i++) {
 					m = regExp.exec(line);
 					if (m[0].indexOf(":proper") > - 1) {

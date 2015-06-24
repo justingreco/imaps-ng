@@ -130,7 +130,7 @@ angular.module('imapsNgApp')
 			};
 
 			var updateCurrentCoordinate = function (pt, unit) {
-				coord = getCoordinate(pt.x, pt.y, unit);
+				var coord = getCoordinate(pt.x, pt.y, unit);
 				$timeout(function () {
 					$scope.currentCoords = coord;
 				});
@@ -140,7 +140,7 @@ angular.module('imapsNgApp')
 				if (coordHandle) {
 					coordHandle.remove();
 					coordHandle = null;
-					currentPt = null;
+					current = null;
 				}
 			};
 
@@ -148,7 +148,7 @@ angular.module('imapsNgApp')
 				require(['dojo/on'], function (on) {
 					var coord = '';
 					coordHandle = on($scope.map, 'mouse-move', function (e) {
-						currentPt = e.mapPoint;
+						current = e.mapPoint;
 						updateCurrentCoordinate(e.mapPoint, $scope.unit.wkid);
 					});
 				});
