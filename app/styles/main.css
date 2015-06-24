@@ -19,6 +19,7 @@ body, html {
   font-size: 12px;
   border: 0;
   border-radius: 0;
+  appearance: none;
   -moz-appearance: none;
   -webkit-appearance: none;
   color: #000;
@@ -28,6 +29,10 @@ body, html {
   -moz-box-shadow: none !important;
   box-shadow: none !important;  
   cursor: pointer;
+}
+
+.select-wrapper select::-ms-expand{
+  display: none;
 }
 
 .open-heading .panel-heading{
@@ -42,6 +47,10 @@ body, html {
   -moz-background-position-x: 95%;  
   padding: 0;
   cursor: pointer;
+}
+
+.dropdown-menu {
+  border-radius: 0;
 }
 
 .page-header {

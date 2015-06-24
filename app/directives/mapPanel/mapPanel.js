@@ -73,7 +73,7 @@ angular.module('imapsNgApp')
 
 			};
 
-			var setLayerVisibileLayers = function () {
+			var setLayerVisibleLayers = function () {
 				angular.forEach($scope.map.layerIds, function (id) {
 					var itemInfo = null;
 					if (oldItemInfo) {
@@ -98,10 +98,32 @@ angular.module('imapsNgApp')
 				});
 			};
 
+			var compareVisibleLayers = function (response, oldItemInfo) {
+				angular.forEach(response.itemInfo.itemData.operationalLayers, function (layer) {
+					var opLyr = $filter('filter')(oldItemInfo.itemData.operationalLayers, function (l) {
+						return layer.id === l.id;
+					});
+					if (opLyr.length > 0) {
+						opLyr = opLyr[0];
+						angular.forEach(layer.resourceInfo.layers, function (r) {
+							if (opLyr.layerObject.visibleLayers.indexOf(r.id) > -1) {
+								r.defaultVisibility = true;
+							} else {
+								r.defaultVisibility = false;
+							}
+						});
+					}
+				});
+				return response;
+			}
+
 			var webMapLoaded = function (response) {
 
 				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
 				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, LocateButton, on) {
+					if (oldItemInfo) {
+						response = compareVisibleLayers(response, oldItemInfo);
+					}					
 					if (localStorageService.get('imaps_webmap')) {
 						$scope.webmap = localStorageService.get('imaps_webmap');
 						$scope.webmap.clickEventHandle = response.clickEventHandle;
@@ -120,7 +142,8 @@ angular.module('imapsNgApp')
 					on($scope.map, 'update-end', mapUpdated);
 					on($scope.map, 'extent-change', extentChanged)
 					on($scope.map, 'unload', mapUnloaded);
-					setLayerVisibileLayers();
+
+					setLayerVisibleLayers();
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
