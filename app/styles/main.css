@@ -691,3 +691,15 @@ input::-ms-clear {
 location-search .form-control {
   margin-bottom: 1em;
 }
+#place {
+  position: absolute;
+  bottom: 0;
+  top: 120px;
+  overflow: auto;
+  right: 0;
+  left: 0;
+  text-align: center;
+}
+#place img {
+  max-height: 150px;
+}

@@ -1,5 +1,5 @@
 angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function($http, $q){
-	var service = {getSubdivision:getSubdivision, getStreets:getStreets, getIntersectingStreets:getIntersectingStreets, geocodeAddress:geocodeAddress},
+	var service = {getSubdivision:getSubdivision, getStreets:getStreets, getIntersectingStreets:getIntersectingStreets, geocodeAddress:geocodeAddress, getPlaceTypes:getPlaceTypes, getPlacesByType:getPlacesByType},
 		baseUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
 		propertyLayer = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
@@ -58,6 +58,37 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 			url: 'https://maps.raleighnc.gov/arcgis/rest/services/Locators/Locator/GeocodeServer/findAddressCandidates',
 			params: {
 				'Single Line Input': address,
+				returnGeometry: true,
+				f: "json"
+			}		
+		}).success(deferred.resolve);
+		return deferred.promise;
+	};
+	function getPlaceTypes () {
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'https://maps.raleighnc.gov/arcgis/rest/services/POI1/MapServer/0/query',
+			params: {
+				where: '1=1',
+				outFields: 'ICON',
+				returnDistinctValues: true,
+				orderByFields: 'ICON',
+				returnGeometry: false,
+				f: "json"
+			}		
+		}).success(deferred.resolve);
+		return deferred.promise;
+	};
+	function getPlacesByType (type) {
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: 'https://maps.raleighnc.gov/arcgis/rest/services/POI1/MapServer/0/query',
+			params: {
+				where: "ICON = '" + type + "'",
+				outFields: '*',
+				orderByFields: 'NAME',
 				returnGeometry: true,
 				f: "json"
 			}		
