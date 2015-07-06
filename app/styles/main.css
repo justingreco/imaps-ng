@@ -1,16 +1,15 @@
 body, html {
-	height: 100%;
-	width: 100%;
+  height: 100%;
+  width: 100%;
   overflow: hidden;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   -webkit-overflow-scrolling: touch;
-	background-color: #3D4044;
-	-webkit-transition: background-color 0.6s ease-in-out 0s;
+  background-color: #3D4044;
+  -webkit-transition: background-color 0.6s ease-in-out 0s;
   transition: background-color 0.6s ease-in-out 0s;
 }
-
 .select-wrapper select {
   background-color: transparent !important;
   width: 100%;
@@ -27,72 +26,60 @@ body, html {
   border: none !important;
   -webkit-box-shadow: none !important;
   -moz-box-shadow: none !important;
-  box-shadow: none !important;  
+  box-shadow: none !important;
   cursor: pointer;
 }
-
 .select-wrapper select::-ms-expand{
   display: none;
 }
-
 .open-heading .panel-heading{
   background-color: #008093 !important;
 }
-
 .select-wrapper {
   width: 100%;
   overflow: hidden;
   background: url("../images/downArrow.png") no-repeat right #fff;
   background-position-x: 95%;
-  -moz-background-position-x: 95%;  
+  -moz-background-position-x: 95%;
   padding: 0;
   cursor: pointer;
 }
-
 .dropdown-menu {
   border-radius: 0;
 }
-
 .page-header {
   margin-top: 10px;
   margin-bottom: 10px;
   padding: 0;
 }
-
 .lead {
   margin-top: 10px;
   margin-bottom: 10px;
 }
-
-
 .accordion-toggle .icon {
-	vertical-align: bottom;
+  vertical-align: bottom;
 }
-
 .accordion-toggle .icon {
-	margin-right: .5em;
+  margin-right: .5em;
 }
-
 .wrapper {
-	height: 100%;
-	width: 100%;
-	overflow: hidden;
-	position: fixed;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  position: fixed;
 }
 #loading-bar-spinner {
-	right: 10px;
-	left: auto;
+  right: 10px;
+  left: auto;
 }
 app-header {
   overflow: hidden;
 }
-
 .btn {
   border-radius: 0;
 }
-
 .navbar-brand {
-	float: left;
+  float: left;
 height: 50px;
 padding: 15px 15px;
 font-size: 18px;
@@ -107,161 +94,133 @@ transition: letter-spacing 0.5s;
 font-size: 2em;
 font-weight: bold;
 }
-
 .navbar-brand:hover {
-	letter-spacing: 0.2em;
+  letter-spacing: 0.2em;
 }
 disclaimer blockquote {
-	border: none;
+  border: none;
 }
-
 disclaimer img {
-	margin: 20px;
+  margin: 20px;
 }
-
 feedback textarea {
-	max-width: 100%;
-	max-height: 500px;
+  max-width: 100%;
+  max-height: 500px;
 }
-
 .modal .glyphicon {
-	color: white;
+  color: white;
 }
-
 .form-control {
-	background-color: rgb(60, 60, 60) !important;
+  background-color: rgb(60, 60, 60) !important;
   color: white !important;
   border-radius: 0;
   border-color: rgb(204, 204, 204);
 }
-
 .twitterTypeahead {
   border: none;
 }
-
 .input-group {
   border: solid rgb(204, 204, 204) 1px;
 }
-
 .navbar {
-	margin-bottom: 0;
+  margin-bottom: 0;
   background-color: #222;
-
-
 }
-
 .modal-content {
-	background-color: rgb(60,60,60);
-	color: white;
+  background-color: rgb(60,60,60);
+  color: white;
 }
-
 .panel-group .panel + .panel {
-	margin-top:0 !important;
+  margin-top:0 !important;
 }
-
-
 #map {
-	background-color: black;
-	position: fixed;
-	top:52px;
-	bottom: 0;
-	right: 0;
-	left: 0;
-
+  background-color: black;
+  position: fixed;
+  top:52px;
+  bottom: 0;
+  right: 0;
+  left: 0;
 }
-
-
 #loadingBackground {
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 0;
-		right: 0;
-		margin: auto auto;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-		background-color: #3D4044;
-	z-index: 10000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #3D4044;
+  z-index: 10000;
 }
 #loading {
-	width: 60px;
-		height: 60px;
-		position: absolute;
-		top: 0;
-		left: 0;
-		bottom: 60px;
-		right: 0;
-		margin: auto auto;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-		user-select: none;
-		background-color: #3D4044;
-	z-index: 10000;
+  width: 60px;
+    height: 60px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 60px;
+    right: 0;
+    margin: auto auto;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-color: #3D4044;
+  z-index: 10000;
 }
-
 .spinner {
-	width: 40px;
-	height: 40px;
-
-	position: relative;
-	margin: auto auto;
+  width: 40px;
+  height: 40px;
+  position: relative;
+  margin: auto auto;
 }
-
 .double-bounce1, .double-bounce2 {
-	width: 100%;
-	height: 100%;
-	border-radius: 50%;
-	background-color: #fff;
-	opacity: 0.6;
-	position: absolute;
-	top: 0;
-	left: 0;
-
-	-webkit-animation: bounce 2.0s infinite ease-in-out;
-	animation: bounce 2.0s infinite ease-in-out;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #fff;
+  opacity: 0.6;
+  position: absolute;
+  top: 0;
+  left: 0;
+  -webkit-animation: bounce 2.0s infinite ease-in-out;
+  animation: bounce 2.0s infinite ease-in-out;
 }
-
 .double-bounce2 {
-	-webkit-animation-delay: -1.0s;
-	animation-delay: -1.0s;
+  -webkit-animation-delay: -1.0s;
+  animation-delay: -1.0s;
 }
-
 @-webkit-keyframes bounce {
-	0%, 100% { -webkit-transform: scale(0.0) }
-	50% { -webkit-transform: scale(1.0) }
+  0%, 100% { -webkit-transform: scale(0.0) }
+  50% { -webkit-transform: scale(1.0) }
 }
-
 @keyframes bounce {
-	0%, 100% {
-		transform: scale(0.0);
-		-webkit-transform: scale(0.0);
-	} 50% {
-		transform: scale(1.0);
-		-webkit-transform: scale(1.0);
-	}
+  0%, 100% {
+    transform: scale(0.0);
+    -webkit-transform: scale(0.0);
+  } 50% {
+    transform: scale(1.0);
+    -webkit-transform: scale(1.0);
+  }
 }
-
 #loading img{
-	text-align: center;
+  text-align: center;
   position: relative;
   top: 10px;
   height: 80px;
   left: -5px;
   -webkit-filter: drop-shadow(0px 0px 2px rgba(255,255,255,1));
 }
-
 /*hyperlinks*/
 .ps-link, .ps-link:active, .ps-link:visited {
-	color: rgb(0, 137, 255);
+  color: rgb(0, 137, 255);
 }
-
 .ps-link:hover {
-	color: yellow;
+  color: yellow;
 }
-
 /*BootStrap overwrites*/
 /*buttons*/
 .btn-group {
@@ -271,24 +230,20 @@ feedback textarea {
   background-color: transparent;
   color: white;
 }
-
 .btn-default:hover, .btn-default.active {
-	background-color: rgb(60, 60, 60) !important;
-	border-color: rgba(71,151,220,1) !important;
-	color: rgba(71,151,220,1) !important;
+  background-color: rgb(60, 60, 60) !important;
+  border-color: rgba(71,151,220,1) !important;
+  color: rgba(71,151,220,1) !important;
 }
-
 .btn-default.disabled, .btn-default[disabled] {
-	color: #fff;
-	background-color: black;
-	opacity: 0.1;
+  color: #fff;
+  background-color: black;
+  opacity: 0.1;
 }
-
 .glyphicon.highlighted{
   -moz-text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
   text-shadow: 0 0 16px rgba(71,151,220,1),0 0 16px rgba(0, 137, 255, 1),0 0 16px rgba(0, 137, 255, 1);
 }
-
 /*map panels*/
 .collapse-header {
   color: white;
@@ -297,20 +252,16 @@ feedback textarea {
   margin: 1em;
   cursor: pointer;
 }
-
 .collapse-header .glyphicon{
   color: white;
   margin-right: 10px;
   font-size: 16pt;
 }
-
-
 .collapse-panel {
   color: white;
     overflow: hidden;
     transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height;
 }
-
 /*basemap panel*/
 base-map-panel {
   position: absolute;
@@ -344,52 +295,45 @@ base-map-panel .collapse-panel.collapsed {
 .basemap-type {
   cursor: pointer;
 }
-
 /*tool panel*/
 tool-panel {
   position: absolute;
   top: 52px;
   left:0px;
   z-index: 1000;
-	color: white;
+  color: white;
   background-color: rgba(60,60,60,0.8);
   border-radius: 0 0 0 0;
   -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
   padding: 4px 0 4px 0;
 }
-
 tool-panel .glyphicon {
-	cursor: pointer;
-	padding: 4px;
+  cursor: pointer;
+  padding: 4px;
 }
-
 .tool-wrapper {
-	margin: 10px;
+  margin: 10px;
 }
-
 /*bookmark tool*/
 .bookmark {
-	margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 .bookmark-name {
-	display: inline-block;
-	width: 230px;
-	cursor: pointer;
+  display: inline-block;
+  width: 230px;
+  cursor: pointer;
 }
 .bookmark-input {
-	display: inline-block;
-	width: 210px;
+  display: inline-block;
+  width: 210px;
 }
-
 /*draw tool*/
 draw-tool textarea {
-	max-width: 100%;
-	max-height: 90px;
-	min-height: 90px;
+  max-width: 100%;
+  max-height: 90px;
+  min-height: 90px;
 }
-
-
 /*overview panel*/
 overview-panel {
   position: absolute;
@@ -402,12 +346,11 @@ overview-panel {
   transition: 0.5s;
     -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
-  padding: 4px 0 4px 0;  
+  padding: 4px 0 4px 0;
 }
 .esriOverviewMap {
   width: 100% !important;
 }
-
 .ovwContainer {
   width: 100% !important;
 }
@@ -417,9 +360,6 @@ overview-panel {
 #overview-map_root {
   width: 100% !important;
 }
-
-
-
 /*overwrite react grid classes*/
 .ngReactGrid {
     padding: 0;
@@ -433,11 +373,9 @@ overview-panel {
   background: rgba(60, 60, 60, 0.4);
   color: white;
 }
-
 .ngReactGridFooter {
   display: none;
 }
-
 .ngReactGrid table {
   background-color: rgba(60, 60, 60, 0.4);
   color: white;
@@ -451,20 +389,17 @@ overview-panel {
 .ngReactGrid table tr {
   border: 1px solid #CCC;
 }
-
 .ngReactGrid .ngGridHeaderCellText {
   width:65%;
 }
-
-
 /*side panel*/
 side-panel {
   z-index: 101;
 }
 .ng-pageslide-right {
-	background: rgba(255,255,255,0);
-	z-index: 1000; position: fixed; width: 300px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; top: 52px !important; bottom: 0px; right: 0px;
-	}
+  background: rgba(255,255,255,0);
+  z-index: 1000; position: fixed; width: 300px; height: 100%; overflow: hidden; transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: width, height; -webkit-transition-property: width, height; top: 52px !important; bottom: 0px; right: 0px;
+  }
 .panel-default > .panel-heading {
   background: rgb(84,134,50);
   -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
@@ -498,22 +433,19 @@ property-search {
   left: 0;
   overflow: none;
 }
-
 .typeahead::ms-clear{
-	display: none;
-	width : 0;
-	height: 0;
+  display: none;
+  width : 0;
+  height: 0;
 }
-
 .typeahead-clear {
-	position: absolute;
-	top: 8px;
-	right: 8px;
-	color: #ddd;
-	cursor: pointer;
-	z-index: 1000;
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  color: #ddd;
+  cursor: pointer;
+  z-index: 1000;
 }
-
 .tabcontainer {
   position: absolute;
   top: 40px;
@@ -523,7 +455,6 @@ property-search {
   overflow-y: auto;
   overflow-x: hidden;
 }
-
 #proptabs {
   position: absolute;
   bottom: -15px;
@@ -535,60 +466,51 @@ property-search {
   padding-right: 22px;
   padding-left: 22px;
 }
-
 #proptabs .glyphicon {
   font-size: 16pt;
   margin: 6px 12px 6px 6px;
   cursor: pointer;
 }
-
 .grid-footer {
   position: absolute;
   bottom: 0;
   left: 0;
   right: 0;
 }
-
 .grid-footer .glyphicon {
   cursor: pointer;
 }
-
 .disabledTab {
   opacity: 0.05;
 }
-
 .service-item {
   margin-bottom: 10px;
 }
-
 .service-item strong {
   font-weight: bolder;
 }
-
-
 /*layer list*/
 layer-list .panel-body {
   padding: 0 0 0 15px;
-	overflow: auto;
+  overflow: auto;
 }
 .layer .btn {
-	margin-right: 6px;
+  margin-right: 6px;
 }
 .layer {
-	margin-top: 6px;
-	margin-bottom: 6px;
+  margin-top: 6px;
+  margin-bottom: 6px;
 }
 .sub-layer {
-	margin-top: 6px;
-	margin-left: 10px;
-	margin-bottom: 6px;
+  margin-top: 6px;
+  margin-left: 10px;
+  margin-bottom: 6px;
 }
 .legend img {
   margin-right: 6px;
   height: 20px;
   width: 20px;
 }
-
 /*opacity slider*/
 slider {
   position: relative;
@@ -598,7 +520,6 @@ slider {
   width: 95%;
   display: block;
 }
-
 .bar {
   width: 100%;
   height: 100%;
@@ -607,7 +528,6 @@ slider {
   background-color: #eee;
   top: 0;
 }
-
 .pointer {
   height: 100%;
   width: 20px;
@@ -616,117 +536,98 @@ slider {
   background: #ccc;
   top: 0;
 }
-
 .bubble {
   position: absolute;
   top: -100%;
   display: block;
 }
-
 /*overwrite Esri classes*/
 .esriPopup .titleButton.maximize {
   display: none;
 }
-
 .arcgisSearch {
-	position: absolute;
-	bottom: 6px;
-	left: 6px;
-	z-index: 1000;
+  position: absolute;
+  bottom: 6px;
+  left: 6px;
+  z-index: 1000;
 }
-
 .arcgisSearch .searchMenu {
   top: auto !important;
 }
-
-
-
 .suggestionsMenu {
-	position: absolute !important;
-	bottom: 40px;
-	left: 6px;
+  position: absolute !important;
+  bottom: 40px;
+  left: 6px;
 }
-
 .noResultsMenu {
   position: absolute !important;
   bottom: 40px;
   left: 6px;
   }
-
 .sourcesMenu {
   position: absolute !important;
   bottom: 40px;
   left: 6px;
-  }  
-
-
+  }
 .esriSimpleSliderBL {
-	bottom: 10px !important;
-	border-color: white !important;
+  bottom: 10px !important;
+  border-color: white !important;
 }
-
 .esriSimpleSliderBL div{
-	color: white;
-	background-color: rgba(60,60,60,0.8) ;
-	border-color: white !important;
+  color: white;
+  background-color: rgba(60,60,60,0.8) ;
+  border-color: white !important;
 }
 .esriSimpleSliderBL div:hover{
-	color: rgba(71,151,220,1);
-	background-color: rgba(60,60,60,0.8) ;
-	border-color: rgba(71,151,220,1) !important;
+  color: rgba(71,151,220,1);
+  background-color: rgba(60,60,60,0.8) ;
+  border-color: rgba(71,151,220,1) !important;
 }
 .esriSimpleSliderDisabledButton {
-	color: #aaa !important;
-	background-color: #bbb !important;
+  color: #aaa !important;
+  background-color: #bbb !important;
 }
-
 .searchBtn {
-	background-color: rgba(60,60,60,0.8) !important;
-	border-color: white !important;
+  background-color: rgba(60,60,60,0.8) !important;
+  border-color: white !important;
     border-radius: 0 !important;
 }
 .searchIcon {
-	color: white;
-
+  color: white;
 }
 .searchInput, .searchClose, .searchSpinner {
-	background-color: rgb(60, 60, 60) !important;
+  background-color: rgb(60, 60, 60) !important;
   color: white !important;
 }
-
 #homeButton {
   position: absolute;
   bottom: 12px;
   left: 75px;
   z-index: 50;
 }
-
 .HomeButton .home {
-	background-color: rgba(60,60,60,0.8) !important;
+  background-color: rgba(60,60,60,0.8) !important;
   border-radius: 0 !important;
   border-color: white !important;
   border: solid;
   border-width: 1px;
 }
-
 #locateButton {
-	position: absolute;
-	bottom: 52px;
-	left: 112px;
-	z-index: 50;
+  position: absolute;
+  bottom: 52px;
+  left: 112px;
+  z-index: 50;
 }
-
 .LocateButton .zoomLocateButton {
-	background-color: rgba(60,60,60,0.8) !important;
+  background-color: rgba(60,60,60,0.8) !important;
 }
-
 .map .tooltip {
   width: 100px;
   word-wrap: break-word;
   position: absolute !important;
   border: 1px solid #7EABCD;
   background-color: rgba(0,0,0,0.5) !important;
-	color: white;
+  color: white;
   padding: 5px;
   font-size: 9pt;
   z-index: 9999;
@@ -734,46 +635,36 @@ slider {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
-	opacity: 1 !important;
+  opacity: 1 !important;
 }
-
-
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
-
 }
-
-
 toggle-button div{
-	cursor: pointer;
-	color: white;
-	font-size: 16pt;
-	position: absolute;
-	background-color: rgba(60,60,60,.8);
-	padding: 0.5em .25em 0.5em 0.25em;
-	border-radius: 0;
-	transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: right; -webkit-transition-property: right;
+  cursor: pointer;
+  color: white;
+  font-size: 16pt;
+  position: absolute;
+  background-color: rgba(60,60,60,.8);
+  padding: 0.5em .25em 0.5em 0.25em;
+  border-radius: 0;
+  transition-duration: 0.5s; -webkit-transition-duration: 0.5s; transition-property: right; -webkit-transition-property: right;
 }
-
 .toggle-collapsed {
-	right: 0;
+  right: 0;
 }
-
 .toggle-expanded {
-	right: 300px;
+  right: 300px;
 }
-
 .esriSimpleSlider {
 border-radius: 0 !important;
   }
-
  .esriSimpleSliderHorizontal .esriSimpleSliderIncrementButton {
 border-radius: 0 !important;
- } 
+ }
  .esriSimpleSliderHorizontal .esriSimpleSliderDecrementButton {
 border-radius: 0 !important;
  }
-
  .tt-dropdown-menu {
   border-radius: 0 !important;
   color: white !important;
@@ -794,11 +685,9 @@ border-radius: 0 !important;
 .panel-body {
   padding: 15px 5px 15px 5px;
 }
-
 input::-ms-clear {
     display: none;
 }
-
 location-search .form-control {
   margin-bottom: 1em;
 }
