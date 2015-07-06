@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/toolPanel/printTool/printTool.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $filter) {
+		controller: function ($scope, $rootScope, $filter, $http) {
 			var account = {};
 			$scope.printAtts = false;
 			$scope.printTitle = "";
@@ -177,6 +177,13 @@ angular.module('imapsNgApp')
 							$('#printBtn').button('reset');
 							cfpLoadingBar.complete();
 							window.open(data.value);
+/*							$http({
+								method: 'GET',
+								url: "scripts/downloadPdf.php",
+								params: {
+									url: data.value
+								}
+							});*/
 						})
 					});
 				});

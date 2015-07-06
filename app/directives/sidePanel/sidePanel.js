@@ -7,14 +7,30 @@ angular.module('imapsNgApp')
 			$scope.checked = true;
 			$scope.searchDir = {open: true, overflow: 'none', padding: 30};
 			$scope.layersDir = {open: false, overflow: 'auto', padding: 15};
-
+			$scope.searchTypeStatus = {
+			    isopen: false
+			  };
 			$rootScope.$watch('checked', function (checked) {
 				$scope.checked = checked;
 			});
-			$timeout(function () {
-				//$("pageslide").appendTo(".wrapper");
-			//	$(".wrapper").appendTo("body");
-			});
+/*			$timeout(function () {
+				$("pageslide").appendTo(".wrapper");
+				$(".wrapper").appendTo("body");
+			});*/
+
+
+			$scope.propertySearchSelected = function ($event) {
+			    $event.preventDefault();
+			    $event.stopPropagation();
+
+				if ($event.target.text === 'For Property') {
+					$rootScope.selectedSearch = $rootScope.searches[0];
+				} else if ($event.target.text === 'For Location') {
+					$rootScope.selectedSearch = $rootScope.searches[1];
+				}
+			    $scope.searchTypeStatus.isopen = false;				
+			}
+
 
 			$scope.$watch('searchDir.open', function (open) {
 				if (open) {

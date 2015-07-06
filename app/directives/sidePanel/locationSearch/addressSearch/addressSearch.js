@@ -1,11 +1,10 @@
 angular.module('imapsNgApp')
-.directive('search', function () {
+.directive('addressSearch', function () {
 	return {
-		templateUrl: 'directives/sidePanel/search/search.html',
+		templateUrl: 'directives/sidePanel/locationSearch/addressSearch/addressSearch.html',
 		restrict: 'EA',
 		controller: function ($scope, $rootScope) {
-			$rootScope.searches = [{label: 'For Property', value: 'property'}, {label: 'For Location', value: 'location'}];
-			$rootScope.selectedSearch = $rootScope.searches[0];
+
 		},
 		link: function (scope, element, attrs) {
 			// scope.searches = [{label: 'For Property', value: 'property'}, {label: 'For Location', value: 'location'}];
