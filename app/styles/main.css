@@ -661,7 +661,7 @@ slider {
 
 
 .esriSimpleSliderBL {
-	bottom: 50px !important;
+	bottom: 10px !important;
 	border-color: white !important;
 }
 
@@ -696,7 +696,7 @@ slider {
 
 #homeButton {
   position: absolute;
-  bottom: 52px;
+  bottom: 12px;
   left: 75px;
   z-index: 50;
 }

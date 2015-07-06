@@ -174,7 +174,7 @@ angular.module('imapsNgApp')
 						}
 					}
 
-					buildSearch();
+					//buildSearch();
 					$('#loading').remove();
 					$('#loadingBackground').remove();
 

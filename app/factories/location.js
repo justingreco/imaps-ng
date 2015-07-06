@@ -1,5 +1,4 @@
 angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function($http, $q){
-
 	var service = {getSubdivision:getSubdivision, getStreets:getStreets, getIntersectingStreets:getIntersectingStreets, geocodeAddress:geocodeAddress},
 		baseUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
