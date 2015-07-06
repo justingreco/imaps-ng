@@ -1,4 +1,5 @@
-<input type="text" class="form-control input-sm" placeholder="Enter a street..."/>
-<div class="select-wrapper form-control input-sm">
-	<select class="form-control input-sm"></select>
+<input type="text" class="form-control input-sm" placeholder="Enter a street name..." ng-model="primaryStreet" typeahead="street as street.attributes.CARTONAME for street in primaryStreets($viewValue)" typeahead-on-select='primaryStreetSelected($item, $model, $label)'/>
+
+<div ng-show="primaryStreet" class="select-wrapper form-control input-sm">
+	<select class="form-control input-sm" ng-model="intersectingStreet" ng-options="street as street.attributes.CARTONAME for street in intersectingStreets" ng-change="intersectionSelected(street)"><option value="">Select intersecting street...</select>
 </div>
