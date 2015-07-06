@@ -16,7 +16,9 @@
   <div ng-show="measureType">
     <p>
       Units
-      <select ng-options="unit as unit.label for unit in units | filter: filterUnits" ng-model="unit" ng-change="unitChanged(unit)" class="form-control input-sm"></select>
+      <div class="select-wrapper form-control input-sm">
+        <select ng-options="unit as unit.label for unit in units | filter: filterUnits" ng-model="unit" ng-change="unitChanged(unit)" class="form-control input-sm"></select>
+      </div>
     </p>
     <p>
       Measurement Results
