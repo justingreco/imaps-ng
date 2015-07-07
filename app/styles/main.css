@@ -116,9 +116,7 @@ feedback textarea {
   border-radius: 0;
   border-color: rgb(204, 204, 204);
 }
-.twitterTypeahead {
-  border: none;
-}
+
 .input-group {
   border: solid rgb(204, 204, 204) 1px;
 }
@@ -433,6 +431,25 @@ property-search {
   left: 0;
   overflow: none;
 }
+.has-feedback .glyphicon {
+  z-index: 10000;
+  pointer-events: all;
+}
+.has-feedback .glyphicon-search {
+  right: auto !important;
+}
+.has-feedback .glyphicon-remove {
+  cursor: pointer;
+}
+
+.has-feedback input {
+  padding-left: 30px;
+  padding-right: 30px !important;
+}
+.form-control-feedback {
+  line-height: 30px;
+  width: 30px;
+}
 .typeahead::ms-clear{
   display: none;
   width : 0;
@@ -690,18 +707,7 @@ border-radius: 0 !important;
   color: white !important;
   background-color: rgb(60,60,60) !important;
 }
-.input-group {
-  width: 100%;
-}
-.input-group-addon {
-  background: rgb(60, 60, 60);
-  color: white;
-  border: none;
-  margin: 0;
-  padding: 0 4px 0 4px;
-  border-radius: 0;
-  top: -.5px;
-}
+
 .panel-body {
   padding: 15px 5px 15px 5px;
 }
