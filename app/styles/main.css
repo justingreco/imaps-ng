@@ -639,7 +639,27 @@ slider {
 }
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
+
 }
+
+@media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) { 
+  tool-panel {
+    display: none;
+  }
+  overview-panel {
+    display: none;
+  }
+  base-map-panel {
+    display: none !important;
+  }
+  pageslide {
+    display: none;
+  }
+  toggle-button {
+    display: none;
+  }
+}
+
 toggle-button div{
   cursor: pointer;
   color: white;
