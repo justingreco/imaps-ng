@@ -1,5 +1,5 @@
 angular.module('imapsNgApp').factory('mapUtils', ['$http', '$q', function($http, $q){
-	var service = {loadRaleighBounds:loadRaleighBounds, buffer:buffer}
+	var service = {loadRaleighBounds:loadRaleighBounds, buffer:buffer, project:project}
 	return service;
 	function loadRaleighBounds (path) {
 		var deferred = $q.defer();
@@ -29,5 +29,20 @@ angular.module('imapsNgApp').factory('mapUtils', ['$http', '$q', function($http,
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(deferred.resolve);
 		return deferred.promise;
+	};
+	function project (url, geometries, inSR, outSR) {
+		var deferred = $q.defer();
+		$http({
+			method: 'POST',
+			url: url+ '/project',
+			data: $.param({
+				geometries: stringify(geometries),
+				inSR: inSR,
+				outSR: outSR,
+				f: 'json'
+			}),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).success(deferred.resolve);
+		return deferred.promise;		
 	}
 }]);
