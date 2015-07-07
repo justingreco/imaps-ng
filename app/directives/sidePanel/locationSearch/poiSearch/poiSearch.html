@@ -7,7 +7,7 @@
 </div>
 <div id="place" ng-if="place">
 	<p class="lead">{{place.attributes.NAME}}</p>
-	<img src="http://maps.raleighnc.gov/photos/POI/{{place.attributes.PHOTO}}" alt="{{place.attributes.NAME}}"/>
+	<img ng-if="place" ng-src="http://maps.raleighnc.gov/photos/POI/{{place.attributes.PHOTO}}" alt="{{place.attributes.NAME}}"/>
 	<p>{{place.attributes.ADDRESS}},{{place.attributes.CITY}}, NC, {{place.attributes.ZIP}}</p>
 	<p>{{place.attributes.TELEPHONE}}</p>
 	<p><a href="{{place.attributes.URL}}" target="_blank">Website</a></p>
