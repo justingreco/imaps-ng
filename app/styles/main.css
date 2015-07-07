@@ -706,6 +706,7 @@ border-radius: 0 !important;
   border-radius: 0 !important;
   color: white !important;
   background-color: rgb(60,60,60) !important;
+  z-index: 10000;
 }
 
 .panel-body {
