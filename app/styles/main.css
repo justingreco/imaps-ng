@@ -214,7 +214,7 @@ feedback textarea {
 }
 /*hyperlinks*/
 .ps-link, .ps-link:active, .ps-link:visited {
-  color: rgb(0, 137, 255);
+  color: #68CEDD;
 }
 .ps-link:hover {
   color: yellow;
