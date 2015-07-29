@@ -520,8 +520,9 @@ layer-list .panel-body {
 }
 .sub-layer {
   margin-top: 6px;
-  margin-left: 10px;
+  margin-left: 20px;
   margin-bottom: 6px;
+  font-size: 12px;
 }
 .legend img {
   margin-right: 6px;

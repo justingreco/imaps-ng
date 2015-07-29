@@ -3,7 +3,7 @@
   	<button analytics-on="click" analytics-if="!layer.visibility" analytics-category="Layers" analytics-event="Turned On" analytics-label="{{layer.title}}" class="btn" ng-class="{'btn-danger': !layer.visibility, 'btn-success': layer.visibility}" ng-click="layerToggle(layer, webmap)">{{((layer.visibility) ? 'On' : 'Off')}}</button><strong>{{layer.title}}</strong>
 	  <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility" ng-change="opacityChanged(layer, webmap)" translate-fn="translate"></slider>
     <div class="sub-layer" ng-repeat="sublayer in layer.resourceInfo.layers" ng-model="sublayer" ng-show="layer.visibility">
-    <button analytics-on="click" analytics-if="!sublayer.visibility" analytics-category="Sublayers" analytics-event="Turned On" analytics-label="{{sublayer.name}}" class='btn' ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer, webmap)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}</button>
+    <button analytics-on="click" analytics-if="!sublayer.visibility" analytics-category="Sublayers" analytics-event="Turned On" analytics-label="{{sublayer.name}}" class="btn btn-sm" ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer, webmap)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}</button>
   	{{sublayer.name}}
     <div class="legend" ng-repeat="legend in sublayer.legend" ng-model="legend" ng-show="sublayer.defaultVisibility">
       <img ng-src="data:image/png;base64,{{legend.imageData}}"/>{{legend.values[0]}}
