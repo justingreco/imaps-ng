@@ -30,7 +30,7 @@ body, html {
   cursor: pointer;
 }
 
-.select-wrapper options {
+.select-wrapper select option {
   color: black !important;
 }
 .select-wrapper select::-ms-expand{
