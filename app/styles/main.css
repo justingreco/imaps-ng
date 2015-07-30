@@ -29,6 +29,10 @@ body, html {
   box-shadow: none !important;
   cursor: pointer;
 }
+
+.select-wrapper options {
+  color: black !important;
+}
 .select-wrapper select::-ms-expand{
   display: none;
 }
