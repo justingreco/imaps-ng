@@ -26,8 +26,7 @@ angular
     'ngCsv',
     'ngReactGrid',
     'angulartics',
-    'angulartics.google.analytics',
-    'ngPatternRestrict'
+    'angulartics.google.analytics'
   ]).config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('imaps');
 
