@@ -36,9 +36,9 @@ angular.module('imapsNgApp')
 				var toolbar = null;
 
 				var shapeDrawn = function (e) {
-					toolbar.deactivate();
-					$scope.selectType = '';
-					$scope.map.enableMapNavigation();
+					//toolbar.deactivate();
+					//$scope.selectType = '';
+					//$scope.map.enableMapNavigation();
 					var type = '';
 					switch (e.geometry.type) {
 						case 'point':
