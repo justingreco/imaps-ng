@@ -66,6 +66,7 @@ body, html {
 }
 .accordion-toggle .icon {
   vertical-align: bottom;
+  margin-left: .5em;
 }
 .accordion-toggle .icon {
   margin-right: .5em;
