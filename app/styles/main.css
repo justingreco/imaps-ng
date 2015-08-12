@@ -374,6 +374,11 @@ overview-panel {
     -moz-user-select: text;
     -ms-user-select: text;
 }
+
+property-info .ngReactGrid {
+    cursor: auto;
+}
+
 .ngReactGrid .ngReactGridFooter, .ngReactGrid table th, .ngReactGrid h1, .ngReactGrid .ngReactGridHeaderWrapper{
   margin-top: 0px;
   background: rgba(60, 60, 60, 0.4);
@@ -526,11 +531,18 @@ layer-list .panel-body {
   margin-top: 6px;
   margin-bottom: 6px;
 }
+.layer strong {
+  cursor: pointer;
+}
 .sub-layer {
   margin-top: 6px;
   margin-left: 20px;
   margin-bottom: 6px;
   font-size: 12px;
+}
+.sub-layer span {
+  cursor: pointer;
+  margin-bottom: 5px;
 }
 .legend img {
   margin-right: 6px;
@@ -559,8 +571,9 @@ slider {
   width: 20px;
   position: absolute;
   display: block;
-  background: #ccc;
+  background: #949494;
   top: 0;
+  cursor: pointer;
 }
 .bubble {
   position: absolute;
@@ -627,7 +640,7 @@ slider {
 }
 #homeButton {
   position: absolute;
-  bottom: 12px;
+  bottom: 10px;
   left: 75px;
   z-index: 50;
 }
@@ -637,6 +650,8 @@ slider {
   border-color: white !important;
   border: solid;
   border-width: 1px;
+  height: 32px !important;
+  width: 32px !important;
 }
 #locateButton {
   position: absolute;
