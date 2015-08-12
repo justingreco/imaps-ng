@@ -78,8 +78,11 @@ body, html {
   position: fixed;
 }
 #loading-bar-spinner {
-  right: 10px;
-  left: auto;
+/*  right: 10px;
+  left: auto;*/
+  position: absolute;
+  left: 230px;
+  top: 18px;
 }
 app-header {
   overflow: hidden;
