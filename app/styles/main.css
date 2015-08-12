@@ -264,6 +264,9 @@ feedback textarea {
   margin-right: 10px;
   font-size: 16pt;
 }
+.collapse-header .glyphicon:before{
+  vertical-align: middle;
+}
 .collapse-panel {
   color: white;
     overflow: hidden;
