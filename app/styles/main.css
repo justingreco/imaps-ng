@@ -285,6 +285,7 @@ base-map-panel {
     -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
   padding: 4px 0 4px 0;
+  width: 186px;
 }
 .selected-basemap img{
   -moz-box-shadow: 0px 0px 23px 0px rgba(71,151,220,1);
@@ -357,6 +358,7 @@ overview-panel {
     -moz-box-shadow: 0 0 16px rgba(0,0,0,0.8);
   box-shadow: 0 0 16px rgba(0,0,0,0.8);
   padding: 4px 0 4px 0;
+  width: 186px;
 }
 .esriOverviewMap {
   width: 100% !important;
