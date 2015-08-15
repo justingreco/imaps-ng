@@ -6,6 +6,8 @@ angular.module('imapsNgApp')
 		controller: function ($scope, $rootScope, $timeout, property, $analytics) {
 			$scope.hiddenOverflow = false;
 			$scope.property = property;
+			$scope.searchValue = "";
+
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
 			var autocompleteFilter = function (response) {
 				var data = [];
@@ -179,6 +181,12 @@ angular.module('imapsNgApp')
 				templates: {
 					header: "<h5>Street</h5>"
 				}}).on("typeahead:selected", valueSelected);
+				$timeout(function () {
+					$('.tt-input').keyup(function () {
+						$scope.searchValue = $('.tt-input').val();
+						$scope.$apply();
+					});
+				});
 				var highlightTab = function (tab) {
 					angular.forEach($scope.tabs, function (t) {
 						t.highlighted = false;
@@ -229,9 +237,7 @@ angular.module('imapsNgApp')
 				};
 				$scope.clearTypeahead = function () {
 					$("#searchInput").typeahead('val', '');
-					$rootScope.$broadcast('accountUpdate', []);
-			  		$scope.tab = $scope.tabs[1];
-			  		$scope.$broadcast('accountSelected', {});					
+					$scope.searchValue = "";
 				}
 		},
 		link: function (scope, element, attrs) {
