@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/toolPanel/clearTool/clearTool.html',
 		restrict: 'E',
-		controller: function ($scope) {
+		controller: function ($scope, $rootScope) {
 			$scope.$watch('tool', function (tool) {
 				if (tool.title === 'Clear Map') {
 					var layer = null;

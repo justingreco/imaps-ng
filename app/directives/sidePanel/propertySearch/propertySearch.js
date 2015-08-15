@@ -228,7 +228,10 @@ angular.module('imapsNgApp')
 					}
 				};
 				$scope.clearTypeahead = function () {
-					$("#searchInput").typeahead('val', '')
+					$("#searchInput").typeahead('val', '');
+					$rootScope.$broadcast('accountUpdate', []);
+			  		$scope.tab = $scope.tabs[1];
+			  		$scope.$broadcast('accountSelected', {});					
 				}
 		},
 		link: function (scope, element, attrs) {
