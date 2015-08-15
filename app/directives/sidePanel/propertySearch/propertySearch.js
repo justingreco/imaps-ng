@@ -133,7 +133,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + '&input=%25' + uriEncodedQuery;
 					      return newUrl;
 					}
 				}
