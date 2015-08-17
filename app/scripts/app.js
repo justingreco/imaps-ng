@@ -29,7 +29,6 @@ angular
     'angulartics.google.analytics'
   ]).config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('imaps');
-
   }]).filter('titleCase', function() {
     return function(input) {
       input = input || '';

@@ -84,6 +84,7 @@ body, html {
   position: absolute;
   left: 230px;
   top: 18px;
+  z-index: 9999;
 }
 app-header {
   overflow: hidden;
@@ -164,7 +165,7 @@ feedback textarea {
     -ms-user-select: none;
     user-select: none;
     background-color: #3D4044;
-  z-index: 10000;
+    z-index: 10000;
 }
 #loading {
   width: 60px;
