@@ -35,7 +35,8 @@ body, html {
 }
 
 .select-wrapper select option {
-  background-color: transparent !important;
+  color: black !important;
+  /*background-color: transparent !important;*/
 }
 .select-wrapper select::-ms-expand{
   display: none;
