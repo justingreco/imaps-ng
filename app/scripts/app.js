@@ -27,8 +27,9 @@ angular
     'ngReactGrid',
     'angulartics',
     'angulartics.google.analytics'
-  ]).config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+  ]).config(['localStorageServiceProvider', '$locationProvider', function (localStorageServiceProvider, $locationProvider) {
     localStorageServiceProvider.setPrefix('imaps');
+    $locationProvider.html5Mode({enabled: true, requireBase: false});
   }]).filter('titleCase', function() {
     return function(input) {
       input = input || '';

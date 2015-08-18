@@ -178,6 +178,10 @@ angular.module('imapsNgApp')
 					$('#loading').remove();
 					$('#loadingBackground').remove();
 
+					$rootScope.$broadcast('mapLoaded');
+
+
+
 					var home = new HomeButton({map: $scope.map}, 'homeButton').startup();
 				//	var locate = new LocateButton({map: $scope.map}, 'locateButton').startup();
 

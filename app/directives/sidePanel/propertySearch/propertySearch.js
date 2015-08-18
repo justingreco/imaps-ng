@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/sidePanel/propertySearch/propertySearch.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $timeout, property, $analytics) {
+		controller: function ($scope, $rootScope, $timeout, property, $analytics, $location) {
 			$scope.hiddenOverflow = false;
 			$scope.property = property;
 			$scope.searchValue = "";
@@ -29,6 +29,13 @@ angular.module('imapsNgApp')
 				});
 				$scope.tab.highlighted = true;
 			}
+
+			$rootScope.$on('mapLoaded', function (e) {
+	    		if ($location.search().pin) {
+	    			searchForRealEstate('pin', $location.search().pin.split(','));
+	    		}
+			});
+
 			$scope.$on('accountSelected', function (e, account) {
 				$scope.tabChanged(false);
 				//$scope.$apply();
@@ -50,9 +57,8 @@ angular.module('imapsNgApp')
 				}
 			});
 
-			var valueSelected = function (a, b, c) {
-				c = ((c === 'streetname') ? 'street name':c);
-				$scope.property.getRealEstate(c, [b.value]).then(function (accounts) {
+			searchForRealEstate = function (type, values) {
+				$scope.property.getRealEstate(type, values).then(function (accounts) {
 					$scope.account = null;
 					//$scope.geometry = null;
 					$scope.fields = accounts.Fields;
@@ -61,6 +67,11 @@ angular.module('imapsNgApp')
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
 
 				});
+			};
+
+			var valueSelected = function (a, b, c) {
+				c = ((c === 'streetname') ? 'street name':c);
+				searchForRealEstate(c, [b.value]);
 			}
 
 
