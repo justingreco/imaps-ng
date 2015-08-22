@@ -45,6 +45,7 @@ angular.module('imapsNgApp')
 				if (accounts.length === 1) {
 					$scope.tab = $scope.tabs[1];
 					$scope.pin = accounts[0].pin;
+					$location.search('pin', $scope.pin);
 					$scope.reid = accounts[0].reid;
 					$scope.account = accounts[0];
 					$rootScope.$broadcast('pinUpdate', $scope.pin);

@@ -66,7 +66,7 @@ angular.module('imapsNgApp')
 				showGridSearch: false,
 				pageSize: 100,
 				pageSizes: [100],
-				height: $('.tabcontainer').height() - 62,
+				height: $('.tabcontainer').height() - 30,
 				columnDefs: [
 					{
 						field: 'field',

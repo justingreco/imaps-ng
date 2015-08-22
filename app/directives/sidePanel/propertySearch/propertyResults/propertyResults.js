@@ -20,7 +20,7 @@ angular.module('imapsNgApp')
 			  	showGridSearch: false,
 			  	pageSize: 10000,
 			  	pageSizes: [10000],
-			  	height: $('.tabcontainer').height() - 62,
+			  	height: $('.tabcontainer').height() - 30,
 			  	columnDefs: [
 			  		{
 			  			field: 'siteAddress',
@@ -54,8 +54,8 @@ angular.module('imapsNgApp')
 	            };
 	        };
 	        $scope.$watch($scope.getWindowDimensions, function (newValue, oldValue) {
-	            $(".ngReactGridViewPort").css('max-height', $('.tabcontainer').height() - 70);
- 				$(".ngReactGridViewPort").css('min-height', $('.tabcontainer').height() - 70);
+	            $(".ngReactGridViewPort").css('max-height', $('.tabcontainer').height() - 30);
+ 				$(".ngReactGridViewPort").css('min-height', $('.tabcontainer').height() - 30);
 	        }, true);
 	        w.bind('resize', function () {
 	            $scope.$apply();
