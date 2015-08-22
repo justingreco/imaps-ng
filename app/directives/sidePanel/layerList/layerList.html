@@ -1,5 +1,6 @@
   <div ng-style="accordionHeight" class="panel-contain">
-  <div class="layer" ng-repeat="layer in layers | orderBy: 'title'" ng-model="layer" >
+  <input class="form-control input-sm" ng-model="layerFilterValue" placeholder="Filter layers by name"/>
+  <div class="layer" ng-repeat="layer in layers | orderBy: 'title' | filter: filterLayers" ng-model="layer" >
   	<button analytics-on="click" analytics-if="!layer.visibility" analytics-category="Layers" analytics-event="Turned On" analytics-label="{{layer.title}}" class="btn" ng-class="{'btn-danger': !layer.visibility, 'btn-success': layer.visibility}" ng-click="layerToggle(layer, webmap)">{{((layer.visibility) ? 'On' : 'Off')}}</button><strong ng-click="layerToggle(layer, webmap)">{{layer.title}}</strong>
 	  <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility" ng-change="opacityChanged(layer, webmap)" translate-fn="translate"></slider>
     <div class="sub-layer" ng-repeat="sublayer in layer.resourceInfo.layers" ng-model="sublayer" ng-show="layer.visibility">

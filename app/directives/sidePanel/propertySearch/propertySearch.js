@@ -49,8 +49,8 @@ angular.module('imapsNgApp')
 					$scope.reid = accounts[0].reid;
 					$scope.account = accounts[0];
 					$rootScope.$broadcast('pinUpdate', $scope.pin);
-							$timeout(function () {
-								$scope.$broadcast('accountSelected', accounts[0]);
+						$timeout(function () {
+							$scope.$broadcast('accountSelected', accounts[0]);
 						});
 				} else {
 					$scope.tab = $scope.tabs[0];

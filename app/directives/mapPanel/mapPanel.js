@@ -268,9 +268,11 @@ angular.module('imapsNgApp')
 							var pins = [];
 							if (accounts) {
 								angular.forEach(accounts, function (a) {
-									pins.push("'" + a.pin + "'");
+									//pins.push("'" + a.pin + "'");
+									pins.push ("PIN_NUM = '" + a.pin + "'")
 								});
-								$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
+								//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
+								$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), $scope.config.map.wkid).then(function (data) {									
 									addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
 								});
 							}

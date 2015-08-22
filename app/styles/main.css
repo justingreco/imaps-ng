@@ -586,6 +586,9 @@ layer-list .panel-body {
   cursor: pointer;
   margin-bottom: 5px;
 }
+.legend {
+  padding: 5px;
+}
 .legend img {
   margin-right: 6px;
   height: 20px;

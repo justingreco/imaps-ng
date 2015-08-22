@@ -108,6 +108,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				where: where,
 				returnGeometry: true,
 				outSR: wkid,
+				geometryPrecision: 0,
 				f: "json"
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -125,6 +126,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				returnGeometry: false,
 				outFields: 'PIN_NUM',
 				geometryType: type,
+				geometryPrecision: 0,
 				outSR: wkid,
 				f: "json"
 			}),

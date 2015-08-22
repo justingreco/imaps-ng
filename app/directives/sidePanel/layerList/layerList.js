@@ -4,6 +4,7 @@ angular.module('imapsNgApp')
 		templateUrl: 'directives/sidePanel/layerList/layerList.html',
 		restrict: 'EA',
 		controller: function ($scope) {
+			$scope.layerFilterValue = '';
 			var getLegend = function (l) {
 				legend.getLegend(l.url, l.id).then(function (legend) {
 					var lyr = $filter('filter')($scope.layers, function (i) {
@@ -26,6 +27,24 @@ angular.module('imapsNgApp')
 					});
 				}
 			});
+
+			$scope.filterLayers = function (layer) {
+				var retVal = false;
+				if ($scope.layerFilterValue.length === 0) {
+					retVal = true;
+				} else {
+					retVal = layer.title.toLowerCase().indexOf($scope.layerFilterValue.toLowerCase()) > -1;
+					if (!retVal) {
+						for (var i = 0; i < layer.resourceInfo.layers.length;i++) {
+							if (layer.resourceInfo.layers[i].name.toLowerCase().indexOf($scope.layerFilterValue.toLowerCase()) > -1) {
+								retVal = true;
+							}
+						}
+					}					
+				}
+
+				return retVal;
+			};
 
 			$scope.layerToggle = function (layer, webmap) {
 				layer.visibility = !layer.visibility;
