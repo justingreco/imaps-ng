@@ -724,9 +724,17 @@ slider {
   opacity: 1 !important;
 }
 /* Responsive: Portrait tablets and up */
-@media screen and (min-width: 768px) {
+@media screen and (max-width: 321px) {
 
+  .toggle-expanded {
+    right: 280px !important;
+  }
+  #proptabs .glyphicon {
+    margin: 6px 9px 6px 6px;
+  }
 }
+
+
 
 @media only screen and (min-device-width: 375px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) { 
   tool-panel {

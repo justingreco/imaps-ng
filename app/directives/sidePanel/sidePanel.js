@@ -3,7 +3,11 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/sidePanel/sidePanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope) {
+		controller: function ($scope, $rootScope, $window) {
+			$scope.psWidth = "300px"
+			if ($window.innerWidth < 321) {
+				$scope.psWidth = "280px";
+			}
 			$scope.checked = true;
 			$scope.searchDir = {open: true, overflow: 'none', padding: 30};
 			$scope.layersDir = {open: false, overflow: 'auto', padding: 15};
