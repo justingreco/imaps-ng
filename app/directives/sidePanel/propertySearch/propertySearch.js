@@ -38,6 +38,7 @@ angular.module('imapsNgApp')
 
 			$scope.$on('accountSelected', function (e, account) {
 				$scope.tabChanged(false);
+				$rootScope.checked = true;
 				//$scope.$apply();
 			});
 
@@ -244,7 +245,9 @@ angular.module('imapsNgApp')
 								$scope.plats = [];
 								angular.forEach($scope.deeds, function (deed) {
 									if (deed.bomDocNum) {
-										$scope.plats.push(deed);
+										if (deed.bomDocNum != "0") {
+											$scope.plats.push(deed);
+										}										
 									}
 								});
 							});
