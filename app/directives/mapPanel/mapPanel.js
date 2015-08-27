@@ -267,12 +267,14 @@ angular.module('imapsNgApp')
 
 									gl.add(g);
 								});
-								$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
+								if (gl.graphics.length > 0) {
+									$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
+								}
 							});
 						}
 						$scope.$on('accountUpdate', function (e, accounts) {
 							var pins = [];
-							if (accounts) {
+							if (accounts.length > 0) {
 								angular.forEach(accounts, function (a) {
 									//pins.push("'" + a.pin + "'");
 									pins.push ("PIN_NUM = '" + a.pin + "'")

@@ -56,9 +56,9 @@ angular.module('imapsNgApp')
 				{
 					$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
 				}
-				getSepticPermits(account.pin);
-
-
+				if (account.pin) {
+					getSepticPermits(account.pin);
+				}
 			});
 			$scope.infoGrid = {
 				data: $scope.accountInfo,
