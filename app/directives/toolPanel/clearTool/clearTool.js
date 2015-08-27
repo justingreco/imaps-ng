@@ -12,7 +12,7 @@ angular.module('imapsNgApp')
 						layer = $scope.map.getLayer(id).clear();
 					});
 					$rootScope.$broadcast('accountUpdate', []);
-			  		$scope.tab = $scope.tabs[1];
+			  		//$scope.tab = $scope.tabs[1];
 			  		$scope.$broadcast('accountSelected', {});
 			  		$("#searchInput").typeahead('val', '');
 				}
