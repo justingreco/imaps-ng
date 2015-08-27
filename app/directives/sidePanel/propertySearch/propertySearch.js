@@ -198,6 +198,25 @@ angular.module('imapsNgApp')
 						$scope.searchValue = $('.tt-input').val();
 						$scope.$apply();
 					});
+					//1709.04 63 6109 000 -> 1709636109
+					$('.tt-input').on('paste', function (e) {
+						$timeout(function () {
+							var origPin = $(".tt-input").val();
+							if (origPin.length === 19 && origPin.charAt(4) === '.' && origPin.charAt(7) === ' ' & origPin.charAt(10) === ' ' && origPin.charAt(15) === ' ') {
+								console.log('YES');
+								var tmp1 = origPin.split('.');
+								var newPin = tmp1[0].toString();
+								var tmp2 = tmp1[1].split(' ');
+								newPin += tmp2[1].toString()+tmp2[2].toString();
+								$('.twitterTypeahead').val(newPin);
+								searchForRealEstate('pin', [newPin]);
+								console.log(newPin);
+							} else {
+								console.log(origPin);
+							}
+						});
+
+					});
 				});
 				var highlightTab = function (tab) {
 					angular.forEach($scope.tabs, function (t) {
