@@ -26,16 +26,18 @@ angular.module('imapsNgApp')
 			};
 
 			$scope.headerClick = function (item) {
-				switch (item) {
-					case 'Feedback':
-						openFeedback();
-					break;
-					case 'About':
-						openAbout();
-					break;
-					case 'Disclaimer':
-						openDisclaimer();
-					break;
+				if (item.click) {
+					switch (item.label) {
+						case 'Feedback':
+							openFeedback();
+						break;
+						case 'About':
+							openAbout();
+						break;
+						case 'Disclaimer':
+							openDisclaimer();
+						break;
+					}					
 				}
 			};
 
