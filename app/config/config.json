@@ -182,7 +182,7 @@
 			},
 			{"label": "Help", "items":
 				[
-					{"label": "Coming Soon!", "href": ""}
+					{"label": "Coming Soon!", "href": "#"}
 				]
 			}
 		]
