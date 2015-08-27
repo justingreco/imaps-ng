@@ -39,6 +39,9 @@ angular.module('imapsNgApp')
 			$scope.$on('accountSelected', function (e, account) {
 				$scope.tabChanged(false);
 				$rootScope.checked = true;
+				$scope.searchDir.open = true;
+				$scope.layersDir.open = false;
+				$rootScope.selectedSearch = $rootScope.searches[0];
 				//$scope.$apply();
 			});
 
