@@ -32,7 +32,9 @@ angular.module('imapsNgApp')
 				} else if ($event.target.text === 'For Location') {
 					$rootScope.selectedSearch = $rootScope.searches[1];
 				}
-			    $scope.searchTypeStatus.isopen = false;				
+			    $scope.searchTypeStatus.isopen = false;	
+			    $scope.searchDir.open = true;
+			    $scope.layersDir.open = false;			
 			}
 
 
