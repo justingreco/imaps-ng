@@ -117,6 +117,15 @@ angular.module('imapsNgApp')
 				return response;
 			}
 
+			var addGraphicsLayers = function (GraphicsLayer) {
+				$scope.selectionMultiple = new GraphicsLayer();
+				$scope.selectionSingle = new GraphicsLayer();
+				$scope.bufferGraphics = new GraphicsLayer();
+				$scope.map.addLayer($scope.selectionMultiple);
+				$scope.map.addLayer($scope.selectionSingle);
+				$scope.map.addLayer($scope.bufferGraphics);
+			};
+
 			var webMapLoaded = function (response) {
 
 				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
@@ -133,10 +142,7 @@ angular.module('imapsNgApp')
 					}
 					$scope.map = response.map;
 					setRaleighBounds();
-					$scope.selectionMultiple = new GraphicsLayer();
-					$scope.selectionSingle = new GraphicsLayer();
-					$scope.map.addLayer($scope.selectionMultiple);
-					$scope.map.addLayer($scope.selectionSingle);
+					addGraphicsLayers(GraphicsLayer);
 					$scope.$digest();
 					on($scope.map, 'update-start', mapUpdating);
 					on($scope.map, 'update-end', mapUpdated);
