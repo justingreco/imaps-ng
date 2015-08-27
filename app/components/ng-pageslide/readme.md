@@ -8,6 +8,8 @@ See it in action [HERE](http://dpiccone.github.io/ng-pageslide/examples/)
 
 Examples in the repository.
 
+[![Build Status](https://travis-ci.org/dpiccone/ng-pageslide.svg?branch=master)](https://travis-ci.org/dpiccone/ng-pageslide)
+
 ## Usage
 
 Add this in your head
@@ -44,8 +46,9 @@ also you need an inner ```<div>``` to wrap your content in
 ### Options:
 
 ```
-pageslide (required) = Where the panel should appear (right,left,top,bottom), if empty defaults to "right"
+pageslide (required) 
 
+ps-side (optional) = Where the panel should appear (right,left,top,bottom), if empty defaults to "right"
 ps-open (optional) = Boolean true/false used to open and close the panel (optional)
 ps-speed (optional) = The speed of the transition (optional)
 ps-class (optional) = The class for the pageslide (default: "ng-pageslide")
@@ -61,6 +64,7 @@ ps-custom-top (optional) = custom CSS for panel top (only applicable in 'right',
 ps-custom-bottom (optional) = custom CSS for panel bottom (only applicable in 'right', 'left' or 'bottom' panels)
 ps-custom-left (optional) = custom CSS for panel left (only applicable in 'left', 'top' or 'bottom' panels)
 ps-custom-right (optional) = custom CSS for panel right (only applicable in 'right', 'top' or 'bottom' panels)
+ps-container (optional) = custom CSS ID selector to which the slider div appends (e.g: <div id='myDiv'/> -> ps-container="myDiv")
 ```
 
 * these options make assumptions about the layout, will set body positioning to absolute
