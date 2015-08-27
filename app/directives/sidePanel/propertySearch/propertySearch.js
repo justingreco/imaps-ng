@@ -54,7 +54,11 @@ angular.module('imapsNgApp')
 						$timeout(function () {
 							$scope.$broadcast('accountSelected', accounts[0]);
 						});
-				} else {
+				} else if (accounts.length === 0) {
+					$scope.pin = null;
+					$location.search('pin', $scope.pin);
+				} 
+				else {
 					$scope.tab = $scope.tabs[0];
 					$scope.tabChanged(true);
 				}
