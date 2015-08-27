@@ -1,5 +1,5 @@
 angular.module('imapsNgApp')
-.directive('sidePanel', function ($timeout, $window) {
+.directive('sidePanel', function ($timeout, $window, $rootScope) {
 	return {
 		templateUrl: 'directives/sidePanel/sidePanel.html',
 		restrict: 'E',
@@ -50,6 +50,7 @@ angular.module('imapsNgApp')
 				}
 			});
 		}, link: function (scope, element, attr) {
+
 			scope.resetPanel = function () {
 				var headings = document.getElementsByClassName('panel-heading');
 				var body = document.getElementsByClassName('panel-body')
@@ -67,6 +68,10 @@ angular.module('imapsNgApp')
 					}
 				}
 			};
+
+			$rootScope.$on('mapLoaded', function () {
+				scope.resetPanel();
+			});
 			$timeout(scope.resetPanel.bind(element), 500);
 /*			var w = angular.element($window)
 			angular.element($window).bind('resize', resetPanel.bind(element));*/
