@@ -9,11 +9,18 @@ angular.module('imapsNgApp')
 				bufferShape($scope.geometry, "esriGeometryPolygon");
 			}
 			var bufferShape = function (geom, type) {
-				require(['esri/geometry/geometryEngine', 'esri/geometry/Polygon'], function (GeometryEngine, Polygon) {
+				require(['esri/geometry/geometryEngine', 'esri/geometry/Polygon', 'esri/graphic'], function (GeometryEngine, Polygon, Graphic) {
 					if  (!geom.type) {
 							geom = new  Polygon(geom);
 					}
 					var buffer = GeometryEngine.buffer(geom, parseInt($scope.selectBufferDist), 9002, true);
+					$scope.bufferGraphics.clear();
+					var g = new Graphic({geometry: buffer,
+						symbol:{color:[0,0,0,0],outline:{color:[0,0,0,100],
+							width:3,type:"esriSLS",style:"esriSLSSolid"},
+							type:"esriSFS",style:"esriSFSSolid"}});					
+					$scope.bufferGraphics.add(g);
+
 					searchForProperties(buffer, "esriGeometryPolygon", $scope.map.spatialReference.wkid);
 				});
 			};
@@ -34,7 +41,6 @@ angular.module('imapsNgApp')
 			}
 			require(['esri/toolbars/draw', 'dojo/on'], function (Draw, on) {
 				var toolbar = null;
-
 				var shapeDrawn = function (e) {
 					//toolbar.deactivate();
 					//$scope.selectType = '';

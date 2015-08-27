@@ -4,6 +4,7 @@ angular.module('imapsNgApp')
 		templateUrl: 'directives/toolPanel/streetviewTool/streetviewTool.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $timeout) {
+			$scope.streetviewActive = false;
 			var panorama = null;
 			$scope.streetviewFull = false;
 			var sideOpen = $rootScope.checked;
@@ -18,9 +19,12 @@ angular.module('imapsNgApp')
 								var options = {position:data.location.latLng, imageDateControl: true};
 								panorama = new google.maps.StreetViewPanorama(document.getElementById('streetview'));
 								panorama.setOptions(options);
+								$scope.streetviewActive = true;
 								$timeout(function () {
 									google.maps.event.trigger(streetview, 'resize');
 								});
+				    } else {
+				    	$scope.streetviewActive = false;
 				    }
 				});
 			};

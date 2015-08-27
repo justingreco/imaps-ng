@@ -208,7 +208,11 @@ angular.module('imapsNgApp')
 								var newPin = tmp1[0].toString();
 								var tmp2 = tmp1[1].split(' ');
 								newPin += tmp2[1].toString()+tmp2[2].toString();
+<<<<<<< HEAD
 								$('.tt-input').val(newPin);
+=======
+								$('.twitterTypeahead').val(newPin);
+>>>>>>> d5fa95a0a09a32a279e8a973b91974b8d9071263
 								searchForRealEstate('pin', [newPin]);
 								console.log(newPin);
 							} else {
