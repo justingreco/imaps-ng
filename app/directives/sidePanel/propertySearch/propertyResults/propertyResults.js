@@ -54,8 +54,8 @@ angular.module('imapsNgApp')
 	            };
 	        };
 	        $scope.$watch($scope.getWindowDimensions, function (newValue, oldValue) {
-	            $(".ngReactGridViewPort").css('max-height', $('.tabcontainer').height() - 30);
- 				$(".ngReactGridViewPort").css('min-height', $('.tabcontainer').height() - 30);
+	            $(".ngReactGridViewPort").css('max-height', $('.tabcontainer').height() - 50);
+ 				$(".ngReactGridViewPort").css('min-height', $('.tabcontainer').height() - 50);
 	        }, true);
 	        w.bind('resize', function () {
 	            $scope.$apply();
