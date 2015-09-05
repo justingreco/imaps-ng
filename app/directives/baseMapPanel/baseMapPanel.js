@@ -28,9 +28,11 @@ angular.module('imapsNgApp')
 				if ($scope.basemapType === 'images') {
 					if (!inRaleigh) {
 						//in Wake
+
 						if ($scope.lastWakeYear) {
 							$scope.basemap = $scope.lastWakeYear;
 							$scope.basemapChanged($scope.lastWakeYear, 'images');
+
 						} else {
 							var basemaps = $filter('filter')($scope.config.map.basemaps.images.layers, function (basemap) {
 								return basemap.county === true;
@@ -46,7 +48,7 @@ angular.module('imapsNgApp')
 							$scope.basemap = $scope.lastRaleighYear;
 							$scope.basemapChanged($scope.lastRaleighYear, 'images');
 						} else {
-							$scope.basemap = $scope.config.map.basemaps.images.layers[0];
+							//$scope.basemap = $scope.config.map.basemaps.images.layers[0];
 							$scope.basemapChanged($scope.basemap, 'images');
 						}
 						$scope.lastRaleighYear = $scope.basemap;
@@ -89,7 +91,7 @@ angular.module('imapsNgApp')
 				$scope.basemapChanged($scope.basemap, type);
 				$scope.basemapType = type;
 			}
-			$scope.basemapChanged = function (basemap, basemapType) {
+			$scope.basemapChanged = function (basemap, basemapType, manual) {
 				$analytics.eventTrack('Changed', {  category: 'Basemaps', label: basemap.id });
 				require(["esri/basemaps",], function (esriBasemaps) {
 					if (!baseloaded) {
@@ -113,6 +115,9 @@ angular.module('imapsNgApp')
 
 					if (basemap.county) {
 						$scope.lastWakeYear = basemap;
+						if (manual) {
+							$scope.lastRaleighYear = basemap;
+						}
 					} else {
 						$scope.lastRaleighYear = basemap;
 					}
