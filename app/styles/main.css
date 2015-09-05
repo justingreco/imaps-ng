@@ -355,6 +355,9 @@ tool-panel .glyphicon {
 .tool-wrapper {
   margin: 10px;
 }
+.tool-title {
+  margin-left: 10px;
+}
 /*bookmark tool*/
 .bookmark {
   margin-bottom: 4px;

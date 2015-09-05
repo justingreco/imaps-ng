@@ -30,6 +30,11 @@ angular.module('imapsNgApp')
 				$scope.tab.highlighted = true;
 			}
 
+			$scope.$on('tabUpdated', function (e, i) {
+				$scope.tab = $scope.tabs[i];
+				$scope.tabChanged(true);
+			});
+
 			$rootScope.$on('mapLoaded', function (e) {
 	    		if ($location.search().pin) {
 	    			searchForRealEstate('pin', $location.search().pin.split(','));

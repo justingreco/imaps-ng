@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/toolPanel/clearTool/clearTool.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope) {
+		controller: function ($scope, $rootScope, $timeout) {
 			$scope.$watch('tool', function (tool) {
 				if (tool.title === 'Clear Map') {
 					var layer = null;
@@ -12,9 +12,12 @@ angular.module('imapsNgApp')
 						layer = $scope.map.getLayer(id).clear();
 					});
 					$rootScope.$broadcast('accountUpdate', []);
-			  		//$scope.tab = $scope.tabs[1];
+
 			  		$scope.$broadcast('accountSelected', {});
 			  		$("#searchInput").typeahead('val', '');
+			  					  		//$scope.tab = $scope.tabs[1];
+			  		$scope.geometry = null;
+			  		$scope.$broadcast('tabUpdated', 0);
 				}
 			});
 		},
