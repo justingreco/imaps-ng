@@ -3718,10 +3718,10 @@ if ("production" !== "development") {
   if (ExecutionEnvironment.canUseDOM &&
       window.top === window.self &&
       navigator.userAgent.indexOf('Chrome') > -1) {
-    console.debug(
+/*    console.debug(
       'Download the React DevTools for a better development experience: ' +
       'http://fb.me/react-devtools'
-    );
+    );*/
   }
 }
 
