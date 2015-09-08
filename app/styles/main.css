@@ -834,3 +834,26 @@ location-search .form-control {
 ::-webkit-scrollbar-thumb:window-inactive {
   background: rgba(255,255,255,0.4); 
 }
+
+
+.browser-warning {
+  position:absolute;
+  background-color:#444;
+  color:white;
+  top:0;
+  bottom: 0;
+  left:0;
+  right:0;
+  z-index:10000;
+  padding: 40px;
+}
+
+
+.browser-warning .btn {
+  background: none;
+  color: white;
+}
+
+.browser-warning .glyphicon-warning-sign {
+  font-size: 20px;
+}
