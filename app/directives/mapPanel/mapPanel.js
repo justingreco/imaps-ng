@@ -91,7 +91,7 @@ angular.module('imapsNgApp')
 				$scope.bufferGraphics = new GraphicsLayer();
 				$scope.map.addLayer($scope.selectionMultiple);
 				$scope.map.addLayer($scope.selectionSingle);
-				$scope.map.addLayersu($scope.bufferGraphics);
+				$scope.map.addLayer($scope.bufferGraphics);
 			};
 
 			var webMapLoaded = function (response) {

@@ -72,7 +72,7 @@ angular.module('imapsNgApp')
 				}
 			});
 
-			searchForRealEstate = function (type, values) {
+			var searchForRealEstate = function (type, values) {
 				$scope.property.getRealEstate(type, values).then(function (accounts) {
 					$scope.account = null;
 					//$scope.geometry = null;

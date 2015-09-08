@@ -1,1 +1,1 @@
-<div style="width:100%"> <ng-react-grid grid="addrGrid"></ng-react-grid> </div> <div class="grid-footer"> <span ng-show="rpid">Raleigh ID: {{rpid}}</span> <export-button array="addresses" type="addresses"></export-button> </div>
+<span ng-show="rpid">Raleigh ID: {{rpid}}</span> <export-button array="addresses" type="addresses" ng-style="{'top': (rpid) ? '25px':'5px'}"></export-button> <div style="width:100%"> <ng-react-grid grid="addrGrid"></ng-react-grid> </div> <div class="grid-footer"> </div>

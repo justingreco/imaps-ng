@@ -152,16 +152,17 @@
 	},
 	"header": {
 		"menus": [
-			{"label": "About", "items":
+			{"label": "Disclaimer", "click": true, "items":
 				[
-					{"label": "Disclaimer", "click": true},
-					{"label": "About", "click": true}
+				]
+			},		
+			{"label": "About", "click": true, "items":
+				[
+
 				]
 			},
-			{"label": "Feedback", "items":
+			{"label": "Feedback", "click": true, "items":
 				[
-					{"label": "Feedback", "click": true},
-					{"label": "Survey", "href": "https://docs.google.com/spreadsheet/viewform?hl=en_US&formkey=dEljaElEa05od2FRc2ZKVm5vVzVSQ1E6MQ#gid=0"}
 				]
 			},
 			{"label": "Links", "items":
@@ -181,7 +182,7 @@
 			},
 			{"label": "Help", "items":
 				[
-					{"label": "iMAPS Help", "href": ""}
+					{"label": "Coming Soon!", "href": "#"}
 				]
 			}
 		]
