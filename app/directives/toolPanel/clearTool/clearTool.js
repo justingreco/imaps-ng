@@ -11,7 +11,7 @@ angular.module('imapsNgApp')
 					angular.forEach($scope.map.graphicsLayerIds, function (id) {
 						layer = $scope.map.getLayer(id).clear();
 					});
-					$rootScope.$broadcast('accountUpdate', []);
+					$rootScope.$broadcast('accountUpdate', [], false);
 
 			  		$scope.$broadcast('accountSelected', {});
 			  		$("#searchInput").typeahead('val', '');

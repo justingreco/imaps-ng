@@ -233,32 +233,38 @@ angular.module('imapsNgApp')
 									type:"esriSFS",style:"esriSFSSolid"}});
 
 									gl.add(g);
-								});
-								if (gl.graphics.length > 0) {
-									$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
-								}
-							});
-						}
-						$scope.$on('accountUpdate', function (e, accounts) {
-							var pins = [];
-							if (accounts.length > 0) {
-								angular.forEach(accounts, function (a) {
-									//pins.push("'" + a.pin + "'");
-									pins.push ("PIN_NUM = '" + a.pin + "'")
-								});
-								//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
-								$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), $scope.config.map.wkid).then(function (data) {									
-									addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
-								});
+						});
+
+						if (gl.graphics.length > 0) {
+							if ($rootScope.zoomTo) {
+								$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
 							}
+						}
+							
+					});
+				};
+				$scope.$on('accountUpdate', function (e, accounts) {
+					var pins = [];
+					console.log('????');
+					if (accounts.length > 0) {
+						angular.forEach(accounts, function (a) {
+							//pins.push("'" + a.pin + "'");
+							pins.push ("PIN_NUM = '" + a.pin + "'")
 						});
-						$scope.$on('pinUpdate', function (e, pin) {
-							$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
-								addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
-							});
+						//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
+						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), $scope.config.map.wkid).then(function (data) {									
+							addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
 						});
-					},
-					link: function (scope, element, attrs) {
 					}
-				}
-			});
+				});
+				$scope.$on('pinUpdate', function (e, pin) {
+					console.log('!!!!');
+					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
+						addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
+					});
+				});
+			},
+			link: function (scope, element, attrs) {
+			}
+		}
+	});

@@ -58,7 +58,7 @@ angular.module('imapsNgApp')
 					$location.search('pin', $scope.pin);
 					$scope.reid = accounts[0].reid;
 					$scope.account = accounts[0];
-					$rootScope.$broadcast('pinUpdate', $scope.pin);
+					//$rootScope.$broadcast('pinUpdate', $scope.pin);
 						$timeout(function () {
 							$scope.$broadcast('accountSelected', accounts[0]);
 						});
@@ -79,6 +79,7 @@ angular.module('imapsNgApp')
 					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;
 					$scope.accountsSrc = accounts.Accounts;
+					$rootScope.zoomTo = true;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
 
 				});

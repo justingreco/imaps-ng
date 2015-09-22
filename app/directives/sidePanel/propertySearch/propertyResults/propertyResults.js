@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/sidePanel/propertySearch/propertyResults/propertyResults.html',
 		restrict: 'E',
-		controller: function ($scope, $timeout, $window) {
+		controller: function ($scope, $timeout, $window, $rootScope) {
 			$scope.resultHeader = [];
 			$scope.accounts = [];
 				$scope.$on('accountUpdate', function (e, accounts) {
@@ -42,6 +42,8 @@ angular.module('imapsNgApp')
 			  $scope.$watch('accounts', function (accounts) {
 			  });
 			  $scope.resultClicked = function (account) {
+			  						$rootScope.zoomTo = true;
+
 			  	$scope.account = account;
 			  	$scope.tab = $scope.tabs[1];
 			  	$scope.$broadcast('accountSelected', account);

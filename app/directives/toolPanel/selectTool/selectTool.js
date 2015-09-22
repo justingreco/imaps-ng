@@ -35,6 +35,7 @@ angular.module('imapsNgApp')
 						$scope.geometry = null;
 						$scope.fields = data.Fields;
 						$scope.accounts = data.Accounts;
+						$rootScope.zoomTo = false;
 						$rootScope.$broadcast('accountUpdate', data.Accounts);
 					});
 				});
