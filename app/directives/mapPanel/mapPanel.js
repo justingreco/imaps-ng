@@ -245,7 +245,6 @@ angular.module('imapsNgApp')
 				};
 				$scope.$on('accountUpdate', function (e, accounts) {
 					var pins = [];
-					console.log('????');
 					if (accounts.length > 0) {
 						angular.forEach(accounts, function (a) {
 							//pins.push("'" + a.pin + "'");
@@ -258,7 +257,6 @@ angular.module('imapsNgApp')
 					}
 				});
 				$scope.$on('pinUpdate', function (e, pin) {
-					console.log('!!!!');
 					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
 						addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
 					});
