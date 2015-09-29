@@ -96,8 +96,8 @@ angular.module('imapsNgApp')
 
 			var webMapLoaded = function (response) {
 
-				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/dijit/LocateButton", "dojo/on"],
-				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, LocateButton, on) {
+				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/SpatialReference", "esri/dijit/LocateButton", "dojo/on"],
+				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, SpatialReference, LocateButton, on) {
 					if (oldItemInfo) {
 						response = compareVisibleLayers(response, oldItemInfo);
 					}					
@@ -155,7 +155,7 @@ angular.module('imapsNgApp')
 
 
 
-					var home = new HomeButton({map: $scope.map}, 'homeButton').startup();
+					var home = new HomeButton({map: $scope.map, extent: new Extent(1948652, 608444, 2249012, 862044, new SpatialReference({wkid: 2264}))}, 'homeButton').startup();
 				//	var locate = new LocateButton({map: $scope.map}, 'locateButton').startup();
 
 				});

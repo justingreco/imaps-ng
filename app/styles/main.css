@@ -700,6 +700,7 @@ slider {
   border-width: 1px;
   height: 32px !important;
   width: 32px !important;
+  background-image: url('../images/globe.png') !important;
 }
 #locateButton {
   position: absolute;
