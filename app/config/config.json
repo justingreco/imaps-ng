@@ -191,6 +191,9 @@
 		"print": {
 			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/SaveToPDF/GPServer/SaveToPDF"
 		},
+		"export": {
+			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+		},		
 		"bookmarks": [
 			{"name": "Downtown Raleigh",
 				"extent":{"xmin":2104769,

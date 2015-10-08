@@ -7,6 +7,11 @@ angular.module('imapsNgApp')
 			var account = {};
 			$scope.printAtts = false;
 			$scope.printTitle = "";
+			$scope.printFormats = [
+				{value: 'PDF', label: 'PDF'},
+				{value: 'JPG', label: 'Image'}
+			];
+			$scope.printFormat = $scope.printFormats[0];
 			$scope.printSizes = [
 				{value: '8.5x11', label:'8.5"x11"'},
 				{value: '11x17', label:'11"x17"'},
@@ -110,6 +115,26 @@ angular.module('imapsNgApp')
 					scale = scale * 12;
 				}
 				return scale;
+			};
+
+			$scope.exportMap = function (map) {
+				require(["esri/tasks/PrintTask", "esri/tasks/PrintParameters", "esri/tasks/PrintTemplate"], function(PrintTask, PrintParameters, PrintTemplate) {
+					var printTask = new PrintTask($scope.config.tools.export.url);
+					var template = new PrintTemplate();
+					template.format = 'JPG';
+					template.layout = 'MAP_ONLY';
+					  template.exportOptions = {
+					    width: map.width,
+					    height: map.height,
+					    dpi: 96
+					  };					
+					var params = new PrintParameters();
+					params.map = map;
+					params.template = template;
+					printTask.execute(params, function (result) {
+						window.open(result.url);
+					});
+				});			
 			};
 
 			$scope.printPDF = function (map, layers) {
