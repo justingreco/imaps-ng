@@ -35,7 +35,7 @@ angular.module('imapsNgApp')
 					retVal = true;
 				} else {
 					retVal = layer.title.toLowerCase().indexOf($scope.layerFilterValue.toLowerCase()) > -1;
-					if (!retVal) {
+					if (!retVal && layer.resourceInfo.layers) {
 						for (var i = 0; i < layer.resourceInfo.layers.length;i++) {
 							if (layer.resourceInfo.layers[i].name.toLowerCase().indexOf($scope.layerFilterValue.toLowerCase()) > -1) {
 								retVal = true;
