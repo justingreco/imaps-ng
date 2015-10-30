@@ -156,7 +156,7 @@ angular.module('imapsNgApp')
 					defExps += ";";
 				});
 				var visibleLyrs = $filter('filter')($scope.webmap.itemInfo.itemData.operationalLayers, function (l) {
-					return l.visibility === true;
+					return l.visibility === true && l.resourceInfo.type != 'Feature Layer';
 				});
 				console.log(visibleLyrs);
 				angular.forEach(visibleLyrs, function (l) {
