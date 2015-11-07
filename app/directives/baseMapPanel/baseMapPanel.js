@@ -105,6 +105,7 @@ angular.module('imapsNgApp')
 							$scope.map.getLayer("BaseMapMobile_48").setVisibility(false)
 						}
 					}
+					$scope.map._removeBasemap();
 					$scope.map.setBasemap(basemap.id);
 					if (basemapType === 'streets') {
 						$scope.streetMap = basemap;

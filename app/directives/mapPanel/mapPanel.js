@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/mapPanel/mapPanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, property, localStorageService, $filter, mapUtils) {
+		controller: function ($scope, $rootScope, $timeout, property, localStorageService, $filter, mapUtils) {
 			$scope.property = property;
 			var oldItemInfo = null;
 			var mapUpdating = function () {
@@ -258,7 +258,9 @@ angular.module('imapsNgApp')
 				});
 				$scope.$on('pinUpdate', function (e, pin) {
 					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
-						addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
+						$timeout(function (){ 
+							addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
+						});
 					});
 				});
 			},
