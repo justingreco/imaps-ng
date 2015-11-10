@@ -59,7 +59,9 @@ angular.module('imapsNgApp')
 							});
 							if (opLyr.length > 0) {
 								opLyr = opLyr[0];
-								layer.setVisibleLayers(opLyr.layerObject.visibleLayers);
+								if (opLyr.layerObject) {
+									layer.setVisibleLayers(opLyr.layerObject.visibleLayers);
+								}
 							}
 						}
 					}
@@ -118,7 +120,6 @@ angular.module('imapsNgApp')
 					on($scope.map, 'unload', mapUnloaded);
 
 					setLayerVisibleLayers();
-					$scope.map._removeBasemap();
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
