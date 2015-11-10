@@ -94,18 +94,6 @@ angular.module('imapsNgApp')
 			$scope.basemapChanged = function (basemap, basemapType, manual) {
 				$analytics.eventTrack('Changed', {  category: 'Basemaps', label: basemap.id });
 				require(["esri/basemaps",], function (esriBasemaps) {
-					if (!baseloaded) {
-						if ($scope.map.getLayer("base0")) {
-							$scope.map.getLayer("base0").setVisibility(false)
-						}
-						if ($scope.map.getLayer("base1")) {
-							$scope.map.getLayer("base1").setVisibility(false)
-						}
-						if ($scope.map.getLayer("BaseMapMobile_48")) {
-							$scope.map.getLayer("BaseMapMobile_48").setVisibility(false)
-						}
-					}
-					$scope.map._removeBasemap();
 					$scope.map.setBasemap(basemap.id);
 					if (basemapType === 'streets') {
 						$scope.streetMap = basemap;

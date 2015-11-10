@@ -118,6 +118,7 @@ angular.module('imapsNgApp')
 					on($scope.map, 'unload', mapUnloaded);
 
 					setLayerVisibleLayers();
+					$scope.map._removeBasemap();
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
