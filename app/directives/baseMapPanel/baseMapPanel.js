@@ -48,7 +48,7 @@ angular.module('imapsNgApp')
 							$scope.basemap = $scope.lastRaleighYear;
 							$scope.basemapChanged($scope.lastRaleighYear, 'images');
 						} else {
-							//$scope.basemap = $scope.config.map.basemaps.images.layers[0];
+							$scope.basemap = $scope.config.map.basemaps.images.layers[0];
 							$scope.basemapChanged($scope.basemap, 'images');
 						}
 						$scope.lastRaleighYear = $scope.basemap;
@@ -96,9 +96,14 @@ angular.module('imapsNgApp')
 				require(["esri/basemaps",], function (esriBasemaps) {
 
 					angular.forEach($scope.map.layerIds, function (id) {
-						if (id.indexOf('base') === 0 || id.indexOf('Base') === 0) {
+						if (id.indexOf('Base') === 0) {
 							$scope.map.removeLayer($scope.map.getLayer(id));
 						}
+					});
+					angular.forEach($scope.map.basemapLayerIds, function (id) {
+						//if (id.indexOf('Base') === 0) {
+							$scope.map.removeLayer($scope.map.getLayer(id));
+						//}
 					});
 					$scope.map.setBasemap(basemap.id);
 					if (basemapType === 'streets') {
