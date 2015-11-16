@@ -96,7 +96,7 @@ angular.module('imapsNgApp')
 				require(["esri/basemaps",], function (esriBasemaps) {
 
 					angular.forEach($scope.map.layerIds, function (id) {
-						if (id.indexOf('Base') === 0) {
+						if (id.indexOf('Base') === 0 || id.indexOf('base') === 0) {
 							$scope.map.removeLayer($scope.map.getLayer(id));
 						}
 					});
