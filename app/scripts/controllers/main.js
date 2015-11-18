@@ -15,4 +15,5 @@ angular.module('imapsNgApp')
     config.loadConfig('config/config.json').then(function (data) {
     	$rootScope.config = data;
     });
+
   });

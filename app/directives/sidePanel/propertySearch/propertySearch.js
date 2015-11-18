@@ -7,7 +7,6 @@ angular.module('imapsNgApp')
 			$scope.hiddenOverflow = false;
 			$scope.property = property;
 			$scope.searchValue = "";
-
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
 			var autocompleteFilter = function (response) {
 				var data = [];
@@ -29,18 +28,88 @@ angular.module('imapsNgApp')
 				});
 				$scope.tab.highlighted = true;
 			}
-
 			$scope.$on('tabUpdated', function (e, i) {
 				$scope.tab = $scope.tabs[i];
 				$scope.tabChanged(true);
 			});
-
+			//code to handle dragging and dropping of CSV file to initiate property search
+			//must be CSV file with headers, one of which needs to include PIN in it.
+		    var getPins = function(lines) {
+		    	var header = lines[0],
+		    		pinIdx = null,
+		    		pin = "",
+		    		pins = [];
+		    	for (var i = 0; i < header.length; i++) {
+		    		if (header[i].toUpperCase().indexOf('PIN') > -1) {
+		    			pinIdx = i;
+		    			break;
+		    		}
+		    	}
+		    	if (!pinIdx) {
+			    	for (var i = 1; i < lines.length; i++) {
+			    		pin = lines[i][pinIdx];
+			    		pins.push(pin);
+			    	}
+			    	searchForRealEstate('pin', pins);
+		    	} else {
+		    		alert('CSV must have a field named PIN');
+		    	}
+		    }
+			var processData = function (csv) {
+		        var allTextLines = csv.split(/\r\n|\n/);
+		        var lines = [];
+		        for (var i=0; i<allTextLines.length; i++) {
+		            var data = allTextLines[i].split(',');
+	                var tarr = [];
+	                for (var j=0; j<data.length; j++) {
+	                    tarr.push(data[j]);
+	                }
+	                lines.push(tarr);
+		        }
+		        if (lines.length === 0) {
+		        	alert('Invalid file, please verify that document is a comma separated file.')
+		        }
+		      getPins(lines);
+		    }
+			var handleFileSelect = function (evt) {
+			    evt.stopPropagation();
+			    evt.preventDefault();
+      			if (window.FileReader) {   
+				    var files = evt.dataTransfer.files
+				    var f = evt.dataTransfer.files.item(0);
+			 		var reader = new FileReader();
+				      reader.onload = (function(theFile) {
+				        return function(e) {
+				          processData(e.target.result);
+				        };
+				      })(f);
+				    if (f.type === 'text/csv' || f.type === 'text/plain') {
+				    	reader.readAsText(f);
+				    } else {
+				    	alert('Invalid file type, must use a CSV file.')
+				    }
+				} else {
+					alert('FileReader are not supported in this browser.');
+				}					    
+			}
+			var handleDragOver = function (evt) {
+				evt.stopPropagation();
+				evt.preventDefault();
+				evt.dataTransfer.dropEffect = 'copy'; // Explicitly show this is a copy.
+			}
 			$rootScope.$on('mapLoaded', function (e) {
 	    		if ($location.search().pin) {
 	    			searchForRealEstate('pin', $location.search().pin.split(','));
 	    		}
-			});
 
+    			var dropZone = document.getElementById('body');
+    			if('draggable' in dropZone) {
+      				dropZone.addEventListener('dragover', handleDragOver, false);
+    				dropZone.addEventListener('drop', handleFileSelect, false);
+				} else {
+					alert('Drag and drop not supported in this browser');
+				}
+			});
 			$scope.$on('accountSelected', function (e, account) {
 				$scope.tabChanged(false);
 				$rootScope.checked = true;
@@ -49,7 +118,6 @@ angular.module('imapsNgApp')
 				$rootScope.selectedSearch = $rootScope.searches[0];
 				//$scope.$apply();
 			});
-
 			$rootScope.$on('accountUpdate', function (e, accounts) {
 				$rootScope.checked = true;
 				if (accounts.length === 1) {
@@ -65,13 +133,12 @@ angular.module('imapsNgApp')
 				} else if (accounts.length === 0) {
 					$scope.pin = null;
 					$location.search('pin', $scope.pin);
-				} 
+				}
 				else {
 					$scope.tab = $scope.tabs[0];
 					$scope.tabChanged(true);
 				}
 			});
-
 			var searchForRealEstate = function (type, values) {
 				$scope.property.getRealEstate(type, values).then(function (accounts) {
 					$scope.account = null;
@@ -81,17 +148,12 @@ angular.module('imapsNgApp')
 					$scope.accountsSrc = accounts.Accounts;
 					$rootScope.zoomTo = true;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
-
 				});
 			};
-
 			var valueSelected = function (a, b, c) {
 				c = ((c === 'streetname') ? 'street name':c);
 				searchForRealEstate(c, [b.value]);
 			}
-
-
-
 			var address = new Bloodhound({
 				datumTokenizer: function (datum) {
 			        return Bloodhound.tokenizers.whitespace(datum.value);
@@ -223,9 +285,7 @@ angular.module('imapsNgApp')
 								var newPin = tmp1[0].toString();
 								var tmp2 = tmp1[1].split(' ');
 								newPin += tmp2[1].toString()+tmp2[2].toString();
-
 								$('.tt-input').val(newPin);
-
 								$('.twitterTypeahead').val(newPin);
 								searchForRealEstate('pin', [newPin]);
 								console.log(newPin);
@@ -233,7 +293,6 @@ angular.module('imapsNgApp')
 								console.log(origPin);
 							}
 						});
-
 					});
 				});
 				var highlightTab = function (tab) {
@@ -261,7 +320,7 @@ angular.module('imapsNgApp')
 									if (deed.bomDocNum) {
 										if (deed.bomDocNum != "0") {
 											$scope.plats.push(deed);
-										}										
+										}
 									}
 								});
 							});
