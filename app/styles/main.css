@@ -11,6 +11,10 @@ body, html {
   transition: background-color 0.6s ease-in-out 0s;
 }
 
+[draggable=true] {
+  -khtml-user-drag: element;
+}
+
 export-button {
   position: absolute;
   top: 5px;
