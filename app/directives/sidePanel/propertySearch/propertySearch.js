@@ -111,6 +111,7 @@ angular.module('imapsNgApp')
 				}
 			});
 			$scope.$on('accountSelected', function (e, account) {
+				$location.search('pin', account.pin);
 				$scope.tabChanged(false);
 				$rootScope.checked = true;
 				$scope.searchDir.open = true;
