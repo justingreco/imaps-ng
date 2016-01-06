@@ -31,6 +31,8 @@ angular.module('imapsNgApp')
 					$rootScope.selectedSearch = $rootScope.searches[0];
 				} else if ($event.target.text === 'For Location') {
 					$rootScope.selectedSearch = $rootScope.searches[1];
+				} else if ($event.target.text === 'For Utilities') {
+					$rootScope.selectedSearch = $rootScope.searches[2];
 				}
 			    $scope.searchTypeStatus.isopen = false;	
 			    $scope.searchDir.open = true;

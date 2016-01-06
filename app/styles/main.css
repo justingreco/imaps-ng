@@ -802,6 +802,24 @@ input::-ms-clear {
 location-search .form-control {
   margin-bottom: 1em;
 }
+utility-search .form-control {
+  margin-bottom: 1em;
+}
+
+#utilityResults {
+    bottom: 0;
+    top: 180px;
+    position: absolute;
+    overflow: auto;
+    right: 0;
+    left: 0;
+
+}
+
+#utilityResults strong{
+    cursor: pointer;
+}
+
 #place {
   position: absolute;
   bottom: 0;

@@ -8,11 +8,15 @@
  * Controller of the imapsNgApp
  */
 angular.module('imapsNgApp')
-  .controller('MainCtrl', function ($rootScope, config) {
+  .controller('MainCtrl', function ($rootScope, $location, config) {
   	$rootScope.checked = true;
     $rootScope.loading = true;
-
-    config.loadConfig('config/config.json').then(function (data) {
+    var configUrl = 'config/config.json';
+    if ($location.search().config) {
+    	configUrl = 'config/' + $location.search().config + '.json';
+    	$rootScope.configName = $location.search().config;
+    }
+    config.loadConfig(configUrl).then(function (data) {
     	$rootScope.config = data;
     });
 

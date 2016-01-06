@@ -13,7 +13,8 @@ angular.module('imapsNgApp')
 				cfpLoadingBar.complete();
 			};
 			var mapUnloaded = function () {
-				localStorageService.set('imaps_webmap', stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
+				var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+				localStorageService.set(storage, stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
 			};
 			var checkInsideRaleigh = function (bounds, point) {
 				require(["esri/geometry/Polygon"], function (Polygon) {
@@ -44,11 +45,12 @@ angular.module('imapsNgApp')
 			var setLayerVisibleLayers = function () {
 				angular.forEach($scope.map.layerIds, function (id) {
 					var itemInfo = null;
+					var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
 					if (oldItemInfo) {
 						itemInfo = oldItemInfo;
 					} else {
-						if (localStorageService.get('imaps_webmap')) {
-							itemInfo = localStorageService.get('imaps_webmap').itemInfo
+						if (localStorageService.get(storage)) {
+							itemInfo = localStorageService.get(storage).itemInfo
 						}
 					}
 					if (itemInfo) {
@@ -102,9 +104,10 @@ angular.module('imapsNgApp')
 				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, SpatialReference, LocateButton, on) {
 					if (oldItemInfo) {
 						response = compareVisibleLayers(response, oldItemInfo);
-					}					
-					if (localStorageService.get('imaps_webmap')) {
-						$scope.webmap = localStorageService.get('imaps_webmap');
+					}
+					var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+					if (localStorageService.get(storage)) {
+						$scope.webmap = localStorageService.get(storage);
 						$scope.webmap.clickEventHandle = response.clickEventHandle;
 						$scope.webmap.clickEventListener = response.clickEventListener;
 					} else {
@@ -189,18 +192,19 @@ angular.module('imapsNgApp')
 
 						itemDeferred.addCallback(function (itemInfo) {
 							var input =  itemInfo;
-							if (localStorageService.get('imaps_webmap')) {
-								if (itemInfo.item.modified === localStorageService.get('imaps_webmap').itemInfo.item.modified) {
+							var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+							if (localStorageService.get(storage)) {
+								if (itemInfo.item.modified === localStorageService.get(storage).itemInfo.item.modified) {
 									var webmap = {};
-									webmap.item = localStorageService.get('imaps_webmap').itemInfo.item;
-									webmap.itemData = localStorageService.get('imaps_webmap').itemInfo.itemData;
+									webmap.item = localStorageService.get(storage).itemInfo.item;
+									webmap.itemData = localStorageService.get(storage).itemInfo.itemData;
 									input = webmap;
 								} else {
-									itemInfo.item.extent = localStorageService.get('imaps_webmap').itemInfo.item.extent;
-									itemInfo.itemData.baseMap = localStorageService.get('imaps_webmap').itemInfo.itemData.baseMap;
-									itemInfo = compareOpLayers(itemInfo, localStorageService.get('imaps_webmap').itemInfo);
-									oldItemInfo = localStorageService.get('imaps_webmap').itemInfo;
-									localStorageService.remove('imaps_webmap');
+									itemInfo.item.extent = localStorageService.get(storage).itemInfo.item.extent;
+									itemInfo.itemData.baseMap = localStorageService.get(storage).itemInfo.itemData.baseMap;
+									itemInfo = compareOpLayers(itemInfo, localStorageService.get(storage).itemInfo);
+									oldItemInfo = localStorageService.get(storage).itemInfo;
+									localStorageService.remove(storage);
 
 								}		
 							}
