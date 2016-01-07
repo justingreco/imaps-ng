@@ -1,0 +1,446 @@
+{
+	"title": "PUMA",
+	"map": {
+		"id": "80adad39d740463aa267aaba5d63495d",
+		"geometryServiceUrl": "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+		"wkid": 2264,
+		"labels": "http://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
+		"basemaps": {
+			"streets" : {
+				"thumbnail": "basemap.2c98ee82.png",
+				"layers": [
+				{
+					"name": "Base Map",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
+					"labels": true,
+					"tiled": true,
+					"id": "base-map"
+				},
+				{
+					"name": "Base Map Basic",
+					"url": "http://maps.wakegov.com/arcgis/rest/services/BaseMapSimple/MapServer",
+					"labels": false,
+					"tiled": false,
+					"id": "base-map-basic"
+				}
+			]},
+			"images" : {
+				"thumbnail": "aerials.dba1430e.png",
+				"layers": [
+				{
+					"name": "2014",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2014/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2014"
+				},
+				{
+					"name": "2013",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2013/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-2013"
+				},
+				{
+					"name": "2012",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2012/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2012"
+				},
+				{
+					"name": "2011",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2011/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2011"
+				},
+				{
+					"name": "2010",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2010/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-2010"
+				},
+				{
+					"name": "2009",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2009/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2009"
+				},
+				{
+					"name": "2008",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2008/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2008"
+				},
+				{
+					"name": "2007",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2007/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2007"
+				},
+				{
+					"name": "2006",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2006/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2006"
+				},
+				{
+					"name": "2005",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2005/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-2005"
+				},
+				{
+					"name": "2004",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2004/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2004"
+				},
+				{
+					"name": "2002",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2002/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2002"
+				},
+				{
+					"name": "1999",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1999/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-1999"
+				},
+				{
+					"name": "1988",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1988/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-1988"
+				},
+				{
+					"name": "1981",
+					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1981/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-1981"
+				}
+			]}
+		}
+	},
+	"header": {
+		"menus": [
+			{"label": "Disclaimer", "click": true, "items":
+				[
+				]
+			},		
+			{"label": "About", "click": true, "items":
+				[
+
+				]
+			},
+			{"label": "Feedback", "click": true, "items":
+				[
+				]
+			},
+			{"label": "Links", "items":
+				[
+					{"label": "City of Raleigh", "href": "http://www.raleighnc.gov"},
+					{"label": "Wake County", "href": "http://www.wakegov.com"},
+					{"label": "Raleigh GIS", "href": "http://www.raleighnc.gov/business/content/ITechAdmin/Articles/GeographicInformationServices.html"},
+					{"label": "Wake GIS", "href": "http://www.wakegov.com/gis/Pages/default.aspx"}
+				]
+			},
+			{"label": "Data Download", "items":
+				[
+					{"label": "Raleigh Open GIS Data", "href": "http://data.ral.opendata.arcgis.com/"},
+					{"label": "Wake Open Data Beta", "href": "http://data.wake.opendata.arcgis.com/"},
+					{"label": "Raleigh Open Data", "href": "https://data.raleighnc.gov/"}
+				]
+			},
+			{"label": "Help", "items":
+				[
+					{"label": "Coming Soon!", "href": "#"}
+				]
+			}
+		]
+	},
+	"tools": {
+		"print": {
+			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/SaveToPDF/GPServer/SaveToPDF"
+		},
+		"export": {
+			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+		},		
+		"bookmarks": [
+			{"name": "Downtown Raleigh",
+				"extent":{"xmin":2104769,
+				"ymin":736771,
+				"xmax":2109252,
+				"ymax":739663,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "NC State",
+				"extent":{"xmin":2094300,
+				"ymin":738100,
+				"xmax":738100,
+				"ymax":742700,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			},
+			{"name": "Downtown Cary",
+				"extent":{"xmin":2061317,
+				"ymin":738842,
+				"xmax":2067975,
+				"ymax":743413,
+				"spatialReference":{"wkid": 2264}}
+			}
+		]
+	},
+"services":{
+        "url": "http://maps.raleighnc.gov/ArcGIS/rest/services/Services/ServicesIMaps/MapServer/identify",
+        "categories": [
+            {"title": "Voting",
+                "services": [
+                    {
+                        "title": "Precinct [PRECINCT] Polling Place",
+                        "labels": "[POLL_PL];[ST_NUMBER] [ST_NAME:proper], [CITY:proper]",
+                        "layerId": 1,
+                        "url": ""
+                    },
+                    {
+                        "title": "State Senate District [DISTRICT]",
+                        "labels": "<a class='ps-link' href='[WEBSITE]' target='_blank'>[NAME] ([PARTY]) <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 2
+                    },
+                    {
+                        "title": "US House District [DISTRICT]",
+                        "labels": "<a class='ps-link' href='[WEBSITE]' target='_blank'>[NAME] ([PARTY]) <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 3
+                    },
+                    {
+                        "title": "State House District [DISTRICT]",
+                        "labels": "<a class='ps-link' href='[WEBSITE]' target='_blank'>[NAME] ([PARTY]) <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 4
+                    },
+                    {
+                        "title": "Wake County Commissioners District [DISTRICT]",
+                        "labels": "<a class='ps-link' href='http://www.wakegov.com/commissioners/districts/Pages/district[DISTRICT].aspx' target='_blank'>[NAME] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 5
+                    },
+                    {
+                        "title": "Board of Education District [DISTRICT]",
+                        "labels": "<a class='ps-link' href='http://eboard.eboardsolutions.com/AboutUs/AboutUs.aspx?S=920&TID=1' target='_blank'>[NAME] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 6
+                    },
+                    {
+                        "title": "Raleigh Council District [DISTRICT]",
+                        "labels": "<a class='ps-link' href='http://www.raleighnc.gov/home/content/BoardsCommissions/Articles/CityCouncil.html' target='_blank'>[NAME] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 7
+                    },
+                    {
+                        "title": "Cary Council District [DIST]",
+                        "labels": "<a class='ps-link' href='http://www.townofcary.org/Departments/Town_Clerk_s_Office/Cary_Town_Council.htm' target='_blank'>[REP] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 8
+                    }
+                ]
+            },
+            {"title": "Planning",
+                "services": [
+                    {"title": "Angier Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 11
+                    },
+                    {"title": "Apex Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 12
+                    },
+                    {"title": "Cary Zoning",
+                        "labels": "[NAME]",
+                        "layerId": 13
+                    },
+                    {"title": "County Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 14
+                    },
+                    {"title": "Fuquay-Varina Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 15
+                    },
+                    {"title": "Garner Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 16
+                    },
+                    {"title": "Holly Springs Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 17
+                    },
+                    {"title": "Knightdale Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 18
+                    },
+                    {"title": "Morrisville Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 19
+                    },
+                    {"title": "Rolesville Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 20
+                    },
+                    {"title": "Wake Forest Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 21
+                    },
+                    {"title": "Wendell Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 22
+                    },
+                    {"title": "Zebulon Zoning",
+                        "labels": "[CLASS]",
+                        "layerId": 23
+                    },
+                    {"title": "City Limit",
+                        "labels": "[LONG_NAME:proper]",
+                        "layerId": 24
+                    },
+                    {"title": "Planning Jurisdiction (ETJ)",
+                        "labels": "[JURISDICTION:proper]",
+                        "layerId": 25
+                    },
+                    {"title": "Raleigh Annexation Year",
+                        "labels": "[CASE_YEAR]",
+                        "layerId": 27
+                    },
+                    {"title": "Raleigh Future Landuse",
+                        "labels": "[Land_Use]",
+                        "layerId": 28
+                    },{"title": "Subdivision",
+                        "labels": "[NAME:proper]",
+                        "layerId": 29
+                    },{"title": "Development Plans",
+                        "labels": "File #: [CASE];Name: [FILE_NAME:proper]",
+                        "layerId": 30
+                    }
+                ]
+            } ,
+            {"title": "Solid Waste",
+                "services": [
+                    {"title": "Collection Day",
+                        "labels": "<a class='ps-link' href='[URL]' target='_blank'>[TRASH_COLLECTION_DAY] <span class='glyphicon glyphicon-new-window'></span></a>;<a class='ps-link' href='[HOLIDAY_URL]' target='_blank'>Holiday Schedule <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 32
+                    },{
+                        "title": "Trash Collection Route",
+                        "labels": "[Trash Route]",
+                        "layerId": 33
+                    },{
+                        "title": "Yardwaste Collection Route",
+                        "labels": "[Yardwaste Route]",
+                        "layerId": 33
+                    },{
+                        "title": "Bi-Weekly Recycling Collection",
+                        "labels": "Route: [Recycling Route]",
+                        "layerId": 33
+                    },{
+                        "title": "Bi-Weekly Recycling Collection",
+                        "labels": "Collection Day: [Collection Day];Recycling Week: <a class='ps-link' href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars/[Collection Day][WEEK].pdf' target='_blank'>[WEEK] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 34
+                    }
+                ]
+            },{"title": "Public Safety",
+                "services": [
+                    {"title": "Sheriff Zone",
+                    "labels": "[DISTRICT]",
+                    "layerId": 36},
+                    {"title": "Raleigh Police Beat",
+                    "labels": "[Name]",
+                    "layerId": 37},
+                    {"title": "Garner Police Beat",
+                    "labels": "[Name]",
+                    "layerId": 38},
+                    {"title": "Fire Insurance District",
+                    "labels": "[District]",
+                    "layerId": 39},
+                    {"title": "County Fire Response District",
+                    "labels": "[District]",
+                    "layerId": 40},
+                    {"title": "Raleigh Fire Response District",
+                    "labels": "[District]",
+                    "layerId": 41},
+                    {"title": "EMS Franchise District",
+                    "labels": "[District:proper]",
+                    "layerId": 42},
+                    {"title": "EMS Response District",
+                    "labels": "[District:proper]",
+                    "layerId": 43}
+                ]
+            },{"title": "Environmental",
+                "services": [
+                    {"title": "Floodplain",
+                    "labels": "[ZONE_IMAPS]",
+                    "layerId": 45},
+                    {"title": "Soils",
+                    "labels": "[NAME] - [DESCRIPTION]",
+                    "layerId": 46},
+                    {"title": "Hydrologic Unit",
+                    "labels": "[HUC_CODE]",
+                    "layerId": 47},
+                    {"title": "Critical Wastershed",
+                    "labels": "[PROPWS]",
+                    "layerId": 48},
+                    {"title": "Drainage Basin",
+                    "labels": "[BASINS:proper]",
+                    "layerId": 50}
+                ]
+            },{"title": "City of Raleigh Assessments",
+                "services": [
+                    {"title": "Assement Liens",
+                    "labels": "Account #: <a class='ps-link' href='http://www.raleighnc.gov/home/content/Finance/Articles/OtherPaymentInformatio.html' target='_blank'>[Account] <span class='glyphicon glyphicon-new-window'></span></a>;Type: [Type];Status: [Status];Confirmed: [Confirmed Date];",
+                    "layerId": 52}
+                ]
+            }
+        ]
+    }
+
+}
