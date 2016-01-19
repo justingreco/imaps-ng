@@ -69,7 +69,7 @@ export-button:hover {
 .select-wrapper select::-ms-expand{
   display: none;
 }
-.open-heading .panel-heading{
+.panel-open .panel-heading{
   background-color: #008093 !important;
 }
 .select-wrapper {
@@ -576,6 +576,23 @@ layer-list .panel-body {
 .layer .btn {
   margin-right: 6px;
 }
+
+.accordion-toggle:focus{outline: none;}
+.out-scale {
+
+  -webkit-filter: grayscale(80%);
+  -moz-filter: grayscale(80%);
+  -ms-filter: grayscale(80%);
+  -o-filter: grayscale(80%);
+  filter: grayscale(80%);
+  filter: gray; /* IE 6-9 */
+        
+}
+
+.panel-title {
+  cursor: pointer;
+}
+
 .layer {
   margin-top: 6px;
   margin-bottom: 6px;
@@ -588,6 +605,10 @@ layer-list .panel-body {
   margin-left: 20px;
   margin-bottom: 6px;
   font-size: 12px;
+
+}
+.sub-layer-toggle {
+      display: flex;
 }
 .sub-layer span {
   cursor: pointer;
@@ -708,12 +729,20 @@ slider {
 }
 #locateButton {
   position: absolute;
-  bottom: 52px;
+  bottom: 10px;
   left: 112px;
   z-index: 50;
+    background-color: rgba(60,60,60,0.8) !important;
+
 }
 .LocateButton .zoomLocateButton {
   background-color: rgba(60,60,60,0.8) !important;
+  border-radius: 0 !important;
+  border-color: white !important;
+  border: solid;
+  border-width: 1px;
+  height: 32px !important;
+  width: 32px !important;
 }
 .map .tooltip {
   width: 100px;

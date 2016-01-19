@@ -5,6 +5,7 @@ angular.module('imapsNgApp')
 		restrict: 'EA',
 		controller: function ($scope) {
 			$scope.layerFilterValue = '';
+			$scope.$parent.$broadcast('refreshSlider');
 			var getLegend = function (l) {
 				legend.getLegend(l.url, l.id).then(function (legend) {
 					var lyr = $filter('filter')($scope.layers, function (i) {
@@ -20,10 +21,12 @@ angular.module('imapsNgApp')
 			$scope.$watch('webmap', function (webmap) {
 				if (webmap) {
 					$scope.layers = webmap.itemInfo.itemData.operationalLayers;
+					console.log($scope.layers);
 					console.log(webmap.itemInfo.itemData.operationalLayers);
 					angular.forEach($scope.layers, function (l) {
 						if (l.visibility) {
 							getLegend(l);
+
 						}
 					});
 				}
@@ -78,11 +81,25 @@ angular.module('imapsNgApp')
 
 			$scope.opacityChanged = function (layer, webmap) {
 				$scope.map.getLayer(layer.id).setOpacity(layer.opacity);
+
 			};
 
 			$scope.translate = function(value) {
 			    return (value * 100).toFixed(0) + '%';
-		  };
+		  	};
+		  	$scope.zoomToLayer = function (layer) {
+/*		  		require(['esri/geometry/Extent'], function (Extent){
+					$scope.map.setExtent(new Extent(layer.resourceInfo.initialExtent), true);
+		  		});*/
+	  			if ($scope.map.getScale() > layer.resourceInfo.minScale) {
+					$scope.map.setScale(layer.resourceInfo.minScale);
+				}				
+		  	};
+		  	$scope.zoomToSubLayer = function (sublayer) {
+	  			if ($scope.map.getScale() > sublayer.minScale) {
+					$scope.map.setScale(sublayer.minScale);
+				}
+		  	};	
 
 		},
 		link: function (scope, element, attrs) {

@@ -51,6 +51,7 @@ angular.module('imapsNgApp')
 				if (open) {
 					$scope.searchDir.open = false;
 					$scope.resetPanel();
+					$scope.$broadcast('refreshSlider');
 				}
 			});
 		}, link: function (scope, element, attr) {

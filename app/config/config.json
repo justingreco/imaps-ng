@@ -2,16 +2,16 @@
 	"title": "iMAPS",
 	"map": {
 		"id": "0757b2fd0e6f44dd8d8fefbfc09aa8eb",
-		"geometryServiceUrl": "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+		"geometryServiceUrl": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 		"wkid": 2264,
-		"labels": "http://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
+		"labels": "https://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
 		"basemaps": {
 			"streets" : {
 				"thumbnail": "basemap.png",
 				"layers": [
 				{
 					"name": "Base Map",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
 					"labels": true,
 					"tiled": true,
 					"id": "base-map"
@@ -28,8 +28,16 @@
 				"thumbnail": "aerials.png",
 				"layers": [
 				{
+					"name": "2015",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2015/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2015"
+				},				
+				{
 					"name": "2014",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2014/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2014/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -37,7 +45,7 @@
 				},
 				{
 					"name": "2013",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2013/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2013/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": true,
@@ -45,7 +53,7 @@
 				},
 				{
 					"name": "2012",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2012/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2012/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -53,7 +61,7 @@
 				},
 				{
 					"name": "2011",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2011/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2011/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -61,7 +69,7 @@
 				},
 				{
 					"name": "2010",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2010/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2010/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": true,
@@ -69,7 +77,7 @@
 				},
 				{
 					"name": "2009",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2009/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2009/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -77,7 +85,7 @@
 				},
 				{
 					"name": "2008",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2008/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2008/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -85,7 +93,7 @@
 				},
 				{
 					"name": "2007",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2007/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2007/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -93,7 +101,7 @@
 				},
 				{
 					"name": "2006",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2006/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2006/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -101,7 +109,7 @@
 				},
 				{
 					"name": "2005",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2005/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2005/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": true,
@@ -109,7 +117,7 @@
 				},
 				{
 					"name": "2004",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2004/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2004/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -117,7 +125,7 @@
 				},
 				{
 					"name": "2002",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2002/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2002/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": false,
@@ -125,7 +133,7 @@
 				},
 				{
 					"name": "1999",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1999/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1999/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": true,
@@ -133,7 +141,7 @@
 				},
 				{
 					"name": "1988",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1988/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1988/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": true,
@@ -141,7 +149,7 @@
 				},
 				{
 					"name": "1981",
-					"url": "http://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1981/ImageServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos1981/ImageServer",
 					"labels": false,
 					"tiled": true,
 					"county": true,
@@ -189,10 +197,10 @@
 	},
 	"tools": {
 		"print": {
-			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/SaveToPDF/GPServer/SaveToPDF"
+			"url": "https://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/SaveToPDF/GPServer/SaveToPDF"
 		},
 		"export": {
-			"url": "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
+			"url": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
 		},		
 		"bookmarks": [
 			{"name": "Downtown Raleigh",
@@ -240,7 +248,7 @@
 		]
 	},
 "services":{
-        "url": "http://maps.raleighnc.gov/ArcGIS/rest/services/Services/ServicesIMaps/MapServer/identify",
+        "url": "https://maps.raleighnc.gov/ArcGIS/rest/services/Services/ServicesIMaps/MapServer/identify",
         "categories": [
             {"title": "Voting",
                 "services": [

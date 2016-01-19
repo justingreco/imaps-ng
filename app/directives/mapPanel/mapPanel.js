@@ -5,6 +5,7 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $timeout, property, localStorageService, $filter, mapUtils) {
 			$scope.property = property;
+
 			var oldItemInfo = null;
 			var mapUpdating = function () {
 				cfpLoadingBar.start();
@@ -33,6 +34,7 @@ angular.module('imapsNgApp')
 				if ($scope.raleighBounds) {
 					checkInsideRaleigh($scope.raleighBounds, e.extent.getCenter());
 				}
+				$scope.scale = $scope.map.getScale();
 			};
 			var setRaleighBounds = function () {
 				mapUtils.loadRaleighBounds('data/raleigh.json').then(function (bounds) {
@@ -114,6 +116,7 @@ angular.module('imapsNgApp')
 						$scope.webmap = response;
 					}
 					$scope.map = response.map;
+
 					setRaleighBounds();
 					addGraphicsLayers(GraphicsLayer);
 					$scope.$digest();
@@ -155,13 +158,13 @@ angular.module('imapsNgApp')
 
 					$('#loading').remove();
 					$('#loadingBackground').remove();
-
+					$scope.scale = $scope.map.getScale();
 					$rootScope.$broadcast('mapLoaded');
 
 
 
 					var home = new HomeButton({map: $scope.map, extent: new Extent(1948652, 608444, 2249012, 862044, new SpatialReference({wkid: 2264}))}, 'homeButton').startup();
-				//	var locate = new LocateButton({map: $scope.map}, 'locateButton').startup();
+					var locate = new LocateButton({map: $scope.map, scale: 2400, highlightLocation: true}, 'locateButton').startup();
 
 				});
 			}
@@ -183,9 +186,10 @@ angular.module('imapsNgApp')
 			$rootScope.$watch('config', function (config) {
 				if (config) {
 					$scope.config = config;
-					require(["esri/map", "esri/arcgis/utils", "esri/config", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig) {
+					require(["esri/map", "esri/arcgis/utils", "esri/config", "esri/tasks/GeometryService", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig, GeometryService) {
 						esriConfig.defaults.io.proxyUrl = "http://maps.raleighnc.gov/parklocator/proxy.ashx";
 						esriConfig.defaults.io.alwaysUseProxy = false;
+						esriConfig.defaults.geometryService = new GeometryService("https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer");
 						var input = config.map.id;
 						
 						var itemDeferred = arcgisUtils.getItem(config.map.id);
@@ -209,7 +213,7 @@ angular.module('imapsNgApp')
 								}		
 							}
 							arcgisUtils.createMap(input,"map", {
-								geometryServiceURL: "http://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
+								geometryServiceURL: "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 								mapOptions: {fadeOnZoom: true,
 									logo: false,
 									showAttribution: false,

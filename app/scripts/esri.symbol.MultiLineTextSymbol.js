@@ -1,9 +1,9 @@
 require(["esri/layers/LabelLayer"], function(ll)
 {
-	if( typeof esri.layers.LabelLayer.prototype._addLabel == 'function' )
+	if( typeof ll.prototype._addLabel == 'function' )
 	{
-		esri.layers.LabelLayer.prototype._addLabel2 = esri.layers.LabelLayer.prototype._addLabel;
-		esri.layers.LabelLayer.prototype._addLabel = function(a,b,c,e,g,k,m)
+		ll.prototype._addLabel2 = ll.prototype._addLabel;
+		ll.prototype._addLabel = function(a,b,c,e,g,k,m)
 		{
 			// replace \n by <br>
 			a = a.replace(/\n/g, "<br />");

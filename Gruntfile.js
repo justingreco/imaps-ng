@@ -326,6 +326,7 @@ module.exports = function (grunt) {
             'images/*',            
             'fonts/*',
             'directives/**/*.html',
+            'arcgis/**/*',
             'data/*',
             'config/*'
           ]
