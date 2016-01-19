@@ -584,7 +584,17 @@ layer-list .panel-body {
   -moz-filter: grayscale(80%);
   -ms-filter: grayscale(80%);
   -o-filter: grayscale(80%);
-  filter: gray; /* IE 6-9 */
+  filter: gray;
+}
+
+.ie .out-scale .btn-success {
+  background-color: #778977;
+  border-color: #849884;
+}
+
+.ie .out-scale .btn-danger {
+  background-color: #846A69;
+  border-color: #765857;
 }
 
 .panel-title {
@@ -628,6 +638,9 @@ slider {
   margin-right: 50px;
   width: 95%;
   display: block;
+}
+::-ms-tooltip {
+    display: none;
 }
 .bar {
   width: 100%;
