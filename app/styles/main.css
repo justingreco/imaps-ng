@@ -584,9 +584,7 @@ layer-list .panel-body {
   -moz-filter: grayscale(80%);
   -ms-filter: grayscale(80%);
   -o-filter: grayscale(80%);
-  filter: grayscale(80%);
   filter: gray; /* IE 6-9 */
-        
 }
 
 .panel-title {
