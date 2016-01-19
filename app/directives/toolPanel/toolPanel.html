@@ -2,7 +2,7 @@
 <br/>
 <div class="collapse-panel" ng-style="{height: ((toolsChecked) ? tool.height + 'px': 0), width:((toolsChecked) ? tool.width + 'px': '140px')}">
 	<div style="display:inline-block;font-size:16pt">
-		<span analytics-on="click" analytics-category="Tools" analytics-event="Tool Changed" analytics-label="{{tool.title}}" ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" ng-click="toolChanged(tool)"></span>
+		<span analytics-on="click" analytics-category="Tools" analytics-event="Tool Changed" analytics-label="{{tool.title}}" ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" title="{{tool.title}}" uib-tooltip="{{tool.title}}" tooltip-placement="bottom-left" ng-click="toolChanged(tool)"></span>
 	</div>
 	<div class="toolcontainer">
 		<identify-tool ng-show="tool.title == 'Identify'"></identify-tool>
