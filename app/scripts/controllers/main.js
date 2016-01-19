@@ -19,11 +19,13 @@ angular.module('imapsNgApp')
         var mozilla= /mozilla/.test( userAgent ) && !/(compatible|webkit)/.test( userAgent ) || /firefox/.test(userAgent);
         var msie=(/msie/.test( userAgent ) || /mozilla/.test( userAgent )) && !/firefox/.test( userAgent ) && !/opera/.test( userAgent );
      
-        if(msie) return "ie";
+        
         if(chrome) return "chrome";
+        if(safari) return "safari";
+        if(msie) return "ie";
         if(mozilla) return "mozilla";
         if(opera) return "opera";
-        if(safari) return "safari";
+
         
     };    
     if(getBrowser()=='mozilla'){

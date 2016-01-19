@@ -579,12 +579,11 @@ layer-list .panel-body {
 
 .accordion-toggle:focus{outline: none;}
 .out-scale {
-
   -webkit-filter: grayscale(80%);
   -moz-filter: grayscale(80%);
   -ms-filter: grayscale(80%);
   -o-filter: grayscale(80%);
-  filter: gray;
+  filter: grayscale(80%);
 }
 
 .ie .out-scale .btn-success {
