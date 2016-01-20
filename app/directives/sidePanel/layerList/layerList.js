@@ -21,8 +21,6 @@ angular.module('imapsNgApp')
 			$scope.$watch('webmap', function (webmap) {
 				if (webmap) {
 					$scope.layers = webmap.itemInfo.itemData.operationalLayers;
-					console.log($scope.layers);
-					console.log(webmap.itemInfo.itemData.operationalLayers);
 					angular.forEach($scope.layers, function (l) {
 						if (l.visibility) {
 							getLegend(l);
