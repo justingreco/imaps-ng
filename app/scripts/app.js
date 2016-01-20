@@ -59,6 +59,6 @@ angular
 
   var touch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
   if (touch) {
-    $uibTooltipProvider.setTriggers({'none':'none'});
+    $uibTooltipProvider.setTriggers({'focus':'blur'});
   }
 }]);
