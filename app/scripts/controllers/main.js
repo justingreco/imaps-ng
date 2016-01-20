@@ -51,5 +51,5 @@ angular.module('imapsNgApp')
     config.loadConfig(configUrl).then(function (data) {
     	$rootScope.config = data;
     });
-    $scope.touch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
+    $rootScope.touch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
   });
