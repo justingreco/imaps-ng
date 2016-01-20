@@ -14,5 +14,5 @@
 	<property-addresses ng-show="tab.title == 'Addresses'"></property-addresses>
 </div>
 <div id="proptabs">
-	<span analytics-on="click" analytics-if="!tab.disabled" analytics-category="Property Search" analytics-event="Tab Changed" analytics-label="{{tab.title}}" ng-model="tab" ng-repeat="tab in tabs" class="glyphicon glyphicon-{{tab.icon}}" ng-class="{highlighted: tab.highlighted, disabledTab: tab.disabled}" ng-click="tabClicked(tab)" ng-disabled="tab.disabled" uib-tooltip="{{tab.title}}"></span>
+	<span analytics-on="click" analytics-if="!tab.disabled" analytics-category="Property Search" analytics-event="Tab Changed" analytics-label="{{tab.title}}" ng-model="tab" ng-repeat="tab in tabs" class="glyphicon glyphicon-{{tab.icon}}" ng-class="{highlighted: tab.highlighted, disabledTab: tab.disabled}" ng-click="tabClicked(tab)" ng-disabled="tab.disabled" uib-tooltip="{{tab.title}}" tooptip-trigger="mouseenter click"></span>
 </div>

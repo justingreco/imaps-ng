@@ -55,10 +55,4 @@ angular
         ctrl.$parsers.push(inputValue);
       }
     };
-}).config(['$uibTooltipProvider', function ($uibTooltipProvider) {
-
-  var touch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
-  if (touch) {
-    $uibTooltipProvider.setTriggers('none');
-  }
-}]);
+});
