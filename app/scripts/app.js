@@ -55,14 +55,10 @@ angular
         ctrl.$parsers.push(inputValue);
       }
     };
-}).config(['$tooltipProvider', function ($tooltipProvider) {
-  var parser = new UAParser();
-  var result = parser.getResult();
-  var touch = result.device && (result.device.type === 'tablet'  || result.device.type === 'mobile');
+}).config(['$uibTooltipProvider', function ($uibTooltipProvider) {
+
+  var touch = (('ontouchstart' in window) || (navigator.MaxTouchPoints > 0) || (navigator.msMaxTouchPoints > 0));
   if (touch) {
-    var options = {
-      trigger = 'dontTrigger';
-    };
-    $tooltipProvider.options(options);
+    $uibTooltipProvider.setTrigger('none');
   }
 }]);
