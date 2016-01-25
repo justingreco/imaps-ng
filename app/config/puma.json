@@ -190,7 +190,7 @@
 			},
 			{"label": "Help", "items":
 				[
-					{"label": "Coming Soon!", "href": "#"}
+					{"label": "Help", "href": "http://maps.wakegov.com/imaps/iMAPShelp.pdf"}
 				]
 			}
 		]
