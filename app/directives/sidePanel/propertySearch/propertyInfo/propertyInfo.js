@@ -60,7 +60,13 @@ angular.module('imapsNgApp')
 				if (account.pin) {
 					getSepticPermits(account.pin);
 				}
+				$("#infoGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 30 + 'px', 'max-height': $('.tabcontainer').height() - 30 + 'px'});
 			});
+
+
+
+			var setGrid = function () {
+				console.log($('.tabcontainer').height());
 			$scope.infoGrid = {
 				data: $scope.accountInfo,
 				showGridShowPerPage: false,
@@ -89,7 +95,9 @@ angular.module('imapsNgApp')
 						}
 					}
 				]
-			};
+			};};
+			setGrid();
+			
 
 	//
 	//

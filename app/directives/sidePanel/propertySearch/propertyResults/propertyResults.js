@@ -13,6 +13,8 @@ angular.module('imapsNgApp')
 					angular.forEach($scope.fields, function (f) {
 						$scope.resultHeader.push(f.alias);
 					});
+					$("#resultGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 50 + 'px', 'max-height': $('.tabcontainer').height() - 50 + 'px'});
+
 				});
 			  $scope.resultGrid = {
 			  	data: $scope.accounts,
@@ -20,7 +22,7 @@ angular.module('imapsNgApp')
 			  	showGridSearch: false,
 			  	pageSize: 10000,
 			  	pageSizes: [10000],
-			  	height: $('.tabcontainer').height() - 30,
+			  	height: $('.tabcontainer').height() ,
 			  	columnDefs: [
 			  		{
 			  			field: 'siteAddress',
