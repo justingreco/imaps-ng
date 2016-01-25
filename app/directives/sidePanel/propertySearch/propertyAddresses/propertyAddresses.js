@@ -50,6 +50,7 @@ angular.module('imapsNgApp')
 							$scope.addrGrid.columnDefs = $scope.wakeCols;
 							$scope.rpid = null;
 						}
+						$("#addrGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 30 + 'px', 'max-height': $('.tabcontainer').height() - 62 + 'px'});
 					}
 				}
 			});
