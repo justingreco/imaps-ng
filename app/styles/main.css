@@ -845,6 +845,7 @@ utility-search .form-control {
   margin-bottom: 1em;
 }
 
+
 #utilityResults {
     bottom: 0;
     top: 180px;
@@ -918,4 +919,11 @@ utility-search .form-control {
 
 .browser-warning .glyphicon-warning-sign {
   font-size: 20px;
+}
+
+coordinate-search input::-webkit-outer-spin-button,
+coordinate-search input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
