@@ -825,11 +825,28 @@ border-radius: 0 !important;
  .esriSimpleSliderHorizontal .esriSimpleSliderDecrementButton {
 border-radius: 0 !important;
  }
- .tt-dropdown-menu {
+.tt-dropdown-menu {
   border-radius: 0 !important;
   color: white !important;
   background-color: rgb(60,60,60) !important;
   z-index: 10000;
+}
+
+location-search .dropdown-menu {
+  border-radius: 0 !important;
+  color: white !important;
+  background-color: rgb(60,60,60) !important;
+  z-index: 10000;
+  width: 100%;
+}
+
+location-search .dropdown-menu > li > a{
+  color: white !important;
+}
+
+location-search .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+  background-color: white !important;
+  color: black !important;
 }
 
 .panel-body {
