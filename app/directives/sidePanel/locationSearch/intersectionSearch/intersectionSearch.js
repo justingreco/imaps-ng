@@ -16,8 +16,6 @@ angular.module('imapsNgApp')
 				});
 		    };
 		    $scope.intersectionSelected = function () {
-
-
 				require([
 				  "esri/geometry/Point", "esri/layers/GraphicsLayer", "esri/graphic", "esri/symbols/PictureMarkerSymbol"
 				], function(Point, GraphicsLayer, Graphic, PictureMarkerSymbol) {
