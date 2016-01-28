@@ -43,7 +43,6 @@ angular.module('imapsNgApp')
 				  		}
 				  	});
 				  }
-				  
 				});
 			};
 
