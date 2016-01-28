@@ -6,7 +6,7 @@
 	  <ng-form name="coordinateForm">
 	    <div class="form-group" ng-class="{'has-error': coordinateForm.xCoordinate.$invalid}">
 	      <label class="control-label">{{coordinateType.xLabel}}</label>
-	      <input name="xCoordinate" ng-required="true" ng-model="coordinate.x" type="number" class="form-control input-sm" ng-required="true" ng-pattern="/^\-?\d+((\.|\,)\d+)?$/" ng-max="{{coordinateType.xmax}}" ng-min="{{coordinateType.xmin}}" placeholder="{{coordinateType.xPrompt}}"/>
+	      <input name="xCoordinate" ng-required="true" ng-model="coordinate.x" type="number" class="form-control input-sm" ng-required="true" ng-pattern="/^\-?\d+((\.|\,)\d+)?$/" ng-max="{{coordinateType.xmax}}" ng-min="{{coordinateType.xmin}}" placeholder="{{coordinateType.xPrompt}}" step="0"/>
 	    </div>
 	    <div class="form-group" ng-class="{'has-error': coordinateForm.yCoordinate.$invalid}">
 	      <label class="control-label">{{coordinateType.yLabel}}</label>
