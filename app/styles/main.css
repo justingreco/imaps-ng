@@ -76,8 +76,8 @@ export-button:hover {
   width: 100%;
   overflow: hidden;
   background: url("../images/downArrow.png") no-repeat right #fff;
-  background-position-x: 95%;
-  -moz-background-position-x: 95%;
+  background-position: 95%;
+  -moz-background-position: 95%;
   padding: 0;
   cursor: pointer;
 }
