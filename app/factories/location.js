@@ -55,9 +55,9 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'https://maps.raleighnc.gov/arcgis/rest/services/Locators/Locator/GeocodeServer/findAddressCandidates',
+			url: 'https://maps.raleighnc.gov/arcgis/rest/services/Locators/CompositeLocator/GeocodeServer/findAddressCandidates',
 			params: {
-				'Single Line Input': address,
+				'SingleLine': address,
 				returnGeometry: true,
 				f: "json"
 			}		

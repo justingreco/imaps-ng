@@ -45,7 +45,7 @@ angular.module('imapsNgApp')
 				{icon: 'picture', title:'Oblique', highlighted: false, height: 300, width: 320},
 				{icon: 'resize-horizontal', title:'Measure', highlighted: false, height: 200, width: 300},
 				{icon: 'bookmark', title:'Bookmarks', highlighted: false, height: 260, width: 300},
-				{icon: 'pencil', title:'Draw', highlighted: false, height: 200, width: 300},
+				{icon: 'pencil', title:'Draw', highlighted: false, height: 250, width: 300},
 				{icon: 'print', title:'Print', highlighted: false, height: 325, width: 300},
 				{icon: 'trash', title:'Clear Map', highlighted: false, height: 54, width: 300}
 			];

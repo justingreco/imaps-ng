@@ -63,8 +63,8 @@ export-button:hover {
 }
 
 .select-wrapper select option {
-  color: black !important;
-  /*background-color: transparent !important;*/
+  color: white !important;
+  background-color: rgba(60,60,60,0.8) !important;
 }
 .select-wrapper select::-ms-expand{
   display: none;
@@ -357,7 +357,7 @@ tool-panel .glyphicon {
   padding: 4px;
 }
 .tool-wrapper {
-  margin: 10px;
+  margin: 9px;
 }
 .tool-title {
   margin-left: 10px;
@@ -825,11 +825,28 @@ border-radius: 0 !important;
  .esriSimpleSliderHorizontal .esriSimpleSliderDecrementButton {
 border-radius: 0 !important;
  }
- .tt-dropdown-menu {
+.tt-dropdown-menu {
   border-radius: 0 !important;
   color: white !important;
   background-color: rgb(60,60,60) !important;
   z-index: 10000;
+}
+
+location-search .dropdown-menu {
+  border-radius: 0 !important;
+  color: white !important;
+  background-color: rgb(60,60,60) !important;
+  z-index: 10000;
+  width: 100%;
+}
+
+location-search .dropdown-menu > li > a{
+  color: white !important;
+}
+
+location-search .dropdown-menu > .active > a, .dropdown-menu > .active > a:hover, .dropdown-menu > .active > a:focus{
+  background-color: white !important;
+  color: black !important;
 }
 
 .panel-body {
@@ -844,6 +861,7 @@ location-search .form-control {
 utility-search .form-control {
   margin-bottom: 1em;
 }
+
 
 #utilityResults {
     bottom: 0;
@@ -918,4 +936,11 @@ utility-search .form-control {
 
 .browser-warning .glyphicon-warning-sign {
   font-size: 20px;
+}
+
+coordinate-search input::-webkit-outer-spin-button,
+coordinate-search input::-webkit-inner-spin-button {
+    /* display: none; <- Crashes Chrome on hover */
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
 }
