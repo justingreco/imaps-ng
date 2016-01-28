@@ -938,8 +938,8 @@ utility-search .form-control {
   font-size: 20px;
 }
 
-coordinate-search input::-webkit-outer-spin-button,
-coordinate-search input::-webkit-inner-spin-button {
+coordinate-search input[type=number]::-webkit-outer-spin-button,
+coordinate-search input[type=number]::-webkit-inner-spin-button {
     /* display: none; <- Crashes Chrome on hover */
     -webkit-appearance: none;
     margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
