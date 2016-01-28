@@ -9,7 +9,7 @@ angular.module('imapsNgApp')
 				bufferShape($scope.geometry, "esriGeometryPolygon");
 			}
 			var bufferShape = function (geom, type) {
-				require(['esri/geometry/geometryEngine', 'esri/geometry/Polygon', 'esri/graphic'], function (GeometryEngine, Polygon, Graphic) {
+				require(['esri/geometry/geometryEngine', 'esri/geometry/Polygon', 'esri/graphic', 'esri/graphicsUtils'], function (GeometryEngine, Polygon, Graphic, graphicsUtils) {
 					if  (!geom.type) {
 							geom = new  Polygon(geom);
 					}
@@ -20,7 +20,7 @@ angular.module('imapsNgApp')
 							width:3,type:"esriSLS",style:"esriSLSSolid"},
 							type:"esriSFS",style:"esriSFSSolid"}});					
 					$scope.bufferGraphics.add(g);
-
+					$scope.map.setExtent(graphicsUtils.graphicsExtent($scope.bufferGraphics.graphics), true);
 					searchForProperties(buffer, "esriGeometryPolygon", $scope.map.spatialReference.wkid);
 				});
 			};
