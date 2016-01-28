@@ -63,12 +63,12 @@ angular.module('imapsNgApp')
 						default:
 
 					}
+					e.geometry.spatialReference = $scope.map.spatialReference;
 					if ($scope.selectBufferDist > 0) {
 						bufferShape (e.geometry, type);
 					} else {
 						searchForProperties(e.geometry, type, $scope.map.spatialReference.wkid);
 					}
-
 				};
 				$scope.selectTypeChanged = function (type) {
 					if ($scope.freehand && type.indexOf('point') === -1) {
