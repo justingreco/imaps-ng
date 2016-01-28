@@ -66,7 +66,7 @@ angular.module('imapsNgApp')
 					if ($scope.selectBufferDist > 0) {
 						bufferShape (e.geometry, type);
 					} else {
-						searchForProperties(e.geometry, type, $scope.map.wkid);
+						searchForProperties(e.geometry, type, $scope.map.spatialReference.wkid);
 					}
 
 				};
