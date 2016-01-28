@@ -1,6 +1,6 @@
 <div style="position:absolute;top:40px;bottom:0;left:0;right:0;overflow-y:auto">
 	<div class="select-wrapper form-control input-sm">
-		<select class="form-control input-sm" ng-options="coordinateType as coordinateType.label for coordinateType in coordinateTypes" ng-model="coordinateType"></select>
+		<select class="form-control input-sm" ng-options="coordinateType as coordinateType.label for coordinateType in coordinateTypes" ng-model="coordinateType" ng-change="coordinate.x = null; coordinate.y = null"></select>
 	</div>
 	<form novalidate>
 	  <ng-form name="coordinateForm">
