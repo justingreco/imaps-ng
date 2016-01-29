@@ -22,10 +22,11 @@ angular.module('imapsNgApp')
 					            "height":26,
 					            "width":16,
 					            "type":"esriPMS"
-					          });							  
-					          gl.add(new Graphic(new Point({"x": response.candidates[0].location.x, "y": response.candidates[0].location.y, "spatialReference": {"wkid": $scope.map.spatialReference.latestWkid } }), symbol));
+					          });
+					          var pt = new Point({"x": response.candidates[0].location.x, "y": response.candidates[0].location.y, "spatialReference": {"wkid": $scope.map.spatialReference.latestWkid } });							  
+					          gl.add(new Graphic(pt, symbol));
 					          
-					          $scope.map.centerAndZoom(response.candidates[0].location, 11);							
+					          $scope.map.centerAndZoom(pt, 11);							
 						}
 					});
 		        });					
