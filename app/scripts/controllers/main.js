@@ -8,7 +8,7 @@
  * Controller of the imapsNgApp
  */
 angular.module('imapsNgApp')
-  .controller('MainCtrl', function ($rootScope, $location, config) {
+  .controller('MainCtrl', function ($rootScope, $location, $timeout, config) {
   	$rootScope.checked = true;
     $rootScope.loading = true;
     var getBrowser = function () {
@@ -46,7 +46,12 @@ angular.module('imapsNgApp')
     var ua = navigator.userAgent.toLowerCase();
     var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
     if(isAndroid) {
-      $('body').addClass('android');
+        $timeout(function () {
+          $('pageslide').addClass('android');
+          $('toggle-button').addClass('android');
+          $('tool-panel').addClass('android');  
+        });
+       
     }    
     var configUrl = 'config/config.json';
     if ($location.search().config) {
