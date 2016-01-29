@@ -1,17 +1,1 @@
-<div>
-	<div class="select-wrapper form-control input-sm">
-		<select class="form-control" ng-options="service as service.title for service in utilityServices" ng-model="utilityService" ng-change="utilityServiceSelected(utilityService)"><option value="">Select a service...</option></select>
-	</div>
-	<div class="select-wrapper form-control input-sm">
-		<select class="form-control" ng-options="layer as layer.name for layer in utilityLayers" ng-model="utilityLayer"><option value="">Select a layer...</option></select>
-	</div>
-	<form ng-submit="searchUtilities(utilityId)">
-		<input class="form-control input-sm" ng-model="utilityId" placeholder="Type facility ID and press enter"/>
-	</form>
-	<button class="btn btn-default btn-block" ng-click="searchUtilities(utilityId)">Search</button>
-</div>
-<div id="utilityResults">
-	<div ng-repeat="result in utilityResults" ng-click="utilityResultClicked(result.geometry)">
-		<strong>{{result.attributes['Facility Identifier']}}</strong>
-	</div>
-</div>
+<div> <div class="select-wrapper form-control input-sm"> <select class="form-control" ng-options="service as service.title for service in utilityServices" ng-model="utilityService" ng-change="utilityServiceSelected(utilityService)"><option value="">Select a service...</select> </div> <div class="select-wrapper form-control input-sm"> <select class="form-control" ng-options="layer as layer.name for layer in utilityLayers" ng-model="utilityLayer"><option value="">Select a layer...</select> </div> <form ng-submit="searchUtilities(utilityId)"> <input class="form-control input-sm" ng-model="utilityId" placeholder="Type facility ID and press enter"> </form> <button class="btn btn-default btn-block" ng-click="searchUtilities(utilityId)">Search</button> </div> <div id="utilityResults"> <div ng-repeat="result in utilityResults" ng-click="utilityResultClicked(result.geometry)"> <strong>{{result.attributes['Facility Identifier']}}</strong> </div> </div>

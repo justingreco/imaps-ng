@@ -1,1 +1,1 @@
-<input type="text" class="form-control input-sm" placeholder="Enter a subdivision..." ng-model="subdivision" uib-typeahead="subdivision as subdivision.attributes.NAME for subdivision in subdivisions($viewValue)" typeahead-on-select='subdivisionSelected($item, $model, $label)'/>
+<input type="text" class="form-control input-sm" placeholder="Enter a subdivision..." ng-model="subdivision" uib-typeahead="subdivision as subdivision.attributes.NAME for subdivision in subdivisions($viewValue)" typeahead-on-select="subdivisionSelected($item, $model, $label)">
