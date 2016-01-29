@@ -261,15 +261,20 @@ angular.module('imapsNgApp')
 							pins.push ("PIN_NUM = '" + a.pin + "'")
 						});
 						//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
-						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), $scope.config.map.wkid).then(function (data) {									
-							addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
+						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {									
+							$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 1, $scope.config.map.wkid).then(function (data2) {
+								addGeometriesToMap(data.features.concat(data2.features), $scope.selectionMultiple, [255,255,0]);
+							});
+							
 						});
 					}
 				});
 				$scope.$on('pinUpdate', function (e, pin) {
-					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", $scope.config.map.wkid ).then(function (data) {
-						$timeout(function (){ 
-							addGeometriesToMap(data.features, $scope.selectionSingle, [255,0,0]);
+					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 0, $scope.config.map.wkid ).then(function (data) {
+						$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 1, $scope.config.map.wkid ).then(function (data2) {
+							$timeout(function (){ 
+								addGeometriesToMap(data.features.concat(data2.features), $scope.selectionSingle, [255,0,0]);
+							});
 						});
 					});
 				});
