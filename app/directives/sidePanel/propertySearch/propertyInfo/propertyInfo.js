@@ -19,7 +19,6 @@ angular.module('imapsNgApp')
 				});
 				$rootScope.accountInfo = $scope.accountInfo;
 			};
-
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
 					if (data.SepticPermits.length > 0) {
@@ -42,13 +41,10 @@ angular.module('imapsNgApp')
 						$scope.infoGrid.data = $scope.accountInfo;
 					});
 				});
-
 			};
-
 			if ($scope.account && !$scope.accountInfo) {
 				formatAccountInfo($scope.account);
 			}
-
 			$scope.$on('accountSelected', function (e, account) {
 				$rootScope.account = account;
 				formatAccountInfo(account);
@@ -62,49 +58,38 @@ angular.module('imapsNgApp')
 				}
 				$("#infoGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 30 + 'px', 'max-height': $('.tabcontainer').height() - 30 + 'px'});
 			});
-
-
-
 			var setGrid = function () {
-				console.log($('.tabcontainer').height());
-			$scope.infoGrid = {
-				data: $scope.accountInfo,
-				showGridShowPerPage: false,
-				showGridSearch: false,
-				pageSize: 100,
-				pageSizes: [100],
-				height: $('.tabcontainer').height() - 30,
-				columnDefs: [
-					{
-						field: 'field',
-						displayName: 'Field',
-						sort: false
-					},
-					{
-						field: 'value',
-						displayName: 'Value',
-						sort: false,
-						render: function (row) {
-							if (row.field === "Septic Permit") {
-								return React.DOM.a({className: 'ps-link', href:"http://gisasp2.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value + " ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
-							} else if (row.field === "Well Samples") {
-								return React.DOM.a({className: 'ps-link', href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
-							} else if (row.field === "Crime") {
-								return React.DOM.a({className: 'ps-link', href: row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+				$scope.infoGrid = {
+					data: $scope.accountInfo,
+					showGridShowPerPage: false,
+					showGridSearch: false,
+					pageSize: 100,
+					pageSizes: [100],
+					height: $('.tabcontainer').height() - 30,
+					columnDefs: [
+						{
+							field: 'field',
+							displayName: 'Field',
+							sort: false
+						},
+						{
+							field: 'value',
+							displayName: 'Value',
+							sort: false,
+							render: function (row) {
+								if (row.field === "Septic Permit") {
+									return React.DOM.a({className: 'ps-link', href:"http://gisasp2.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value + " ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+								} else if (row.field === "Well Samples") {
+									return React.DOM.a({className: 'ps-link', href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+								} else if (row.field === "Crime") {
+									return React.DOM.a({className: 'ps-link', href: row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+								}
 							}
 						}
-					}
-				]
-			};};
+					]
+				}
+			;};
 			setGrid();
-			
-
-	//
-	//
-	// 		render: function() {
-	// return (
-	// 	<img src={'https://graph.facebook.com/' + this.props.username + '/picture'} />
-	// );
 			$scope.toggleProperty = function (forward) {
 				var current = $scope.accounts.indexOf($scope.account),
 					idx = (forward) ? current + 1 : current - 1;
@@ -118,7 +103,6 @@ angular.module('imapsNgApp')
 			};
 		},
 		link: function (scope, element, attrs) {
-
 		}
 	}
 });
