@@ -25,18 +25,21 @@ angular.module('imapsNgApp')
 				});
 			};
 			var searchForProperties = function (geometry, type, wkid) {
-				property.getPropertiesByGeometry(geometry, type, wkid).then(function (result) {
-					var pins = [];
-					angular.forEach(result.features, function (feature) {
-						pins.push(feature.attributes.PIN_NUM);
-					});
-					property.getRealEstate('pin', pins).then(function (data) {
-						$scope.account = null;
-						$scope.geometry = null;
-						$scope.fields = data.Fields;
-						$scope.accounts = data.Accounts;
-						$rootScope.zoomTo = false;
-						$rootScope.$broadcast('accountUpdate', data.Accounts);
+				property.getPropertiesByGeometry(geometry, type, 0, wkid).then(function (result) {
+					property.getPropertiesByGeometry(geometry, type, 1, wkid).then(function (result2) { 
+						result.features = result.features.concat(result2.features);
+						var pins = [];
+						angular.forEach(result.features, function (feature) {
+							pins.push(feature.attributes.PIN_NUM);
+						});
+						property.getRealEstate('pin', pins).then(function (data) {
+							$scope.account = null;
+							$scope.geometry = null;
+							$scope.fields = data.Fields;
+							$scope.accounts = data.Accounts;
+							$rootScope.zoomTo = false;
+							$rootScope.$broadcast('accountUpdate', data.Accounts);
+						});
 					});
 				});
 			}
