@@ -152,6 +152,7 @@ angular.module('imapsNgApp')
 				});
 			};
 			var valueSelected = function (a, b, c) {
+				$(".twitter-typeahead>input").blur();
 				c = ((c === 'streetname') ? 'street name':c);
 				searchForRealEstate(c, [b.value]);
 			}

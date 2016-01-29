@@ -784,7 +784,7 @@ slider {
 
 
 @media only screen and (min-device-width: 300px) and (max-device-width: 667px) and (-webkit-min-device-pixel-ratio: 2) and (orientation: landscape) { 
-  tool-panel {
+  tool-panel:not(.android) {
     display: none;
   }
   overview-panel {
@@ -793,10 +793,10 @@ slider {
   base-map-panel {
     display: none !important;
   }
-  pageslide {
+  pageslide:not(.android) {
     display: none;
   }
-  toggle-button {
+  toggle-button:not(.android) {
     display: none;
   }
 }
