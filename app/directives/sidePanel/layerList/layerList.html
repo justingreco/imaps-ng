@@ -22,7 +22,7 @@
           <span style="margin-left:0.5em;cursor: pointer;margin-top: 0.5em;" class="glyphicon glyphicon-zoom-in" ng-click="zoomToSubLayer(sublayer)" ng-show="scale > sublayer.minScale && layer.resourceInfo.minScale > 0"  uib-tooltip="{{((touch) ? '' : 'Zoom to make visible')}}" tooltip-placement="top" tooltip-append-to-body="true"></span>
         </div>
       <div class="legend" ng-repeat="legend in sublayer.legend" ng-model="legend" ng-show="sublayer.defaultVisibility">
-        <img ng-src="data:image/png;base64,{{legend.imageData}}" ng-style="{'opacity': layer.opacity}"/>{{legend.values[0]}}
+        <img ng-src="data:image/png;base64,{{legend.imageData}}" ng-style="{'opacity': layer.opacity}"/>{{legend.label}}
       </div>
     </div>
   </div>

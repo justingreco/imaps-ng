@@ -5,7 +5,6 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $rootScope) {
 			$rootScope.toolsChecked = false;
-
 			$rootScope.$watch('toolsChecked', function (checked) {
 				$scope.toolsChecked = checked;
 				$timeout(function () {
@@ -29,11 +28,12 @@ angular.module('imapsNgApp')
 					});
 					tool.highlighted = true;
 					$scope.tool = tool;
-					if (tool.title === 'Identify') {
+					if (tool.title === 'Identify' && tool.title != $scope.lastTool.title) {
 						$scope.webmap.clickEventHandle = on($scope.map, 'click', $scope.webmap.clickEventListener);
-					} else {
+					} else if (tool.title != $scope.lastTool.title){
 						$scope.webmap.clickEventHandle.remove();
 					}
+					$scope.lastTool = tool;
 				});
 			}
 
@@ -50,6 +50,7 @@ angular.module('imapsNgApp')
 				{icon: 'trash', title:'Clear Map', highlighted: false, height: 54, width: 300}
 			];
 			scope.tool = scope.tools[0];
+			scope.lastTool = scope.tool;
 		}
 	}
 });

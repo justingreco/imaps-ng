@@ -204,50 +204,160 @@
 		"export": {
 			"url": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
 		},		
-		"bookmarks": [
-			{"name": "Downtown Raleigh",
-				"extent":{"xmin":2104769,
-				"ymin":736771,
-				"xmax":2109252,
-				"ymax":739663,
-				"spatialReference":{"wkid": 2264}}
-			},
-			{"name": "NC State",
-				"extent":{"xmin":2094300,
-				"ymin":738100,
-				"xmax":738100,
-				"ymax":742700,
-				"spatialReference":{"wkid": 2264}}
-			},
-			{"name": "Downtown Cary",
-				"extent":{"xmin":2061317,
-				"ymin":738842,
-				"xmax":2067975,
-				"ymax":743413,
-				"spatialReference":{"wkid": 2264}}
-			},
-			{"name": "Downtown Cary",
-				"extent":{"xmin":2061317,
-				"ymin":738842,
-				"xmax":2067975,
-				"ymax":743413,
-				"spatialReference":{"wkid": 2264}}
-			},
-			{"name": "Downtown Cary",
-				"extent":{"xmin":2061317,
-				"ymin":738842,
-				"xmax":2067975,
-				"ymax":743413,
-				"spatialReference":{"wkid": 2264}}
-			},
-			{"name": "Downtown Cary",
-				"extent":{"xmin":2061317,
-				"ymin":738842,
-				"xmax":2067975,
-				"ymax":743413,
-				"spatialReference":{"wkid": 2264}}
-			}
-		]
+		"bookmarks": 
+			[
+				{
+					"name":"Downtown Raleigh",
+					"extent":{
+						"xmin":2104769,
+						
+						"ymin":736771,
+						
+						"xmax":2109252,
+						
+						"ymax":739663,
+						
+						"spatialReference":
+							{
+								"wkid":2264
+							}
+					}
+				},
+				{
+					"name":"Apex",
+					"extent":{
+						"xmin":2040004.9166666667,
+						"ymin":716565.8437500001,
+						"xmax":2048504.9166666667,
+						"ymax":725340.8437500001,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				},				
+				{
+					"name":"Cary",
+					"extent":{
+						"xmin":2063204.6692009899,
+						"ymin":739096.0694577723,
+						"xmax":2067454.6692009899,
+						"ymax":743483.5694577723,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+
+				},	
+				{
+					"name":"Fuquay Varina",
+					"extent":{
+						"xmin":2045588.2500000016,
+						"ymin":651749.1770833333,
+						"xmax":2079588.2500000016,
+						"ymax":686849.1770833333,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				},
+				{
+					"name":"Garner",
+					"extent":{
+						"xmin":2099788.2500000014,
+						"ymin":691665.84375,
+						"xmax":2133788.2500000014,
+						"ymax":726765.84375,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				},										
+				{
+					"name":"Holly Springs",
+					"extent":{
+						"xmin":2034088.2500000016,
+						"ymin":676115.84375,
+						"xmax":2068088.2500000016,
+						"ymax":711215.84375,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				},
+				{
+					"name":"Knightdale",
+					"extent":{
+						"xmin":2133954.916666668,
+						"ymin":726515.8437500002,
+						"xmax":2167954.916666668,
+						"ymax":761615.8437500002,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+						}
+					},
+
+
+				{
+				"name":"Rolesville",
+					"extent":{
+						"xmin":2150646.955780653,
+						"ymin":779853.6657460222,
+						"xmax":2167646.955780653,
+						"ymax":797403.6657460222,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				},
+
+				{
+					"name":" Wake Forest",
+					"extent":{
+						"xmin":2143399.8146896847,
+						"ymin":808095.8989758343,
+						"xmax":2151899.8146896847,
+						"ymax":816870.8989758343,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+						}
+					},
+				{
+					"name":"Wendell",
+					"extent":{
+						"xmin":2179154.916666668,
+						"ymin":731674.1770833336,
+						"xmax":2196154.916666668,
+						"ymax":749224.1770833336,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				},									
+				{
+					"name":"Zebulon",
+					"extent":{
+						"xmin":2193755.9353339844,
+						"ymin":748993.3547434533,
+						"xmax":2210755.9353339844,
+						"ymax":766543.3547434533,
+						"spatialReference":
+							{
+								"wkid":102719
+							}
+					}
+				}
+			]
 	},
 "services":{
         "url": "https://maps.raleighnc.gov/ArcGIS/rest/services/Services/ServicesIMaps/MapServer/identify",
