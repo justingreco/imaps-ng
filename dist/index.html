@@ -1,15 +1,191 @@
-<!doctype html> <html lang="us" class="no-js"> <head> <meta charset="utf-8"> <title>City of Raleigh and Wake County iMAPS</title> <meta name="description" content=""> <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"> <meta name="apple-itunes-app" content="app-id=613478945"> <!-- Place favicon.ico and apple-touch-icon.png in the root directory --> <link rel="stylesheet" href="styles/vendor.ab2da3c1.css"> <link rel="stylesheet" href="styles/main.1225f1e3.css"> <link rel="stylesheet" href="//js.arcgis.com/3.15/esri/css/esri.css"> <link rel="shortcut icon" href="favicon.ico"> <link rel="icon" type="image/ico" href="favicon.ico">  <body id="body" ng-app="imapsNgApp" ng-controller="MainCtrl"> <!--[if lt IE 10]>
+<!doctype html>
+<html lang="us" class="no-js">
+  <head>
+    <meta charset="utf-8">
+    <title>City of Raleigh and Wake County iMAPS</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-itunes-app" content="app-id=613478945">
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(app/.) styles/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="components/ngReactGrid/build/css/ngReactGrid.css" />
+    <link rel="stylesheet" href="components/spinkit/css/spinkit.css" />
+    <link rel="stylesheet" href="components/angular-loading-bar/build/loading-bar.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css(.tmp) styles/main.css -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/typeahead.css">
+    <!-- endbuild -->
+    <link rel="stylesheet" href="//js.arcgis.com/3.15/esri/css/esri.css">
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" type="image/ico" href="favicon.ico">    
+  </head>
+  <body id="body" ng-app="imapsNgApp" ng-controller="MainCtrl">
+    <!--[if lt IE 10]>
         <div class="browser-warning"><p class="lead"><span class="glyphicon glyphicon-warning-sign"></span> You are using an outdated browser!</p>
         <p>This page must be viewed in a modern browser such as <a href="http://www.google.com/chrome">Google Chrome</a>, <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>, <a href="https://www.apple.com/safari/">Safari</a>, or <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">Internet Explorer</a> 10 or above.  Most of these are supported on computers with at least Windows XP SP2 installed.</p>
         <p><a href="http://browsehappy.com" class="btn btn-default">More Information</a></p>
         <p>For questions or support please contact the iMAPS Help Desk at <a href="mailto:iMAPSHelpDesk@wakegov.com">iMAPSHelpDesk@wakegov.com</a>.</p>
         </div>
-    <![endif]--> <!-- Add your site or application content here --> <div id="loadingBackground" nf-if="loading"></div> <div id="loading" ng-if="loading"> <div class="spinner"> <div class="double-bounce1"></div> <div class="double-bounce2"></div> </div> <div style="padding-top:10px;text-align:justify; color: white; font-size: 16pt; opacity:0.2"> Loading <img src="images/imaps-bw.25a6adbe.png" alt="iMAPS Icon"> </div> </div> <div class="wrapper"> <app-header></app-header> <map-panel></map-panel> <toggle-button></toggle-button> <side-panel></side-panel> <tool-panel ng-class="{'hidden-xs':checked}"></tool-panel> <base-map-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></base-map-panel> <overview-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></overview-panel> </div> <feedback></feedback> <disclaimer></disclaimer> <about></about> <!-- Google Analytics: change UA-XXXXX-X to be your site's ID --> <script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    <![endif]-->
+
+    <!-- Add your site or application content here -->
+    
+    <div id="loadingBackground" nf-if="loading"></div>
+    <div id="loading" ng-if="loading">
+      <div class="spinner">
+        <div class="double-bounce1"></div>
+        <div class="double-bounce2"></div>
+      </div>
+      <div style="padding-top:10px;text-align:justify; color: white; font-size: 16pt; opacity:0.2;">
+        Loading
+        <img src="images/imaps-bw.png" alt="iMAPS Icon"/>
+      </div>
+
+    </div>
+    <div class="wrapper">
+      <app-header></app-header>
+      <map-panel></map-panel>
+      <toggle-button></toggle-button>
+      <side-panel></side-panel>
+      <tool-panel ng-class="{'hidden-xs':checked}"></tool-panel>
+      <base-map-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></base-map-panel>
+      <overview-panel ng-style="{right: ((checked) ? '300px' : '0')}" ng-class="{'hidden-xs':checked}"></overview-panel>
+    </div>
+
+    <feedback></feedback>
+    <disclaimer></disclaimer>
+    <about></about>
+  
+    <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
+     <script>
+       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
        ga('create', 'UA-11110258-36');
-       //ga('send', 'pageview');</script> <!--[if lt IE 9]>
-    <script src="scripts/oldieshim.bfe322b1.js"></script>
-    <![endif]--> <script src="scripts/vendor.e8487e9e.js"></script> <!-- <script src="http://js.arcgis.com/3.15/"></script>--> <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script> <script src="arcgis/dojo/dojo.js"></script> <script src="scripts/scripts.6ec73c7a.js"></script>  
+       //ga('send', 'pageview');
+    </script>
+
+    <!-- build:js(.) scripts/oldieshim.js -->
+    <!--[if lt IE 9]>
+    <script src="bower_components/es5-shim/es5-shim.js"></script>
+    <script src="bower_components/json3/lib/json3.js"></script>
+    <![endif]-->
+    <!-- endbuild -->
+
+    <!-- build:js(app/.) scripts/vendor.js -->
+    <!-- bower:js -->
+    <script src="components/jquery/dist/jquery.js"></script>
+    <script src="components/es5-shim/es5-shim.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>
+    <script src="components/json3/lib/json3.js"></script>
+    <script src="components/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-resource.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-cookies.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0-beta.2/angular-animate.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-touch.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-route.min.js"></script>
+    <script src="components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+    <script src="components/venturocket-angular-slider/build/angular-slider.js"></script>
+    <script src="components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="components/typeahead.js/dist/typeahead.bundle.js"></script>
+    <script src="components/angular-typeahead/angular-typeahead.js"></script>
+    <script src="components/ng-csv/build/ng-csv.min.js"></script>
+    <script src="components/react/react.js"></script>
+    <script src="components/ngReactGrid/build/js/ngReactGrid.min.js"></script>
+    <script src="components/turf/turf.min.js"></script>
+    <script src="components/waypoints/waypoints.js"></script>
+    <script src="components/SHA-1/sha1.js"></script>
+    <script src="components/angulartics/src/angulartics.js"></script>
+    <script src="components/angulartics/src/angulartics-adobe.js"></script>
+    <script src="components/angulartics/src/angulartics-chartbeat.js"></script>
+    <script src="components/angulartics/src/angulartics-cnzz.js"></script>
+    <script src="components/angulartics/src/angulartics-flurry.js"></script>
+    <script src="components/angulartics/src/angulartics-ga-cordova.js"></script>
+    <script src="components/angulartics/src/angulartics-ga.js"></script>
+    <script src="components/angulartics/src/angulartics-gtm.js"></script>
+    <script src="components/angulartics/src/angulartics-kissmetrics.js"></script>
+    <script src="components/angulartics/src/angulartics-mixpanel.js"></script>
+    <script src="components/angulartics/src/angulartics-piwik.js"></script>
+    <script src="components/angulartics/src/angulartics-scroll.js"></script>
+    <script src="components/angulartics/src/angulartics-segmentio.js"></script>
+    <script src="components/angulartics/src/angulartics-splunk.js"></script>
+    <script src="components/angulartics/src/angulartics-woopra.js"></script>
+    <script src="components/angulartics/src/angulartics-marketo.js"></script>
+    <script src="components/angulartics/src/angulartics-intercom.js"></script>
+    <script src="components/js-quantities/src/quantities.js"></script>
+    <script src="components/angular-loading-bar/build/loading-bar.js"></script>
+    <script src="components/ng-pageslide/dist/angular-pageslide-directive.js"></script>
+    <!-- endbower -->
+
+    <script src="scripts/geopoint.js"></script>
+    <script src="scripts/jquery.overlaps.js"></script>
+
+
+    <script src="scripts/jsonConverters.js"></script>
+    <script src="scripts/cycle.js"></script>
+    <script src="scripts/stringify.js"></script>   
+      
+    <!-- endbuild -->
+    <!-- <script src="http://js.arcgis.com/3.15/"></script>-->
+  
+    <script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
+    <script src="arcgis/dojo/dojo.js"></script>  
+     
+    <!-- build:js({.tmp,app}) scripts/scripts.js --> 
+             
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controllers/main.js"></script>
+    <script src="directives/appHeader/appHeader.js"></script>
+    <script src="directives/appHeader/feedback/feedback.js"></script>
+    <script src="directives/appHeader/disclaimer/disclaimer.js"></script>
+    <script src="directives/appHeader/about/about.js"></script>
+    <script src="directives/exportButton/exportButton.js"></script>
+    <script src="directives/mapPanel/mapPanel.js"></script>
+    <script src="directives/sidePanel/sidePanel.js"></script>
+    <script src="directives/sidePanel/toggleButton/toggleButton.js"></script>
+    <script src="directives/toolPanel/toolPanel.js"></script>
+    <script src="directives/baseMapPanel/baseMapPanel.js"></script>
+    <script src="directives/overviewPanel/overviewPanel.js"></script>
+    <script src="directives/sidePanel/search/search.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertySearch.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyResults/propertyResults.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyInfo/propertyInfo.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyPhotos/propertyPhotos.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyDeeds/propertyDeeds.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyTaxes/propertyTaxes.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyServices/propertyServices.js"></script>
+    <script src="directives/sidePanel/propertySearch/propertyAddresses/propertyAddresses.js"></script>
+    <script src="directives/sidePanel/locationSearch/locationSearch.js"></script>
+    <script src="directives/sidePanel/utilitySearch/utilitySearch.js"></script>    
+    <script src="directives/sidePanel/locationSearch/addressSearch/addressSearch.js"></script>
+    <script src="directives/sidePanel/locationSearch/intersectionSearch/intersectionSearch.js"></script>
+    <script src="directives/sidePanel/locationSearch/poiSearch/poiSearch.js"></script>
+    <script src="directives/sidePanel/locationSearch/subdivisionSearch/subdivisionSearch.js"></script>
+    <script src="directives/sidePanel/locationSearch/coordinateSearch/coordinateSearch.js"></script>
+    <script src="directives/sidePanel/layerList/layerList.js"></script>
+    <script src="directives/toolPanel/bookmarkTool/bookmarkTool.js"></script>
+    <script src="directives/toolPanel/clearTool/clearTool.js"></script>
+    <script src="directives/toolPanel/drawTool/drawTool.js"></script>
+    <script src="directives/toolPanel/identifyTool/identifyTool.js"></script>
+    <script src="directives/toolPanel/measureTool/measureTool.js"></script>
+    <script src="directives/toolPanel/printTool/printTool.js"></script>
+    <script src="directives/toolPanel/selectTool/selectTool.js"></script>
+    <script src="directives/toolPanel/streetviewTool/streetviewTool.js"></script>
+    <script src="directives/toolPanel/obliqueTool/obliqueTool.js"></script>
+    <script src="factories/config.js"></script>
+    <script src="factories/property.js"></script>
+    <script src="factories/mapUtils.js"></script>
+    <script src="factories/location.js"></script>
+    <script src="factories/puma.js"></script>
+    <script src="scripts/spToDd.js"></script>
+    <script src="scripts/esri.symbol.MultiLineTextSymbol.js"></script>   
+    <!-- endbuild -->
+</body>
+</html>
