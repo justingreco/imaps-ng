@@ -43,6 +43,11 @@ angular.module('imapsNgApp')
     else if(getBrowser()=='chrome'){
         $('body').addClass('chrome');
     };
+    var ua = navigator.userAgent.toLowerCase();
+    var isAndroid = ua.indexOf("android") > -1; //&& ua.indexOf("mobile");
+    if(isAndroid) {
+      $('body').addClass('android');
+    }    
     var configUrl = 'config/config.json';
     if ($location.search().config) {
     	configUrl = 'config/' + $location.search().config + '.json';

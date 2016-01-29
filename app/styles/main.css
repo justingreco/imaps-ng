@@ -793,10 +793,10 @@ slider {
   base-map-panel {
     display: none !important;
   }
-  pageslide {
+  pageslide:not(.android) {
     display: none;
   }
-  toggle-button {
+  toggle-button:not(.android) {
     display: none;
   }
 }
