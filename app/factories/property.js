@@ -1,9 +1,9 @@
 angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http, $q){
 
 	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
-		baseUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
-		serviceUrl = "http://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
-		propertyLayer = "http://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
+		baseUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
+		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
+		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 	return service;
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
@@ -99,11 +99,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
-	function getGeometryByPins (where, wkid) {
+	function getGeometryByPins (where, lid, wkid) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: propertyLayer + "/0/query",
+			url: propertyLayer + "/" + lid + "/query",
 			data: $.param({
 				where: where,
 				returnGeometry: true,
@@ -115,11 +115,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
-	function getPropertiesByGeometry (geom, type, wkid) {
+	function getPropertiesByGeometry (geom, type, lid, wkid) {
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: propertyLayer + "/0/query",
+			url: propertyLayer + "/" + lid + "/query",
 			data: $.param({
 				where: '1=1',
 				geometry: stringify(geom),
