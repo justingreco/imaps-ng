@@ -255,10 +255,10 @@ feedback textarea {
  
 }
 /*hyperlinks*/
-.ps-link, .ps-link:active, .ps-link:visited {
+a, a:active, a:visited {
   color: #68CEDD;
 }
-.ps-link:hover {
+a:hover {
   color: yellow;
 }
 /*BootStrap overwrites*/
