@@ -184,7 +184,7 @@
 			{"label": "Data Download", "items":
 				[
 					{"label": "Raleigh Open GIS Data", "href": "http://data.ral.opendata.arcgis.com/"},
-					{"label": "Wake Open Data Beta", "href": "http://data.wake.opendata.arcgis.com/"},
+					{"label": "Wake Open Data", "href": "http://data.wake.opendata.arcgis.com/"},
 					{"label": "Raleigh Open Data", "href": "https://data.raleighnc.gov/"}
 				]
 			},

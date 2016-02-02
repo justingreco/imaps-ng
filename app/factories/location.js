@@ -25,7 +25,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 			method: 'GET',
 			url: 'https://maps.raleighnc.gov/arcgis/rest/services/StreetsDissolved/MapServer/0/query',
 			params: {
-				where: "CARTONAME LIKE '" + street.toUpperCase() + "%'",
+				where: "CARTONAME LIKE '%" + street.toUpperCase() + "%'",
 				orderByFields: 'CARTONAME',
 				outFields: 'CARTONAME',
 				returnGeometry: true,
