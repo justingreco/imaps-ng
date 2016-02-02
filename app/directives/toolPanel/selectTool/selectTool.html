@@ -18,8 +18,9 @@
   <br/><br/>
   <div><input type="checkbox" ng-model="freehand" ng-change="selectTypeChanged(selectType)"> Freehand?</div>
   <br/>
-  <div style="">
-    <strong style="display:inline-block margin-right: 10px">Buffer Distance</strong> <input class="form-control input-sm" ng-model="selectBufferDist" value="0" style="display:inline-block;width: 60px"/> <span style="display:inline-block">ft</span>
+
+  <div class="form-group has-feedback">
+    <strong style="display:inline-block margin-right: 10px">Buffer Distance</strong><span class="glyphicon glyphicon-remove form-control-feedback" ng-click="selectBufferDist = 0" ng-show="selectBufferDist != 0"></span> <input class="form-control input-sm" ng-model="selectBufferDist" value="0"/> <span style="display:inline-block">ft</span>  
   </div>
   <br/>
   <div><button class="btn btn-default btn-sm" ng-show="geometry" ng-click="bufferProperty()">Buffer Property</button></div>

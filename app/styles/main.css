@@ -375,6 +375,21 @@ tool-panel .glyphicon {
   display: inline-block;
   width: 210px;
 }
+/*property select tool*/
+select-tool input::ms-clear {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
+}
+select-tool .has-feedback > input{
+  display:inline-block !important;
+  width: 100px !important;
+  padding-left: 10px !important;
+}
+select-tool .form-control-feedback {
+  right: 50px; 
+  top: -4px;
+}
 /*draw tool*/
 draw-tool textarea {
   max-width: 100%;
