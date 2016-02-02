@@ -16,7 +16,7 @@ angular.module('imapsNgApp')
         type: 'jsonp',
         params: {
           fromEmail: email,
-          toEmail: 'gis@raleighnc.gov;iMAPSHelpdesk@wakegov.com;',
+          toEmail: 'gis@raleighnc.gov,iMAPSHelpdesk@wakegov.com',
           subject: 'iMAPS 3.0 Beta Feedback',
           message: text,
           from: '',
