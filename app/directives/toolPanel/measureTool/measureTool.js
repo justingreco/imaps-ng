@@ -110,13 +110,16 @@ angular.module('imapsNgApp')
 			};
 
 			var convertLengths = function (unit, oldUnit) {
-				var qty = new Qty(totalLength + oldUnit.abbr);
-				totalLength = qty.to(unit.abbr).scalar;
-				qty = new Qty(currentSegment + oldUnit.abbr);
-				currentSegment = qty.to(unit.abbr).scalar;
-				qty = new Qty(lastSegment + oldUnit.abbr);
-				lastSegment = qty.to(unit.abbr).scalar;
-
+				try {
+					var qty = new Qty(totalLength + oldUnit.abbr);
+					totalLength = qty.to(unit.abbr).scalar;
+					qty = new Qty(currentSegment + oldUnit.abbr);
+					currentSegment = qty.to(unit.abbr).scalar;
+					qty = new Qty(lastSegment + oldUnit.abbr);
+					lastSegment = qty.to(unit.abbr).scalar;
+				} catch (err) {
+					
+				}
 			};
 
 			var lengthMouseMove = function (e) {
@@ -230,7 +233,12 @@ angular.module('imapsNgApp')
 						if (matches.length > 0) {
 							$scope.unit = matches[0];
 						}
-						toolbar.activate(type.shape);
+						if (type.shape === 'polygon' || type.shape === 'polyline') {
+							toolbar.activate((($scope.freehandMeasure) ? 'freehand': '')+type.shape);
+						} else {
+							toolbar.activate(type.shape);
+						}
+						
 						if (type.shape === 'polyline') {
 							startLengthMeasure();
 						} else {
@@ -249,7 +257,7 @@ angular.module('imapsNgApp')
 						$scope.measurement = '--';
 						gl.clear();
 					} else {
-					  $scope.tool.height = 108;
+					  $scope.tool.height = 130;
 					}
 				}
 			});
@@ -281,6 +289,10 @@ angular.module('imapsNgApp')
 
 			});
 
+			$scope.measureFreehand = function (measureType) {
+				toolbar.activate('freehand'+measureType.shape);
+			};
+
 			$scope.$watch('tool', function (tool) {
 				if (tool.title === 'Measure') {
 					//tool.height = ($scope.geometry) ? 250 : 180;
@@ -290,7 +302,7 @@ angular.module('imapsNgApp')
 					if ($scope.measureType) {
 						tool.height = 270;
 					} else {
-						tool.height = 108;
+						tool.height = 130;
 					}
 				} else {
 					if (toolbar) {

@@ -16,7 +16,7 @@
         Multi-Point</label>
   </div>
   <br/><br/>
-  <div><input type="checkbox" ng-model="freehand" ng-change="selectTypeChanged(selectType)"> Freehand?</div>
+  <div ng-show="selectType === 'polygon' || selectType === 'polyline'"><input type="checkbox" ng-model="freehand" ng-change="selectTypeChanged(selectType)"> Freehand?</div>
   <br/>
 
   <div class="form-group has-feedback">
