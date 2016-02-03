@@ -107,11 +107,22 @@ angular.module('imapsNgApp')
 
 			$scope.$watch('drawType', function (type) {
 				if (type) {
-					toolbar.activate(type.shape);
-					$scope.tool.height = (type.name === 'Text') ? 266 : 156;
+					if (type.shape === 'polyline' || type.shape === 'polygon') {
+						toolbar.activate((($scope.freehandDraw) ? 'freehand' : '') + type.shape);
+					} else {
+						toolbar.activate(type.shape);
+					}
+					$scope.tool.height = (type.name === 'Text') ? 250 : 165;
 					//gl.clear();
 				}
 			});
+			$scope.drawFreehand = function (type) {
+				if (type.shape === 'polyline' || type.shape === 'polygon') {
+					toolbar.activate((($scope.freehandDraw) ? 'freehand' : '') + type.shape);
+				} else {
+					toolbar.activate(type.shape);
+				}		
+			}
 
 			$scope.$watch('tool', function (tool) {
 				if (tool.title === 'Draw') {
@@ -119,9 +130,9 @@ angular.module('imapsNgApp')
 						toolbar = new Draw($scope.map);
 					}
 					if ($scope.drawType) {
-						tool.height = ($scope.drawType.name === 'Text') ? 266 : 156;
+						tool.height = ($scope.drawType.name === 'Text') ? 250 : 165;
 					} else {
-						tool.height = 156;
+						tool.height = 165;
 					}
 				} else {
 					if (toolbar) {
