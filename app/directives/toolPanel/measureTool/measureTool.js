@@ -290,7 +290,7 @@ angular.module('imapsNgApp')
 			});
 
 			$scope.measureFreehand = function (measureType) {
-				toolbar.activate('freehand'+measureType.shape);
+				toolbar.activate((($scope.freehandMeasure) ? 'freehand' : '') + measureType.shape);
 			};
 
 			$scope.$watch('tool', function (tool) {
