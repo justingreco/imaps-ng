@@ -14,7 +14,7 @@
         Coordinates
       </label>
   </p>
-  <p ng-show="measureType.shape != 'point'"><input type="checkbox" ng-model="freehandMeasure" ng-change="measureFreehand(measureType)"> Freehand?</p>
+  <p ng-show="measureType && measureType.shape != 'point'"><input type="checkbox" ng-model="freehandMeasure" ng-change="measureFreehand(measureType)"> Freehand?</p>
   
   <div ng-show="measureType">
     <p>
