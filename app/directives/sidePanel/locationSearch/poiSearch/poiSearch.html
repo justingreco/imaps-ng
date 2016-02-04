@@ -1,11 +1,10 @@
-
 <div class="select-wrapper form-control input-sm">
 	<select class="form-control input-sm" ng-options="placeType as placeType for placeType in placeTypes" ng-model="placeType" ng-change="placeTypeSelected(placeType)" ng-disabled="placeTypes.length == 0"><option value="">Select a place type...</option></select>
 </div>
 <div class="select-wrapper form-control input-sm">
 	<select class="form-control input-sm" ng-options="place as place.attributes.NAME for place in places" ng-model="place" ng-change="placeSelected(place)" ng-disabled="places.length == 0"><option value="">Select a place...</option></select>
 </div>
-<div id="place" ng-if="place">
+<div id="place" ng-if="place" class="selectable">
 	<p class="lead">{{place.attributes.NAME}}</p>
 	<img ng-if="place" ng-src="http://maps.raleighnc.gov/photos/POI/{{place.attributes.PHOTO}}" alt="{{place.attributes.NAME}}"/>
 	<p>{{place.attributes.ADDRESS}},{{place.attributes.CITY}}, NC, {{place.attributes.ZIP}}</p>

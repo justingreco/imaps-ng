@@ -27,18 +27,18 @@
       Measurement Results
     </p>
     <div ng-if="measureType.type != 'coordinates'">
-      {{measurement}} {{unit.abbr}}
+      <span class="selectable">{{measurement}} {{unit.abbr}}</span>
     </div>
     <p ng-if="measureType.type == 'coordinates'">
       <!-- Cursor Filled icon by Icons8 -->
       <img class="icon icons8-Marker" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAC30lEQVRoQ+2Z/W0UMRDF36sAOoBUEFIBoQKggoQKgAqACoAKgA5CBZAKSCog6YBUMOhJc2i1uj3PjL0JOmWkU/6I196f33zZS+yJcU84cA/yvyk5XBEzewjgOYAn/psyXwDQ7zvJPyM3YxiImR0DeAdAfyP2E8AHkvrbbd0gZqad/5gAmL+0QN6SlFJl6wIxsxcAvgCQO/WY3OwVybPqJGUQMzt1iOra254TzNfKhCUQj4cflQUDzzyrxE0axMweA/g1wJ2WmORmRySvAtD/hlRAJP1JZpHC2G8k5bphS4G4Gr/Ds/cNPMiokgXJqnEJYJOJlOEOE2yfSb6Jjs+CSA3FSMsEcDqvDV5ztBkRoCuSB62FNv8Pg/hLKMhbdq3WZKkF8RZGxe9RayIP+lChzIBE68bLVmFL1KDmXBVF3nsvtWsjb0iGqryZWUAR9WJat2kZRSIg5yRDTaOZqcd62njDOwO5IHnU3D4AZhZJHHcGIoZm/k/Uo1VAosHezP9mFq1HqwS7zh2R9CtVFrvYRMYKqZvOWnrAzNTQPYjEAAAF8ycA5z5ega1KHUoGAMIZUPOHs5aDRF0iyLpzWKpxzIJE42QESDg+Koqo2OmcEHWvKlDKrdIgt+hezcw336GUazlIJntVFWnWom4Qh4m0F1WIVJCX0u/moZUvH9JqlGJkAqOTn65GR1pJjV4QnRRHnt9v/ECWuj3pcq2JKqrcrwdJEm4Qt62XzlrTSZLH1l281yQjdwGLc3SBeAZT79R761i6XZxSdYM4TI+LpYvfcNeaxIpal+jNyPQ9dG10POKjzxBFihVfWUoQoeueVkIZBuIwOm/oo0/Eyp8QVnOtWSaLnFnKhW9ph4Yq4qooXtSLLV2LXpJU4znUhoM4jGqCfH9+btl5ndpDtgrIJPilzAZmaHDPoVcD2VIs9RVqSIa6lWCfL+LXP6h+5Iy626qKRF9ixLh7kBG7OHKOvVHkL8SCEEIOUAwfAAAAAElFTkSuQmCC" width="20" height="20">
-      {{measurement}}
+      <span class="selectable">{{measurement}}</span>
 
     </p>
     <p ng-if="measureType.type == 'coordinates'">
       <!-- Marker icon by Icons8 -->
       <img class="icon icons8-Cursor-Filled" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAB8ElEQVRoQ+3Z+00CQRAG8PkqUCpQKtAOlA60AqADrUDowA7EDiyBDpQOsAKhgjFfspsQ5faO29kHhP3nSHjN72Yfc7uQE2k4EYecIbVl8pwRVf10WRkB2JTOUO+MqKq64L9EZAqA12LNAsLgmRFmphjGClIcYwkpirGG+DHCMbPIOWBSQWjIikkJyYpJDSFmBmCeupvlgNCwADBNickFSY7JCUmKyQ0hhqu/eX1WApIEUwpijikJ8RiTyrk0xKw+qwFigqkFEo2pCRJVOdcI6VVs1go5GFMzhJhnAK9dis3aIVsAl8cE+RaRtQuYV/96CWBZM+SRxSMAH3CXWIOfKdW15gBm0dHv/EApyBrA8FggfLR9EpGbhoBNd1lSZGQrIhMAH6o6EZG3BohpVqwhRNzv7gGrKveFLxowfFLsNCu1dUNLyD8E/1xVOahfGgLh9DpqC7LL+1aQvQgH4YL2EwjGJCsWkJWIPITWBFXlPvC4AfMOgGMpqsVA/FkIx0TwxEpVb0XEn3DtC3gYuzj2hhx6+1SVg/ouVVZyQkJTMX2DtsyGbl42iBv4rK2uGgKKKltyQ0JT8QbA4NAu6z+fGxKailcAOCn0alkhrnv9nYr5LMIzlKijuhKQa7eRzembgLIlSq/8J/xS9oykspwM5Be32ghCC80tsgAAAABJRU5ErkJggg==" width="20" height="20">
-      {{currentCoords}}
+      <span class="selectable">{{currentCoords}}</span>
     </p>
   </div>
 </div>
