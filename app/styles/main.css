@@ -255,7 +255,7 @@ feedback textarea {
  
 }
 /*hyperlinks*/
-a, a:active, a:visited {
+a, a:active, a:visited:not(.btn):not(.navbar-brand):not(.menu-link) {
   color: #68CEDD;
 }
 a:hover {
@@ -427,6 +427,17 @@ overview-panel {
 .ngReactGrid {
     padding: 0;
     cursor: pointer;
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+}
+
+.selectable {
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+}
+.esriPopup .contentPane {
     -webkit-user-select: text;
     -moz-user-select: text;
     -ms-user-select: text;
