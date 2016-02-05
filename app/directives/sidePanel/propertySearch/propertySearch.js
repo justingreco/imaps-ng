@@ -146,6 +146,7 @@ angular.module('imapsNgApp')
 					//$scope.geometry = null;
 					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;
+					$scope.$parent.account = null;
 					$scope.accountsSrc = accounts.Accounts;
 					$rootScope.zoomTo = true;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
