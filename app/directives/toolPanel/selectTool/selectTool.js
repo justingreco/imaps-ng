@@ -34,6 +34,7 @@ angular.module('imapsNgApp')
 						});
 						property.getRealEstate('pin', pins).then(function (data) {
 							$scope.account = null;
+							$scope.$parent.account = null;
 							$scope.geometry = null;
 							$scope.fields = data.Fields;
 							$scope.accounts = data.Accounts;

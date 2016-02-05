@@ -18,11 +18,17 @@
   <br/><br/>
   <div ng-show="selectType === 'polygon' || selectType === 'polyline'"><input type="checkbox" ng-model="freehand" ng-change="selectTypeChanged(selectType)"> Freehand?</div>
   <br/>
+  <form role="form" onsubmit="return false;">
+    <ng-form name="bufferForm">
+      <div class="form-group has-feedback" ng-class="{'has-error': bufferForm.$invalid}">
+        <strong style="display:inline-block margin-right: 10px">Buffer Distance</strong><span class="glyphicon glyphicon-remove form-control-feedback" ng-click="selectBufferDist = 0" ng-show="selectBufferDist != 0"></span> <input class="form-control input-sm" ng-model="selectBufferDist" value="0" name="bufferDistance" type="number" max="3000" step="100"/> <span style="display:inline-block">ft</span>
+        <span id="helpBlock" class="help-block" ng-if="bufferForm.bufferDistance.$error.max">Maximum distance of 3000 ft exceeded</span>        
+      </div>
+      <div><button class="btn btn-default btn-sm" ng-show="geometry" ng-click="bufferProperty()">Buffer Property</button></div>      
+    </ng-form>
+  </form>
 
-  <div class="form-group has-feedback">
-    <strong style="display:inline-block margin-right: 10px">Buffer Distance</strong><span class="glyphicon glyphicon-remove form-control-feedback" ng-click="selectBufferDist = 0" ng-show="selectBufferDist != 0"></span> <input class="form-control input-sm" ng-model="selectBufferDist" value="0"/> <span style="display:inline-block">ft</span>  
-  </div>
   <br/>
-  <div><button class="btn btn-default btn-sm" ng-show="geometry" ng-click="bufferProperty()">Buffer Property</button></div>
+
 
 </div>
