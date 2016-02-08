@@ -241,7 +241,12 @@ angular.module('imapsNgApp')
 				displayKey: 'value',
 				source: address.ttAdapter()
 			};
-			//$scope.searchValue = null;
+			$('#searchInput').on('keyup', function(e) {
+			    if(e.which == 13) {
+			        $(".tt-highlight").trigger('click');
+			    }
+			});
+			//$scope.searchValue = null;			
 			$("#searchInput").typeahead({hint: true, highlight: true, minLength: 3},
 				{name:'address',
 				displayKey:'value',

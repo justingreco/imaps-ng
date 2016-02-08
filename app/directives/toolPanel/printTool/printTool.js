@@ -210,6 +210,8 @@ angular.module('imapsNgApp')
 								}
 							});*/
 						})
+					}, function (info) {
+						console.log(info);
 					});
 				});
 			};
