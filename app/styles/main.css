@@ -988,7 +988,7 @@ map-coordinates {
   bottom: .5em;
   left: 5px;
 }
-map-coordinates .btn-default, .btn-default:active, .btn-default:focus {
+/*map-coordinates .btn-default, .btn-default:active, .btn-default:focus {
    background-color: rgba(60,60,60,0.8)!important;
    border-color: white !important;
    color: white !important;
@@ -998,4 +998,4 @@ map-coordinates .btn-default:hover, .btn-default.active {
     background-color: rgba(60,60,60,0.8) !important;
     border-color: white !important;
     color: white !important;
-}
+}*/
