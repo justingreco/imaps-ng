@@ -825,6 +825,9 @@ slider {
   toggle-button:not(.android) {
     display: none;
   }
+  map-coordinates{
+    display: none;
+  }
 }
 toggle-button div{
   cursor: pointer;
@@ -978,3 +981,21 @@ coordinate-search input[type=number] {
 .has-error .help-block, .has-error .control-label, .has-error .radio, .has-error .checkbox, .has-error .radio-inline, .has-error .checkbox-inline, .has-error.radio label, .has-error.checkbox label, .has-error.radio-inline label, .has-error.checkbox-inline label {
     color: #DE4E4B;
 }
+
+map-coordinates {
+  z-index:10000;
+  position: absolute;
+  bottom: .5em;
+  left: 5px;
+}
+/*map-coordinates .btn-default, .btn-default:active, .btn-default:focus {
+   background-color: rgba(60,60,60,0.8)!important;
+   border-color: white !important;
+   color: white !important;
+}
+
+map-coordinates .btn-default:hover, .btn-default.active {
+    background-color: rgba(60,60,60,0.8) !important;
+    border-color: white !important;
+    color: white !important;
+}*/

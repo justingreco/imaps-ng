@@ -5,6 +5,7 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $filter, $http) {
 			var account = {};
+			$scope.printing = false;
 			$scope.printAtts = false;
 			$scope.printTitle = "";
 			$scope.printFormats = [
@@ -138,7 +139,7 @@ angular.module('imapsNgApp')
 			};
 
 			$scope.printPDF = function (map, layers) {
-				$('#printBtn').button('loading');
+				//$('#printBtn').button('loading');
 				cfpLoadingBar.start();
 				var layers = "";
 				var sublayers = "";
@@ -196,12 +197,15 @@ angular.module('imapsNgApp')
 					};
 					params = getGraphics(params);
 					console.log(params);
+					$scope.printing = true;
 					gp.submitJob(params, function (info) {
+						
 						console.log(info);
 						gp.getResultData(info.jobId, 'Output_URL', function (data) {
 							$('#printBtn').button('reset');
 							cfpLoadingBar.complete();
 							window.open(data.value);
+							$scope.printing = false;
 /*							$http({
 								method: 'GET',
 								url: "scripts/downloadPdf.php",
@@ -210,6 +214,13 @@ angular.module('imapsNgApp')
 								}
 							});*/
 						})
+					}, function (info) {
+						if (info.messages.length > 0) {
+							$scope.printMessage = info.messages[info.messages.length - 1].description;
+						}
+						
+					}, function (error) {
+						$scope.printing = false;
 					});
 				});
 			};
