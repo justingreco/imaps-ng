@@ -19,12 +19,12 @@
       <label for="printSize" class="col-xs-2 control-label">Size</label>
       <div class="col-xs-5">
         <div class="select-wrapper form-control input-sm">
-          <select class="form-control input-sm" id="printSize" ng-options="printSize as printSize.label for printSize in printSizes" ng-model="printSize"></select>
+          <select class="form-control input-sm" id="printSize" ng-options="printSize as printSize.label for printSize in printSizes" ng-model="printSize" ng-change="displayFrame()"></select>
         </div>
       </div>
       <div class="col-xs-5">
         <div class="select-wrapper form-control input-sm">    
-          <select class="form-control input-sm" id="printOrient" ng-options="printOrient as printOrient.label for printOrient in printOrients" ng-model="printOrient"></select>
+          <select class="form-control input-sm" id="printOrient" ng-options="printOrient as printOrient.label for printOrient in printOrients" ng-model="printOrient" ng-change="displayFrame()"></select>
         </div>
       </div>
     </div>
@@ -32,7 +32,7 @@
       <label for="printScale" class="col-xs-2 control-label">Scale</label>
       <div ng-class="{'col-xs-5': printScale.custom, 'col-xs-10': !printScale.custom}">
         <div class="select-wrapper form-control input-sm">
-          <select class="form-control input-sm" id="printScale" ng-options="printScale as printScale.label for printScale in printScales" ng-model="printScale"></select>
+          <select class="form-control input-sm" id="printScale" ng-options="printScale as printScale.label for printScale in printScales" ng-model="printScale" ng-change="displayFrame()"></select>
         </div>
       </div>
       <div class="col-xs-5" ng-if="printScale.custom">
