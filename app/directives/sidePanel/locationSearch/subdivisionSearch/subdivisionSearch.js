@@ -14,10 +14,30 @@ angular.module('imapsNgApp')
 		        });
 		    };
 		    $scope.subdivisionSelected = function ($item, $model, $label) {
-				require(["esri/geometry/Polygon"], function(Polygon) {
-					var poly = new Polygon($item.geometry);
+				require(["esri/geometry/Polygon","esri/graphic", "esri/layers/GraphicsLayer", "esri/symbols/SimpleFillSymbol"], function(Polygon, Graphic, GraphicsLayer, SimpleFillSymbol) {
+					var poly = new Polygon($item.geometry);					
 					poly.spatialReference = $scope.map.spatialReference;
 					$scope.map.setExtent(poly.getExtent(), true);
+			  		var gl = $scope.map.getLayer('subdivisionGraphics');
+					var g = null;
+					if (!gl) {
+					  gl = new GraphicsLayer({id: 'subdivisionGraphics'});
+					  $scope.map.addLayer(gl);
+					 }
+					gl.clear();					
+					var fill = new SimpleFillSymbol({
+					  "type": "esriSFS",
+					  "style": "esriSFSNull",
+						"color": [31,117,254,40],
+					    "outline": {
+					     "type": "esriSLS",
+					     "style": "esriSLSSolid",
+							"color": [255,140,0,255],
+					     "width": 5
+						 }
+					});
+					g = new Graphic(poly,fill);
+					gl.add(g);
 				});
 		    };
 		},
