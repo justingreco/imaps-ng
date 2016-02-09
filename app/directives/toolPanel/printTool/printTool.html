@@ -36,10 +36,8 @@
         </div>
       </div>
       <div class="col-xs-5" ng-if="printScale.custom">
-        <span style="display:inline-block">1" = </span>
-        <div class="select-wrapper form-control input-sm">      
-          <input ng-required="printScale.custom" max="30000" min="25" class="form-control input-sm" id="customScale" ng-model="printScale.value" style="width:50px;display:inline-block" type="number" name="number"/>
-        </div>
+        <span style="display:inline-block">1" = </span>    
+          <input ng-required="printScale.custom" max="30000" min="10" class="form-control input-sm" id="customScale" ng-model="printScale.value" style="width:50px;display:inline-block" type="number" name="number"/>
         <span style="display:inline-block">'</span>
       </div>
     </div>
