@@ -22,7 +22,7 @@ angular.module('imapsNgApp')
 			$scope.printSize = $scope.printSizes[0];
 			$scope.printOrients = [
 				{value: 'landscape', label:'Landscape'},
-				{value: 'portait', label:'Portait'}
+				{value: 'portrait', label:'Portrait'}
 			];
 			$scope.printOrient = $scope.printOrients[0];
 			$scope.printScales = [
@@ -201,11 +201,10 @@ angular.module('imapsNgApp')
 					gp.submitJob(params, function (info) {
 						
 						console.log(info);
+						$scope.printing = false;
+						cfpLoadingBar.complete();
 						gp.getResultData(info.jobId, 'Output_URL', function (data) {
-							$('#printBtn').button('reset');
-							cfpLoadingBar.complete();
 							window.open(data.value);
-							$scope.printing = false;
 /*							$http({
 								method: 'GET',
 								url: "scripts/downloadPdf.php",

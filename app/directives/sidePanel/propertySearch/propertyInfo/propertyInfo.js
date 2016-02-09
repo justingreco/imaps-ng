@@ -12,9 +12,9 @@ angular.module('imapsNgApp')
 				$scope.reid = account.reid;
 				$rootScope.$broadcast('pinUpdate', account.pin);
 				angular.forEach($scope.fields, function (f) {
-				// 	if (f.type === 'currency') {
-				// 		account[f.field] = $filter('currency')(account[f.field], '$', 0);
-				// 	}
+				 	if (f.type === 'currency') {
+				 		account[f.field] = $filter('currency')(account[f.field], '$', 0);
+				 	}
 					$scope.accountInfo.push({field: f.alias, value: account[f.field]});
 				});
 				$rootScope.accountInfo = $scope.accountInfo;
