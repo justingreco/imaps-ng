@@ -92,12 +92,30 @@ angular.module('imapsNgApp')
 			}
 
 			var addGraphicsLayers = function (GraphicsLayer) {
-				$scope.selectionMultiple = new GraphicsLayer();
-				$scope.selectionSingle = new GraphicsLayer();
-				$scope.bufferGraphics = new GraphicsLayer();
+				$scope.bufferGraphics = new GraphicsLayer({id: 'bufferGraphics'});
+				$scope.selectionMultiple = new GraphicsLayer({id: 'selectedProperties'});
+				$scope.map.graphics.enableMouseEvents();
+				$scope.selectionMultiple.on("graphic-node-add", function (evt) {
+					$(evt.node).attr('title', evt.graphic.attributes.SITE_ADDRESS+"<br/>" + evt.graphic.attributes.OWNER);
+					$(evt.node).attr('data-toggle', 'tooltip');
+					$(evt.node).tooltip({
+						'container': 'map-panel', 
+						html: true,
+						placement: 'mouse',
+						delay: { "hide": 100 }});
+
+				});
+
+				$scope.selectionMultiple.on("mouse-move", function (e) {
+					$('.tooltip').css('top', (e.clientY + 10) + 'px');
+					$('.tooltip').css('left', (e.clientX + 10) + 'px');
+				});
+
+				$scope.selectionSingle = new GraphicsLayer({id: 'selectedProperty'});
+				$scope.map.addLayer($scope.bufferGraphics);
 				$scope.map.addLayer($scope.selectionMultiple);
 				$scope.map.addLayer($scope.selectionSingle);
-				$scope.map.addLayer($scope.bufferGraphics);
+
 			};
 
 			var webMapLoaded = function (response) {
@@ -229,6 +247,9 @@ angular.module('imapsNgApp')
 				});
 				var addGeometriesToMap = function (features, gl, color) {
 					require(["esri/graphic", "esri/graphicsUtils", "esri/SpatialReference"], function (Graphic, graphicsUtils, SpatialReference) {
+						$scope.map.reorderLayer($scope.bufferGraphics, $scope.map.layerIds.length - 3);
+						$scope.map.reorderLayer($scope.selectionMultiple, $scope.map.layerIds.length - 2);
+						$scope.map.reorderLayer($scope.selectionSingle, $scope.map.layerIds.length - 1);
 						var g = null;
 						gl.clear();
 						$scope.selectionSingle.clear();
@@ -240,10 +261,14 @@ angular.module('imapsNgApp')
 							g = new Graphic({geometry: f.geometry,
 								symbol:{color:[0,0,0,0],outline:{color:color,
 									width:3,type:"esriSLS",style:"esriSLSSolid"},
-									type:"esriSFS",style:"esriSFSSolid"}});
+									type:"esriSFS",style:"esriSFSSolid"}, attributes: f.attributes});
 
 									gl.add(g);
 						});
+
+						for (var i=0;i < gl.graphics.length; i++) {
+							console.log(gl.graphics[i]);
+						}
 
 						if (gl.graphics.length > 0) {
 							if ($rootScope.zoomTo) {
