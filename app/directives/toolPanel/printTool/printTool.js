@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/toolPanel/printTool/printTool.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $filter, $http) {
+		controller: function ($scope, $rootScope, $filter, $http, $analytics) {
 			var account = {};
 			$scope.printing = false;
 			$scope.printAtts = false;
@@ -181,6 +181,7 @@ angular.module('imapsNgApp')
 				});
 				require(["esri/geometry/scaleUtils", "esri/tasks/Geoprocessor"], function(scaleUtils, Geoprocessor) {
 					var gp = new Geoprocessor($scope.config.tools.print.url);
+					var attributes = getAttributes();
 					var params = {
 						Title: $scope.printTitle,
 						Size: $scope.printSize.value,
@@ -193,9 +194,14 @@ angular.module('imapsNgApp')
 						"Extent": $scope.map.extent.xmin +";" + $scope.map.extent.ymin +";" + $scope.map.extent.xmax +";" + $scope.map.extent.ymax +";",
 						Scale: getScale(scaleUtils),
 						PIN: getPins(),
-						Attributes: getAttributes()
+						Attributes: attributes
 					};
+
 					params = getGraphics(params);
+					$analytics.eventTrack('Export PDF', {category: 'size', label: $scope.printSize.value});
+					$analytics.eventTrack('Export PDF', {category: 'layout', label: $scope.printOrient.value});
+					$analytics.eventTrack('Export PDF', {category: 'graphics count', label: params['Graphics_Count']});	
+					$analytics.eventTrack('Export PDF', {category: 'attributes', label: attributes != ""});						
 					console.log(params);
 					$scope.printing = true;
 					gp.submitJob(params, function (info) {
