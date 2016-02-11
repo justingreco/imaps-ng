@@ -136,6 +136,8 @@ angular.module('imapsNgApp')
 					$location.search('pin', $scope.pin);
 				}
 				else {
+					$rootScope.account = null;
+					$rootScope.accountInfo = [];
 					$scope.tab = $scope.tabs[0];
 					$scope.tabChanged(true);
 				}

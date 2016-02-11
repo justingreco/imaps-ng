@@ -30,6 +30,22 @@ angular
   ]).config(['localStorageServiceProvider', '$locationProvider', function (localStorageServiceProvider, $locationProvider) {
     localStorageServiceProvider.setPrefix('imaps');
     $locationProvider.html5Mode({enabled: true, requireBase: false});
+          // set up your dojoConfig
+      var dojoConfig = {
+        baseUrl: '.',
+        deps: ['app/main'],
+        packages: [
+          'app',
+          'dijit',
+          'dojo',
+          'dojox',
+          'dstore',
+          'dgrid',
+          'xstyle',
+          'put-selector',
+          'esri'
+        ]
+      };
   }]).filter('titleCase', function() {
     return function(input) {
       input = input || '';

@@ -7,7 +7,7 @@ angular.module('imapsNgApp')
 			$scope.resultHeader = [];
 			$scope.accounts = [];
 				$scope.$on('accountUpdate', function (e, accounts) {
-					$scope.accounts = accounts;
+					$rootScope.accounts = accounts;
 					$scope.resultGrid.data = accounts;
 					$scope.resultHeader = [];
 					angular.forEach($scope.fields, function (f) {

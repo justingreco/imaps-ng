@@ -41,7 +41,7 @@
         <span style="display:inline-block">'</span>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-show="account != null">
       <div class="col-xs-offset-2 col-xs-10">
         <div class="checkbox">
           <label>
@@ -50,7 +50,7 @@
         </div>
       </div>
     </div>
-    <div class="form-group" ng-if="!printing">
+    <div class="form-group" ng-show="!printing">
       <div class="col-xs-offset-2 col-xs-10">
         <button ng-disabled="printScale.custom && !printScale.value" id="printBtn" type="submit" class="btn btn-default" ng-click="printPDF(map, layers)">Print</button>
       </div>

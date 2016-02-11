@@ -102,6 +102,7 @@ angular.module('imapsNgApp')
 						'container': 'map-panel', 
 						html: true,
 						placement: 'mouse',
+						trigger: 'hover',
 						delay: { "hide": 100 }});
 
 				});
@@ -265,17 +266,11 @@ angular.module('imapsNgApp')
 
 									gl.add(g);
 						});
-
-						for (var i=0;i < gl.graphics.length; i++) {
-							console.log(gl.graphics[i]);
-						}
-
 						if (gl.graphics.length > 0) {
 							if ($rootScope.zoomTo) {
 								$scope.map.setExtent(graphicsUtils.graphicsExtent(gl.graphics), true);
 							}
 						}
-							
 					});
 				};
 				$scope.$on('accountUpdate', function (e, accounts) {
