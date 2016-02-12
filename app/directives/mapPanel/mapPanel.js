@@ -175,6 +175,13 @@ angular.module('imapsNgApp')
 						}
 					}
 
+
+					on($scope.map, 'basemap-change', function (e) {
+						for (var i = 0;i < e.current.layers.length; i++){
+							e.current.layers[i].setMaxScale(0);
+						}
+					});
+					$scope.map.setBasemap($scope.basemap.id);
 					$('#loading').remove();
 					$('#loadingBackground').remove();
 					$scope.scale = $scope.map.getScale();

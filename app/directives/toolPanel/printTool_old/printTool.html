@@ -4,7 +4,7 @@
     <label for="printFormat" class="col-xs-2 control-label">Format</label>
     <div class="col-xs-10">
       <div class="select-wrapper form-control input-sm">
-        <select class="form-control input-sm" id="printFormat" ng-options="printFormat as printFormat.label for printFormat in printFormats" ng-model="printFormat" ng-change="printFormatChanged(printFormat.label)"></select>
+        <select class="form-control input-sm" id="printFormat" ng-options="printFormat as printFormat.label for printFormat in printFormats" ng-model="printFormat"></select>
       </div>
     </div>
   </div>
@@ -56,7 +56,7 @@
       </div>
     </div>
   </div>
-  <div ng-hide="printFormat.value == 'PDF' || printing">
+  <div ng-hide="printFormat.value == 'PDF'">
     <div class="form-group">
       <div class="col-xs-offset-2 col-xs-10">
         <button id="exportBtn" type="submit" class="btn btn-default" ng-click="exportMap(map)">Export</button>
