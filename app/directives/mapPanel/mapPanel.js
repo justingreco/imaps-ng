@@ -102,9 +102,12 @@ angular.module('imapsNgApp')
 						'container': 'map-panel', 
 						html: true,
 						placement: 'mouse',
-						trigger: 'hover',
-						delay: { "hide": 100 }});
+						trigger: 'hover'});
 
+				});
+
+				$scope.map.on('pan', function (e) {
+					$('.tooltip').hide();
 				});
 
 				$scope.selectionMultiple.on("mouse-move", function (e) {

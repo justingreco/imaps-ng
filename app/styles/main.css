@@ -390,6 +390,21 @@ select-tool .form-control-feedback {
   right: 50px; 
   top: -4px;
 }
+.print-message {
+    white-space: nowrap;
+    -webkit-animation: marquee 4s linear;
+    margin-right: 10000px;
+}
+
+@-webkit-keyframes marquee {
+    0%   {margin-right: 100%}
+    100$ {margin-right: 0}
+}
+
+@keyframes marquee {
+    0%   {margin-right: 100%}
+    100$ {margin-right: 0}
+}
 /*draw tool*/
 draw-tool textarea {
   max-width: 100%;

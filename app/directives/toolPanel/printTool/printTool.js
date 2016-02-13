@@ -134,7 +134,8 @@ angular.module('imapsNgApp')
 					params.template = template;
 					cfpLoadingBar.start();
 					$scope.printing = true;
-					$scope.printMessage = "Generating Image..."					
+					$scope.printMessage = "Generating Image...";
+ 					$analytics.eventTrack('Export Image');									
 					printTask.execute(params, function (result) {
 						window.open(result.url);
 						cfpLoadingBar.complete();
@@ -150,6 +151,7 @@ angular.module('imapsNgApp')
 				require(["esri/tasks/PrintTask", "esri/tasks/PrintParameters", "esri/tasks/PrintTemplate", "esri/geometry/scaleUtils"], function (PrintTask, PrintParameters, PrintTemplate, scaleUtils) {
 					var printTask = new PrintTask("http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/ExportWebMap/GPServer/Export%20Web%20Map", {async: true});
 					var params = new PrintParameters();
+					var attributes = getAttributes();
 					params.map = map;
 					var template = new PrintTemplate();
 					template.format = "PDF";
@@ -159,7 +161,7 @@ angular.module('imapsNgApp')
 						scalebarUnit: 'Feet',
 						customTextElements: [
 							{"title": $scope.printTitle},
-							{"Fields": getAttributes()}
+							{"Fields": attributes}
 						]
 					};
 					template.exportOptions = {
@@ -171,7 +173,10 @@ angular.module('imapsNgApp')
 					params.template = template;
 					cfpLoadingBar.start();
 					$scope.printing = true;
-					$scope.printMessage = "Generating PDF..."
+					$scope.printMessage = "Generating PDF...";
+ 					$analytics.eventTrack('Export PDF', {category: 'size', label: $scope.printSize.value});
+ 					$analytics.eventTrack('Export PDF', {category: 'layout', label: $scope.printOrient.value});
+ 					$analytics.eventTrack('Export PDF', {category: 'attributes', label: attributes != ""});						
 					printTask.execute(params, function (result) {
 						window.open(result.url);
 						cfpLoadingBar.complete();
