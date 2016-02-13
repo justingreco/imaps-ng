@@ -107,6 +107,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			data: $.param({
 				where: where,
 				returnGeometry: true,
+				outFields: 'PIN_NUM,SITE_ADDRESS,OWNER',
 				outSR: wkid,
 				geometryPrecision: 0,
 				f: "json"

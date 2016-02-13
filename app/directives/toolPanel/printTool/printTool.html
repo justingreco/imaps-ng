@@ -4,7 +4,7 @@
     <label for="printFormat" class="col-xs-2 control-label">Format</label>
     <div class="col-xs-10">
       <div class="select-wrapper form-control input-sm">
-        <select class="form-control input-sm" id="printFormat" ng-options="printFormat as printFormat.label for printFormat in printFormats" ng-model="printFormat"></select>
+        <select class="form-control input-sm" id="printFormat" ng-options="printFormat as printFormat.label for printFormat in printFormats" ng-model="printFormat" ng-change="printFormatChanged(printFormat.label)"></select>
       </div>
     </div>
   </div>
@@ -41,7 +41,7 @@
         <span style="display:inline-block">'</span>
       </div>
     </div>
-    <div class="form-group">
+    <div class="form-group" ng-show="account != null">
       <div class="col-xs-offset-2 col-xs-10">
         <div class="checkbox">
           <label>
@@ -50,13 +50,13 @@
         </div>
       </div>
     </div>
-    <div class="form-group" ng-if="!printing">
+    <div class="form-group" ng-show="!printing">
       <div class="col-xs-offset-2 col-xs-10">
         <button ng-disabled="printScale.custom && !printScale.value" id="printBtn" type="submit" class="btn btn-default" ng-click="printPDF(map, layers)">Print</button>
       </div>
     </div>
   </div>
-  <div ng-hide="printFormat.value == 'PDF'">
+  <div ng-hide="printFormat.value == 'PDF' || printing">
     <div class="form-group">
       <div class="col-xs-offset-2 col-xs-10">
         <button id="exportBtn" type="submit" class="btn btn-default" ng-click="exportMap(map)">Export</button>
