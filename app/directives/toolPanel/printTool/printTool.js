@@ -113,7 +113,7 @@ angular.module('imapsNgApp')
 			var getScale = function (scaleUtils) {
 				var scale = $scope.printScale.value;
 				if ($scope.printScale.current) {
-					scale = parseInt(scaleUtils.getScale($scope.map)) + 1;
+					scale = parseInt(scaleUtils.getScale($scope.map));
 				} else if ($scope.printScale.custom) {
 					scale = scale * 12;
 				}
