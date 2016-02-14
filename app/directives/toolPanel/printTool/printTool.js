@@ -276,9 +276,11 @@ angular.module('imapsNgApp')
 						});
 					});
 				} else {
-					extentEvent.remove();
-					if (gl) {
-					  gl.clear();
+					if (extentEvent) {
+						extentEvent.remove();
+						if (gl) {
+						  gl.clear();
+						}						
 					}
 				}
 			});
