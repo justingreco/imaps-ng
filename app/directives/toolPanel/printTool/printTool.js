@@ -4,7 +4,7 @@ angular.module('imapsNgApp')
 		templateUrl: 'directives/toolPanel/printTool/printTool.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $filter, $http, $analytics) {
-			var account = {};
+			
 			$scope.printing = false;
 			$scope.printAtts = false;
 			$scope.printTitle = "";
@@ -85,7 +85,9 @@ angular.module('imapsNgApp')
 				var atts = "";
 				if ($scope.$parent.accountInfo && $scope.printAtts) {
 					angular.forEach($scope.$parent.accountInfo, function (info) {
-						atts += info.field + ': ' + info.value + '\r\n';
+						if (info.field != 'Crime' && info.field != 'Septic Permit' && info.field != 'Well Samples') {
+							atts += info.field + ': ' + info.value + '\r\n';
+						}
 					});
 				}
 
