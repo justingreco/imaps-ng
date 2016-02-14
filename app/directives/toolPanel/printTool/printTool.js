@@ -3,8 +3,8 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/toolPanel/printTool/printTool.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $filter, $http, $analytics) {
-			
+		controller: function ($scope, $rootScope, $filter, $http, $analytics, $timeout) {
+			var gl = null;
 			$scope.printing = false;
 			$scope.printAtts = false;
 			$scope.printTitle = "";
@@ -14,9 +14,75 @@ angular.module('imapsNgApp')
 			];
 			$scope.printFormat = $scope.printFormats[0];
 			$scope.printSizes = [
-				{value: '85x11', label:'8.5"x11"', dpi: 200},
-				{value: '11x17', label:'11"x17"', dpi: 200},
-				{value: '24x36', label:'24"x36"', dpi: 96}/*,
+				{
+					value: '85x11',
+					label:'8.5"x11"',
+					dpi: 200,
+					mapframe: {
+						landscape: {
+							attributes: {
+								width: 7.5,
+								height: 7.5
+							},
+							width: 10,
+							height: 6.7
+						},
+						portrait: {
+							attributes: {
+								width: 7.5,
+								height: 7.5
+							},
+							width: 7.5,
+							height: 7.5
+						}
+					}
+				},
+				{
+					value: '11x17',
+					label:'11"x17"',
+					dpi: 200,
+					mapframe: {
+						landscape: {
+							attributes: {
+								width: 13,
+								height: 10
+							},
+							width: 16,
+							height: 9
+						},
+						portrait: {
+							attributes: {
+								width: 10,
+								height: 13
+							},
+							width: 10,
+							height: 13
+						}
+					}
+				},
+				{
+					value: '24x36',
+					label:'24"x36"',
+					dpi: 96,
+					mapframe: {
+						landscape: {
+							attributes: {
+								width: 28,
+								height: 23
+							},
+							width: 35,
+							height: 21
+						},
+						portrait: {
+							attributes: {
+								width: 23,
+								height: 29
+							},
+							width: 23,
+							height: 29
+						}
+					}
+				}/*,
 				{value: '36x48', label:'36"x48"'}*/
 			];
 			$scope.printSize = $scope.printSizes[0];
@@ -40,47 +106,6 @@ angular.module('imapsNgApp')
 				{label: 'Custom', value: undefined, custom: true}
 			];
 			$scope.printScale = $scope.printScales[0];
-
-/*			var getGraphics = function (params) {
-				var gl = $scope.map.getLayer('drawGraphics'),
-					ptCnt = 0,
-					lnCnt = 0,
-					pyCnt = 0,
-					lbCnt = 0,
-					points = {geometryType: 'esriGeometryPoint', features: []},
-					lines = {geometryType: 'esriGeometryPolyline', features: []},
-					polygons = {geometryType: 'esriGeometryPolygon', features: []},
-					labels = {geometryType: 'esriGeometryPoint', features: []};
-				if (gl) {
-					angular.forEach(gl.graphics, function (g) {
-						switch (g.symbol.type) {
-							case 'simplemarkersymbol':
-								points.features.push({geometry: g.geometry, attributes: g.attributes});
-								ptCnt += 1;
-							break;
-							case 'simplelinesymbol':
-								lines.features.push({geometry: g.geometry, attributes: g.attributes});
-								lnCnt += 1;
-							break;
-							case 'simplefillsymbol':
-								polygons.features.push({geometry: g.geometry, attributes: g.attributes});
-								pyCnt += 1;
-							break;
-							case 'textsymbol':
-								labels.features.push({geometry: g.geometry, attributes: g.attributes});
-								lbCnt += 1;
-							break;
-						}
-					});
-				}
-				params['Graphic_Points'] = stringify(points);
-				params['Graphic_Lines'] = stringify(lines);
-				params['Graphic_Polygons'] = stringify(polygons);
-				params['Graphic_Labels'] = stringify(labels);
-				params['Graphics_Count'] = ptCnt + ';' + lnCnt + ';' + pyCnt + ';' + lbCnt + ';';
-				return params;
-			};*/
-
 			var getAttributes = function () {
 				var atts = "";
 				if ($scope.$parent.accountInfo && $scope.printAtts) {
@@ -90,7 +115,6 @@ angular.module('imapsNgApp')
 						}
 					});
 				}
-
 				return atts;
 			};
 			var getPins = function () {
@@ -109,7 +133,6 @@ angular.module('imapsNgApp')
 				}
 				return pins;
 			};
-
 			var getScale = function (scaleUtils) {
 				var scale = $scope.printScale.value;
 				if ($scope.printScale.current) {
@@ -119,7 +142,6 @@ angular.module('imapsNgApp')
 				}
 				return scale;
 			};
-
 			$scope.exportMap = function (map) {
 				require(["esri/tasks/PrintTask", "esri/tasks/PrintParameters", "esri/tasks/PrintTemplate"], function(PrintTask, PrintParameters, PrintTemplate) {
 					var printTask = new PrintTask($scope.config.tools.export.url);
@@ -130,14 +152,14 @@ angular.module('imapsNgApp')
 					    width: map.width,
 					    height: map.height,
 					    dpi: 96
-					  };					
+					  };
 					var params = new PrintParameters();
 					params.map = map;
 					params.template = template;
 					cfpLoadingBar.start();
 					$scope.printing = true;
 					$scope.printMessage = "Generating Image...";
- 					$analytics.eventTrack('Export Image');									
+ 					$analytics.eventTrack('Export Image');
 					printTask.execute(params, function (result) {
 						window.open(result.url);
 						cfpLoadingBar.complete();
@@ -146,9 +168,8 @@ angular.module('imapsNgApp')
 						cfpLoadingBar.complete();
 						$scope.printing = false;
 					});
-				});			
+				});
 			};
-
 			$scope.printPDF = function (map) {
 				require(["esri/tasks/PrintTask", "esri/tasks/PrintParameters", "esri/tasks/PrintTemplate", "esri/geometry/scaleUtils"], function (PrintTask, PrintParameters, PrintTemplate, scaleUtils) {
 					var printTask = new PrintTask("http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/ExportWebMap/GPServer/Export%20Web%20Map", {async: true});
@@ -168,17 +189,17 @@ angular.module('imapsNgApp')
 					};
 					template.exportOptions = {
 						dpi: $scope.printSize.dpi
-					};		
-					template.preserveScale = true;			
+					};
+					template.preserveScale = true;
 					template.outScale = getScale(scaleUtils);
-					console.log(template.outScale);
 					params.template = template;
 					cfpLoadingBar.start();
 					$scope.printing = true;
 					$scope.printMessage = "Generating PDF...";
  					$analytics.eventTrack('Export PDF', {category: 'size', label: $scope.printSize.value});
  					$analytics.eventTrack('Export PDF', {category: 'layout', label: $scope.printOrient.value});
- 					$analytics.eventTrack('Export PDF', {category: 'attributes', label: attributes != ""});						
+ 					$analytics.eventTrack('Export PDF', {category: 'attributes', label: attributes != ""});
+ 					gl.setVisibility(false);
 					printTask.execute(params, function (result) {
 						window.open(result.url);
 						cfpLoadingBar.complete();
@@ -187,114 +208,82 @@ angular.module('imapsNgApp')
 						cfpLoadingBar.complete();
 						$scope.printing = false;
 						console.log(error);
-					});					
+					});
+					gl.setVisibility(true);
 				});
 			};
-
 			$scope.printFormatChanged = function (format) {
 				if (format === 'PDF') {
 					$scope.tool.height = 325;
+					gl.setVisibility(true);
 				} else if (format === 'Image') {
 					$scope.tool.height = 150;
+					gl.setVisibility(false);
 				}
 			};
+			var displayFrameGraphic = function (width, height, Extent, Graphic, GraphicsLayer, SimpleFillSymbol) {
 
+				var xmin = $scope.map.extent.getCenter().x - (width / 2);
+				var xmax = $scope.map.extent.getCenter().x + (width / 2);
+				var ymin = $scope.map.extent.getCenter().y - (height / 2);
+				var ymax = $scope.map.extent.getCenter().y + (height / 2);
+				var extent = new Extent(xmin, ymin, xmax, ymax);
+				extent.spatialReference = $scope.map.spatialReference;
 
-// 			$scope.printPDF = function (map, layers) {
-// 				//$('#printBtn').button('loading');
-// 				cfpLoadingBar.start();
-// 				var layers = "";
-// 				var sublayers = "";
-// 				var opacities = "";
-// 				var layerTypes = "";
-// 				var defExps = "";
-// 				angular.forEach($scope.webmap.itemInfo.itemData.baseMap.baseMapLayers, function (l) {
-// 					var arr = l.url.split("/");
-// 					var id = arr[arr.length - 2];
-// 					console.log(id);
-// 					layers += id +";";
-// 					sublayers += ";";
-// 					opacities += "1;";
-// 					layerTypes += "tiled;";
-// 					defExps += ";";
-// 				});
-// 				var visibleLyrs = $filter('filter')($scope.webmap.itemInfo.itemData.operationalLayers, function (l) {
-// 					return l.visibility === true && l.resourceInfo.type != 'Feature Layer';
-// 				});
-// 				console.log(visibleLyrs);
-// 				angular.forEach(visibleLyrs, function (l) {
-// 					layers += l.id.split("_")[0] +";";
-// 					opacities += 100 - (l.opacity*100) + ";";
-// 					layerTypes += "dynamic;";
-// 					defExps += ";";
-// 					var visibleSubLyrs = $filter('filter')(l.resourceInfo.layers, function (sl) {
-// 						return sl.defaultVisibility === true;
-// 					});
-// 					for (var i = 0; i < visibleSubLyrs.length; i++) {
-// 						if (i === visibleSubLyrs.length - 1) {
-// 							sublayers += visibleSubLyrs[i].id +";";
-// 						} else {
-// 							sublayers += visibleSubLyrs[i].id +",";
-// 						}
-// 					}
-// 					if (visibleSubLyrs.length === 0) {
-// 						sublayers += ";";
-// 					}
-// 				});
-// 				require(["esri/geometry/scaleUtils", "esri/tasks/Geoprocessor"], function(scaleUtils, Geoprocessor) {
-// 					var gp = new Geoprocessor($scope.config.tools.print.url);
-// 					var attributes = getAttributes();
-// 					var params = {
-// 						Title: $scope.printTitle,
-// 						Size: $scope.printSize.value,
-// 						Orientation: $scope.printOrient.value,
-// 						Services: layers,
-// 						Types: layerTypes,
-// 						"Visible_Layers": sublayers,
-// 						"Definition_Expressions": defExps,
-// 						"Transparency_Values": opacities,
-// 						"Extent": $scope.map.extent.xmin +";" + $scope.map.extent.ymin +";" + $scope.map.extent.xmax +";" + $scope.map.extent.ymax +";",
-// 						Scale: getScale(scaleUtils),
-// 						PIN: getPins(),
-// 						Attributes: attributes
-// 					};
-
-// 					params = getGraphics(params);
-// 					$analytics.eventTrack('Export PDF', {category: 'size', label: $scope.printSize.value});
-// 					$analytics.eventTrack('Export PDF', {category: 'layout', label: $scope.printOrient.value});
-// 					$analytics.eventTrack('Export PDF', {category: 'graphics count', label: params['Graphics_Count']});	
-// 					$analytics.eventTrack('Export PDF', {category: 'attributes', label: attributes != ""});						
-// 					console.log(params);
-// 					$scope.printing = true;
-// 					gp.submitJob(params, function (info) {
-						
-// 						console.log(info);
-// 						$scope.printing = false;
-// 						cfpLoadingBar.complete();
-// 						gp.getResultData(info.jobId, 'Output_URL', function (data) {
-// 							window.open(data.value);
-// /*							$http({
-// 								method: 'GET',
-// 								url: "scripts/downloadPdf.php",
-// 								params: {
-// 									url: data.value
-// 								}
-// 							});*/
-// 						})
-// 					}, function (info) {
-// 						if (info.messages.length > 0) {
-// 							$scope.printMessage = info.messages[info.messages.length - 1].description;
-// 						}
-						
-// 					}, function (error) {
-// 						$scope.printing = false;
-// 					});
-// 				});
-// 			};
-
+		  		gl = $scope.map.getLayer('printFrame');
+				var g = null;
+				if (!gl) {
+				  gl = new GraphicsLayer({id: 'printFrame'});
+				  $scope.map.addLayer(gl);
+				 }
+				gl.clear();
+				var fill = new SimpleFillSymbol({
+				  "type": "esriSFS",
+				  "style": "esriSFSSolid",
+					"color": [0,0,0,40],
+				    "outline": {
+				     "type": "esriSLS",
+				     "style": "esriSLSNull",
+						"color": [255,140,0,255],
+				     "width": 5
+					 }
+				});
+				g = new Graphic(extent,fill);
+				gl.add(g);
+			};
+			$scope.displayFrame = function () {
+				var orient = $scope.printOrient.value,
+					hasAtts = ($scope.$parent.accountInfo && $scope.printAtts),
+					mapframe = $scope.printSize.mapframe[orient];
+					width = 0,
+					height = 0;
+				if (hasAtts) {
+					mapframe = mapframe.attributes;
+				}
+				require(["esri/geometry/Extent","esri/graphic", "esri/layers/GraphicsLayer", "esri/symbols/SimpleFillSymbol", "esri/geometry/scaleUtils"], function(Extent, Graphic, GraphicsLayer, SimpleFillSymbol, scaleUtils) {
+					width = (getScale(scaleUtils) / 12) * mapframe.width;
+					height = (getScale(scaleUtils)  / 12) * mapframe.height;
+					displayFrameGraphic(width, height, Extent, Graphic, GraphicsLayer, SimpleFillSymbol);
+				});
+			};
+			var extentEvent = null;
+			$scope.$watch('tool', function (tool) {
+				if (tool.title === 'Print') {
+					$timeout($scope.displayFrame);
+					require(['dojo/on'], function (on) {
+						extentEvent = on($scope.map, 'extent-change', function () {
+							$scope.displayFrame();
+						});
+					});
+				} else {
+					extentEvent.remove();
+					if (gl) {
+					  gl.clear();
+					}
+				}
+			});
 		},
 		link: function (scope, element, attrs) {
-
 		}
 	}
 });
