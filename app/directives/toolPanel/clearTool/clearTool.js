@@ -16,6 +16,8 @@ angular.module('imapsNgApp')
 			  		$scope.$broadcast('accountSelected', {});
 			  		$("#searchInput").typeahead('val', '');
 			  					  		//$scope.tab = $scope.tabs[1];
+			  		$rootScope.account = null;
+			  		$scope.accounts = [];
 			  		$scope.geometry = null;
 			  		$scope.$broadcast('tabUpdated', 0);
 				}
