@@ -237,10 +237,11 @@ angular.module('imapsNgApp')
 				  $scope.map.addLayer(gl);
 				 }
 				gl.clear();
+				frameColor = ($scope.basemap.tone  === 'light') ? [0, 0, 0, 80] : [255, 255, 255, 80];
 				var fill = new SimpleFillSymbol({
 				  "type": "esriSFS",
 				  "style": "esriSFSSolid",
-					"color": [0,0,0,40],
+					"color": frameColor,
 				    "outline": {
 				     "type": "esriSLS",
 				     "style": "esriSLSNull",
@@ -252,21 +253,30 @@ angular.module('imapsNgApp')
 				gl.add(g);
 			};
 			$scope.displayFrame = function () {
-				var orient = $scope.printOrient.value,
-					hasAtts = ($scope.$parent.accountInfo && $scope.printAtts),
-					mapframe = $scope.printSize.mapframe[orient];
-					width = 0,
-					height = 0;
-				if (hasAtts) {
-					mapframe = mapframe.attributes;
+				if ($scope.map && $scope.tool.title === 'Print') {
+					var orient = $scope.printOrient.value,
+						hasAtts = ($scope.$parent.accountInfo && $scope.printAtts),
+						mapframe = $scope.printSize.mapframe[orient];
+						width = 0,
+						height = 0;
+					if (hasAtts) {
+						mapframe = mapframe.attributes;
+					}
+					require(["esri/geometry/Extent","esri/graphic", "esri/layers/GraphicsLayer", "esri/symbols/SimpleFillSymbol", "esri/geometry/scaleUtils"], function(Extent, Graphic, GraphicsLayer, SimpleFillSymbol, scaleUtils) {
+						width = (getScale(scaleUtils) / 12) * mapframe.width;
+						height = (getScale(scaleUtils)  / 12) * mapframe.height;
+						displayFrameGraphic(width, height, Extent, Graphic, GraphicsLayer, SimpleFillSymbol);
+					});
 				}
-				require(["esri/geometry/Extent","esri/graphic", "esri/layers/GraphicsLayer", "esri/symbols/SimpleFillSymbol", "esri/geometry/scaleUtils"], function(Extent, Graphic, GraphicsLayer, SimpleFillSymbol, scaleUtils) {
-					width = (getScale(scaleUtils) / 12) * mapframe.width;
-					height = (getScale(scaleUtils)  / 12) * mapframe.height;
-					displayFrameGraphic(width, height, Extent, Graphic, GraphicsLayer, SimpleFillSymbol);
-				});
 			};
 			var extentEvent = null;
+			var frameColor = [0, 0, 0, 80]
+			$scope.$watch('basemap', function (basemap) {
+				if (basemap) {
+					frameColor = (basemap.tone === 'light') ? [0, 0, 0, 80] : [255, 255, 255, 80];
+					$scope.displayFrame();
+				}
+			});
 			$scope.$watch('tool', function (tool) {
 				if (tool.title === 'Print') {
 					$timeout($scope.displayFrame);
