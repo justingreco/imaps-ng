@@ -256,7 +256,7 @@ angular.module('imapsNgApp')
 				if ($scope.map && $scope.tool.title === 'Print') {
 					var orient = $scope.printOrient.value,
 						hasAtts = ($scope.$parent.accountInfo && $scope.printAtts),
-						mapframe = $scope.printSize.mapframe[orient];
+						mapframe = $scope.printSize.mapframe[orient],
 						width = 0,
 						height = 0;
 					if (hasAtts) {
