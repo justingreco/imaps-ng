@@ -91,10 +91,38 @@ angular.module('imapsNgApp')
 				$scope.basemapChanged($scope.basemap, type);
 				$scope.basemapType = type;
 			}
+/*			var setParcelColor = function () {
+				require(['esri/symbols/SimpleFillSymbol', 'esri/renderers/SimpleRenderer', 'esri/layers/LayerDrawingOptions'], function (SimpleFillSymbol, SimpleRenderer, LayerDrawingOptions) {
+					for (var i = 0; i < $scope.map.layerIds.length; i++) {
+						if ($scope.map.layerIds[i].indexOf('Parcels') > -1) {
+							var color = ($scope.basemap.tone === 'light') ? [0, 0, 0, 255] : [255,255,255,255];
+							var layer = $scope.map.getLayer($scope.map.layerIds[i]);
+							var fill = new SimpleFillSymbol({
+							  "type": "esriSFS",
+							  "style": "esriSFSNull",
+								"color": color,
+							    "outline": {
+							     "type": "esriSLS",
+							     "style": "esriSLSSolid",
+									"color": color,
+							     "width": 1
+								 }
+							});
+							var optionsArray = [];
+							var options = LayerDrawingOptions();
+							var renderer = SimpleRenderer(fill);
+							options.renderer = renderer;
+							optionsArray[0] = options;
+							optionsArray[1] = options;	
+							layer.setLayerDrawingOptions(optionsArray);					
+						}
+					}
+				});
+			};*/
 			$scope.basemapChanged = function (basemap, basemapType, manual) {
 				$analytics.eventTrack('Changed', {  category: 'Basemaps', label: basemap.id });
 				require(["esri/basemaps",], function (esriBasemaps) {
-
+					//setParcelColor();
 					angular.forEach($scope.map.layerIds, function (id) {
 						if (id.indexOf('Base') === 0 || id.indexOf('base') === 0) {
 							$scope.map.removeLayer($scope.map.getLayer(id));

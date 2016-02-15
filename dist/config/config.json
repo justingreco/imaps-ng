@@ -14,14 +14,16 @@
 					"url": "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
 					"labels": true,
 					"tiled": true,
-					"id": "base-map"
+					"id": "base-map",
+					"tone": "light"
 				},
 				{
 					"name": "Base Map Basic",
 					"url": "http://maps.wakegov.com/arcgis/rest/services/BaseMapSimple/MapServer",
 					"labels": false,
 					"tiled": false,
-					"id": "base-map-basic"
+					"id": "base-map-basic",
+					"tone": "light"
 				}
 			]},
 			"images" : {
@@ -33,7 +35,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2015"
+					"id": "orthos-2015",
+					"tone": "dark"
 				},				
 				{
 					"name": "2014",
@@ -41,7 +44,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2014"
+					"id": "orthos-2014",
+					"tone": "dark"
 				},
 				{
 					"name": "2013",
@@ -49,7 +53,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": true,
-					"id": "orthos-2013"
+					"id": "orthos-2013",
+					"tone": "dark"
 				},
 				{
 					"name": "2012",
@@ -57,7 +62,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2012"
+					"id": "orthos-2012",
+					"tone": "dark"
 				},
 				{
 					"name": "2011",
@@ -65,7 +71,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2011"
+					"id": "orthos-2011",
+					"tone": "dark"
 				},
 				{
 					"name": "2010",
@@ -73,7 +80,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": true,
-					"id": "orthos-2010"
+					"id": "orthos-2010",
+					"tone": "dark"
 				},
 				{
 					"name": "2009",
@@ -81,7 +89,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2009"
+					"id": "orthos-2009",
+					"tone": "dark"
 				},
 				{
 					"name": "2008",
@@ -89,7 +98,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2008"
+					"id": "orthos-2008",
+					"tone": "dark"
 				},
 				{
 					"name": "2007",
@@ -97,7 +107,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2007"
+					"id": "orthos-2007",
+					"tone": "dark"
 				},
 				{
 					"name": "2006",
@@ -105,7 +116,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2006"
+					"id": "orthos-2006",
+					"tone": "dark"
 				},
 				{
 					"name": "2005",
@@ -113,7 +125,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": true,
-					"id": "orthos-2005"
+					"id": "orthos-2005",
+					"tone": "dark"
 				},
 				{
 					"name": "2004",
@@ -121,7 +134,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2004"
+					"id": "orthos-2004",
+					"tone": "dark"
 				},
 				{
 					"name": "2002",
@@ -129,7 +143,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": false,
-					"id": "orthos-2002"
+					"id": "orthos-2002",
+					"tone": "dark"
 				},
 				{
 					"name": "1999",
@@ -137,7 +152,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": true,
-					"id": "orthos-1999"
+					"id": "orthos-1999",
+					"tone": "dark"
 				},
 				{
 					"name": "1988",
@@ -145,7 +161,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": true,
-					"id": "orthos-1988"
+					"id": "orthos-1988",
+					"tone": "dark"
 				},
 				{
 					"name": "1981",
@@ -153,7 +170,8 @@
 					"labels": false,
 					"tiled": true,
 					"county": true,
-					"id": "orthos-1981"
+					"id": "orthos-1981",
+					"tone": "dark"
 				}
 			]}
 		}
