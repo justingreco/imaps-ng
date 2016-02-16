@@ -11,6 +11,11 @@ angular.module('imapsNgApp')
   .controller('MainCtrl', function ($rootScope, $location, $timeout, config) {
   	$rootScope.checked = true;
     $rootScope.loading = true;
+    $timeout(function () {
+        $('#loading').remove();
+        $('#loadingBackground').remove();
+        $rootScope.loading = false;
+    }, 10000);
 
     var getBrowser = function () {
         var userAgent = navigator.userAgent.toLowerCase();
