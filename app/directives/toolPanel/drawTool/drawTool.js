@@ -7,7 +7,7 @@ angular.module('imapsNgApp')
 			var toolbar, fill, line, marker, textSymbol, gl;
 			$scope.drawText = '';
 			var drawCompleted = function (e) {
-				require(["esri/units", "esri/graphic"], function(units, Graphic)
+				require(["esri/units", "esri/graphic", "esri/symbols/TextSymbol"], function(units, Graphic, TextSymbol)
 				{
 					var g = new Graphic(e.geometry);
 					g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer'})
@@ -20,9 +20,31 @@ angular.module('imapsNgApp')
 							g.setSymbol(marker);
 						} else if ($scope.drawType.name === 'Text') {
 							console.log($scope.drawText);
-							textSymbol.setText($scope.drawText);
+							var text = $("#drawText").val();
+							textSymbol = new TextSymbol(
+								{
+								     "type": "esriTS",
+								     "color": [255,0,0,255],
+								     "backgroundColor": null,
+								     "borderLineColor": null,
+								     "verticalAlignment": "middle",
+								     "horizontalAlignment": "center",
+								     "rightToLeft": false,
+								     "angle": 0,
+								     "xoffset": 0,
+								     "yoffset": 0,
+								     "font": {
+								      "family": "Arial",
+								      "size": 12,
+								      "style": "normal",
+								      "weight": "bold",
+								      "decoration": "none"
+									}
+								}
+							);							
+							textSymbol.setText(text);
 							g.setSymbol(textSymbol);
-							g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer', 'label': $scope.drawText})
+							g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer', 'label': text})
 						}
 					}
 					gl.add(g);
