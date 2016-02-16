@@ -172,7 +172,7 @@ angular.module('imapsNgApp')
 			};
 			$scope.printPDF = function (map) {
 				require(["esri/tasks/PrintTask", "esri/tasks/PrintParameters", "esri/tasks/PrintTemplate", "esri/geometry/scaleUtils"], function (PrintTask, PrintParameters, PrintTemplate, scaleUtils) {
-					var printTask = new PrintTask("http://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/ExportWebMap/GPServer/Export%20Web%20Map", {async: true});
+					var printTask = new PrintTask("https://maps.raleighnc.gov/arcgis/rest/services/Geoprocessing/ExportWebMap/GPServer/Export%20Web%20Map", {async: true});
 					var params = new PrintParameters();
 					var attributes = getAttributes();
 					params.map = map;
