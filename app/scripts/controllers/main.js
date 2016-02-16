@@ -11,6 +11,7 @@ angular.module('imapsNgApp')
   .controller('MainCtrl', function ($rootScope, $location, $timeout, config) {
   	$rootScope.checked = true;
     $rootScope.loading = true;
+
     var getBrowser = function () {
         var userAgent = navigator.userAgent.toLowerCase();
         var chrome = /chrome/.test(userAgent);
