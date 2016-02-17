@@ -27,19 +27,21 @@ angular.module('imapsNgApp')
 								     "color": [255,0,0,255],
 								     "backgroundColor": null,
 								     "borderLineColor": null,
-								     "verticalAlignment": "middle",
-								     "horizontalAlignment": "center",
+								     "verticalAlignment": "bottom",
+								     "horizontalAlignment": "left",
 								     "rightToLeft": false,
 								     "angle": 0,
 								     "xoffset": 0,
 								     "yoffset": 0,
 								     "font": {
-								      "family": "Arial",
-								      "size": 12,
-								      "style": "normal",
-								      "weight": "bold",
-								      "decoration": "none"
-									}
+									      "family": "Arial",
+									      "size": 12,
+									      "style": "normal",
+									      "weight": "bold",
+									      "decoration": "none"
+										},
+								      "haloColor": [255,255,255,255],
+								      "haloSize": 1
 								}
 							);							
 							textSymbol.setText(text);
@@ -48,6 +50,7 @@ angular.module('imapsNgApp')
 						}
 					}
 					gl.add(g);
+					$scope.map.reorderLayer(gl, $scope.map.layerIds.length - 1);
 				});
 
 			};
@@ -74,41 +77,19 @@ angular.module('imapsNgApp')
 					});
 					marker =  new SimpleMarkerSymbol({
 					  "color": [255,0,0,200],
-					  "size": 12,
+					  "size": 10,
 					  "angle": 0,
 					  "xoffset": 0,
 					  "yoffset": 0,
 					  "type": "esriSMS",
 					  "style": "esriSMSCircle",
 					  "outline": {
-					    "color": [0,0,0,255],
+					    "color": [255,255,255,255],
 					    "width": 1,
 					    "type": "esriSLS",
 					    "style": "esriSLSSolid"
 					  }
 					});
-					textSymbol = new TextSymbol(
-						{
-						     "type": "esriTS",
-						     "color": [255,0,0,255],
-						     "backgroundColor": null,
-						     "borderLineColor": null,
-						     "verticalAlignment": "middle",
-						     "horizontalAlignment": "center",
-						     "rightToLeft": false,
-						     "angle": 0,
-						     "xoffset": 0,
-						     "yoffset": 0,
-						     "font": {
-						      "family": "Arial",
-						      "size": 12,
-						      "style": "normal",
-						      "weight": "bold",
-						      "decoration": "none"
-							}
-						}
-					);
-
 					toolbar = new Draw($scope.map);
 					toolbar.setFillSymbol(fill);
 					toolbar.setLineSymbol(line);
