@@ -103,7 +103,6 @@ angular.module('imapsNgApp')
 						html: true,
 						placement: 'mouse',
 						trigger: 'hover'});
-
 				});
 
 				$scope.map.on('pan', function (e) {
