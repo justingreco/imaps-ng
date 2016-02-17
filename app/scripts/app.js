@@ -26,7 +26,8 @@ angular
     'ngCsv',
     'ngReactGrid',
     'angulartics',
-    'angulartics.google.analytics'
+    'angulartics.google.analytics',
+    'colorpicker.module'
   ]).config(['localStorageServiceProvider', '$locationProvider', function (localStorageServiceProvider, $locationProvider) {
     localStorageServiceProvider.setPrefix('imaps');
     $locationProvider.html5Mode({enabled: true, requireBase: false});
