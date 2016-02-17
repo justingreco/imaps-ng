@@ -11,7 +11,6 @@ angular.module('imapsNgApp')
 			var drawCompleted = function (e) {
 				require(["esri/units", "esri/graphic", "esri/symbols/TextSymbol"], function(units, Graphic, TextSymbol)
 				{
-					
 					var g = new Graphic(e.geometry);
 					g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer'});
 					setColor();
