@@ -29,9 +29,11 @@ angular.module('imapsNgApp')
 					tool.highlighted = true;
 					$scope.tool = tool;
 					if (tool.title === 'Identify' && tool.title != $scope.lastTool.title) {
-						$scope.webmap.clickEventHandle = on($scope.map, 'click', $scope.webmap.clickEventListener);
+						$scope.map.setInfoWindowOnClick(true);
+						//$scope.webmap.clickEventHandle = on($scope.map, 'click', $scope.webmap.clickEventListener);
 					} else if (tool.title != $scope.lastTool.title){
-						$scope.webmap.clickEventHandle.remove();
+						$scope.map.setInfoWindowOnClick(false);
+						//$scope.webmap.clickEventHandle.remove();
 					}
 					$scope.lastTool = tool;
 				});
@@ -47,7 +49,7 @@ angular.module('imapsNgApp')
 				{icon: 'bookmark', title:'Bookmarks', highlighted: false, height: 260, width: 300},
 				{icon: 'pencil', title:'Draw', highlighted: false, height: 250, width: 300},
 				{icon: 'print', title:'Print', highlighted: false, height: 325, width: 300},
-				{icon: 'trash', title:'Clear Map', highlighted: false, height: 54, width: 300}
+				{icon: 'trash', title:'Clear Map', highlighted: false, height: 104, width: 300}
 			];
 			scope.tool = scope.tools[0];
 			scope.lastTool = scope.tool;

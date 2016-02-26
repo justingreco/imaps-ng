@@ -411,6 +411,13 @@ draw-tool textarea {
   max-height: 90px;
   min-height: 90px;
 }
+
+#fontSize {
+  width: 60px;
+  display: inline-block;
+  margin-left: 1em;
+  margin-right: .5em;
+}
 /*overview panel*/
 overview-panel {
   position: absolute;

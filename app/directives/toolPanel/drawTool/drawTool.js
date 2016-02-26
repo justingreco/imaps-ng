@@ -4,13 +4,16 @@ angular.module('imapsNgApp')
 		templateUrl: 'directives/toolPanel/drawTool/drawTool.html',
 		restrict: 'E',
 		controller: function ($scope) {
-			var toolbar, fill, line, marker, textSymbol, gl;
+			var toolbar, fill, line, marker, textSymbol, gl, color, haloColor;
 			$scope.drawText = '';
+			$scope.drawColor = '#FF0000';
+			$scope.drawFontSize = 12;
 			var drawCompleted = function (e) {
 				require(["esri/units", "esri/graphic", "esri/symbols/TextSymbol"], function(units, Graphic, TextSymbol)
 				{
 					var g = new Graphic(e.geometry);
-					g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer'})
+					g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer'});
+					setColor();
 					if (e.geometry.type === 'polygon') {
 						g.setSymbol(fill);
 					} else if (e.geometry.type === 'polyline') {
@@ -21,29 +24,6 @@ angular.module('imapsNgApp')
 						} else if ($scope.drawType.name === 'Text') {
 							console.log($scope.drawText);
 							var text = $("#drawText").val();
-							textSymbol = new TextSymbol(
-								{
-								     "type": "esriTS",
-								     "color": [255,0,0,255],
-								     "backgroundColor": null,
-								     "borderLineColor": null,
-								     "verticalAlignment": "bottom",
-								     "horizontalAlignment": "left",
-								     "rightToLeft": false,
-								     "angle": 0,
-								     "xoffset": 0,
-								     "yoffset": 0,
-								     "font": {
-									      "family": "Arial",
-									      "size": 12,
-									      "style": "normal",
-									      "weight": "bold",
-									      "decoration": "none"
-										},
-								      "haloColor": [255,255,255,255],
-								      "haloSize": 1
-								}
-							);							
 							textSymbol.setText(text);
 							g.setSymbol(textSymbol);
 							g.setAttributes({'GraphicsLayer': 'Drawing Graphics Layer', 'label': text})
@@ -55,45 +35,13 @@ angular.module('imapsNgApp')
 
 			};
 			var init = function () {
-				require(["esri/toolbars/draw", "esri/layers/GraphicsLayer", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol", "dojo/on"], function (Draw, GraphicsLayer, SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, TextSymbol, on) {
+				require(["esri/toolbars/draw", "esri/layers/GraphicsLayer", "dojo/on"], function (Draw, GraphicsLayer, on) {
 					gl = new GraphicsLayer({id: 'drawGraphics'});
 					$scope.map.addLayer(gl);
-					fill = new SimpleFillSymbol({
-					  "type": "esriSFS",
-					  "style": "esriSFSNull",
-						"color": [31,117,254,40],
-					    "outline": {
-					     "type": "esriSLS",
-					     "style": "esriSLSSolid",
-							"color": [255,0,0,200],
-					     "width": 3
-						 }
-					});
-					line = new SimpleLineSymbol({
-						"type": "esriSLS",
-						"style": "esriSLSSolid",
-						"color": [255,0,0,200],
-						"width": 3
-					});
-					marker =  new SimpleMarkerSymbol({
-					  "color": [255,0,0,200],
-					  "size": 10,
-					  "angle": 0,
-					  "xoffset": 0,
-					  "yoffset": 0,
-					  "type": "esriSMS",
-					  "style": "esriSMSCircle",
-					  "outline": {
-					    "color": [255,255,255,255],
-					    "width": 1,
-					    "type": "esriSLS",
-					    "style": "esriSLSSolid"
-					  }
-					});
 					toolbar = new Draw($scope.map);
-					toolbar.setFillSymbol(fill);
-					toolbar.setLineSymbol(line);
-					toolbar.setMarkerSymbol(marker);
+					setColor();
+					
+
 					on(toolbar, 'draw-end', drawCompleted);
 				});
 			};
@@ -144,6 +92,75 @@ angular.module('imapsNgApp')
 					}
 				}
 			});
+			var setColor = function () {
+				require(["esri/Color", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol"], function (Color,  SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, TextSymbol) {
+					color = Color.fromHex($scope.drawColor);
+					haloColor = ((color.r*0.299 + color.g*0.587 + color.b*0.114) > 186) ? [0, 0, 0] : [255, 255, 255];
+
+					color = color.toRgb();
+					fill = new SimpleFillSymbol({
+					  "type": "esriSFS",
+					  "style": "esriSFSNull",
+						"color": color,
+					    "outline": {
+					     "type": "esriSLS",
+					     "style": "esriSLSSolid",
+							"color": color,
+					     "width": 3
+						 }
+					});
+					line = new SimpleLineSymbol({
+						"type": "esriSLS",
+						"style": "esriSLSSolid",
+						"color": color,
+						"width": 3
+					});
+					marker =  new SimpleMarkerSymbol({
+					  "color": color,
+					  "size": $scope.drawFontSize,
+					  "angle": 0,
+					  "xoffset": 0,
+					  "yoffset": 0,
+					  "type": "esriSMS",
+					  "style": "esriSMSCircle",
+					  "outline": {
+					    "color": haloColor,
+					    "width": 1,
+					    "type": "esriSLS",
+					    "style": "esriSLSSolid"
+					  }
+					});	
+					textSymbol = new TextSymbol(
+						{
+						     "type": "esriTS",
+						     "color": color,
+						     "backgroundColor": null,
+						     "borderLineColor": null,
+						     "verticalAlignment": "bottom",
+						     "horizontalAlignment": "left",
+						     "rightToLeft": false,
+						     "angle": 0,
+						     "xoffset": 0,
+						     "yoffset": 0,
+						     "font": {
+							      "family": "Arial",
+							      "size": $scope.drawFontSize,
+							      "style": "normal",
+							      "weight": "bold",
+							      "decoration": "none"
+								},
+						      "haloColor": haloColor,
+						      "haloSize": 1
+						}
+					);						
+					toolbar.setFillSymbol(fill);
+					toolbar.setLineSymbol(line);
+					toolbar.setMarkerSymbol(marker);				
+				});
+			};
+			$scope.$on('colorpicker-closed', function(event, colorObject) {
+			    setColor();
+			});			
 		},
 		link: function (scope, element, attrs) {
 
