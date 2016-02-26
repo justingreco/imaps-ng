@@ -7,7 +7,7 @@ angular.module('imapsNgApp')
 			$scope.resultHeader = [];
 			$scope.accounts = [];
 				$scope.$on('accountUpdate', function (e, accounts) {
-					$rootScope.accounts = accounts;
+					$scope.accounts = accounts;
 					$scope.resultGrid.data = accounts;
 					$scope.resultHeader = [];
 					angular.forEach($scope.fields, function (f) {
@@ -41,8 +41,6 @@ angular.module('imapsNgApp')
 			  		$scope.resultClicked (row);
 			  	}
 			  };
-			  $scope.$watch('accounts', function (accounts) {
-			  });
 			  $scope.resultClicked = function (account) {
 			  						$rootScope.zoomTo = true;
 
