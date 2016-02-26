@@ -49,7 +49,7 @@ angular.module('imapsNgApp')
 				{icon: 'bookmark', title:'Bookmarks', highlighted: false, height: 260, width: 300},
 				{icon: 'pencil', title:'Draw', highlighted: false, height: 250, width: 300},
 				{icon: 'print', title:'Print', highlighted: false, height: 325, width: 300},
-				{icon: 'trash', title:'Clear Map', highlighted: false, height: 84, width: 300}
+				{icon: 'trash', title:'Clear Map', highlighted: false, height: 104, width: 300}
 			];
 			scope.tool = scope.tools[0];
 			scope.lastTool = scope.tool;
