@@ -93,7 +93,7 @@ angular.module('imapsNgApp')
 				}
 			});
 			var setColor = function () {
-				require(["dojox/color", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol"], function (Color,  SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, TextSymbol) {
+				require(["esri/Color", "esri/symbols/SimpleMarkerSymbol", "esri/symbols/SimpleFillSymbol", "esri/symbols/SimpleLineSymbol", "esri/symbols/TextSymbol"], function (Color,  SimpleMarkerSymbol, SimpleFillSymbol, SimpleLineSymbol, TextSymbol) {
 					color = Color.fromHex($scope.drawColor);
 					haloColor = ((color.r*0.299 + color.g*0.587 + color.b*0.114) > 186) ? [0, 0, 0] : [255, 255, 255];
 

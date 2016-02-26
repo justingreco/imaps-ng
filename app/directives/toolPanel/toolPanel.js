@@ -29,9 +29,11 @@ angular.module('imapsNgApp')
 					tool.highlighted = true;
 					$scope.tool = tool;
 					if (tool.title === 'Identify' && tool.title != $scope.lastTool.title) {
-						$scope.webmap.clickEventHandle = on($scope.map, 'click', $scope.webmap.clickEventListener);
+						$scope.map.setInfoWindowOnClick(true);
+						//$scope.webmap.clickEventHandle = on($scope.map, 'click', $scope.webmap.clickEventListener);
 					} else if (tool.title != $scope.lastTool.title){
-						$scope.webmap.clickEventHandle.remove();
+						$scope.map.setInfoWindowOnClick(false);
+						//$scope.webmap.clickEventHandle.remove();
 					}
 					$scope.lastTool = tool;
 				});

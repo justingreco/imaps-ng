@@ -9,7 +9,10 @@ angular.module('imapsNgApp')
 					var layer = null;
 					$scope.map.graphics.clear();
 					angular.forEach($scope.map.graphicsLayerIds, function (id) {
-						layer = $scope.map.getLayer(id).clear();
+						layer = $scope.map.getLayer(id);
+						if (!layer.type) {
+							layer.clear();
+						}
 					});
 					$rootScope.$broadcast('accountUpdate', [], false);
 

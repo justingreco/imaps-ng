@@ -247,7 +247,9 @@ angular.module('imapsNgApp')
 									showAttribution: false,
 									sliderPosition: "bottom-left",
 									sliderOrientation: "horizontal",
-									sliderStyle: "small"}
+									sliderStyle: "small",
+									},
+									usePopupManager: true
 								}).then(webMapLoaded, function (err) {
 									console.log(err);
 								});
