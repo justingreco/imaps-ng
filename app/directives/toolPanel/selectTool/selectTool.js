@@ -78,6 +78,8 @@ angular.module('imapsNgApp')
 					if ($scope.freehand && type.indexOf('point') === -1) {
 						type = 'freehand' + type;
 						$scope.map.disableMapNavigation();
+					} else {
+						$scope.map.enableMapNavigation();
 					}
 					toolbar.activate(type);
 				};
@@ -100,6 +102,7 @@ angular.module('imapsNgApp')
 							toolbar.deactivate();
 							$scope.selectType = '';
 						}
+						$scope.map.enableMapNavigation();
 					}
 				});
 			});
