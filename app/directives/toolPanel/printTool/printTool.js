@@ -82,7 +82,7 @@ angular.module('imapsNgApp')
 							height: 29
 						}
 					}
-				}/*,
+				},
 				{
 					value: '36x48',
 					label:'36"x48"',
@@ -105,7 +105,7 @@ angular.module('imapsNgApp')
 							height: 39
 						}
 					}
-				}*/
+				}
 			];
 			$scope.printSize = $scope.printSizes[0];
 			$scope.printOrients = [
