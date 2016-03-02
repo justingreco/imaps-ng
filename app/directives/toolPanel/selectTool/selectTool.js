@@ -102,7 +102,9 @@ angular.module('imapsNgApp')
 							toolbar.deactivate();
 							$scope.selectType = '';
 						}
-						$scope.map.enableMapNavigation();
+						if ($scope.map) {
+							$scope.map.enableMapNavigation();							
+						}
 					}
 				});
 			});

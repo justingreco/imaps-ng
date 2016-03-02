@@ -83,7 +83,29 @@ angular.module('imapsNgApp')
 						}
 					}
 				}/*,
-				{value: '36x48', label:'36"x48"'}*/
+				{
+					value: '36x48',
+					label:'36"x48"',
+					dpi: 96,
+					mapframe: {
+						landscape: {
+							attributes: {
+								width: 38,
+								height: 35
+							},
+							width: 47,
+							height: 32.5
+						},
+						portrait: {
+							attributes: {
+								width: 35,
+								height: 39
+							},
+							width: 35,
+							height: 39
+						}
+					}
+				}*/
 			];
 			$scope.printSize = $scope.printSizes[0];
 			$scope.printOrients = [
