@@ -257,6 +257,7 @@ angular.module('imapsNgApp')
 						});
 					}
 				});
+
 				var addGeometriesToMap = function (features, gl, color) {
 					require(["esri/graphic", "esri/graphicsUtils", "esri/SpatialReference"], function (Graphic, graphicsUtils, SpatialReference) {
 						$scope.map.reorderLayer($scope.bufferGraphics, $scope.map.layerIds.length - 4);
@@ -264,7 +265,6 @@ angular.module('imapsNgApp')
 						$scope.map.reorderLayer($scope.selectionSingle, $scope.map.layerIds.length - 2);
 						var g = null;
 						gl.clear();
-						$scope.selectionSingle.clear();
 						if (features.length === 1) {
 							$scope.geometry = features[0].geometry;
 						}
