@@ -1,5 +1,6 @@
 <div ng-style="accordionHeight" class="panel-contain">
   <input class="form-control input-sm" ng-model="layerFilterValue" placeholder="Filter layers by name"/>
+
   <div class="layer" ng-repeat="layer in layers | orderBy: 'title' | filter: filterLayers" ng-model="layer" >
     <div ng-class="{'out-scale': (scale > layer.resourceInfo.minScale) && layer.resourceInfo.minScale > 0}" class="layer-toggle">
       <span  uib-tooltip="{{(((scale > layer.resourceInfo.minScale) && layer.resourceInfo.minScale > 0) ? 'Not Visible At This Scale' : '')}}" tooltip-placement="top" tooltip-append-to-body="true">

@@ -121,6 +121,9 @@ angular.module('imapsNgApp')
 			});
 			$rootScope.$on('accountUpdate', function (e, accounts) {
 				$rootScope.checked = true;
+				if (!accounts) {
+					accounts = [];
+				}
 				if (accounts.length === 1) {
 					$scope.tab = $scope.tabs[1];
 					$scope.pin = accounts[0].pin;
@@ -134,17 +137,18 @@ angular.module('imapsNgApp')
 				} else if (accounts.length === 0) {
 					$scope.pin = null;
 					$location.search('pin', $scope.pin);
-				}
-				else {
+				} else {
 					$rootScope.account = null;
 					$rootScope.accountInfo = [];
 					$scope.tab = $scope.tabs[0];
 					$scope.tabChanged(true);
-				}
+				}						
 			});
 			var searchForRealEstate = function (type, values) {
 				$scope.property.getRealEstate(type, values).then(function (accounts) {
 					$scope.account = null;
+					$scope.selectionSingle.clear();
+					$scope.selectionMultiple.clear();
 					//$scope.geometry = null;
 					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;

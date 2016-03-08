@@ -113,6 +113,9 @@ angular.module('imapsNgApp')
 					$('.tooltip').css('top', (e.clientY + 10) + 'px');
 					$('.tooltip').css('left', (e.clientX + 10) + 'px');
 				});
+				$scope.selectionMultiple.on("mouse-out", function (e) {
+					$('.tooltip').hide();
+				});				
 
 				$scope.selectionSingle = new GraphicsLayer({id: 'selectedProperty'});
 				$scope.map.addLayer($scope.bufferGraphics);
@@ -286,7 +289,10 @@ angular.module('imapsNgApp')
 				};
 				$scope.$on('accountUpdate', function (e, accounts) {
 					var pins = [];
-					if (accounts.length > 0) {
+					if (!accounts) {
+						accounts = [];
+					}
+					if (accounts.length > 1) {
 						angular.forEach(accounts, function (a) {
 							//pins.push("'" + a.pin + "'");
 							pins.push ("PIN_NUM = '" + a.pin + "'")

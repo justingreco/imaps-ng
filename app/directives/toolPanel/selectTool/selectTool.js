@@ -32,6 +32,8 @@ angular.module('imapsNgApp')
 						angular.forEach(result.features, function (feature) {
 							pins.push(feature.attributes.PIN_NUM);
 						});
+						$scope.selectionSingle.clear();
+						$scope.selectionMultiple.clear();
 						property.getRealEstate('pin', pins).then(function (data) {
 							$scope.account = null;
 							$scope.$parent.account = null;
