@@ -121,6 +121,7 @@ angular.module('imapsNgApp')
 			});
 			$rootScope.$on('accountUpdate', function (e, accounts) {
 				$rootScope.checked = true;
+				
 				if (!accounts) {
 					accounts = [];
 				}
@@ -233,7 +234,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=%25' + uriEncodedQuery;
+					      var newUrl = url + '&input=' + uriEncodedQuery;
 					      return newUrl;
 					}
 				}

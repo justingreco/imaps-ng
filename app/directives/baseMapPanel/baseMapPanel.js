@@ -4,7 +4,9 @@ angular.module('imapsNgApp')
 		templateUrl: 'directives/baseMapPanel/baseMapPanel.html',
 		restrict: 'E',
 		controller: function ($scope, $rootScope, $filter, $analytics) {
+			$scope.baseMapPanel = {height: 180};
 			var baseloaded = false;
+			$scope.blend = {opacity: 1, checked: false};
 			$scope.insideRaleigh = true;
 			$rootScope.mapsChecked = false;
 			$scope.basemapType = 'streets';
@@ -16,6 +18,9 @@ angular.module('imapsNgApp')
 			});
 			$rootScope.$watch('mapsChecked', function (checked) {
 				$scope.mapsChecked = checked;
+			});
+			$scope.$watch('basemap', function (e, b) {
+				console.log(e);
 			});
 			$scope.showAerial = function (layer) {
 				return layer.county && !$scope.insideRaleigh || $scope.insideRaleigh;
@@ -133,24 +138,64 @@ angular.module('imapsNgApp')
 							$scope.map.removeLayer($scope.map.getLayer(id));
 						//}
 					});
+					//if (basemapType === 'images') {					
+						$scope.checkInsideRaleigh($scope.raleighBounds, $scope.map.extent.getCenter());
+					//}
+
 					$scope.map.setBasemap(basemap.id);
 					if (basemapType === 'streets') {
 						$scope.streetMap = basemap;
+						$scope.baseMapPanel.height = 180;
+						if (base) {
+							$scope.map.removeLayer(base);
+						}
+
 					} else if (basemapType === 'images') {
 						$scope.imageMap = basemap;
+						$scope.baseMapPanel.height = ($scope.blend.checked) ? 235 : 200;
+						if ($scope.blend.checked) {
+							if (base) {
+								$scope.map.removeLayer(base);
+							}
+							addBlendBaseMap();
+						}
 					}
 					$scope.webmap.itemInfo.itemData.baseMap = esriBasemaps[basemap.id];
-
-					if (basemap.county) {
-						$scope.lastWakeYear = basemap;
-						if (manual) {
+					if (basemapType === 'images') {	
+						if (basemap.county) {
+							$scope.lastWakeYear = basemap;
+							if (manual) {
+								$scope.lastRaleighYear = basemap;
+							}
+						} else {
 							$scope.lastRaleighYear = basemap;
-						}
-					} else {
-						$scope.lastRaleighYear = basemap;
+						}	
 					}
 				});
-			}
+			};
+			var base = null;
+			$scope.baseOpacityChanged = function () {
+				base.setOpacity(1 - $scope.blend.opacity);
+			};
+			var addBlendBaseMap = function () {
+				require(['esri/layers/ArcGISTiledMapServiceLayer'], function (ArcGISTiledMapServiceLayer) {
+					base = ArcGISTiledMapServiceLayer($scope.streetMap.url, {opacity: 1 - $scope.blend.opacity});
+					$scope.map.addLayer(base);
+				});
+			};
+			$scope.blendChecked = function () {
+				if ($scope.blend.checked) {
+					addBlendBaseMap();
+					$scope.baseMapPanel.height = 235;
+				} else if (base) {
+					$scope.map.removeLayer(base);
+					$scope.baseMapPanel.height = 200;
+				}
+
+				$timeout(function () {
+					$scope.$broadcast('refreshSlider');
+				})
+			};
 		}, link: function (scope, element, attr) {
 		}
 	}

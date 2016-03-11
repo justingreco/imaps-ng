@@ -17,7 +17,7 @@ angular.module('imapsNgApp')
 				var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
 				localStorageService.set(storage, stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
 			};
-			var checkInsideRaleigh = function (bounds, point) {
+			$scope.checkInsideRaleigh = function (bounds, point) {
 				require(["esri/geometry/Polygon"], function (Polygon) {
 					bounds = new Polygon(bounds);
 					var inside = bounds.contains(point);
@@ -32,14 +32,14 @@ angular.module('imapsNgApp')
 				var tr = spToDd(e.extent.xmax, e.extent.ymax);
 				$scope.webmap.itemInfo.item.extent = [ll.reverse(), tr.reverse()];
 				if ($scope.raleighBounds) {
-					checkInsideRaleigh($scope.raleighBounds, e.extent.getCenter());
+					$scope.checkInsideRaleigh($scope.raleighBounds, e.extent.getCenter());
 				}
 				$scope.scale = $scope.map.getScale();
 			};
 			var setRaleighBounds = function () {
 				mapUtils.loadRaleighBounds('data/raleigh.json').then(function (bounds) {
 					$scope.raleighBounds = bounds;
-					checkInsideRaleigh(bounds, $scope.map.extent.getCenter());
+					$scope.checkInsideRaleigh(bounds, $scope.map.extent.getCenter());
 				})
 			}
 
@@ -104,7 +104,9 @@ angular.module('imapsNgApp')
 						placement: 'mouse',
 						trigger: 'hover'});
 				});
-
+				$scope.selectionMultiple.on("graphic-node-remove", function (evt) {
+					$(evt.node).tooltip('destroy');
+				});
 				$scope.map.on('pan', function (e) {
 					$('.tooltip').hide();
 				});
@@ -263,6 +265,7 @@ angular.module('imapsNgApp')
 
 				var addGeometriesToMap = function (features, gl, color) {
 					require(["esri/graphic", "esri/graphicsUtils", "esri/SpatialReference"], function (Graphic, graphicsUtils, SpatialReference) {
+						$('.tooltip').hide();
 						$scope.map.reorderLayer($scope.bufferGraphics, $scope.map.layerIds.length - 4);
 						$scope.map.reorderLayer($scope.selectionMultiple, $scope.map.layerIds.length - 3);
 						$scope.map.reorderLayer($scope.selectionSingle, $scope.map.layerIds.length - 2);

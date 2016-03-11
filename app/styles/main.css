@@ -339,6 +339,16 @@ base-map-panel .collapse-panel.collapsed {
 .basemap-type {
   cursor: pointer;
 }
+base-map-panel .bubble {
+  display: none !important;
+}
+base-map-panel slider {
+  margin-top: 0.5em !important;
+}
+
+input[type=checkbox] {
+  margin-right: 1em;
+}
 /*tool panel*/
 tool-panel {
   position: absolute;
