@@ -99,7 +99,7 @@ angular.module('imapsNgApp')
 					$(evt.node).attr('title', evt.graphic.attributes.SITE_ADDRESS+"<br/>" + evt.graphic.attributes.OWNER);
 					$(evt.node).attr('data-toggle', 'tooltip');
 					$(evt.node).tooltip({
-						'container': 'map-panel', 
+						'container': 'map-panel',
 						html: true,
 						placement: 'mouse',
 						trigger: 'hover'});
@@ -117,7 +117,7 @@ angular.module('imapsNgApp')
 				});
 				$scope.selectionMultiple.on("mouse-out", function (e) {
 					$('.tooltip').hide();
-				});				
+				});
 
 				$scope.selectionSingle = new GraphicsLayer({id: 'selectedProperty'});
 				$scope.map.addLayer($scope.bufferGraphics);
@@ -142,6 +142,14 @@ angular.module('imapsNgApp')
 						$scope.webmap = response;
 					}
 					$scope.map = response.map;
+
+					on($scope.map.infoWindow, 'set-features', function () {
+						var anchor = (($scope.map.infoWindow.location.y < $scope.map.extent.getCenter().y) ? "top" : "bottom") + "-" + (($scope.map.infoWindow.location.x < $scope.map.extent.getCenter().x) ? "right" : "left");
+						console.log($scope.map.infoWindow.location.y);
+						$scope.map.infoWindow.anchor = anchor;
+						$scope.map.infoWindow.offsetX = 10;
+						$scope.map.infoWindow.reposition();
+					});
 
 					setRaleighBounds();
 					addGraphicsLayers(GraphicsLayer);
@@ -212,19 +220,19 @@ angular.module('imapsNgApp')
 						storedLayer  = storedLayer[0];
 						l.opacity = storedLayer.opacity;
 						l.visibility = storedLayer.visibility;
-					}					
+					}
 				});
 			};
 
 			$rootScope.$watch('config', function (config) {
 				if (config) {
 					$scope.config = config;
-					require(["esri/map", "esri/arcgis/utils", "esri/config", "esri/tasks/GeometryService", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig, GeometryService) {
+					require(["esri/map", "esri/arcgis/utils", "esri/config", "esri/tasks/GeometryService", "esri/dijit/Popup", "dojo/dom-construct", "dojo/on", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig, GeometryService, Popup, domConstruct, on) {
 						esriConfig.defaults.io.proxyUrl = "http://maps.raleighnc.gov/parklocator/proxy.ashx";
 						esriConfig.defaults.io.alwaysUseProxy = false;
 						esriConfig.defaults.geometryService = new GeometryService("https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer");
 						var input = config.map.id;
-						
+
 						var itemDeferred = arcgisUtils.getItem(config.map.id);
 
 						itemDeferred.addCallback(function (itemInfo) {
@@ -243,12 +251,18 @@ angular.module('imapsNgApp')
 									oldItemInfo = localStorageService.get(storage).itemInfo;
 									localStorageService.remove(storage);
 
-								}		
+								}
 							}
+							var popup = new Popup({}, domConstruct.create("div"));
+							on(popup, 'show', function (e) {
+								console.log($scope.map.infoWindow.anchor);
+								console.log(e);
+							});
 							arcgisUtils.createMap(input,"map", {
 								geometryServiceURL: "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 								mapOptions: {fadeOnZoom: true,
 									logo: false,
+									//infoWindow: popup,
 									showAttribution: false,
 									sliderPosition: "bottom-left",
 									sliderOrientation: "horizontal",
@@ -301,18 +315,18 @@ angular.module('imapsNgApp')
 							pins.push ("PIN_NUM = '" + a.pin + "'")
 						});
 						//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
-						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {									
+						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {
 							$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 1, $scope.config.map.wkid).then(function (data2) {
 								addGeometriesToMap(data.features.concat(data2.features), $scope.selectionMultiple, [255,255,0]);
 							});
-							
+
 						});
 					}
 				});
 				$scope.$on('pinUpdate', function (e, pin) {
 					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 0, $scope.config.map.wkid ).then(function (data) {
 						$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 1, $scope.config.map.wkid ).then(function (data2) {
-							$timeout(function (){ 
+							$timeout(function (){
 								addGeometriesToMap(data.features.concat(data2.features), $scope.selectionSingle, [255,0,0]);
 							});
 						});
