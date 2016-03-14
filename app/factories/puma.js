@@ -5,7 +5,7 @@ angular.module('imapsNgApp').factory('puma', ['$http', '$q', function($http, $q)
 		water = {url: "http://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/WaterDistribution/MapServer/find", layers: '0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15'},
 		reclaimed = {url: "http://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/ReclaimedDistribution/MapServer/find", layers: '0,1,2,3,4,5,6,7,8,9,10,11'};
 	return service;
-	function findUtilitiesById (url, id, value) {
+	function findUtilitiesById (url, id, value, searchFields) {
 		var deferred = $q.defer();
 
 		$http({
@@ -13,7 +13,7 @@ angular.module('imapsNgApp').factory('puma', ['$http', '$q', function($http, $q)
 			url: url,
 			data: $.param({
 				searchText: value,
-				searchFields: 'FACILITYID',
+				searchFields: searchFields,
 				layers: id,
 				geometryPrecision: 0,
 				contains: 'true',
@@ -36,5 +36,5 @@ angular.module('imapsNgApp').factory('puma', ['$http', '$q', function($http, $q)
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(deferred.resolve);
 		return deferred.promise;
-	}	
+	}
 }]);
