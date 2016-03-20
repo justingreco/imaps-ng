@@ -118,8 +118,8 @@ angular.module('imapsNgApp')
 							var renderer = SimpleRenderer(fill);
 							options.renderer = renderer;
 							optionsArray[0] = options;
-							optionsArray[1] = options;	
-							layer.setLayerDrawingOptions(optionsArray);					
+							optionsArray[1] = options;
+							layer.setLayerDrawingOptions(optionsArray);
 						}
 					}
 				});
@@ -138,7 +138,7 @@ angular.module('imapsNgApp')
 							$scope.map.removeLayer($scope.map.getLayer(id));
 						//}
 					});
-					//if (basemapType === 'images') {					
+					//if (basemapType === 'images') {
 						$scope.checkInsideRaleigh($scope.raleighBounds, $scope.map.extent.getCenter());
 					//}
 
@@ -161,7 +161,7 @@ angular.module('imapsNgApp')
 						}
 					}
 					$scope.webmap.itemInfo.itemData.baseMap = esriBasemaps[basemap.id];
-					if (basemapType === 'images') {	
+					if (basemapType === 'images') {
 						if (basemap.county) {
 							$scope.lastWakeYear = basemap;
 							if (manual) {
@@ -169,7 +169,7 @@ angular.module('imapsNgApp')
 							}
 						} else {
 							$scope.lastRaleighYear = basemap;
-						}	
+						}
 					}
 				});
 			};
@@ -180,7 +180,7 @@ angular.module('imapsNgApp')
 			var addBlendBaseMap = function () {
 				require(['esri/layers/ArcGISTiledMapServiceLayer'], function (ArcGISTiledMapServiceLayer) {
 					base = ArcGISTiledMapServiceLayer($scope.streetMap.url, {opacity: 1 - $scope.blend.opacity});
-					$scope.map.addLayer(base);
+					$scope.map.addLayer(base, $scope.map.basemapLayerIds.length);
 				});
 			};
 			$scope.blendChecked = function () {
