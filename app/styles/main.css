@@ -720,7 +720,7 @@ slider {
   background-color: #eee;
   top: 0;
 }
-.pointer {
+slider .pointer {
   height: 100%;
   width: 20px;
   position: absolute;
@@ -737,6 +737,9 @@ slider {
 /*overwrite Esri classes*/
 .esriPopup .titleButton.maximize {
   display: none;
+}
+.esriPopup .contentPane {
+  max-height: 200px !important;
 }
 .arcgisSearch {
   position: absolute;
