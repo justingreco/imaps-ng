@@ -19,9 +19,7 @@ angular.module('imapsNgApp')
 			$rootScope.$watch('mapsChecked', function (checked) {
 				$scope.mapsChecked = checked;
 			});
-			$scope.$watch('basemap', function (e, b) {
-				console.log(e);
-			});
+
 			$scope.showAerial = function (layer) {
 				return layer.county && !$scope.insideRaleigh || $scope.insideRaleigh;
 			}
@@ -152,7 +150,7 @@ angular.module('imapsNgApp')
 
 					} else if (basemapType === 'images') {
 						$scope.imageMap = basemap;
-						$scope.baseMapPanel.height = ($scope.blend.checked) ? 235 : 200;
+						$scope.baseMapPanel.height = ($scope.blend.checked) ? 245 : 200;
 						if ($scope.blend.checked) {
 							if (base) {
 								$scope.map.removeLayer(base);
@@ -186,7 +184,7 @@ angular.module('imapsNgApp')
 			$scope.blendChecked = function () {
 				if ($scope.blend.checked) {
 					addBlendBaseMap();
-					$scope.baseMapPanel.height = 235;
+					$scope.baseMapPanel.height = 245;
 				} else if (base) {
 					$scope.map.removeLayer(base);
 					$scope.baseMapPanel.height = 200;
