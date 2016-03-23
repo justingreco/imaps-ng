@@ -37,7 +37,7 @@
 					"county": false,
 					"id": "orthos-2015",
 					"tone": "dark"
-				},				
+				},
 				{
 					"name": "2014",
 					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2014/ImageServer",
@@ -181,7 +181,7 @@
 			{"label": "Disclaimer", "click": true, "items":
 				[
 				]
-			},		
+			},
 			{"label": "About", "click": true, "items":
 				[
 
@@ -203,6 +203,7 @@
 				[
 					{"label": "Raleigh Open GIS Data", "href": "http://data.ral.opendata.arcgis.com/"},
 					{"label": "Wake Open Data", "href": "http://data.wake.opendata.arcgis.com/"},
+					{"label": "Wake County GIS Downloads", "href": "http://www.wakegov.com/gis/services/pages/data.aspx"},
 					{"label": "Raleigh Open Data", "href": "https://data.raleighnc.gov/"}
 				]
 			},
@@ -210,7 +211,8 @@
 				[
 					{"label": "Help", "href": "http://maps.wakegov.com/imaps/iMAPShelp.pdf"},
 					{"label": "Legend", "href": "http://maps.wakegov.com/imaps/iMAPSlegend.pdf"},
-					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"}
+					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"},
+					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"}
 				]
 			}
 		]
@@ -221,20 +223,20 @@
 		},
 		"export": {
 			"url": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/PrintingTools/GPServer/Export%20Web%20Map%20Task"
-		},		
-		"bookmarks": 
+		},
+		"bookmarks":
 			[
 				{
 					"name":"Downtown Raleigh",
 					"extent":{
 						"xmin":2104769,
-						
+
 						"ymin":736771,
-						
+
 						"xmax":2109252,
-						
+
 						"ymax":739663,
-						
+
 						"spatialReference":
 							{
 								"wkid":2264
@@ -253,7 +255,7 @@
 								"wkid":102719
 							}
 					}
-				},				
+				},
 				{
 					"name":"Cary",
 					"extent":{
@@ -267,7 +269,7 @@
 							}
 					}
 
-				},	
+				},
 				{
 					"name":"Fuquay Varina",
 					"extent":{
@@ -293,7 +295,7 @@
 								"wkid":102719
 							}
 					}
-				},										
+				},
 				{
 					"name":"Holly Springs",
 					"extent":{
@@ -361,7 +363,7 @@
 								"wkid":102719
 							}
 					}
-				},									
+				},
 				{
 					"name":"Zebulon",
 					"extent":{
@@ -573,7 +575,7 @@
                 ]
             },{"title": "City of Raleigh Assessments",
                 "services": [
-                    {"title": "Assement Liens",
+                    {"title": "Assessment Liens",
                     "labels": "Account #: <a class='ps-link' href='http://www.raleighnc.gov/home/content/Finance/Articles/OtherPaymentInformatio.html' target='_blank'>[Account] <span class='glyphicon glyphicon-new-window'></span></a>;Type: [Type];Status: [Status];Confirmed: [Confirmed Date];",
                     "layerId": 52}
                 ]
