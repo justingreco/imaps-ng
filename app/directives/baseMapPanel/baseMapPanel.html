@@ -19,7 +19,10 @@
 		</div>
 		<div ng-show="basemapType === 'images'">
 			<label><input ng-model="blend.checked" type="checkbox"  ng-change="blendChecked()">Blend</label>
-	   		<slider ng-show="basemapType === 'images' && blend.checked" ng-model="blend.opacity" floor="0" ceiling="1" precision="2" ng-change="baseOpacityChanged()" ng-init="initSlider(blend)"></slider>
+			<div ng-show="basemapType === 'images' && blend.checked">
+				<slider ng-model="blend.opacity" floor="0" ceiling="1" precision="2" ng-change="baseOpacityChanged()" ng-init="initSlider(blend)"></slider>
+				<span class="blend-label low">STREET</span><span class="blend-label high">AERIALS</span>
+			</div>
 	   </div>
 	</div>
 <!-- 	<btn class="btn btn-success btn-sm">Labels?</btn> -->

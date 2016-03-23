@@ -344,6 +344,19 @@ base-map-panel .bubble {
 }
 base-map-panel slider {
   margin-top: 0.5em !important;
+  width: 100%;
+}
+
+.blend-label {
+  font-size: 10px;
+}
+
+.blend-label.high {
+  float: right;
+}
+
+.blend-label.low {
+  float: left;
 }
 
 input[type=checkbox] {
