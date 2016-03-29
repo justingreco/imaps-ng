@@ -1,6 +1,6 @@
 <div ng-style="accordionHeight" class="panel-contain">
   <input class="form-control input-sm" ng-model="layerFilterValue" placeholder="Filter layers by name" style="display: inline-block;width:90%;"/>
-  <span class="glyphicon glyphicon-eye-close" style="display: inline-block;cursor:pointer" ng-click="clearLayers(layers)" uib-tooltip="{{((touch) ? '' : 'Clear all layers')}}" tooltip-placement="bottom-right" tooltip-append-to-body="true"/></span>
+  <span class="glyphicon glyphicon-eye-close" style="display: inline-block;cursor:pointer" ng-click="clearLayers(layers)" uib-tooltip="{{((touch) ? '' : 'Clear all layers')}}" tooltip-placement="bottom-right" tooltip-append-to-body="true"></span>
   <div class="layer" ng-repeat="layer in layers | orderBy: 'title' | filter: filterLayers" ng-model="layer" >
     <div ng-class="{'out-scale': (scale > layer.resourceInfo.minScale) && layer.resourceInfo.minScale > 0}" class="layer-toggle">
       <span  uib-tooltip="{{(((scale > layer.resourceInfo.minScale) && layer.resourceInfo.minScale > 0) ? 'Not Visible At This Scale' : '')}}" tooltip-placement="top" tooltip-append-to-body="true">
@@ -13,7 +13,6 @@
     </div>
     <slider ng-model="layer.opacity" floor="0" ceiling="1" precision="2" ng-if="layer.visibility && layer.title.indexOf('[hidden]') == -1" ng-change="opacityChanged(layer, webmap)" translate-fn="translate" ng-init="initSlider(layer)"></slider>
     <div class="sub-layer" ng-repeat="sublayer in layer.resourceInfo.layers" ng-model="sublayer" ng-show="layer.visibility" ng-if="sublayer.name != 'Default'">
-
         <div ng-class="{'out-scale': scale > sublayer.minScale && layer.resourceInfo.minScale > 0}" class="sub-layer-toggle">
           <span uib-tooltip="{{((scale > sublayer.minScale && layer.resourceInfo.minScale > 0 && !touch) ? 'Not Visible At This Scale' : '')}}" tooltip-placement="top" tooltip-append-to-body="true">
             <button analytics-on="click" analytics-if="!sublayer.visibility" analytics-category="Sublayers" analytics-event="Turned On" analytics-label="{{sublayer.name}}" class="btn btn-sm" ng-class="{'btn-danger': !sublayer.defaultVisibility, 'btn-success': sublayer.defaultVisibility}" ng-click="subLayerToggle(layer, sublayer, webmap)">{{((sublayer.defaultVisibility) ? 'On' : 'Off')}}
