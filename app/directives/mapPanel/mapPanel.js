@@ -145,7 +145,6 @@ angular.module('imapsNgApp')
 
 					on($scope.map.infoWindow, 'set-features', function () {
 						var anchor = (($scope.map.infoWindow.location.y < $scope.map.extent.getCenter().y) ? "top" : "bottom") + "-" + (($scope.map.infoWindow.location.x < $scope.map.extent.getCenter().x) ? "right" : "left");
-						console.log($scope.map.infoWindow.location.y);
 						$scope.map.infoWindow.anchor = anchor;
 						$scope.map.infoWindow.offsetX = 10;
 						$scope.map.infoWindow.reposition();
