@@ -19,7 +19,7 @@
 				},
 				{
 					"name": "Base Map Basic",
-					"url": "http://maps.wakegov.com/arcgis/rest/services/BaseMapSimple/MapServer",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapSimple/MapServer",
 					"labels": false,
 					"tiled": false,
 					"id": "base-map-basic",

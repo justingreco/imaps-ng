@@ -238,18 +238,23 @@ angular.module('imapsNgApp')
 							var input =  itemInfo;
 							var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
 							if (localStorageService.get(storage)) {
-								if (itemInfo.item.modified === localStorageService.get(storage).itemInfo.item.modified) {
-									var webmap = {};
-									webmap.item = localStorageService.get(storage).itemInfo.item;
-									webmap.itemData = localStorageService.get(storage).itemInfo.itemData;
-									input = webmap;
-								} else {
-									itemInfo.item.extent = localStorageService.get(storage).itemInfo.item.extent;
-									itemInfo.itemData.baseMap = localStorageService.get(storage).itemInfo.itemData.baseMap;
-									itemInfo = compareOpLayers(itemInfo, localStorageService.get(storage).itemInfo);
-									oldItemInfo = localStorageService.get(storage).itemInfo;
+								if (localStorageService.get(storage).itemInfo.item.modified < 1459986024523) {
 									localStorageService.remove(storage);
+								} else {
 
+									if (itemInfo.item.modified === localStorageService.get(storage).itemInfo.item.modified) {
+										var webmap = {};
+										webmap.item = localStorageService.get(storage).itemInfo.item;
+										webmap.itemData = localStorageService.get(storage).itemInfo.itemData;
+										input = webmap;
+									} else {
+										itemInfo.item.extent = localStorageService.get(storage).itemInfo.item.extent;
+										itemInfo.itemData.baseMap = localStorageService.get(storage).itemInfo.itemData.baseMap;
+										itemInfo = compareOpLayers(itemInfo, localStorageService.get(storage).itemInfo);
+										oldItemInfo = localStorageService.get(storage).itemInfo;
+										localStorageService.remove(storage);
+
+									}
 								}
 							}
 							var popup = new Popup({}, domConstruct.create("div"));
