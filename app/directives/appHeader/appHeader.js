@@ -3,8 +3,9 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/appHeader/appHeader.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope) {
+		controller: function ($scope, $rootScope, localStorageService) {
 			$("app-header").appendTo('body');
+			$rootScope.keepStorage = true;
 			$rootScope.checked = true;
 			$rootScope.$watch('config', function (config) {
 				if (config) {
@@ -36,6 +37,12 @@ angular.module('imapsNgApp')
 						break;
 						case 'Disclaimer':
 							openDisclaimer();
+						break;
+						case 'Clear Storage':
+							var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+							localStorageService.remove(storage);
+							$rootScope.keepStorage = false;
+							location.reload();
 						break;
 					}					
 				}

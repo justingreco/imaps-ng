@@ -14,8 +14,10 @@ angular.module('imapsNgApp')
 				cfpLoadingBar.complete();
 			};
 			var mapUnloaded = function () {
-				var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
-				localStorageService.set(storage, stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
+				if ($rootScope.keepStorage) {
+					var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+					localStorageService.set(storage, stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
+				}
 			};
 			$scope.checkInsideRaleigh = function (bounds, point) {
 				require(["esri/geometry/Polygon"], function (Polygon) {

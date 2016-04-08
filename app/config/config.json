@@ -212,7 +212,8 @@
 					{"label": "Help", "href": "http://maps.wakegov.com/imaps/iMAPShelp.pdf"},
 					{"label": "Legend", "href": "http://maps.wakegov.com/imaps/iMAPSlegend.pdf"},
 					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"},
-					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"}
+					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"},
+					{"label": "Clear Storage", "click": true}					
 				]
 			}
 		]
