@@ -1,7 +1,7 @@
 {
 	"title": "iMAPS",
 	"map": {
-		"id": "0757b2fd0e6f44dd8d8fefbfc09aa8eb",
+		"id": "8f7ceb511f0b4b1fbbd53be16f3afee0",
 		"geometryServiceUrl": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 		"wkid": 2264,
 		"labels": "https://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
@@ -213,7 +213,7 @@
 					{"label": "Legend", "href": "http://maps.wakegov.com/imaps/iMAPSlegend.pdf"},
 					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"},
 					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"},
-					{"label": "Clear Storage", "click": true}					
+					{"label": "Clear Storage", "click": true}
 				]
 			}
 		]

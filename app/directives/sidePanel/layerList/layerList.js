@@ -11,12 +11,25 @@ angular.module('imapsNgApp')
 					var lyr = $filter('filter')($scope.layers, function (i) {
 						return i.id === legend.id;
 					})[0];
-					angular.forEach(lyr.resourceInfo.layers, function (subl, j) {
+					var sublyrs = $filter('filter')(lyr.resourceInfo.layers, function (i) {
+						return !i.subLayerIds;
+					});
+					angular.forEach(sublyrs, function (subl, j) {
 						if (legend.layers[j]) {
 							subl.legend = legend.layers[j].legend;
 						}
 					});
 				});
+			};
+			$scope.showSublayer = function (layer, sublayer, sublayers) {
+				var show = false;
+				if (layer.visibility) {
+					show = true;
+				}
+				if (sublayer.parentLayerId > -1) {
+					show = sublayers[sublayer.parentLayerId].defaultVisibility;
+				}
+				return show;
 			};
 			$scope.$watch('webmap', function (webmap) {
 				if (webmap) {
@@ -58,6 +71,7 @@ angular.module('imapsNgApp')
 			};
 
 			$scope.layerToggle = function (layer, webmap) {
+
 				layer.visibility = !layer.visibility;
 				$scope.map.getLayer(layer.id).setVisibility(layer.visibility);
 				if (layer.visibility && !layer.resourceInfo.layers[0].legend) {
@@ -65,15 +79,30 @@ angular.module('imapsNgApp')
 				}
 
 			};
-			$scope.subLayerToggle = function (layer, sublayer, webmap) {
+			$scope.subLayerToggle = function (layer, sublayer, webmap, sublayers) {
+				console.log(layer);
+				console.log(sublayer);
 				var visible = [];
 				sublayer.defaultVisibility = !sublayer.defaultVisibility;
 				visible = $scope.map.getLayer(layer.id).visibleLayers;
 
 				if (sublayer.defaultVisibility) {
-					visible.push(sublayer.id);
+					if (!sublayer.subLayerIds) {
+						visible.push(sublayer.id);
+					} else {
+						for (var i = 0; i < sublayer.subLayerIds.length; i++) {
+							if (sublayers[sublayer.subLayerIds[i]].defaultVisibility) {
+								visible.push(sublayer.subLayerIds[i]);
+							}
+						}
+					}
 				} else {
 					visible.splice(visible.indexOf(sublayer.id), 1);
+					if (sublayer.subLayerIds) {
+						for (var i = 0; i < sublayer.subLayerIds.length; i++) {
+							visible.splice(visible.indexOf(sublayer.subLayerIds[i]), 1);
+						}
+					}
 				}
 				if (visible.length === 0) {
 					visible = [-1];

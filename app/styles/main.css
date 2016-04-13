@@ -678,12 +678,17 @@ layer-list .panel-body {
 .layer strong {
   cursor: pointer;
 }
-.sub-layer {
+.group-layer {
   margin-top: 6px;
-  margin-left: 20px;
+  margin-left: 1em;
   margin-bottom: 6px;
   font-size: 12px;
-
+}
+.sub-layer {
+  margin-top: 6px;
+  margin-left: 2em;
+  margin-bottom: 6px;
+  font-size: 12px;
 }
 .sub-layer-toggle {
       display: flex;
