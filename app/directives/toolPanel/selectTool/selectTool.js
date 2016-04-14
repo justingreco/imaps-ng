@@ -18,7 +18,7 @@ angular.module('imapsNgApp')
 					var g = new Graphic({geometry: buffer,
 						symbol:{color:[0,0,0,0],outline:{color:[0,0,0,100],
 							width:3,type:"esriSLS",style:"esriSLSSolid"},
-							type:"esriSFS",style:"esriSFSSolid"}});					
+							type:"esriSFS",style:"esriSFSSolid"}});
 					$scope.bufferGraphics.add(g);
 					$scope.map.setExtent(graphicsUtils.graphicsExtent($scope.bufferGraphics.graphics), true);
 					searchForProperties(buffer, "esriGeometryPolygon", $scope.map.spatialReference.wkid);
@@ -26,7 +26,7 @@ angular.module('imapsNgApp')
 			};
 			var searchForProperties = function (geometry, type, wkid) {
 				property.getPropertiesByGeometry(geometry, type, 0, wkid).then(function (result) {
-					property.getPropertiesByGeometry(geometry, type, 1, wkid).then(function (result2) { 
+					property.getPropertiesByGeometry(geometry, type, 1, wkid).then(function (result2) {
 						result.features = result.features.concat(result2.features);
 						var pins = [];
 						angular.forEach(result.features, function (feature) {
@@ -34,7 +34,7 @@ angular.module('imapsNgApp')
 						});
 						$scope.selectionSingle.clear();
 						$scope.selectionMultiple.clear();
-						property.getRealEstate('pin', pins).then(function (data) {
+						property.getRealEstate('pin', pins.join('|')).then(function (data) {
 							$scope.account = null;
 							$scope.$parent.account = null;
 							$scope.geometry = null;
@@ -105,7 +105,7 @@ angular.module('imapsNgApp')
 							$scope.selectType = '';
 						}
 						if ($scope.map) {
-							$scope.map.enableMapNavigation();							
+							$scope.map.enableMapNavigation();
 						}
 					}
 				});

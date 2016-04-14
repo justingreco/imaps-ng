@@ -7,12 +7,17 @@ angular.module('imapsNgApp')
 			$scope.hiddenOverflow = false;
 			$scope.property = property;
 			$scope.searchValue = "";
-			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
+			//var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
+			var url = "http://localhost:8080/api/properties/distinct/"
 			var autocompleteFilter = function (response) {
+
 				var data = [];
-				if (response.Results.length > 0) {
-					angular.forEach(response.Results, function (r) {
-						data.push({value: r});
+				if (response.length > 0) {
+					angular.forEach(response, function (r) {
+						//data.push({value: r});
+						for (var k in r) {
+							data.push({value: r[k]});
+						}
 					});
 				}
 				return data;
@@ -74,7 +79,7 @@ angular.module('imapsNgApp')
 			var handleFileSelect = function (evt) {
 			    evt.stopPropagation();
 			    evt.preventDefault();
-      			if (window.FileReader) {   
+      			if (window.FileReader) {
 				    var files = evt.dataTransfer.files
 				    var f = evt.dataTransfer.files.item(0);
 			 		var reader = new FileReader();
@@ -90,7 +95,7 @@ angular.module('imapsNgApp')
 				    }
 				} else {
 					alert('FileReader are not supported in this browser.');
-				}					    
+				}
 			}
 			var handleDragOver = function (evt) {
 				evt.stopPropagation();
@@ -121,7 +126,7 @@ angular.module('imapsNgApp')
 			});
 			$rootScope.$on('accountUpdate', function (e, accounts) {
 				$rootScope.checked = true;
-				
+
 				if (!accounts) {
 					accounts = [];
 				}
@@ -143,7 +148,7 @@ angular.module('imapsNgApp')
 					$rootScope.accountInfo = [];
 					$scope.tab = $scope.tabs[0];
 					$scope.tabChanged(true);
-				}						
+				}
 			});
 			var searchForRealEstate = function (type, values) {
 				$scope.property.getRealEstate(type, values).then(function (accounts) {
@@ -170,11 +175,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=address&f=json",
+					url: url + "address/",//"?type=address&f=json",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
 					}
 				}
@@ -185,11 +190,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=owner&f=json",
+					url: url + "owner/",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
 					}
 				}
@@ -200,11 +205,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=pin&f=json&limit=5",
+					url: url + "pin/",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
 					}
 				}
@@ -215,11 +220,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=reid&f=json&limit=5",
+					url: url + "reid/",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
 					}
 				}
@@ -230,7 +235,7 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=street name&f=json&limit=5",
+					url: url + "street/",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
@@ -253,7 +258,7 @@ angular.module('imapsNgApp')
 			        $(".tt-highlight").trigger('click');
 			    }
 			});
-			//$scope.searchValue = null;			
+			//$scope.searchValue = null;
 			$("#searchInput").typeahead({hint: true, highlight: true, minLength: 3},
 				{name:'address',
 				displayKey:'value',
@@ -324,16 +329,16 @@ angular.module('imapsNgApp')
 						break;
 						case "Photos":
 							$scope.property.getPhotos($scope.account.reid).then(function (photos) {
-								$scope.photos = photos.Photos;
+								$scope.photos = photos;//.Photos;
 							});
 						break;
 						case "Deeds":
 							$scope.property.getDeeds($scope.account.reid).then(function (deeds) {
-								$scope.deeds = deeds.Deeds;
+								$scope.deeds = deeds;//.Deeds;
 								$scope.plats = [];
 								angular.forEach($scope.deeds, function (deed) {
-									if (deed.bomDocNum) {
-										if (deed.bomDocNum != "0") {
+									if (deed.bomDoc) {
+										if (deed.bomDoc != "0") {
 											$scope.plats.push(deed);
 										}
 									}

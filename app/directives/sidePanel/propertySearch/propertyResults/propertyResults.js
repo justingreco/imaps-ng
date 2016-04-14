@@ -28,7 +28,7 @@ angular.module('imapsNgApp')
 			  	height: $('.tabcontainer').height() ,
 			  	columnDefs: [
 			  		{
-			  			field: 'siteAddress',
+			  			field: 'address',
 			  			displayName: 'Address'
 			  		},
 			  		{

@@ -15,6 +15,12 @@ angular.module('imapsNgApp')
 				 	if (f.type === 'currency') {
 				 		account[f.field] = $filter('currency')(account[f.field], '$', 0);
 				 	}
+					else if (f.type === 'date') {
+						account[f.field] = $filter('date')(account[f.field] , 'MM/dd/yyyy');
+					}
+					if (!account[f.field]) {
+						account[f.field] = '';
+					}
 					$scope.accountInfo.push({field: f.alias, value: account[f.field]});
 				});
 				$rootScope.accountInfo = $scope.accountInfo;
@@ -51,11 +57,12 @@ angular.module('imapsNgApp')
 				if (account.city === 'RALEIGH')
 				{
 					//$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
-					$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});					
+					$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});
 				}
 				if (account.pin) {
-					getSepticPermits(account.pin);
+				//	getSepticPermits(account.pin);
 				}
+				setGrid();
 				$("#infoGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 30 + 'px', 'max-height': $('.tabcontainer').height() - 30 + 'px'});
 			});
 			var setGrid = function () {
