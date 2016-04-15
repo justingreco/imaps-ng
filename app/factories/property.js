@@ -47,12 +47,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "AddressSearch",
-			params: {
-				pin: pin,
-				reid: reid,
-				f: "json"
-			}
+			url: baseUrl + 'addresses/' + pin + '/' + reid//"AddressSearch",
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
@@ -79,11 +74,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "SepticPermits",
-			params: {
-				pin: pin,
-				f: "json"
-			}
+			url: baseUrl + 'septic/' + pin,//"SepticPermits",
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
@@ -91,11 +82,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "WellResults",
-			params: {
-				pin: pin,
-				f: "json"
-			}
+			url: baseUrl + 'wellresults/' + pin, //"WellResults",
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}

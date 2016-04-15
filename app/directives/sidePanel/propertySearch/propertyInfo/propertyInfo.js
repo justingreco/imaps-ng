@@ -27,9 +27,9 @@ angular.module('imapsNgApp')
 			};
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
-					if (data.SepticPermits.length > 0) {
-						angular.forEach(data.SepticPermits, function (permit) {
-							$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
+					if (data.length > 0) {
+						angular.forEach(data, function (permit) {
+							$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNum});
 						});
 /*						$timeout(function() {
 							$scope.infoGrid.data = $scope.accountInfo;
@@ -40,7 +40,7 @@ angular.module('imapsNgApp')
 			};
 			var getWellSamples = function (pin) {
 				property.getWellResults(pin).then(function (data) {
-					if (data.WellResults.length > 0) {
+					if (data.length > 0) {
 						$scope.accountInfo.push({field: 'Well Samples', value: pin});
 					}
 					$timeout(function() {
@@ -56,13 +56,13 @@ angular.module('imapsNgApp')
 				formatAccountInfo(account);
 				if (account.city === 'RALEIGH')
 				{
-					//$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
+					$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
 					$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});
 				}
 				if (account.pin) {
-				//	getSepticPermits(account.pin);
+					getSepticPermits(account.pin);
 				}
-				setGrid();
+				//setGrid();
 				$("#infoGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 30 + 'px', 'max-height': $('.tabcontainer').height() - 30 + 'px'});
 			});
 			var setGrid = function () {

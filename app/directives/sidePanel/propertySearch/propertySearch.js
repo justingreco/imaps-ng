@@ -166,7 +166,7 @@ angular.module('imapsNgApp')
 			};
 			var valueSelected = function (a, b, c) {
 				$(".twitter-typeahead>input").blur();
-				c = ((c === 'streetname') ? 'street name':c);
+				//c = ((c === 'streetname') ? 'street name':c);
 				searchForRealEstate(c, [b.value]);
 			}
 			var address = new Bloodhound({
@@ -239,7 +239,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
 					}
 				}
@@ -284,7 +284,7 @@ angular.module('imapsNgApp')
 				templates: {
 					header: "<h5>Real Estate ID</h5>"
 				}},
-				{name:'streetname',
+				{name:'street',
 				displayKey:'value',
 				source:street.ttAdapter(),
 				templates: {
@@ -353,7 +353,7 @@ angular.module('imapsNgApp')
 						break;
 						case "Addresses":
 							$scope.property.getAddresses($scope.account.pin, $scope.account.reid).then(function (addresses) {
-								$scope.addresses = addresses.Addresses;
+								$scope.addresses = addresses;//.Addresses;
 							});
 						break;
 					}

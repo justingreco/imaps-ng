@@ -38,6 +38,7 @@ angular.module('imapsNgApp')
 				if (addresses) {
 					if (addresses.length > 0) {
 						$scope.addrGrid.data = addresses;
+						console.log(addresses);
 						if (addresses[0].rpidMap) {
 							$scope.addrGrid.columnDefs = $scope.raleighCols;
 							$scope.rpid = addresses[0].rpidMap + ' ' + addresses[0].rpidLot;
