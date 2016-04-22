@@ -8,16 +8,16 @@ angular.module('imapsNgApp')
 			$scope.property = property;
 			$scope.searchValue = "";
 			//var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
-			var url = "http://localhost:8080/api/properties/distinct/"
+			var url = "http://localhost:8080/api/properties/autocomplete/"
 			var autocompleteFilter = function (response) {
 
 				var data = [];
 				if (response.length > 0) {
 					angular.forEach(response, function (r) {
-						//data.push({value: r});
-						for (var k in r) {
-							data.push({value: r[k]});
-						}
+						data.push({value: r.value});
+						// for (var k in r) {
+						// 	data.push({value: r[k]});
+						// }
 					});
 				}
 				return data;
