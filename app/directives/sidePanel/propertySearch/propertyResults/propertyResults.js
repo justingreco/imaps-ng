@@ -10,8 +10,18 @@ angular.module('imapsNgApp')
 					if (!accounts) {
 						accounts = [];
 					}
-					$scope.accounts = accounts;
-					$scope.resultGrid.data = accounts;
+
+					var data = [];
+					$scope.accounts = [];
+					for (var i = 0; i < accounts.length;i++) {
+						if (data.indexOf(accounts[i].pin + ' ' + accounts[i].pinExt) === -1) {
+							data.push(accounts[i].pin + ' ' + accounts[i].pinExt);
+							$scope.accounts.push(accounts[i]);
+						}
+					}
+					$rootScope.$broadcast('drawProperties', $scope.accounts);
+					//$scope.accounts = data;
+					$scope.resultGrid.data = $scope.accounts;
 					$scope.resultHeader = [];
 					angular.forEach($scope.fields, function (f) {
 						$scope.resultHeader.push(f.alias);
@@ -28,7 +38,7 @@ angular.module('imapsNgApp')
 			  	height: $('.tabcontainer').height() ,
 			  	columnDefs: [
 			  		{
-			  			field: 'address',
+			  			field: 'siteAddress',
 			  			displayName: 'Address'
 			  		},
 			  		{

@@ -1,8 +1,8 @@
 
 <div class="form-group has-feedback">
 	<span class="glyphicon glyphicon-search form-control-feedback"></span>
-	<span class="glyphicon glyphicon-remove form-control-feedback" ng-click="clearTypeahead()" ng-show="searchValue.length > 0"></span>	
-	<input id="searchInput" name="searchValue" type="text" class="form-control input-sm twitterTypeahead" placeholder="Enter address, owner, PIN, REID, or street"/>
+	<span class="glyphicon glyphicon-remove form-control-feedback" ng-click="clearTypeahead()" ng-show="searchValue.length > 0"></span>
+	<input id="searchInput" name="searchValue" type="text" class="form-control input-sm twitterTypeahead" placeholder="Enter address, owner, PIN, REID, or street" ng-model="searchInputValue"/>
 </div>
 <div class="tabcontainer" ng-style="{'overflow-y': (tab.table) ? 'auto': 'auto'}">
 	<property-results ng-show="tab.title == 'Results'"></property-results>

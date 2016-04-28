@@ -310,7 +310,7 @@ angular.module('imapsNgApp')
 						}
 					});
 				};
-				$scope.$on('accountUpdate', function (e, accounts) {
+				$scope.$on('drawProperties', function (e, accounts) {
 					var pins = [];
 					if (!accounts) {
 						accounts = [];
@@ -327,6 +327,8 @@ angular.module('imapsNgApp')
 							});
 
 						});
+					} else {
+						$rootScope.$broadcast('pinUpdate', accounts[0].pin);
 					}
 				});
 				$scope.$on('pinUpdate', function (e, pin) {

@@ -1,10 +1,24 @@
 angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http, $q){
 
-	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
+	var service = {wildCardSearch:wildCardSearch, getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
 		baseUrl = "http://localhost:8080/api/",//"https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
 		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 	return service;
+	function wildCardSearch (value) {
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: baseUrl + "properties/wildcard/" + value,
+			// data: $.param({
+			// 	type: type,
+			// 	values: JSON.stringify(values),
+			// 	f: "json"
+			// }),
+        headers: {'Content-Type': 'application/x-www-form-urlencoded'}
+		}).success(deferred.resolve);
+		return deferred.promise;
+	}
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
 		$http({

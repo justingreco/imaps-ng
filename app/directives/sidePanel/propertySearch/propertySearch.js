@@ -127,10 +127,10 @@ angular.module('imapsNgApp')
 			$rootScope.$on('accountUpdate', function (e, accounts) {
 				$rootScope.checked = true;
 
-				if (!accounts) {
-					accounts = [];
+				if (!$scope.accounts) {
+					$scope.accounts = [];
 				}
-				if (accounts.length === 1) {
+				if ($scope.accounts.length === 1) {
 					$scope.tab = $scope.tabs[1];
 					$scope.pin = accounts[0].pin;
 					$location.search('pin', $scope.pin);
@@ -255,7 +255,12 @@ angular.module('imapsNgApp')
 			};
 			$('#searchInput').on('keyup', function(e) {
 			    if(e.which == 13) {
-			        $(".tt-highlight").trigger('click');
+			        //$(".tt-highlight").trigger('click');
+							property.wildCardSearch($('#searchInput').val().toUpperCase()).then(function (data) {
+								$scope.clearTypeahead();
+								$scope.accounts = data.Accounts;
+								$rootScope.$broadcast('accountUpdate', $scope.accounts);
+							});
 			    }
 			});
 			//$scope.searchValue = null;

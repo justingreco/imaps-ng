@@ -56,7 +56,7 @@ angular.module('imapsNgApp')
 				formatAccountInfo(account);
 				if (account.city === 'RALEIGH')
 				{
-					$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
+					//$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
 					$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});
 				}
 				if (account.pin) {
