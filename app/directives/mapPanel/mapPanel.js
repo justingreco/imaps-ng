@@ -146,10 +146,12 @@ angular.module('imapsNgApp')
 					$scope.map = response.map;
 
 					on($scope.map.infoWindow, 'set-features', function () {
-						var anchor = (($scope.map.infoWindow.location.y < $scope.map.extent.getCenter().y) ? "top" : "bottom") + "-" + (($scope.map.infoWindow.location.x < $scope.map.extent.getCenter().x) ? "right" : "left");
-						$scope.map.infoWindow.anchor = anchor;
-						$scope.map.infoWindow.offsetX = 10;
-						$scope.map.infoWindow.reposition();
+						if ($scope.map.infoWindow.location) {
+							var anchor = (($scope.map.infoWindow.location.y < $scope.map.extent.getCenter().y) ? "top" : "bottom") + "-" + (($scope.map.infoWindow.location.x < $scope.map.extent.getCenter().x) ? "right" : "left");
+							$scope.map.infoWindow.anchor = anchor;
+							$scope.map.infoWindow.offsetX = 10;
+							$scope.map.infoWindow.reposition();
+						}
 					});
 
 					setRaleighBounds();
