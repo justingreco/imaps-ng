@@ -175,7 +175,7 @@ angular.module('imapsNgApp')
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
 					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return newUrl;
+					      return encodeURI(newUrl);
 					}
 				}
 			});
@@ -190,7 +190,7 @@ angular.module('imapsNgApp')
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
 					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return newUrl;
+					      return encodeURI(newUrl);
 					}
 				}
 			});
@@ -205,7 +205,7 @@ angular.module('imapsNgApp')
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
 					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return newUrl;
+					      return encodeURI(newUrl);
 					}
 				}
 			});
@@ -220,7 +220,7 @@ angular.module('imapsNgApp')
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
 					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return newUrl;
+					      return encodeURI(newUrl);
 					}
 				}
 			});
@@ -235,7 +235,7 @@ angular.module('imapsNgApp')
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
 					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return newUrl;
+					      return encodeURI(newUrl);
 					}
 				}
 			});

@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/mapPanel/mapPanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $timeout, property, localStorageService, $filter, mapUtils) {
+		controller: function ($scope, $rootScope, $timeout, property, localStorageService, $filter, mapUtils, $analytics) {
 			$scope.property = property;
 
 			var oldItemInfo = null;
@@ -333,7 +333,14 @@ angular.module('imapsNgApp')
 					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 0, $scope.config.map.wkid ).then(function (data) {
 						$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 1, $scope.config.map.wkid ).then(function (data2) {
 							$timeout(function (){
-								addGeometriesToMap(data.features.concat(data2.features), $scope.selectionSingle, [255,0,0]);
+								var features = data.features.concat(data2.features);
+								addGeometriesToMap(features, $scope.selectionSingle, [255,0,0]);
+								if (features.length === 1) {
+									require(["esri/geometry/Polygon"], function (Polygon) {
+										var pt = new Polygon(features[0].geometry).getCentroid();
+				 						$analytics.eventTrack('Property Selected', {category: 'centroid', label:spToDd(pt.x, pt.y)});
+				 					});
+								}
 							});
 						});
 					});

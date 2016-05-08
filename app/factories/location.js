@@ -14,6 +14,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 				orderByFields: 'NAME',
 				outFields: 'NAME',
 				returnGeometry: true,
+				geometryPrecision: 0,
 				f: "json"
 			}		
 		}).success(deferred.resolve);
@@ -29,6 +30,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 				orderByFields: 'CARTONAME',
 				outFields: 'CARTONAME',
 				returnGeometry: true,
+				geometryPrecision: 0,
 				f: "json"
 			}		
 		}).success(deferred.resolve);
@@ -45,6 +47,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 				returnGeometry: false,
 				outFields: 'CARTONAME',
 				orderByFields: 'CARTONAME',
+				geometryPrecision: 0,
 				f: "json"
 			}),
         	headers: {'Content-Type': 'application/x-www-form-urlencoded'}
