@@ -11,7 +11,7 @@ angular.module('imapsNgApp')
         $("feedback .modal").modal('hide');
       };
       $scope.sendFeedback = function (email, text) {
-        $http({url: 'http://maps.raleighnc.gov/php/mail.php',
+        $http({url: 'https://maps.raleighnc.gov/php/mail.php',
         method: 'GET',
         type: 'jsonp',
         params: {
