@@ -23,7 +23,7 @@
         </div>
       </div>
       <div class="col-xs-5">
-        <div class="select-wrapper form-control input-sm">    
+        <div class="select-wrapper form-control input-sm">
           <select class="form-control input-sm" id="printOrient" ng-options="printOrient as printOrient.label for printOrient in printOrients" ng-model="printOrient" ng-change="displayFrame()"></select>
         </div>
       </div>
@@ -36,8 +36,8 @@
         </div>
       </div>
       <div class="col-xs-5" ng-if="printScale.custom">
-        <span style="display:inline-block">1" = </span>    
-          <input ng-required="printScale.custom" max="30000" min="10" class="form-control input-sm" id="customScale" ng-model="printScale.value" style="width:60px;display:inline-block" only-digits name="number"/>
+        <span style="display:inline-block">1" = </span>
+        <input ng-required="printScale.custom" max="30000" min="10" class="form-control input-sm" id="customScale" ng-model="printScale.value" style="width:60px;display:inline-block" only-digits name="number"/>
         <span style="display:inline-block">'</span>
       </div>
     </div>
@@ -64,9 +64,7 @@
     </div>
   </div>
   <div ng-if="printing">
-  <span style="text-decoration: underline">Status</span><br/>
-  <em>{{printMessage}}</em>
+    <span style="text-decoration: underline">Status</span><br/>
+    <em>{{printMessage}}</em>
   </div>
-  </form>
 </form>
-
