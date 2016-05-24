@@ -6,11 +6,15 @@ angular.module('imapsNgApp')
 		controller: function ($scope, localStorageService) {
 			$scope.bookmarkName = "";
 			var storeBookmarks = function () {
-				localStorageService.set('bookmarks', $scope.config.tools.bookmarks);
+				if ($scope.config) {
+					localStorageService.set('bookmarks', $scope.config.tools.bookmarks);
+				}
 			};
 
 			if (localStorageService.get('bookmarks')) {
-				$scope.config.tools.bookmarks = localStorageService.get('bookmarks');
+				if ($scope.config) {
+					$scope.config.tools.bookmarks = localStorageService.get('bookmarks');
+				}
 			} else {
 				storeBookmarks();
 			}
