@@ -1,7 +1,7 @@
 angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http, $q){
 
 	var service = {wildCardSearch:wildCardSearch, getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
-		baseUrl = "http://localhost:8080/api/",//"https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
+		baseUrl = "http://giststweblv1/api/",//"https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
 		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 	return service;

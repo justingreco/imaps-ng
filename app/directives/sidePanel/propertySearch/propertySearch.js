@@ -8,7 +8,7 @@ angular.module('imapsNgApp')
 			$scope.property = property;
 			$scope.searchValue = "";
 			//var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
-			var url = "http://localhost:8080/api/properties/autocomplete/"
+			var url = "http://giststweblv1/api/properties/autocomplete/"
 			var autocompleteFilter = function (response) {
 
 				var data = [];
