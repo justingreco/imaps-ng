@@ -828,6 +828,23 @@ slider .pointer {
   height: 32px !important;
   width: 32px !important;
 }
+.esriScalebar {
+  left: 5px !important;
+  bottom: 50px !important;
+}
+.esriScalebarLabel {
+  font-size: 12px !important;
+  color: #222 !important;
+  text-shadow: 0 0 2px white;
+}
+.esriScalebarRuler {
+  height: 10px !important;
+  border-color: #222 !important;
+}
+.esriScalebarRulerBlock {
+  background-color: #222 !important;
+}
+
 .map .tooltip {
   width: 100px;
   word-wrap: break-word;

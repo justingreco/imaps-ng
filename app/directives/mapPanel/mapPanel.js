@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/mapPanel/mapPanel.html',
 		restrict: 'E',
-		controller: function ($scope, $rootScope, $timeout, property, localStorageService, $filter, mapUtils) {
+		controller: function ($scope, $rootScope, $timeout, property, localStorageService, $filter, mapUtils, $analytics) {
 			$scope.property = property;
 
 			var oldItemInfo = null;
@@ -130,8 +130,8 @@ angular.module('imapsNgApp')
 
 			var webMapLoaded = function (response) {
 
-				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/SpatialReference", "esri/dijit/LocateButton", "dojo/on"],
-				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, SpatialReference, LocateButton, on) {
+				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/SpatialReference", "esri/dijit/LocateButton", "esri/dijit/Scalebar", "dojo/on"],
+				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, SpatialReference, LocateButton, Scalebar, on) {
 					if (oldItemInfo) {
 						response = compareVisibleLayers(response, oldItemInfo);
 					}
@@ -207,7 +207,9 @@ angular.module('imapsNgApp')
 
 					var home = new HomeButton({map: $scope.map, extent: new Extent(1948652, 608444, 2249012, 862044, new SpatialReference({wkid: 2264}))}, 'homeButton').startup();
 					var locate = new LocateButton({map: $scope.map, scale: 2400, highlightLocation: true}, 'locateButton').startup();
-
+					var scalebar = new Scalebar({
+          	map: $scope.map, scalebarUnit: "english"
+        	});
 				});
 			}
 
@@ -335,7 +337,14 @@ angular.module('imapsNgApp')
 					$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 0, $scope.config.map.wkid ).then(function (data) {
 						$scope.property.getGeometryByPins("PIN_NUM = '" + pin + "'", 1, $scope.config.map.wkid ).then(function (data2) {
 							$timeout(function (){
-								addGeometriesToMap(data.features.concat(data2.features), $scope.selectionSingle, [255,0,0]);
+								var features = data.features.concat(data2.features);
+								addGeometriesToMap(features, $scope.selectionSingle, [255,0,0]);
+								if (features.length === 1) {
+									require(["esri/geometry/Polygon"], function (Polygon) {
+										var pt = new Polygon(features[0].geometry).getCentroid();
+				 						$analytics.eventTrack('Property Selected', {category: 'centroid', label:spToDd(pt.x, pt.y)});
+				 					});
+								}
 							});
 						});
 					});

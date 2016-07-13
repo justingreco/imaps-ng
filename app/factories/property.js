@@ -128,7 +128,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				returnGeometry: false,
 				outFields: 'PIN_NUM',
 				geometryType: type,
-				geometryPrecision: 0,
+				geometryPrecision: 2,
 				outSR: wkid,
 				f: "json"
 			}),

@@ -1,5 +1,9 @@
 {
 	"title": "iMAPS",
+	"alert": {
+		"show": false,
+		"message": "On Thursday May 26, 2016, iMAPS will be unavailable between the hours of 7PM and 10PM to allow for our servers to be moved to our new data center.  We apologize for any inconvenience."
+	},
 	"map": {
 		"id": "0757b2fd0e6f44dd8d8fefbfc09aa8eb",
 		"geometryServiceUrl": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
@@ -213,7 +217,7 @@
 					{"label": "Legend", "href": "http://maps.wakegov.com/imaps/iMAPSlegend.pdf"},
 					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"},
 					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"},
-					{"label": "Clear Storage", "click": true}					
+					{"label": "Clear Storage", "click": true}
 				]
 			}
 		]
@@ -583,5 +587,4 @@
             }
         ]
     }
-
 }
