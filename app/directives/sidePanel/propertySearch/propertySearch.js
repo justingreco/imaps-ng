@@ -179,13 +179,10 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-<<<<<<< HEAD
+
 					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
-=======
-					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return encodeURI(newUrl);
->>>>>>> 474785365e5fd0fceb3352dc07befd127b783d78
+
 					}
 				}
 			});
@@ -199,13 +196,10 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-<<<<<<< HEAD
+
 					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
-=======
-					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return encodeURI(newUrl);
->>>>>>> 474785365e5fd0fceb3352dc07befd127b783d78
+
 					}
 				}
 			});
@@ -219,13 +213,10 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-<<<<<<< HEAD
+
 					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
-=======
-					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return encodeURI(newUrl);
->>>>>>> 474785365e5fd0fceb3352dc07befd127b783d78
+
 					}
 				}
 			});
@@ -239,13 +230,10 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-<<<<<<< HEAD
+
 					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
-=======
-					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return encodeURI(newUrl);
->>>>>>> 474785365e5fd0fceb3352dc07befd127b783d78
+
 					}
 				}
 			});
@@ -259,13 +247,10 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-<<<<<<< HEAD
+
 					      var newUrl = url + uriEncodedQuery;
 					      return newUrl;
-=======
-					      var newUrl = url + '&input=' + uriEncodedQuery;
-					      return encodeURI(newUrl);
->>>>>>> 474785365e5fd0fceb3352dc07befd127b783d78
+
 					}
 				}
 			});
