@@ -65,7 +65,9 @@ angular.module('ngCsv.services').
         if (options.quoteStrings || data.indexOf(',') > -1 || data.indexOf('\n') > -1 || data.indexOf('\r') > -1) {
             data = options.txtDelim + data + options.txtDelim;
         }
-
+        if (data.charAt(0) === "0") {
+          data = options.txtDelim + "=" + options.txtDelim + options.txtDelim + data + options.txtDelim + options.txtDelim + options.txtDelim;
+        }
         return data;
       }
 
