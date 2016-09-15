@@ -61,7 +61,7 @@ angular.module('imapsNgApp')
 					if  (!geom.type) {
 							geom = new  Polygon(geom);
 					}
-					var buffer = GeometryEngine.buffer(geom, -5, 9002, true);
+					var buffer = GeometryEngine.buffer(geom, -10, 9002, true);
 						property.getServices(buffer, $scope.map.extent, $scope.map.width, $scope.map.height).then(function (response) {
 							handleResponse(response);
 						});

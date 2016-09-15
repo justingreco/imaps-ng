@@ -50,7 +50,7 @@ angular.module('imapsNgApp')
 				formatAccountInfo(account);
 				if (account.city === 'RALEIGH')
 				{
-					//$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/Map/Find/' + account.siteAddress + "," + account.city + ",NC"});
+					//$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/map/location/' + account.siteAddress + "," + account.city + ",NC"});
 					$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});					
 				}
 				if (account.pin) {
@@ -78,7 +78,7 @@ angular.module('imapsNgApp')
 							sort: false,
 							render: function (row) {
 								if (row.field === "Septic Permit") {
-									return React.DOM.a({className: 'ps-link', href:"http://gisasp2.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value + " ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+									return React.DOM.a({className: 'ps-link', href:"http://maps.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value + " ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								} else if (row.field === "Well Samples") {
 									return React.DOM.a({className: 'ps-link', href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								} else if (row.field === "Crime") {

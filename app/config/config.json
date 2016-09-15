@@ -217,6 +217,7 @@
 					{"label": "Legend", "href": "http://maps.wakegov.com/imaps/iMAPSlegend.pdf"},
 					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"},
 					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"},
+					{"label": "Mailing Labels Guide", "href": "http://maps.wakegov.com/imaps/iMAPSmailinglabels.pdf"},					
 					{"label": "Clear Storage", "click": true}
 				]
 			}
@@ -447,7 +448,7 @@
                         "layerId": 13
                     },
                     {"title": "County Zoning",
-                        "labels": "[CLASS]",
+                        "labels": "[Class]",
                         "layerId": 14
                     },
                     {"title": "Fuquay-Varina Zoning",
@@ -536,7 +537,7 @@
             },{"title": "Public Safety",
                 "services": [
                     {"title": "Sheriff Zone",
-                    "labels": "[DISTRICT]",
+                    "labels": "[Distinct]",
                     "layerId": 36},
                     {"title": "Raleigh Police Beat",
                     "labels": "[Name]",

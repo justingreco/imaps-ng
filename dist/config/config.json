@@ -217,6 +217,7 @@
 					{"label": "Legend", "href": "http://maps.wakegov.com/imaps/iMAPSlegend.pdf"},
 					{"label": "Electoral Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSelectoral.pdf"},
 					{"label": "Appraisal Quickstart", "href": "http://maps.wakegov.com/imaps/iMAPSAppraisal.pdf"},
+					{"label": "Mailing Labels Guide", "href": "http://maps.wakegov.com/imaps/iMAPSmailinglabels.pdf"},					
 					{"label": "Clear Storage", "click": true}
 				]
 			}
