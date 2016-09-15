@@ -26,7 +26,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			url: baseUrl + "properties/" + type,
 			data: $.param({
 				type: type,
-				values: JSON.stringify(values),
+				pin: JSON.stringify(values),
 				f: "json"
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
