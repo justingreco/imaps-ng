@@ -23,7 +23,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: baseUrl + "properties/" + type + "/",
+			url: baseUrl + "properties/" + type,
 			data: $.param({
 				type: type,
 				values: JSON.stringify(values),
