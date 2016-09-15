@@ -25,7 +25,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			method: 'POST',
 			url: baseUrl + "properties/" + type,
 			data: $.param({
-				values: JSON.stringify(values)
+				values: JSON.stringify(values.split('|'))
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(deferred.resolve);
