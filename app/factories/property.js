@@ -22,13 +22,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
 		$http({
-			method: 'GET',
-			url: baseUrl + "properties/" + type + "/" + values,
-			// data: $.param({
-			// 	type: type,
-			// 	values: JSON.stringify(values),
-			// 	f: "json"
-			// }),
+			method: 'POST',
+			url: baseUrl + "properties/" + type,
+			data: $.param({
+				values: JSON.stringify(values)
+			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
 		}).success(deferred.resolve);
 		return deferred.promise;
