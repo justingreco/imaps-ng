@@ -16,7 +16,7 @@ angular.module('imapsNgApp')
         $('#loading').remove();
         $('#loadingBackground').remove();
         $rootScope.loading = false;
-    }, 100);
+    }, 1000);
 
     var getBrowser = function () {
         var userAgent = navigator.userAgent.toLowerCase();

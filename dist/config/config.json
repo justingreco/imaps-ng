@@ -448,7 +448,7 @@
                         "layerId": 13
                     },
                     {"title": "County Zoning",
-                        "labels": "[CLASS]",
+                        "labels": "[Class]",
                         "layerId": 14
                     },
                     {"title": "Fuquay-Varina Zoning",
@@ -537,7 +537,7 @@
             },{"title": "Public Safety",
                 "services": [
                     {"title": "Sheriff Zone",
-                    "labels": "[DISTRICT]",
+                    "labels": "[Distinct]",
                     "layerId": 36},
                     {"title": "Raleigh Police Beat",
                     "labels": "[Name]",

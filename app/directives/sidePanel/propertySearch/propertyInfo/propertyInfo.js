@@ -22,9 +22,11 @@ angular.module('imapsNgApp')
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
 					if (data.SepticPermits.length > 0) {
-						angular.forEach(data.SepticPermits, function (permit) {
-							$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
-						});
+						$scope.accountInfo.push({field: 'Septic Permit', value: pin});
+
+						// angular.forEach(data.SepticPermits, function (permit) {
+						// 	$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
+						// });
 /*						$timeout(function() {
 							$scope.infoGrid.data = $scope.accountInfo;
 						});	*/
@@ -50,8 +52,8 @@ angular.module('imapsNgApp')
 				formatAccountInfo(account);
 				if (account.city === 'RALEIGH')
 				{
-					//$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/map/location/' + account.siteAddress + "," + account.city + ",NC"});
-					$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});					
+					$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/map/location/' + account.siteAddress + "," + account.city + ",NC"});
+					//$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});					
 				}
 				if (account.pin) {
 					getSepticPermits(account.pin);
@@ -78,9 +80,9 @@ angular.module('imapsNgApp')
 							sort: false,
 							render: function (row) {
 								if (row.field === "Septic Permit") {
-									return React.DOM.a({className: 'ps-link', href:"http://maps.wakegov.com/imaps/RequestedPermit.aspx?permit=" + row.value, target:"_blank"}, row.value + " ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+									return React.DOM.a({className: 'ps-link', href:"http://maps.wakegov.com/septic/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								} else if (row.field === "Well Samples") {
-									return React.DOM.a({className: 'ps-link', href:"http://justingreco.github.io/water-analysis/app/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+									return React.DOM.a({className: 'ps-link', href:"http://maps.wakegov.com/water-analysis/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								} else if (row.field === "Crime") {
 									return React.DOM.a({className: 'ps-link', href: row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								}
