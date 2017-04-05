@@ -34,6 +34,15 @@
 				"thumbnail": "aerials.3327d4b3.png",
 				"layers": [
 				{
+					"name": "2016",
+					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2016/ImageServer",
+					"labels": false,
+					"tiled": true,
+					"county": false,
+					"id": "orthos-2016",
+					"tone": "dark"
+				},					
+				{
 					"name": "2015",
 					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2015/ImageServer",
 					"labels": false,
@@ -530,8 +539,8 @@
                         "layerId": 33
                     },{
                         "title": "Bi-Weekly Recycling Collection",
-                        "labels": "Collection Day: [Collection Day];Recycling Week: <a class='ps-link' href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars/[Collection Day][WEEK].pdf' target='_blank'>[WEEK] <span class='glyphicon glyphicon-new-window'></span></a>",
-                        "layerId": 34
+                        "labels": "Collection Day: [Collection Day];Recycling Week: <a class='ps-link' href='http://www.raleighnc.gov/content/SolidWaste/Documents/Calendars/[Collection Day][Recycling Week].pdf' target='_blank'>[Recycling Week] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "layerId": 33
                     }
                 ]
             },{"title": "Public Safety",

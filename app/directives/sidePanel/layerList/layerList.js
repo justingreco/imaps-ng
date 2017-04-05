@@ -98,6 +98,8 @@ angular.module('imapsNgApp')
 /*		  		require(['esri/geometry/Extent'], function (Extent){
 					$scope.map.setExtent(new Extent(layer.resourceInfo.initialExtent), true);
 		  		});*/
+				  console.log($scope.map.getScale());
+				  console.log(layer.resourceInfo.minScale);
 	  			if ($scope.map.getScale() > layer.resourceInfo.minScale) {
 					$scope.map.setScale(layer.resourceInfo.minScale);
 				}

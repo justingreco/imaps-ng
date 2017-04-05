@@ -12,7 +12,8 @@
 	</div>
 	<div>
 		<div ng-click="basemapTypeClicked('images')" ng-class="{'selected-basemap':basemapType === 'images'}" class="basemap-type">
-			<img ng-src="images/{{config.map.basemaps.images.thumbnail}}"/>Aerials
+			<img ng-src="images/{{config.map.basemaps.images.thumbnail}}"/><span class="basemap-label" style="display: inline-block">Aerials<label ng-show="basemapType === 'images'"><input ng-model="labels.checked" type="checkbox"  ng-change="labelsChecked()">Labels</label></span>
+
 		</div>
 		<div class="select-wrapper form-control input-sm" ng-show="basemapType === 'images'">
 			<select ng-options="layer as layer.name for layer in config.map.basemaps.images.layers | filter: showAerial" ng-model="basemap" class="form-control input-sm" ng-change="basemapChanged(basemap, basemapType, true)"></select>

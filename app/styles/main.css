@@ -1067,3 +1067,14 @@ map-coordinates .btn-default:hover, .btn-default.active {
     border-color: white !important;
     color: white !important;
 }*/
+
+.basemap-label {
+    display: inline-block;
+    width: 70px;
+    vertical-align: middle;
+}
+
+base-map-panel label {
+  font-size: smaller;
+  font-weight: normal;
+}
