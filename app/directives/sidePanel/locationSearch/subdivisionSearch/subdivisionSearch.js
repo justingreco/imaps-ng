@@ -3,7 +3,7 @@ angular.module('imapsNgApp')
 	return {
 		templateUrl: 'directives/sidePanel/locationSearch/subdivisionSearch/subdivisionSearch.html',
 		restrict: 'EA',
-		controller: function ($scope, $http, locationFactory) {
+		controller: function ($scope, $http, locationFactory, $timeout) {
 			$scope.subdivisions = function(subdivision){
 		        return locationFactory.getSubdivision(subdivision).then(function (response) {
 /*		        	var subdivs = [];
@@ -38,6 +38,11 @@ angular.module('imapsNgApp')
 					});
 					g = new Graphic(poly,fill);
 					gl.add(g);
+					$timeout(function () {
+						$scope.selectedSubdivision = $item;
+						$scope.$apply();
+						console.log($scope.selectedSubdivision);
+					});
 				});
 		    };
 		},

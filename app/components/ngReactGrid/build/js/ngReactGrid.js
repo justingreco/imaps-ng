@@ -460,7 +460,7 @@ var ngReactGridComponent = (function() {
                         rows = (
                             React.DOM.tr(null, 
                                 React.DOM.td( {colSpan:this.props.grid.columnDefs.length, style:noDataStyle}, 
-                                    "No records found"
+                                    "No property selected"
                                 )
                             )
                         )

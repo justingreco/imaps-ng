@@ -12,7 +12,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 			params: {
 				where: "NAME LIKE '" + subdivision.toUpperCase() + "%'",
 				orderByFields: 'NAME',
-				outFields: 'NAME',
+				outFields: '*',
 				returnGeometry: true,
 				geometryPrecision: 0,
 				f: "json"

@@ -1,1 +1,11 @@
 <input type="text" class="form-control input-sm" placeholder="Enter a subdivision..." ng-model="subdivision" uib-typeahead="subdivision as subdivision.attributes.NAME for subdivision in subdivisions($viewValue)" typeahead-on-select='subdivisionSelected($item, $model, $label)'/>
+<p>
+<div ng-if="selectedSubdivision.attributes.NAME" style="overflow: auto;position: absolute;top: 80px;bottom: 0px;left: 0px;right: 0px;">
+    <p class="lead page-header">{{selectedSubdivision.attributes.NAME}}</p>
+    <p><strong>Jurisdiction:</strong>&nbsp;&nbsp;{{selectedSubdivision.attributes.JURISDICTION}}</p>
+    <p><strong>Access Road:</strong>&nbsp;&nbsp;{{selectedSubdivision.attributes.ACCESS_RD}}</p>
+    <p><strong># of Lots:</strong>&nbsp;&nbsp;{{selectedSubdivision.attributes.LOTS}}</p>
+    <p><strong>Acres:</strong>&nbsp;&nbsp;{{selectedSubdivision.attributes.ACRES | number: 2}}</p>
+    <p><strong>Approved:</strong>&nbsp;&nbsp;{{selectedSubdivision.attributes.APPROVDATE | date: 'longDate'}}</p>
+</div>
+</p>

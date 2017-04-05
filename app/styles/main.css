@@ -1053,6 +1053,9 @@ map-coordinates {
   bottom: .5em;
   left: 5px;
 }
+#map img {
+vertical-align: none;
+}
 /*map-coordinates .btn-default, .btn-default:active, .btn-default:focus {
    background-color: rgba(60,60,60,0.8)!important;
    border-color: white !important;
