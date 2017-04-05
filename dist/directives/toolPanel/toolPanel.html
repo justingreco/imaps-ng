@@ -1,8 +1,0 @@
-<span class="collapse-header" ng-click="toolHeaderClick(toolsChecked)"><span class="glyphicon glyphicon-menu-down" ng-class="{'glyphicon-menu-down': !toolsChecked, 'glyphicon-menu-up': toolsChecked}"></span>Tools</span> <br> <div class="collapse-panel" ng-style="{height: ((toolsChecked) ? tool.height + 'px': 0), width:((toolsChecked) ? tool.width + 'px': '140px')}"> <div style="display:inline-block;font-size:16pt"> <span analytics-on="click" analytics-category="Tools" analytics-event="Tool Changed" analytics-label="{{tool.title}}" ng-model="tool" ng-repeat="tool in tools" class="glyphicon glyphicon-{{tool.icon}}" ng-class="{highlighted: tool.highlighted}" uib-tooltip="{{((touch) ? '' : tool.title)}}" tooltip-placement="bottom-left" ng-click="toolChanged(tool)"></span> </div> <div class="toolcontainer"> <identify-tool ng-show="tool.title == 'Identify'"></identify-tool> <select-tool ng-show="tool.title == 'Property Select'"></select-tool> <streetview-tool ng-show="tool.title == 'Streetview'"></streetview-tool> <oblique-tool ng-show="tool.title == 'Oblique'"></oblique-tool> <measure-tool ng-show="tool.title == 'Measure'"></measure-tool> <bookmark-tool ng-show="tool.title == 'Bookmarks'"></bookmark-tool> <draw-tool ng-show="tool.title == 'Draw'"></draw-tool> <print-tool ng-show="tool.title == 'Print'"></print-tool> <clear-tool ng-show="tool.title == 'Clear Map'"></clear-tool> </div> </div> <!-- <div pageslide ps-open="toolsChecked" ps-side="top" ps-cloak="false" ps-class="ng-pageslide-tools" class="ng-isolate-scope">
-	<div style="width:40px;display:inline-block;">
-		<span class="glyphicon glyphicon-info-sign"></span>
-	</div>
-	<div style="width:40px;display:inline-block;">
-
-	</div>
-</div> -->
