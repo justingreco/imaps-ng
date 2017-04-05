@@ -3,10 +3,11 @@
 This project is generated with [yo angular generator](https://github.com/yeoman/generator-angular)
 version 0.11.1.
 
-## Build & development
+## Installing
+* Clone repository locally: git clone https://github.com/justingreco/imaps-ng.git
+* Install NPM modules: npm install
+* Install Bower packages: bower install
+* Serve using Grunt: grunt serve
 
-Run `grunt` for building and `grunt serve` for preview.
-
-## Testing
-
-Running `grunt test` will run the unit tests with karma.
+## Minification
+* grunt build
