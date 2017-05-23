@@ -36,7 +36,7 @@ angular.module('imapsNgApp')
 				  } else {
 				  	mapUtils.project($scope.config.map.geometryServiceUrl, {"geometryType": "esriGeometryPoint", "geometries": [{"x": $scope.coordinate.x, "y": $scope.coordinate.y}]}, $scope.coordinateType.wkid, $scope.map.spatialReference.wkid).then(function (result) {
 				  		if (result.geometries.length > 0) {
-				  			pt =  new Point( {"x": result.geometries[0].x, "y": result.geometries[0].y, "spatialReference": {"wkid": $scope.coordinateType.wkid } });
+				  			pt =  new Point( {"x": result.geometries[0].x, "y": result.geometries[0].y, "spatialReference": {"wkid": $scope.map.spatialReference.latestWkid } });
 				  			$scope.map.centerAndZoom(pt, 11);
 							g = new Graphic().setGeometry(pt).setSymbol(symbol).setAttributes({});
 		 					gl.add(g);
