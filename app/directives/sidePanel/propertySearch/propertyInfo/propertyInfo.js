@@ -21,27 +21,31 @@ angular.module('imapsNgApp')
 			};
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
-					if (data.SepticPermits.length > 0) {
-						$scope.accountInfo.push({field: 'Septic Permit', value: pin});
+					if (data.SepticPermits) {
+						if (data.SepticPermits.length > 0) {
+							$scope.accountInfo.push({field: 'Septic Permit', value: pin});
 
-						// angular.forEach(data.SepticPermits, function (permit) {
-						// 	$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
-						// });
-/*						$timeout(function() {
-							$scope.infoGrid.data = $scope.accountInfo;
-						});	*/
+							// angular.forEach(data.SepticPermits, function (permit) {
+							// 	$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
+							// });
+	/*						$timeout(function() {
+								$scope.infoGrid.data = $scope.accountInfo;
+							});	*/
+						}
 					}
 					getWellSamples(pin);
 				});
 			};
 			var getWellSamples = function (pin) {
 				property.getWellResults(pin).then(function (data) {
-					if (data.WellResults.length > 0) {
-						$scope.accountInfo.push({field: 'Well Samples', value: pin});
+					if (data.WellResults) {
+						if (data.WellResults.length > 0) {
+							$scope.accountInfo.push({field: 'Well Samples', value: pin});
+						}
+						$timeout(function() {
+							$scope.infoGrid.data = $scope.accountInfo;
+						});
 					}
-					$timeout(function() {
-						$scope.infoGrid.data = $scope.accountInfo;
-					});
 				});
 			};
 			if ($scope.account && !$scope.accountInfo) {

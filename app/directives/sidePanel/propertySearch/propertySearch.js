@@ -10,10 +10,12 @@ angular.module('imapsNgApp')
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
 			var autocompleteFilter = function (response) {
 				var data = [];
-				if (response.Results.length > 0) {
-					angular.forEach(response.Results, function (r) {
-						data.push({value: r});
-					});
+				if (response.Results) {
+					if (response.Results.length > 0) {
+						angular.forEach(response.Results, function (r) {
+							data.push({value: r});
+						});
+					}
 				}
 				return data;
 			};
