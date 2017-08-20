@@ -12,7 +12,8 @@ angular.module('imapsNgApp')
 				clickHandle = null,
 				moveHandle = null,
 				coordHandle = null,
-				current = null;
+				current = null,
+				mouseDown = null;
 			$scope.measurement = '--';
 			$scope.currentCoords = '';
 
@@ -20,7 +21,7 @@ angular.module('imapsNgApp')
 				var dd = spToDd(x, y),
 					text = "";
 				if (unit === 'FEET') {
-					text = y.toFixed(4) + " N " + x.toFixed(4) + " E";
+					text = y.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " N " + x.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " E";
 				} else if (unit === 'DECIMAL_DEGREES') {
 					text = "Lat: " + dd[0].toFixed(6) + " Lng: " + dd[1].toFixed(6);
 				} else if (unit === 'DEGREE_MINUTE_SECONDS') {
@@ -35,9 +36,9 @@ angular.module('imapsNgApp')
 					var measurement = null;
 					measureGeom = geometry;
 					if (geometry.type === 'polygon') {
-						measurement = geometryEngine.planarArea(geometry, unit).toFixed(2);
+						measurement = geometryEngine.planarArea(geometry, unit).toLocaleString(undefined, { maximumFractionDigits: 2 });
 					} else if (geometry.type === 'polyline') {
-						measurement = geometryEngine.planarLength(geometry, unit).toFixed(2);
+						measurement = geometryEngine.planarLength(geometry, unit).toLocaleString(undefined, { maximumFractionDigits: 2 });
 						stopLengthMeasure();
 					} else if (geometry.type === 'point') {
 						measurement = getCoordinate(geometry.x, geometry.y, unit);
@@ -66,9 +67,18 @@ angular.module('imapsNgApp')
 					}
 					gl.clear();
 					gl.add(g);
+					mouseDown = $scope.map.on('mouse-down', drawStarted);
 				});
 
+
 			};
+
+			var drawStarted = function () {
+				if (gl.graphics.length > 0) {
+					gl.remove(gl.graphics[0]);
+				}
+				mouseDown.remove();
+			}
 
 			var stopLengthMeasure = function () {
 				if (moveHandle) {
@@ -103,7 +113,7 @@ angular.module('imapsNgApp')
 					totalLength = lastSegment + currentSegment;
 					//currentSegment = GeometryEngine.distance(clickPt, e.mapPoint, $scope.unit.wkid);
 					$timeout(function () {
-						$scope.measurement = totalLength.toFixed(2);
+						$scope.measurement = totalLength.toLocaleString(undefined, { maximumFractionDigits: 2 });
 					});
 				});
 
