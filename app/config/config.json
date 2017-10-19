@@ -5,7 +5,7 @@
 		"message": "On Thursday May 26, 2016, iMAPS will be unavailable between the hours of 7PM and 10PM to allow for our servers to be moved to our new data center.  We apologize for any inconvenience."
 	},
 	"map": {
-		"id": "0757b2fd0e6f44dd8d8fefbfc09aa8eb",
+		"id": "ee507f0274b24c339dfd2fda52bfbcca",
 		"geometryServiceUrl": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 		"wkid": 2264,
 		"labels": "https://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
