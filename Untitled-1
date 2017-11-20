@@ -1,0 +1,152 @@
+{
+  "operationalLayers": [
+    {
+      "id": "Census_6814",
+      "layerType": "ArcGISMapServiceLayer",
+      "url": "https://maps.raleighnc.gov/arcgis/rest/services/Census/MapServer",
+      "visibility": false,
+      "opacity": 0.5,
+      "title": "Census"
+    },
+    {
+      "id": "Future_Land_Use_6822",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Future_Land_Use/FeatureServer/0",
+      "visibility": false,
+      "opacity": 0.52,
+      "mode": 1,
+      "title": "Future_Land_Use",
+      "itemId": "20a70bbbafdc4cdd9dec9e09b0e22cd9"
+    },
+    {
+      "id": "Board_Of_Elections_5885",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/10",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "Voting Precinct",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_8291",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/9",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "Wake Superior Court Judge Districts",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_8105",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/8",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "Wake County Commissioners",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_9642",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/7",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "US House of Representatives",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_1187",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/6",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "State Senate",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_1258",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/5",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "State House of Representatives",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_9635",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/4",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "School Board",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_7317",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/3",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "Raleigh City Council",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_8588",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/2",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "Morrisville Town Council",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_8214",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/1",
+      "visibility": false,
+      "opacity": 0.5,
+      "mode": 1,
+      "title": "Cary Town Council",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    },
+    {
+      "id": "Board_Of_Elections_5969",
+      "layerType": "ArcGISFeatureLayer",
+      "url": "https://gisprdweblv1.ci.raleigh.nc.us/arcgis/rest/services/Hosted/Board_Of_Elections/FeatureServer/0",
+      "visibility": false,
+      "opacity": 1,
+      "mode": 0,
+      "title": "Polling Places",
+      "itemId": "11f376574bdb409ba99de507c431e93f"
+    }
+  ],
+  "baseMap": {
+    "baseMapLayers": [
+      {
+        "id": "BaseMapMobile_6611",
+        "layerType": "ArcGISTiledMapServiceLayer",
+        "url": "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapMobile/MapServer",
+        "visibility": true,
+        "opacity": 0.5,
+        "title": "BaseMapMobile"
+      }
+    ],
+    "title": "BaseMapMobile"
+  },
+  "spatialReference": {
+    "wkid": 102719,
+    "latestWkid": 2264
+  },
+  "authoringApp": "WebMapViewer",
+  "authoringAppVersion": "10.5.1",
+  "version": "2.8"
+}

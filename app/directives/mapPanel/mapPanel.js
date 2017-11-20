@@ -10,14 +10,33 @@ angular.module('imapsNgApp')
 			var mapUpdating = function () {
 				cfpLoadingBar.start();
 			};
-			var mapUpdated = function () {
+			var mapUpdated = function () {			
 				cfpLoadingBar.complete();
 			};
 			var mapUnloaded = function () {
+				debugger
 				if ($rootScope.keepStorage) {
-					var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
-					localStorageService.set(storage, stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
+					var layers = [];
+					var layer = null;
+					var storage = (($rootScope.configName ? $rootScope.configName + '_layers' : 'imaps_layers'));
+					angular.forEach($scope.webmap.itemInfo.itemData.operationalLayers, function (l) {
+						layer = $scope.map.getLayer(l.id)
+						if (l.layerType === "ArcGISMapServiceLayer") {
+							layers.push({id: layer.id, visibility: layer.visible, opacity: layer.opacity, visibleLayers: layer.visibleLayers});
+						} else {
+							layers.push({id: layer.id, visibility: layer.visible, opacity: layer.opacity});						
+						}
+					});
+					localStorageService.set(storage, stringify(layers));
+					var extent = (($rootScope.configName ? $rootScope.configName + '_extent' : 'imaps_extent'));
+					localStorageService.set(extent, stringify($scope.map.extent));
+					var storage = (($rootScope.configName ? $rootScope.configName + '_storage' : 'imaps_storage'));	
+					localStorageService.set(storage, true);			
 				}
+				//if ($rootScope.keepStorage) {
+				//	var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+				//	localStorageService.set(storage, stringify($scope.webmap));//JSON.stringify(JSON.decycle($scope.webmap)));
+				//}
 			};
 			$scope.checkInsideRaleigh = function (bounds, point) {
 				require(["esri/geometry/Polygon"], function (Polygon) {
@@ -46,33 +65,33 @@ angular.module('imapsNgApp')
 			}
 
 
-			var setLayerVisibleLayers = function () {
-				angular.forEach($scope.map.layerIds, function (id) {
-					var itemInfo = null;
-					var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
-					if (oldItemInfo) {
-						itemInfo = oldItemInfo;
-					} else {
-						if (localStorageService.get(storage)) {
-							itemInfo = localStorageService.get(storage).itemInfo
-						}
-					}
-					if (itemInfo) {
-						var layer = $scope.map.getLayer(id);
-						if (layer.visibleLayers) {
-							var opLyr = $filter('filter')(itemInfo.itemData.operationalLayers, function (l) {
-								return layer.id  === l.id;
-							});
-							if (opLyr.length > 0) {
-								opLyr = opLyr[0];
-								if (opLyr.layerObject) {
-									layer.setVisibleLayers(opLyr.layerObject.visibleLayers);
-								}
-							}
-						}
-					}
-				});
-			};
+			// var setLayerVisibleLayers = function () {
+			// 	angular.forEach($scope.map.layerIds, function (id) {
+				// 	var itemInfo = null;
+				// 	var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+				// 	if (oldItemInfo) {
+				// 		itemInfo = oldItemInfo;
+				// 	} else {
+				// 		if (localStorageService.get(storage)) {
+				// 			itemInfo = localStorageService.get(storage).itemInfo
+				// 		}
+				// 	}
+				// 	if (itemInfo) {
+				// 		var layer = $scope.map.getLayer(id);
+				// 		if (layer.visibleLayers) {
+				// 			var opLyr = $filter('filter')(itemInfo.itemData.operationalLayers, function (l) {
+				// 				return layer.id  === l.id;
+				// 			});
+				// 			if (opLyr.length > 0) {
+				// 				opLyr = opLyr[0];
+				// 				if (opLyr.layerObject) {
+				// 					layer.setVisibleLayers(opLyr.layerObject.visibleLayers);
+				// 				}
+				// 			}
+				// 		}
+				// 	}
+				// });
+		//	};
 
 			var compareVisibleLayers = function (response, oldItemInfo) {
 				angular.forEach(response.itemInfo.itemData.operationalLayers, function (layer) {
@@ -132,24 +151,56 @@ angular.module('imapsNgApp')
 
 				require(["esri/layers/GraphicsLayer", "esri/basemaps", "esri/geometry/Extent", "esri/dijit/HomeButton", "esri/SpatialReference", "esri/dijit/LocateButton", "esri/dijit/Scalebar", "dojo/on"],
 				function (GraphicsLayer, esriBasemaps, Extent, HomeButton, SpatialReference, LocateButton, Scalebar, on) {
-					if (oldItemInfo) {
-						response = compareVisibleLayers(response, oldItemInfo);
-					}
-					var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
-					if (localStorageService.get(storage)) {
-						$scope.webmap = localStorageService.get(storage);
+					$scope.webmap = response;
+					$scope.map = response.map;
+					var extent = (($rootScope.configName ? $rootScope.configName + '_extent' : 'imaps_extent'));
+					if (localStorageService.get(extent)) {
+						$scope.map.setExtent(new Extent(localStorageService.get(extent)));
+					}					
+					var layers = (($rootScope.configName ? $rootScope.configName + '_layers' : 'imaps_layers'));
+					$rootScope.layerStorage = localStorageService.get(layers);
+					if (localStorageService.get(layers)) {
+						layers = localStorageService.get(layers);
+						angular.forEach(layers, function (layer) {
+							var maplayer = $scope.map.getLayer(layer.id);
+							if (maplayer) {
+								maplayer.setVisibility(layer.visibility);
+								if (layer.visibleLayers) {
+									maplayer.setVisibleLayers(layer.visibleLayers);
+								}
+								maplayer.setOpacity(layer.opacity);
+							}
+
+						});						
 						$scope.webmap.clickEventHandle = response.clickEventHandle;
 						$scope.webmap.clickEventListener = response.clickEventListener;
 					} else {
 						$scope.webmap = response;
-					}
-					$scope.map = response.map;
+					}		
+
+					
+					
+
+					// if (oldItemInfo) {
+					// 	response = compareVisibleLayers(response, oldItemInfo);
+					// }
+					// var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+					// if (localStorageService.get(storage)) {
+					// 	$scope.webmap = localStorageService.get(storage);
+					// 	$scope.webmap.clickEventHandle = response.clickEventHandle;
+					// 	$scope.webmap.clickEventListener = response.clickEventListener;
+					// } else {
+					// 	$scope.webmap = response;
+					// }
+					// $scope.map = response.map;
 
 					on($scope.map.infoWindow, 'set-features', function () {
-						var anchor = (($scope.map.infoWindow.location.y < $scope.map.extent.getCenter().y) ? "top" : "bottom") + "-" + (($scope.map.infoWindow.location.x < $scope.map.extent.getCenter().x) ? "right" : "left");
-						$scope.map.infoWindow.anchor = anchor;
-						$scope.map.infoWindow.offsetX = 10;
-						$scope.map.infoWindow.reposition();
+						if ($scope.map.infoWindow.location) {
+							var anchor = (($scope.map.infoWindow.location.y < $scope.map.extent.getCenter().y) ? "top" : "bottom") + "-" + (($scope.map.infoWindow.location.x < $scope.map.extent.getCenter().x) ? "right" : "left");
+							$scope.map.infoWindow.anchor = anchor;
+							$scope.map.infoWindow.offsetX = 10;
+							$scope.map.infoWindow.reposition();
+						}
 					});
 
 					setRaleighBounds();
@@ -158,9 +209,10 @@ angular.module('imapsNgApp')
 					on($scope.map, 'update-start', mapUpdating);
 					on($scope.map, 'update-end', mapUpdated);
 					on($scope.map, 'extent-change', extentChanged)
-					on($scope.map, 'unload', mapUnloaded);
+					//on($scope.map, 'unload', mapUnloaded);
+					window.onbeforeunload = mapUnloaded;
 
-					setLayerVisibleLayers();
+					//setLayerVisibleLayers();
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
@@ -235,7 +287,7 @@ angular.module('imapsNgApp')
 						esriConfig.defaults.io.alwaysUseProxy = false;
 						esriConfig.defaults.geometryService = new GeometryService("https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer");
 						var input = config.map.id;
-
+						arcgisUtils.arcgisUrl = 'https://gisprdweblv1.ci.raleigh.nc.us/portal/sharing/rest/content/items';
 						var itemDeferred = arcgisUtils.getItem(config.map.id);
 
 						itemDeferred.addCallback(function (itemInfo) {
@@ -266,6 +318,7 @@ angular.module('imapsNgApp')
 								console.log($scope.map.infoWindow.anchor);
 								console.log(e);
 							});
+							console.log(input);
 							arcgisUtils.createMap(input,"map", {
 								geometryServiceURL: "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 								mapOptions: {fadeOnZoom: true,
@@ -276,7 +329,8 @@ angular.module('imapsNgApp')
 									sliderOrientation: "horizontal",
 									sliderStyle: "small",
 									},
-									usePopupManager: true
+									usePopupManager: true,
+									showLabels: true
 								}).then(webMapLoaded, function (err) {
 									console.log(err);
 								});

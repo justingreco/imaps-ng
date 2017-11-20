@@ -39,9 +39,11 @@ angular.module('imapsNgApp')
 							openDisclaimer();
 						break;
 						case 'Clear Storage':
-							var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_webmap'));
+							var storage = (($rootScope.configName ? $rootScope.configName + '_webmap' : 'imaps_layers'));
 							localStorageService.remove(storage);
 							$rootScope.keepStorage = false;
+							var storage = (($rootScope.configName ? $rootScope.configName + '_storage' : 'imaps_storage'));	
+							localStorageService.set(storage, false);									
 							location.reload();
 						break;
 					}					

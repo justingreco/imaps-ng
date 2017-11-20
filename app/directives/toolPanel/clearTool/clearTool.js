@@ -10,11 +10,12 @@ angular.module('imapsNgApp')
 				}
 			});
 			$scope.clearMap = function () {
+
 				var layer = null;
 				$scope.map.graphics.clear();
 				angular.forEach($scope.map.graphicsLayerIds, function (id) {
 					layer = $scope.map.getLayer(id);
-					if (!layer.type) {
+					if (!layer.url && id != 'labels') {						
 						layer.clear();
 					}
 				});
@@ -26,7 +27,9 @@ angular.module('imapsNgApp')
 		  		$rootScope.account = null;
 		  		$scope.accounts = [];
 		  		$scope.geometry = null;
-		  		$scope.$broadcast('tabUpdated', 0);
+				  $scope.$broadcast('tabUpdated', 0);
+				$scope.map.setInfoWindowOnClick("enabled");
+				 
 			};
 		},
 		link: function (scope, element, attrs) {
