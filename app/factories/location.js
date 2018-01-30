@@ -71,7 +71,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'https://maps.raleighnc.gov/arcgis/rest/services/POI1/MapServer/0/query',
+			url: 'https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Places_Of_Interest/FeatureServer/0/query',
 			params: {
 				where: '1=1',
 				outFields: 'ICON',
@@ -87,7 +87,7 @@ angular.module('imapsNgApp').factory('locationFactory', ['$http', '$q', function
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: 'https://maps.raleighnc.gov/arcgis/rest/services/POI1/MapServer/0/query',
+			url: 'https://services.arcgis.com/v400IkDOw1ad7Yad/arcgis/rest/services/Places_Of_Interest/FeatureServer/0/query',
 			params: {
 				where: "ICON = '" + type + "'",
 				outFields: '*',
