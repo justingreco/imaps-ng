@@ -21,7 +21,7 @@ angular.module('imapsNgApp')
 				var dd = spToDd(x, y),
 					text = "";
 				if (unit === 'FEET') {
-					text = y.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " N " + x.toLocaleString(undefined, { maximumFractionDigits: 2 }) + " E";
+					text = y.toFixed(2) + " N " + x.toFixed(2) + " E";
 				} else if (unit === 'DECIMAL_DEGREES') {
 					text = "Lat: " + dd[0].toFixed(6) + " Lng: " + dd[1].toFixed(6);
 				} else if (unit === 'DEGREE_MINUTE_SECONDS') {
@@ -36,9 +36,9 @@ angular.module('imapsNgApp')
 					var measurement = null;
 					measureGeom = geometry;
 					if (geometry.type === 'polygon') {
-						measurement = geometryEngine.planarArea(geometry, unit).toLocaleString(undefined, { maximumFractionDigits: 2 });
+						measurement = geometryEngine.planarArea(geometry, unit).toFixed(2);
 					} else if (geometry.type === 'polyline') {
-						measurement = geometryEngine.planarLength(geometry, unit).toLocaleString(undefined, { maximumFractionDigits: 2 });
+						measurement = geometryEngine.planarLength(geometry, unit).toFixed(2);
 						stopLengthMeasure();
 					} else if (geometry.type === 'point') {
 						measurement = getCoordinate(geometry.x, geometry.y, unit);
@@ -113,7 +113,7 @@ angular.module('imapsNgApp')
 					totalLength = lastSegment + currentSegment;
 					//currentSegment = GeometryEngine.distance(clickPt, e.mapPoint, $scope.unit.wkid);
 					$timeout(function () {
-						$scope.measurement = totalLength.toLocaleString(undefined, { maximumFractionDigits: 2 });
+						$scope.measurement = totalLength.toFixed(2);
 					});
 				});
 
