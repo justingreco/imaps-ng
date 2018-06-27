@@ -21,16 +21,9 @@ angular.module('imapsNgApp')
 			};
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
-					if (data.SepticPermits) {
-						if (data.SepticPermits.length > 0) {
+					if (data.features) {
+						if (data.features.length > 0) {
 							$scope.accountInfo.push({field: 'Septic Permit', value: pin});
-
-							// angular.forEach(data.SepticPermits, function (permit) {
-							// 	$scope.accountInfo.push({field: 'Septic Permit', value: permit.permitNumber});
-							// });
-	/*						$timeout(function() {
-								$scope.infoGrid.data = $scope.accountInfo;
-							});	*/
 						}
 					}
 					getWellSamples(pin);
