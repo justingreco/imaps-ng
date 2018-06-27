@@ -1,6 +1,6 @@
 <div ng-style="accordionHeight" class="panel-contain">
   <input class="form-control input-sm" ng-model="layerFilterValue" placeholder="Filter layers by name" style="display: inline-block;width:90%;"/>
-  <span class="glyphicon glyphicon-eye-close" style="display: inline-block;cursor:pointer" ng-click="clearLayers(layers)" uib-tooltip="{{((touch) ? '' : 'Clear all layers')}}" tooltip-placement="bottom-left" tooltip-append-to-body="true"></span>
+  <span class="glyphicon glyphicon-eye-close" style="display: inline-block;cursor:pointer" ng-click="clearLayers(layers)" uib-tooltip="{{((touch) ? '' : 'Clear all layers')}}" tooltip-placement="left" tooltip-append-to-body="true"></span>
   <div class="layer" ng-repeat="layer in layers | orderBy: 'title' | filter: filterLayers" ng-model="layer" >
     <div ng-class="{'out-scale': (scale > layer.resourceInfo.minScale) && layer.resourceInfo.minScale > 0}" class="layer-toggle">
       <span  uib-tooltip="{{(((scale > layer.resourceInfo.minScale) && layer.resourceInfo.minScale > 0) ? 'Not Visible At This Scale' : '')}}" tooltip-placement="left" tooltip-append-to-body="true">
