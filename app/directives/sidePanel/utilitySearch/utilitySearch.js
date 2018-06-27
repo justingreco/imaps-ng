@@ -6,13 +6,13 @@ angular.module('imapsNgApp')
 		controller: function ($scope, puma) {
 			$scope.utilityLayers = [];
 			$scope.utilityServices = [
-				{title: 'Water Distribution', url: "http://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/WaterDistribution/MapServer",
+				{title: 'Water Distribution', url: "https://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/WaterDistribution/MapServer",
 				searchFields: 'FACILITYID', displayField: 'Facility Identifier'},
-				{title: 'Sewer Collection', url: "http://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/SewerCollection/MapServer",
+				{title: 'Sewer Collection', url: "https://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/SewerCollection/MapServer",
 				searchFields: 'FACILITYID', displayField: 'Facility Identifier'},
-				{title: 'Reclaimed Distribution', url: "http://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/ReclaimedDistribution/MapServer",
+				{title: 'Reclaimed Distribution', url: "https://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/ReclaimedDistribution/MapServer",
 				searchFields: 'FACILITYID', displayField: 'Facility Identifier'},
-				{title: 'CIP Projects', url: "http://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/RPUD_Projects/MapServer",
+				{title: 'CIP Projects', url: "https://gis.raleighnc.gov/arcgis/rest/services/PublicUtility/RPUD_Projects/MapServer",
 				searchFields: 'PROJECT_NUMBER,PROJECT_NAME', displayField: 'Project Name'}
 			];
 
