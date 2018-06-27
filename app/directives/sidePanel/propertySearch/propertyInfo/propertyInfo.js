@@ -49,8 +49,7 @@ angular.module('imapsNgApp')
 				formatAccountInfo(account);
 				if (account.city === 'RALEIGH')
 				{
-					$scope.accountInfo.push({field: 'Crime', value: 'http://www.crimemapping.com/map/location/' + account.siteAddress + "," + account.city + ",NC"});
-					//$scope.accountInfo.push({field: 'Crime', value: 'https://maps.raleighnc.gov/crime?pin=' + account.pin});					
+					$scope.accountInfo.push({field: 'Crime', value: 'https://www.crimemapping.com/map/location/' + account.siteAddress + "," + account.city + ",NC"});
 				}
 				if (account.pin) {
 					getSepticPermits(account.pin);
