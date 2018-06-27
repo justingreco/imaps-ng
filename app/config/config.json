@@ -11,7 +11,7 @@
 		"labels": "https://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
 		"basemaps": {
 			"streets" : {
-				"thumbnail": "basemap.png",
+				"thumbnail": "basemap.1a6f70d5.png",
 				"layers": [
 				{
 					"name": "Base Map",
@@ -31,8 +31,17 @@
 				}
 			]},
 			"images" : {
-				"thumbnail": "aerials.png",
+				"thumbnail": "aerials.6bfef6e6.png",
 				"layers": [
+				{
+					"name": "2017",
+					"url": "https://maps.wakegov.com/arcgis/rest/services/Imagery/Imagery_2017/MapServer",
+					"labels": false,
+					"tiled": true,
+					"county": true,
+					"id": "orthos-2017",
+					"tone": "dark"
+				},							
 				{
 					"name": "2016",
 					"url": "https://maps.raleighnc.gov/arcgis/rest/services/Orthos10/Orthos2016/ImageServer",
