@@ -79,9 +79,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "SepticPermits",
+			url: "https://maps.raleighnc.gov/arcgis/rest/services/Environmental/SepticTanks/MapServer/0/query",
 			params: {
-				pin: pin,
+				outFields: 'PIN_NUM', 
+				returnGeometry: false,
+				where: "PIN_NUM = '" + pin + "'",
 				f: "json"
 			}
 		}).success(deferred.resolve);
