@@ -231,7 +231,7 @@ angular.module('imapsNgApp')
 				if (config) {
 					$scope.config = config;
 					require(["esri/map", "esri/arcgis/utils", "esri/config", "esri/tasks/GeometryService", "esri/dijit/Popup", "dojo/dom-construct", "dojo/on", "dojo/domReady!"], function(Map, arcgisUtils, esriConfig, GeometryService, Popup, domConstruct, on) {
-						esriConfig.defaults.io.proxyUrl = "http://maps.raleighnc.gov/parklocator/proxy.ashx";
+						//esriConfig.defaults.io.proxyUrl = "http://maps.raleighnc.gov/parklocator/proxy.ashx";
 						esriConfig.defaults.io.alwaysUseProxy = false;
 						esriConfig.defaults.geometryService = new GeometryService("https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer");
 						var input = config.map.id;
