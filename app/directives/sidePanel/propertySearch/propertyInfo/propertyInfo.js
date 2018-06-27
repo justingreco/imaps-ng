@@ -76,9 +76,9 @@ angular.module('imapsNgApp')
 							sort: false,
 							render: function (row) {
 								if (row.field === "Septic Permit") {
-									return React.DOM.a({className: 'ps-link', href:"http://maps.wakegov.com/septic/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+									return React.DOM.a({className: 'ps-link', href:"https://maps.wakegov.com/septic/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								} else if (row.field === "Well Samples") {
-									return React.DOM.a({className: 'ps-link', href:"http://maps.wakegov.com/water-analysis/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
+									return React.DOM.a({className: 'ps-link', href:"https://maps.wakegov.com/water-analysis/index.html#/?pin=" + row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								} else if (row.field === "Crime") {
 									return React.DOM.a({className: 'ps-link', href: row.value, target:"_blank"}, "View ", React.DOM.span({className: 'glyphicon glyphicon-new-window'}));
 								}
