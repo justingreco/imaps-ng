@@ -1,5 +1,9 @@
 {
 	"title": "PUMA",
+	"alert": {
+		"show": false,
+		"message": "On Thursday May 26, 2016, iMAPS will be unavailable between the hours of 7PM and 10PM to allow for our servers to be moved to our new data center.  We apologize for any inconvenience."
+	},	
 	"map": {
 		"id": "80adad39d740463aa267aaba5d63495d",
 		"geometryServiceUrl": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",

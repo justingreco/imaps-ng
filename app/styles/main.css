@@ -415,18 +415,19 @@ select-tool .form-control-feedback {
 }
 .print-message {
     white-space: nowrap;
+    animation: marquee 4s linear;
     -webkit-animation: marquee 4s linear;
     margin-right: 10000px;
 }
 
 @-webkit-keyframes marquee {
     0%   {margin-right: 100%}
-    100$ {margin-right: 0}
+    100% {margin-right: 0}
 }
 
 @keyframes marquee {
     0%   {margin-right: 100%}
-    100$ {margin-right: 0}
+    100% {margin-right: 0}
 }
 /*draw tool*/
 draw-tool textarea {
@@ -993,6 +994,7 @@ utility-search .form-control {
 
 /* Track */
 ::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px rgba(0,0,0,0);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0);
     -webkit-border-radius: 10px;
     border-radius: 10px;
@@ -1003,6 +1005,7 @@ utility-search .form-control {
     -webkit-border-radius: 10px;
     border-radius: 10px;
     background: rgba(255,255,255,0.8);
+    box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5);
 }
 ::-webkit-scrollbar-thumb:window-inactive {
@@ -1077,4 +1080,8 @@ map-coordinates .btn-default:hover, .btn-default.active {
 base-map-panel label {
   font-size: smaller;
   font-weight: normal;
+}
+
+.text-muted{
+  color: white;
 }
