@@ -43,8 +43,8 @@ angular.module('imapsNgApp')
 			scope.tools = [
 				{icon: 'info-sign', title:'Identify', highlighted: true, height: 60, width: 300},
 				{icon: 'hand-up', title:'Property Select', highlighted: false, height: 180, width: 280},
-				{icon: 'road', title:'Streetview', highlighted: false, height: 300, width: 320},
-				{icon: 'picture', title:'Oblique', highlighted: false, height: 300, width: 320},
+				{icon: 'road', title:'Streetview', highlighted: false, height: 60, width: 320},
+				{icon: 'picture', title:'Satellite', highlighted: false, height: 60, width: 320},
 				{icon: 'resize-horizontal', title:'Measure', highlighted: false, height: 250, width: 300},
 				{icon: 'bookmark', title:'Bookmarks', highlighted: false, height: 260, width: 300},
 				{icon: 'pencil', title:'Draw', highlighted: false, height: 250, width: 300},

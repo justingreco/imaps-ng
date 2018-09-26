@@ -8,25 +8,39 @@ angular.module('imapsNgApp')
 			var panorama = null;
 			$scope.streetviewFull = false;
 			var sideOpen = $rootScope.checked;
+			$scope.location = '';
+			var newtab = null;
 			var getStreetview = function (lat, lng) {
-				var loc = new google.maps.LatLng(lat, lng);
-				var streetViewService = new google.maps.StreetViewService();
-				streetViewService.getPanoramaByLocation(loc, 50, function(data, status)
-				{
-				    if (status == google.maps.StreetViewStatus.OK)
-				    {
-				        var nearStreetViewLocation = data.location.latLng;
-								var options = {position:data.location.latLng, imageDateControl: true};
-								panorama = new google.maps.StreetViewPanorama(document.getElementById('streetview'));
-								panorama.setOptions(options);
-								$scope.streetviewActive = true;
-								$timeout(function () {
-									google.maps.event.trigger(streetview, 'resize');
-								});
-				    } else {
-				    	$scope.streetviewActive = false;
-				    }
-				});
+				var url = "https://www.google.com/maps/@?api=1&map_action=pano&viewpoint="+ lat+','+lng
+				if (!newtab) {
+					newtab = window.open(url);
+				} else {
+					if (newtab.closed) {
+						newtab = window.open(url);
+					} else {
+						newtab.location = url; 
+						newtab.focus();
+					}
+				}	
+				//$scope.url = "https://www.google.com/maps/@?map_action=pano&viewpoint="+ lat+','+lng;
+				// var loc = new google.maps.LatLng(lat, lng);
+				// var streetViewService = new google.maps.StreetViewService();
+				// streetViewService.getPanoramaByLocation(loc, 50, function(data, status)
+				// {
+				//     if (status == google.maps.StreetViewStatus.OK)
+				//     {
+				//         var nearStreetViewLocation = data.location.latLng;
+				// 				var options = {position:data.location.latLng, imageDateControl: true};
+				// 				panorama = new google.maps.StreetViewPanorama(document.getElementById('streetview'));
+				// 				panorama.setOptions(options);
+				// 				$scope.streetviewActive = true;
+				// 				$timeout(function () {
+				// 					google.maps.event.trigger(streetview, 'resize');
+				// 				});
+				//     } else {
+				//     	$scope.streetviewActive = false;
+				//     }
+				// });
 			};
 			var mapClick = function (e) {
 				var dd = spToDd(e.mapPoint.x, e.mapPoint.y);
@@ -37,8 +51,8 @@ angular.module('imapsNgApp')
 				require(['dojo/on'], function (on) {
 					if (tool.title === 'Streetview') {
 						clickHandler = on($scope.map, 'click', mapClick);
-						var dd = spToDd($scope.map.extent.getCenter().x, $scope.map.extent.getCenter().y);
-						getStreetview(dd[0], dd[1]);
+						//var dd = spToDd($scope.map.extent.getCenter().x, $scope.map.extent.getCenter().y);
+						//getStreetview(dd[0], dd[1]);
 					} else {
 						if (clickHandler) {
 							clickHandler.remove();

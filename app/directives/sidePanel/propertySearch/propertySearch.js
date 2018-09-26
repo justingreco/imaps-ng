@@ -150,8 +150,14 @@ angular.module('imapsNgApp')
 			var searchForRealEstate = function (type, values) {
 				$scope.property.getRealEstate(type, values).then(function (accounts) {
 					$scope.account = null;
-					$scope.selectionSingle.clear();
-					$scope.selectionMultiple.clear();
+					if ($scope.selectionSingle) {
+						$scope.selectionSingle.clear();
+
+					}
+					if ($scope.selectionMultiple) {
+						$scope.selectionMultiple.clear();
+
+					}
 					//$scope.geometry = null;
 					$scope.fields = accounts.Fields;
 					$scope.accounts = accounts.Accounts;

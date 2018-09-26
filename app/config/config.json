@@ -2,7 +2,7 @@
 	"title": "iMAPS",
 	"alert": {
 		"show": false,
-		"message": "On Thursday May 26, 2016, iMAPS will be unavailable between the hours of 7PM and 10PM to allow for our servers to be moved to our new data center.  We apologize for any inconvenience."
+		"message": "Due to changed in Google's billing policy, the StreetView tool is no longer embedded in iMAPS.  Clicking on the map will now open Google Maps in a new tab.  We apologize for any inconvience."
 	},
 	"map": {
 		"id": "0757b2fd0e6f44dd8d8fefbfc09aa8eb",
