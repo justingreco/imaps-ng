@@ -164,9 +164,12 @@ angular.module('imapsNgApp')
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
-						if (!basemap.labels) {
+						if (basemap.labels) {
 							baselayers.push({url: $scope.config.map.labels});
 						}
+						if (basemap.hillshade) {
+							baselayers.push({url: $scope.config.map.hillshade, opacity:0.2})
+						}						
 						var base = {
 							baseMapLayers: baselayers,
 							title: basemap.name

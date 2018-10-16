@@ -36,7 +36,7 @@
   "resolutions": {
     "angular": "~1.4",
     "typeahead.js": "0.10.5",
-    "angular-animate": "~1.4",
+    "angular-animate": "~1.4.6",
     "angular-bootstrap": "^2.5.0"
   }
 }
