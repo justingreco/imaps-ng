@@ -10,7 +10,7 @@ angular.module('imapsNgApp')
             $("warning-message .modal").modal('show');
           }
           
-          if (getNth() === '1st tuesday' && new Date().getHours() >= 20 && new Date().getHours() < 22) {
+          if (getNth() === '1st thursday' && new Date().getHours() >= 20 && new Date().getHours() < 22) {
             $scope.config.alert.message = 'Due to scheduled database maintenance, iMAPS may be unavailable between 8:00 PM and 10:00 PM tonight.';         
             $("warning-message .modal").modal('show');  
           }
