@@ -21,7 +21,7 @@ angular.module('imapsNgApp')
 			  	];
 			$scope.wakeCols = [
 		  		{
-		  			field: 'address',
+		  			field: 'attributes.ADDRESS',
 		  			displayName: 'Address'
 		  		}
 			]

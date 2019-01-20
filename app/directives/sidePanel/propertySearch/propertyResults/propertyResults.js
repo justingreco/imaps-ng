@@ -28,15 +28,15 @@ angular.module('imapsNgApp')
 			  	height: $('.tabcontainer').height() ,
 			  	columnDefs: [
 			  		{
-			  			field: 'siteAddress',
+			  			field: 'attributes.SITE_ADDRESS',
 			  			displayName: 'Address'
 			  		},
 			  		{
-			  			field: 'owner',
+			  			field: 'attributes.OWNER',
 			  			displayName: 'Owner'
 			  		},
 			  		{
-			  			field: 'pin',
+			  			field: 'attributes.PIN_NUM',
 			  			displayName: 'PIN'
 			  		}
 			  	],

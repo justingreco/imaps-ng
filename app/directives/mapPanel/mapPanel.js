@@ -320,10 +320,10 @@ angular.module('imapsNgApp')
 					if (!accounts) {
 						accounts = [];
 					}
-					if (accounts.length > 1) {
+					if (accounts.length > 0) {
 						angular.forEach(accounts, function (a) {
 							//pins.push("'" + a.pin + "'");
-							pins.push ("PIN_NUM = '" + a.pin + "'")
+							pins.push ("PIN_NUM = '" + a.attributes.PIN_NUM + "'")
 						});
 						//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
 						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {

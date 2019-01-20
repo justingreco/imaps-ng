@@ -8,16 +8,26 @@ angular.module('imapsNgApp')
 			var formatAccountInfo = function (account) {
 				$scope.accountInfo = [];
 				$scope.tabChanged(false);
-				$scope.pin = account.pin;
-				$scope.reid = account.reid;
-				$rootScope.$broadcast('pinUpdate', account.pin);
+				$scope.pin = account.attributes.PIN_NUM;
+				$scope.reid = account.attributes.REID;
+				$rootScope.$broadcast('pinUpdate', account.attributes.PIN_NUM);
+				var currencyFields = ['LAND_VAL','BLDG_VAL','TOTAL_VALUE_ASSD','TOTSALPRICE'];
+				var dateFields = ['DEED_DATE', 'SALE_DATE'];
+				var date = null;
 				angular.forEach($scope.fields, function (f) {
-				 	if (f.type === 'currency') {
-				 		account[f.field] = $filter('currency')(account[f.field], '$', 0);
-				 	}
-					$scope.accountInfo.push({field: f.alias, value: account[f.field]});
+				 	if (currencyFields.indexOf(f.name) > -1) {
+				 		account.attributes[f.name] = $filter('currency')(account.attributes[f.name], '$', 0);
+					 }
+				 	if (dateFields.indexOf(f.name) > -1) {
+						if (account.attributes[f.name]) {
+							date = new Date(account.attributes[f.name]);
+							account.attributes[f.name] = date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear();
+						}
+					}					 
+					$scope.accountInfo.push({field: f.alias, value: account.attributes[f.name]});
 				});
 				$rootScope.accountInfo = $scope.accountInfo;
+				setGrid();
 			};
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {

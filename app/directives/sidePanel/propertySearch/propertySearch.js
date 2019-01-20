@@ -8,12 +8,20 @@ angular.module('imapsNgApp')
 			$scope.property = property;
 			$scope.searchValue = "";
 			var url = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/AutoComplete";
+			var propertyService = "https://maps.raleighnc.gov/arcgis/rest/services/Property/Property/MapServer/";
+
 			var autocompleteFilter = function (response) {
 				var data = [];
-				if (response.Results) {
-					if (response.Results.length > 0) {
-						angular.forEach(response.Results, function (r) {
-							data.push({value: r});
+				var field = '';
+				if (response.features) {
+					if (response.fields) {
+						if (response.fields.length > 0) {
+							field = response.fields[0].name;
+						}
+					}
+					if (response.features.length > 0) {
+						angular.forEach(response.features, function (r) {
+							data.push({value: r.attributes[field]});
 						});
 					}
 				}
@@ -129,9 +137,9 @@ angular.module('imapsNgApp')
 				}
 				if (accounts.length === 1) {
 					$scope.tab = $scope.tabs[1];
-					$scope.pin = accounts[0].pin;
+					$scope.pin= accounts[0].attributes.PIN_NUM;
 					$location.search('pin', $scope.pin);
-					$scope.reid = accounts[0].reid;
+					$scope.reid = accounts[0].attributes.REID;
 					$scope.account = accounts[0];
 					//$rootScope.$broadcast('pinUpdate', $scope.pin);
 						$timeout(function () {
@@ -159,10 +167,11 @@ angular.module('imapsNgApp')
 
 					}
 					//$scope.geometry = null;
-					$scope.fields = accounts.Fields;
-					$scope.accounts = accounts.Accounts;
+					debugger
+					$scope.fields = accounts.fields;
+					$scope.accounts = accounts.features;
 					$scope.$parent.account = null;
-					$scope.accountsSrc = accounts.Accounts;
+					$scope.accountsSrc = accounts.features;
 					$rootScope.zoomTo = true;
 					$rootScope.$broadcast('accountUpdate', $scope.accounts);
 				});
@@ -178,11 +187,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=address&f=json",
+					url: propertyService + "4/query?f=json&returnDistinctValues=true&outFields=ADDRESS&orderByFields=ADDRESS&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -193,11 +202,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=owner&f=json",
+					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=OWNER&orderByFields=OWNER&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + "&where=OWNER like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -208,11 +217,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=pin&f=json&limit=5",
+					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=PIN_NUM&orderByFields=PIN_NUM&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + "&where=PIN_NUM like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -223,11 +232,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=reid&f=json&limit=5",
+					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=REID&orderByFields=REID&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + "&where=REID like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -238,11 +247,11 @@ angular.module('imapsNgApp')
 			    },
 			    queryTokenizer: Bloodhound.tokenizers.whitespace,
 				remote: {
-					url: url + "?type=street name&f=json&limit=5",
+					url: propertyService + "4/query?f=json&returnDistinctValues=true&outFields=STREET&orderByFields=STREET&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + '&input=' + uriEncodedQuery;
+					      var newUrl = url + "&where=STREET like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -331,17 +340,17 @@ angular.module('imapsNgApp')
 						case "Info":
 						break;
 						case "Photos":
-							$scope.property.getPhotos($scope.account.reid).then(function (photos) {
-								$scope.photos = photos.Photos;
+							$scope.property.getPhotos($scope.account.attributes.REID).then(function (photos) {
+								$scope.photos = photos.features;
 							});
 						break;
 						case "Deeds":
-							$scope.property.getDeeds($scope.account.reid).then(function (deeds) {
-								$scope.deeds = deeds.Deeds;
+							$scope.property.getDeeds($scope.account.attributes.REID).then(function (deeds) {
+								$scope.deeds = deeds.features;
 								$scope.plats = [];
-								angular.forEach($scope.deeds, function (deed) {
-									if (deed.bomDocNum) {
-										if (deed.bomDocNum != "0") {
+								angular.forEach(deeds.features, function (deed) {
+									if (deed.attributes.BOM_DOC_NUM) {
+										if (deed.attributes.BOM_DOC_NUM != "0") {
 											$scope.plats.push(deed);
 										}
 									}
@@ -355,8 +364,8 @@ angular.module('imapsNgApp')
 							$scope.$broadcast('servicesClicked', $scope.geometry);
 						break;
 						case "Addresses":
-							$scope.property.getAddresses($scope.account.pin, $scope.account.reid).then(function (addresses) {
-								$scope.addresses = addresses.Addresses;
+							$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID).then(function (addresses) {
+								$scope.addresses = addresses.features;
 							});
 						break;
 					}

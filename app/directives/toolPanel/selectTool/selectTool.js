@@ -38,10 +38,10 @@ angular.module('imapsNgApp')
 							$scope.account = null;
 							$scope.$parent.account = null;
 							$scope.geometry = null;
-							$scope.fields = data.Fields;
-							$scope.accounts = data.Accounts;
+							$scope.fields = data.fields;
+							$scope.accounts = data.features;
 							$rootScope.zoomTo = false;
-							$rootScope.$broadcast('accountUpdate', data.Accounts);
+							$rootScope.$broadcast('accountUpdate', data.features);
 						});
 					});
 				});

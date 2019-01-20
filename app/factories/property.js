@@ -4,15 +4,44 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		baseUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
 		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
+		propertyService = "https://maps.raleighnc.gov/arcgis/rest/services/Property/Property/MapServer/";
+
 	return service;
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
+		let where = "(";
+		values.forEach(function (value, i) {
+			if (i < values.length - 1) {
+				where += "'" + value + "',";
+			} else {
+				where += "'" + value + "')";
+			}
+		});
+		let field = "";
+		switch(type) {
+			case "address":
+				field = "SITE_ADDRESS";
+				break;
+			case "pin":
+				field = "PIN_NUM";
+				break;
+			case "reid":
+				field = "REID";
+				break;
+			case "owner":
+				field = "OWNER";
+				break;
+			case "street name":
+				field = "FULL_STREET_NAME";
+				break;																
+		}
 		$http({
 			method: 'POST',
-			url: baseUrl + "RealEstateSearch",
+			url: propertyService + "1/query",
 			data: $.param({
-				type: type,
-				values: JSON.stringify(values),
+				outFields: "*",
+				orderByFields: field,
+				where: field + " IN " + where,
 				f: "json"
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -23,9 +52,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "PhotoSearch",
+			url: propertyService + "2/query",
 			params: {
-				reid: reid,
+				outFields: '*',
+				orderByFields: 'DATECREATED DESC',
+				where: "PARCEL = '" + reid + "'",
 				f: "json"
 			}
 		}).success(deferred.resolve);
@@ -35,9 +66,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "DeedSearch",
+			url: propertyService + "3/query",
 			params: {
-				reid: reid,
+				outFields: '*',
+				orderByFields: 'DEED_DATE DESC',				
+				where: "REID = '" + reid + "'",
 				f: "json"
 			}
 		}).success(deferred.resolve);
@@ -47,10 +80,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "AddressSearch",
+			url: propertyService + "4/query",
 			params: {
-				pin: pin,
-				reid: reid,
+				where: "PIN_NUM = '" + pin + "'",
+				outFields: '*',
+				orderByFields: 'ADDRESS',	
 				f: "json"
 			}
 		}).success(deferred.resolve);
