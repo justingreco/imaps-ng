@@ -121,7 +121,7 @@ angular.module('imapsNgApp')
 				}
 			});
 			$scope.$on('accountSelected', function (e, account) {
-				$location.search('pin', account.pin);
+				$location.search('pin', account.attributes.PIN_NUM);
 				$scope.tabChanged(false);
 				$rootScope.checked = true;
 				$scope.searchDir.open = true;
@@ -364,9 +364,18 @@ angular.module('imapsNgApp')
 							$scope.$broadcast('servicesClicked', $scope.geometry);
 						break;
 						case "Addresses":
-							$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID).then(function (addresses) {
-								$scope.addresses = addresses.features;
-							});
+							if ($scope.account.attributes.PLANNING_JURISDICTION === 'RA'){
+								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID, $scope.geometry).then(function (addresses) {
+									$scope.addresses = addresses.features;
+									debugger
+								});
+							} else {
+								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID).then(function (addresses) {
+									$scope.addresses = addresses.features;
+									debugger
+								});
+							}
+
 						break;
 					}
 				}

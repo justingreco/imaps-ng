@@ -10,6 +10,10 @@ angular.module('imapsNgApp')
 					if (!accounts) {
 						accounts = [];
 					}
+					$scope.accountExports = [];
+					accounts.forEach(function(account) { 
+						$scope.accountExports.push(account.attributes);
+					});
 					$scope.accounts = accounts;
 					$scope.resultGrid.data = accounts;
 					$scope.resultHeader = [];

@@ -8,26 +8,28 @@ angular.module('imapsNgApp')
 			var formatAccountInfo = function (account) {
 				$scope.accountInfo = [];
 				$scope.tabChanged(false);
-				$scope.pin = account.attributes.PIN_NUM;
-				$scope.reid = account.attributes.REID;
+				$scope.pin = account.PIN_NUM;
+				$scope.reid = account.REID;
 				$rootScope.$broadcast('pinUpdate', account.attributes.PIN_NUM);
 				var currencyFields = ['LAND_VAL','BLDG_VAL','TOTAL_VALUE_ASSD','TOTSALPRICE'];
 				var dateFields = ['DEED_DATE', 'SALE_DATE'];
 				var date = null;
 				angular.forEach($scope.fields, function (f) {
-				 	if (currencyFields.indexOf(f.name) > -1) {
-				 		account.attributes[f.name] = $filter('currency')(account.attributes[f.name], '$', 0);
-					 }
-				 	if (dateFields.indexOf(f.name) > -1) {
-						if (account.attributes[f.name]) {
-							date = new Date(account.attributes[f.name]);
-							account.attributes[f.name] = date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear();
+					if (f.name != "OBJECTID") {
+						if (currencyFields.indexOf(f.name) > -1) {
+							account.attributes[f.name] = $filter('currency')(account.attributes[f.name], '$', 0);
 						}
-					}					 
-					$scope.accountInfo.push({field: f.alias, value: account.attributes[f.name]});
+						if (dateFields.indexOf(f.name) > -1) {
+						   if (account.attributes[f.name]) {
+							   date = new Date(account.attributes[f.name]);
+							   account.attributes[f.name] = date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear();
+						   }
+					   }					 
+					   $scope.accountInfo.push({field: f.alias, value: account.attributes[f.name]});
+					}
 				});
 				$rootScope.accountInfo = $scope.accountInfo;
-				setGrid();
+			//	setGrid();
 			};
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
@@ -40,16 +42,29 @@ angular.module('imapsNgApp')
 				});
 			};
 			var getWellSamples = function (pin) {
-				property.getWellResults(pin).then(function (data) {
-					if (data.WellResults) {
-						if (data.WellResults.length > 0) {
+				
+				 property.getWellResults(pin).then(function (data) {
+					if (data.features) {
+						if (data.features.length > 0) {
 							$scope.accountInfo.push({field: 'Well Samples', value: pin});
 						}
 						$timeout(function() {
+							
 							$scope.infoGrid.data = $scope.accountInfo;
-						});
+							setGrid();
+						});						
 					}
 				});
+				// property.getWellResults(pin).then(function (data) {
+				// 	if (data.WellResults) {
+				// 		if (data.WellResults.length > 0) {
+				// 			$scope.accountInfo.push({field: 'Well Samples', value: pin});
+				// 		}
+				// 		$timeout(function() {
+				// 			$scope.infoGrid.data = $scope.accountInfo;
+				// 		});
+				// 	}
+				// });
 			};
 			if ($scope.account && !$scope.accountInfo) {
 				formatAccountInfo($scope.account);
@@ -57,12 +72,12 @@ angular.module('imapsNgApp')
 			$scope.$on('accountSelected', function (e, account) {
 				$rootScope.account = account;
 				formatAccountInfo(account);
-				if (account.city === 'RALEIGH')
+				if (account.attributes.CITY_DECODE === 'RALEIGH')
 				{
-					$scope.accountInfo.push({field: 'Crime', value: 'https://www.crimemapping.com/map/location/' + account.siteAddress + "," + account.city + ",NC"});
+					$scope.accountInfo.push({field: 'Crime', value: 'https://www.crimemapping.com/map/location/' + account.attributes.SITE_ADDRESS + "," + account.attributes.CITY_DECODE + ",NC"});
 				}
-				if (account.pin) {
-					getSepticPermits(account.pin);
+				if (account.attributes.PIN_NUM) { 
+					getSepticPermits(account.attributes.PIN_NUM);
 				}
 				$("#infoGrid .ngReactGridViewPort").css({'min-height': $('.tabcontainer').height() - 30 + 'px', 'max-height': $('.tabcontainer').height() - 30 + 'px'});
 			});

@@ -5,17 +5,18 @@ angular.module('imapsNgApp')
 		restrict: 'E',
 		controller: function ($scope) {
 			$scope.rpid = null;
+			$scope.addressExports = [];
 			$scope.raleighCols = [
 			  		{
-			  			field: 'address',
+			  			field: 'attributes.ADDRESS',
 			  			displayName: 'Address'
 			  		},
 			  		{
-			  			field: 'type',
+			  			field: 'attributes.FEATURETYPE',
 			  			displayName: 'Type'
 			  		},
 			  		{
-			  			field: 'status',
+			  			field: 'attributes.LIFECYCLE',
 			  			displayName: 'Status'
 			  		}
 			  	];
@@ -38,15 +39,25 @@ angular.module('imapsNgApp')
 				if (addresses) {
 					if (addresses.length > 0) {
 						$scope.addrGrid.data = addresses;
-						if (addresses[0].rpidMap) {
+						if (addresses[0].attributes.FEATURETYPE) {
 							$scope.addrGrid.columnDefs = $scope.raleighCols;
-							$scope.rpid = addresses[0].rpidMap + ' ' + addresses[0].rpidLot;
-							angular.forEach(addresses, function (a) {
-								if (a.suite.trim().length > 0) {
-									a.address += ', STE ' + a.suite;
-								}
+							$scope.addressExports = [{'ADDRESS': 'Address', 'FEATURETYPE': 'Type', 'LIFECYCLE': 'Status'}];
+
+							addresses.forEach(function (address) {
+								$scope.addressExports.push({'ADDRESS': address.attributes.ADDRESS, 'FEATURETYPE': address.attributes.FEATURETYPE, 'LIFECYCLE': address.attributes.LIFECYCLE});
 							});
+							// $scope.rpid = addresses[0].rpidMap + ' ' + addresses[0].rpidLot;
+							// angular.forEach(addresses, function (a) {
+							// 	if (a.suite.trim().length > 0) {
+							// 		a.address += ', STE ' + a.suite;
+							// 	}
+							// });
 						} else {
+							$scope.addressExports = [{'ADDRESS': 'Address'}];
+
+							addresses.forEach(function (address) {
+								$scope.addressExports.push({'ADDRESS': address.attributes.ADDRESS});
+							});
 							$scope.addrGrid.columnDefs = $scope.wakeCols;
 							$scope.rpid = null;
 						}

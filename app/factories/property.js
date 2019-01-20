@@ -5,6 +5,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
 		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
 		propertyService = "https://maps.raleighnc.gov/arcgis/rest/services/Property/Property/MapServer/";
+		addressService = "https://maps.raleighnc.gov/arcgis/rest/services/Energov/DataMap_Energov/MapServer/1/query";
 
 	return service;
 	function getRealEstate (type, values) {
@@ -76,18 +77,33 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
-	function getAddresses (pin, reid) {
+	function getAddresses (pin, reid, geom) {
 		var deferred = $q.defer();
-		$http({
-			method: 'GET',
-			url: propertyService + "4/query",
-			params: {
-				where: "PIN_NUM = '" + pin + "'",
-				outFields: '*',
-				orderByFields: 'ADDRESS',	
-				f: "json"
-			}
-		}).success(deferred.resolve);
+		if (!geom) {
+			$http({
+				method: 'GET',
+				url: propertyService + "4/query",
+				params: {
+					where: "PIN_NUM = '" + pin + "'",
+					outFields: '*',
+					orderByFields: 'ADDRESS',	
+					f: "json"
+				}
+			}).success(deferred.resolve);
+		} else {
+			$http({
+				method: 'GET',
+				url: addressService,
+				params: {
+					outFields: '*',
+					orderByFields: 'ADDRESS',	
+					geometry:stringify(geom),
+					geometryType: 'esriGeometryPolygon',
+					f: "json"
+				}
+			}).success(deferred.resolve);		
+		}
+
 		return deferred.promise;
 	}
 	function getServices (geom, extent, width, height) {
@@ -127,14 +143,28 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'GET',
-			url: baseUrl + "WellResults",
+			url: "https://maps.raleighnc.gov/arcgis/rest/services/Environmental/Wells/MapServer/0/query",
 			params: {
-				pin: pin,
+				outFields: 'PIN_NUM', 
+				returnGeometry: false,
+				where: "PIN_NUM = '" + pin + "'",
 				f: "json"
 			}
 		}).success(deferred.resolve);
 		return deferred.promise;
-	}
+	}	
+	// function getWellResults (pin) {
+	// 	var deferred = $q.defer();
+	// 	$http({
+	// 		method: 'GET',
+	// 		url: baseUrl + "WellResults",
+	// 		params: {
+	// 			pin: pin,
+	// 			f: "json"
+	// 		}
+	// 	}).success(deferred.resolve);
+	// 	return deferred.promise;
+	// }
 	function getGeometryByPins (where, lid, wkid) {
 		var deferred = $q.defer();
 		$http({
