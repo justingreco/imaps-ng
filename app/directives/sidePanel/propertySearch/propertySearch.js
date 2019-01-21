@@ -191,7 +191,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%'";
+					      var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%' OR ADDRESS_NODIR like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -251,7 +251,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=STREET like '" + uriEncodedQuery+"%'";
+					      var newUrl = url + "&where=STREET like '" + uriEncodedQuery+"%' OR STREET_NODIR like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}

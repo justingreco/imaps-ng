@@ -10,7 +10,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 	return service;
 	function getRealEstate (type, values) {
 		var deferred = $q.defer();
-		let where = "(";
+		var where = "(";
 		values.forEach(function (value, i) {
 			if (i < values.length - 1) {
 				where += "'" + value + "',";
@@ -18,7 +18,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				where += "'" + value + "')";
 			}
 		});
-		let field = "";
+		var field = "";
 		switch(type) {
 			case "address":
 				field = "SITE_ADDRESS";
@@ -169,7 +169,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: propertyLayer + "/" + lid + "/query",
+			url: propertyService + "/" + lid + "/query",
 			data: $.param({
 				where: where,
 				returnGeometry: true,
@@ -186,7 +186,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		var deferred = $q.defer();
 		$http({
 			method: 'POST',
-			url: propertyLayer + "/" + lid + "/query",
+			url: propertyService + "/" + lid + "/query",
 			data: $.param({
 				where: '1=1',
 				geometry: stringify(geom),

@@ -24,7 +24,10 @@ angular.module('imapsNgApp')
 							   date = new Date(account.attributes[f.name]);
 							   account.attributes[f.name] = date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear();
 						   }
-					   }					 
+						}
+					    if (!account.attributes[f.name]) {
+							account.attributes[f.name] = '';
+						}
 					   $scope.accountInfo.push({field: f.alias, value: account.attributes[f.name]});
 					}
 				});
