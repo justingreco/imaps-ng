@@ -1,10 +1,10 @@
 angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http, $q){
 
-	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices},
+	var service = {getRealEstate:getRealEstate, getPhotos:getPhotos, getDeeds:getDeeds, getAddresses:getAddresses, getGeometryByPins:getGeometryByPins, getPropertiesByGeometry:getPropertiesByGeometry, getSepticPermits:getSepticPermits, getWellResults:getWellResults, getServices:getServices, getPinFromAddress:getPinFromAddress},
 		baseUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer/exts/PropertySOE/",
 		serviceUrl = "https://maps.raleighnc.gov/arcgis/rest/services/Services/ServicesIMaps/MapServer",
-		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer";
-		propertyService = "https://maps.raleighnc.gov/arcgis/rest/services/Property/Property/MapServer/";
+		propertyLayer = "https://maps.raleighnc.gov/arcgis/rest/services/Parcels/MapServer",
+		propertyService = "https://maps.raleighnc.gov/arcgis/rest/services/Property/Property/MapServer/",
 		addressService = "https://maps.raleighnc.gov/arcgis/rest/services/Energov/DataMap_Energov/MapServer/1/query";
 
 	return service;
@@ -36,13 +36,18 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				field = "FULL_STREET_NAME";
 				break;																
 		}
+		where = field + " IN " + where;
+		if (type === 'street name') {
+			where = field + " LIKE '%" + values[0] + "'";
+		}
+
 		$http({
 			method: 'POST',
 			url: propertyService + "1/query",
 			data: $.param({
 				outFields: "*",
 				orderByFields: field,
-				where: field + " IN " + where,
+				where: where,
 				f: "json"
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -106,6 +111,20 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 
 		return deferred.promise;
 	}
+	function getPinFromAddress (address) {
+		var deferred = $q.defer();
+		$http({
+			method: 'GET',
+			url: propertyService + "4/query",
+			params: {
+				where: "ADDRESS = '" + address + "'",
+				outFields: 'PIN_NUM',
+				f: "json"
+			}
+		}).success(deferred.resolve);
+		return deferred.promise;
+
+	}	
 	function getServices (geom, extent, width, height) {
 		var deferred = $q.defer();
 		$http({

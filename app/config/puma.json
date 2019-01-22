@@ -45,7 +45,7 @@
 				"layers": [
 					{
 						"name": "2017",
-						"url": "https://maps.wakegov.com/arcgis/rest/services/Imagery/Imagery_2017/MapServer",
+						"url": "https://maps.raleighnc.gov/images/rest/services/Orthos2017/ImageServer",
 						"labels": false,
 						"tiled": true,
 						"county": true,

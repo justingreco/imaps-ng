@@ -179,7 +179,24 @@ angular.module('imapsNgApp')
 			var valueSelected = function (a, b, c) {
 				$(".twitter-typeahead>input").blur();
 				c = ((c === 'streetname') ? 'street name':c);
-				searchForRealEstate(c, [b.value]);
+				if (c === 'address') {
+					$scope.property.getPinFromAddress(b.value).then(function (result) {
+						if (result.features) {
+							var pins = [];
+							result.features.forEach(function (feature) {
+								if (feature.attributes.PIN_NUM) {
+									pins.push(feature.attributes.PIN_NUM);
+								}
+							});
+							if (pins.length > 0) {
+								searchForRealEstate('pin', pins);
+							}
+						}
+					});
+				} else {
+					searchForRealEstate(c, [b.value]);
+
+				}
 			}
 			var address = new Bloodhound({
 				datumTokenizer: function (datum) {
@@ -191,7 +208,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%' OR ADDRESS_NODIR like '" + uriEncodedQuery+"%'";
+					      var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%'";//+"%' OR ADDRESS_NODIR like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -251,7 +268,7 @@ angular.module('imapsNgApp')
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
 						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=STREET like '" + uriEncodedQuery+"%' OR STREET_NODIR like '" + uriEncodedQuery+"%'";
+					      var newUrl = url + "&where=STREET like '" + uriEncodedQuery+"%'";//+"%' OR STREET_NODIR like '" + uriEncodedQuery+"%'";
 					      return encodeURI(newUrl);
 					}
 				}
@@ -358,7 +375,7 @@ angular.module('imapsNgApp')
 							});
 						break;
 						case "Tax Info":
-							window.open("http://services.wakegov.com/realestate/Account.asp?id=" + $scope.account.reid, "_blank");
+							window.open("http://services.wakegov.com/realestate/Account.asp?id=" + $scope.account.attributes.REID, "_blank");
 						break;
 						case "Services":
 							$scope.$broadcast('servicesClicked', $scope.geometry);
