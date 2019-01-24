@@ -2,17 +2,16 @@
 	"title": "iMAPS",
 	"alert": {
 		"show": false,
-		"message": "Due to changed in Google's billing policy, the StreetView tool is no longer embedded in iMAPS.  Clicking on the map will now open Google Maps in a new tab.  We apologize for any inconvience."
+		"message": "Wake County will undergo database maintenance, December 19 from 6pm to 8pm.  iMAPS may be unavailable or not function properly during this time."
 	},
 	"map": {
 		"id": "0757b2fd0e6f44dd8d8fefbfc09aa8eb",
 		"geometryServiceUrl": "https://maps.raleighnc.gov/arcgis/rest/services/Utilities/Geometry/GeometryServer",
 		"wkid": 2264,
 		"labels": "https://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
-		"hillshade": "https://maps.raleighnc.gov/arcgis/rest/services/Hillshade/MapServer",		
 		"basemaps": {
 			"streets" : {
-				"thumbnail": "basemap.png",
+				"thumbnail": "basemap.1a6f70d5.png",
 				"layers": [
 				{
 					"name": "Base Map",
@@ -23,29 +22,20 @@
 					"tone": "light"
 				},
 				{
-					"name": "Hillshade",
-					"url": "https://maps.raleighnc.gov/arcgis/rest/services/BaseMap/MapServer",
-					"hillshade": true,
-					"labels": true,
-					"tiled": true,
-					"id": "base-map-hillshade",
-					"tone": "light"
-				},		
-				{
 					"name": "Base Map Basic",
 					"url": "https://maps.raleighnc.gov/arcgis/rest/services/BaseMapSimple/MapServer",
-					"labels": true,
-					"tiled": true,
+					"labels": false,
+					"tiled": false,
 					"id": "base-map-basic",
 					"tone": "light"
 				}
 			]},
 			"images" : {
-				"thumbnail": "aerials.png",
+				"thumbnail": "aerials.6bfef6e6.png",
 				"layers": [
 					{
 						"name": "2017",
-						"url": "https://maps.raleighnc.gov/images/rest/services/Orthos2017/ImageServer",
+						"url": "https://maps.wakegov.com/arcgis/rest/services/Imagery/Imagery_2017/MapServer",
 						"labels": false,
 						"tiled": true,
 						"county": true,
@@ -450,8 +440,8 @@
                         "layerId": 6
                     },
                     {
-                        "title": "Raleigh Council District [DISTRICT]",
-                        "labels": "<a class='ps-link' href='http://www.raleighnc.gov/home/content/BoardsCommissions/Articles/CityCouncil.html' target='_blank'>[NAME] <span class='glyphicon glyphicon-new-window'></span></a>",
+                        "title": "Raleigh Council District [COUNCIL_DIST]",
+                        "labels": "<a class='ps-link' href='http://www.raleighnc.gov/home/content/BoardsCommissions/Articles/CityCouncil.html' target='_blank'>[COUNCIL_PERSON] <span class='glyphicon glyphicon-new-window'></span></a>",
                         "layerId": 7
                     },
                     {
@@ -472,7 +462,7 @@
                         "layerId": 12
                     },
                     {"title": "Cary Zoning",
-                        "labels": "[NAME]",
+                        "labels": "[CLASS]",
                         "layerId": 13
                     },
                     {"title": "County Zoning",
@@ -565,28 +555,28 @@
             },{"title": "Public Safety",
                 "services": [
                     {"title": "Sheriff Zone",
-                    "labels": "[Distinct]",
+                    "labels": "[NAME]",
                     "layerId": 36},
-                    {"title": "Raleigh Police Beat",
-                    "labels": "[Name]",
+                    {"title": "Raleigh Police Distict",
+                    "labels": "[DISTRICT]",
                     "layerId": 37},
                     {"title": "Garner Police Beat",
-                    "labels": "[Name]",
+                    "labels": "[NAME]",
                     "layerId": 38},
                     {"title": "Fire Insurance District",
-                    "labels": "[District]",
+                    "labels": "[DISTRICT]",
                     "layerId": 39},
                     {"title": "County Fire Response District",
-                    "labels": "[District]",
+                    "labels": "[DISTRICT]",
                     "layerId": 40},
                     {"title": "Raleigh Fire Response District",
-                    "labels": "[District]",
+                    "labels": "[DUE_1]",
                     "layerId": 41},
                     {"title": "EMS Franchise District",
-                    "labels": "[District:proper]",
+                    "labels": "[DISTRICT:proper]",
                     "layerId": 42},
                     {"title": "EMS Response District",
-                    "labels": "[District:proper]",
+                    "labels": "[DISTRICT:proper]",
                     "layerId": 43}
                 ]
             },{"title": "Environmental",
