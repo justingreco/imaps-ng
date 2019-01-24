@@ -164,7 +164,7 @@ angular.module('imapsNgApp')
 					var basemaps = $scope.config.map.basemaps.streets.layers.concat($scope.config.map.basemaps.images.layers);
 					angular.forEach(basemaps, function (basemap) {
 						var baselayers = [{url: basemap.url}];
-						if (basemap.labels) {
+						if (!basemap.labels) {
 							baselayers.push({url: $scope.config.map.labels});
 						}
 						if (basemap.hillshade) {
@@ -321,18 +321,25 @@ angular.module('imapsNgApp')
 						accounts = [];
 					}
 					if (accounts.length > 0) {
+						
 						angular.forEach(accounts, function (a) {
 							//pins.push("'" + a.pin + "'");
-							pins.push ("PIN_NUM = '" + a.attributes.PIN_NUM + "'")
+							if( a.attributes.PIN_NUM) {
+								pins.push ("'" + a.attributes.PIN_NUM + "'")
+							}
 						});
 						//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
-						$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {
+						//$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {
 							//$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 1, $scope.config.map.wkid).then(function (data2) {
+							if (pins.length > 0) {
+								$scope.property.getGeometryByPins("PIN_NUM IN (" +pins.toString()+")", 0, $scope.config.map.wkid).then(function (data) {
+									addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
+								});
+							}
+
 							//	addGeometriesToMap(data.features.concat(data2.features), $scope.selectionMultiple, [255,255,0]);
 							//});
-							addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
-
-						});
+		
 					}
 				});
 				$scope.$on('pinUpdate', function (e, pin) {

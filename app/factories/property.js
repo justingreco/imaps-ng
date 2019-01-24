@@ -40,13 +40,17 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		if (type === 'street name') {
 			where = field + " LIKE '%" + values[0] + "'";
 		}
+		var orderByFields = field;
+		if (field === 'PIN_NUM') {
+			orderByFields = 'PIN_NUM,PIN_EXT';
+		}
 
 		$http({
 			method: 'POST',
 			url: propertyService + "1/query",
 			data: $.param({
 				outFields: "*",
-				orderByFields: field,
+				orderByFields: orderByFields,
 				where: where,
 				f: "json"
 			}),
