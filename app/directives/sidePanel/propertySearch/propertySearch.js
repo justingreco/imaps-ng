@@ -207,9 +207,9 @@ angular.module('imapsNgApp')
 					url: propertyService + "4/query?f=json&returnDistinctValues=true&outFields=ADDRESS&orderByFields=ADDRESS&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
-						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%'";//+"%' OR ADDRESS_NODIR like '" + uriEncodedQuery+"%'";
-					      return encodeURI(newUrl);
+						uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "")).toUpperCase().replace(/%20/g, '+');
+						var newUrl = url + "&where=ADDRESS like '" + uriEncodedQuery+"%'";//+"%' OR ADDRESS_NODIR like '" + uriEncodedQuery+"%'";
+						return newUrl;
 					}
 				}
 			});
@@ -222,9 +222,9 @@ angular.module('imapsNgApp')
 					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=OWNER&orderByFields=OWNER&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
-						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=OWNER like '" + uriEncodedQuery+"%'";
-					      return encodeURI(newUrl);
+						uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "")).toUpperCase().replace(/%20/g, '+');
+						var newUrl = url + "&where=OWNER like '" + uriEncodedQuery+"%'";
+						return newUrl;
 					}
 				}
 			});
@@ -237,9 +237,9 @@ angular.module('imapsNgApp')
 					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=PIN_NUM&orderByFields=PIN_NUM&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
-						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
-					      var newUrl = url + "&where=PIN_NUM like '" + uriEncodedQuery+"%'";
-					      return encodeURI(newUrl);
+						uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "")).toUpperCase().replace(/%20/g, '+');
+						var newUrl = url + "&where=PIN_NUM like '" + uriEncodedQuery+"%'";
+						return newUrl;
 					}
 				}
 			});
@@ -252,9 +252,9 @@ angular.module('imapsNgApp')
 					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=REID&orderByFields=REID&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
-						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
+						  uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "")).toUpperCase().replace(/%20/g, '+');
 					      var newUrl = url + "&where=REID like '" + uriEncodedQuery+"%'";
-					      return encodeURI(newUrl);
+					      return newUrl;
 					}
 				}
 			});
@@ -267,9 +267,10 @@ angular.module('imapsNgApp')
 					url: propertyService + "4/query?f=json&returnDistinctValues=true&outFields=STREET&orderByFields=STREET&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
-						  uriEncodedQuery = uriEncodedQuery.replace(/\'/g, "''").toUpperCase();
+						  uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "")).toUpperCase().replace(/%20/g, '+');
+
 					      var newUrl = url + "&where=STREET like '" + uriEncodedQuery+"%'";//+"%' OR STREET_NODIR like '" + uriEncodedQuery+"%'";
-					      return encodeURI(newUrl);
+					      return newUrl;
 					}
 				}
 			});

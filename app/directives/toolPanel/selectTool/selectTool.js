@@ -35,13 +35,16 @@ angular.module('imapsNgApp')
 						$scope.selectionSingle.clear();
 						$scope.selectionMultiple.clear();
 						property.getRealEstate('pin', pins).then(function (data) {
-							$scope.account = null;
-							$scope.$parent.account = null;
-							$scope.geometry = null;
-							$scope.fields = data.fields;
-							$scope.accounts = data.features;
-							$rootScope.zoomTo = false;
-							$rootScope.$broadcast('accountUpdate', data.features);
+							if (data) {
+
+								$scope.account = null;
+							   $scope.$parent.account = null;
+							   $scope.geometry = null;
+							   $scope.fields = data.fields;
+							   $scope.accounts = data.features;
+							   $rootScope.zoomTo = false;
+							   $rootScope.$broadcast('accountUpdate', data.features);
+							}
 						});
 					//});
 				});

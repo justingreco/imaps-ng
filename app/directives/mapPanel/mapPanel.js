@@ -316,23 +316,27 @@ angular.module('imapsNgApp')
 					});
 				};
 				$scope.$on('accountUpdate', function (e, accounts) {
-					var pins = [];
 					if (!accounts) {
 						accounts = [];
 					}
 					if (accounts.length > 0) {
-						
-						angular.forEach(accounts, function (a) {
-							//pins.push("'" + a.pin + "'");
+						var where = "PIN_NUM IN (";
+						angular.forEach(accounts, function (a, i) {
 							if( a.attributes.PIN_NUM) {
-								pins.push ("'" + a.attributes.PIN_NUM + "'")
+								where += "'" + a.attributes.PIN_NUM + "'";
+								if (i < accounts.length - 1) {
+									where += ","
+								} else {
+									where += ")";
+								}
+								
 							}
 						});
 						//$scope.property.getGeometryByPins("PIN_NUM in (" + pins.toString() + ")", $scope.config.map.wkid).then(function (data) {
 						//$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 0, $scope.config.map.wkid).then(function (data) {
 							//$scope.property.getGeometryByPins(pins.toString().replace(/,/g, ' OR '), 1, $scope.config.map.wkid).then(function (data2) {
-							if (pins.length > 0) {
-								$scope.property.getGeometryByPins("PIN_NUM IN (" +pins.toString()+")", 0, $scope.config.map.wkid).then(function (data) {
+							if (where != "PIN_NUM IN (") {
+								$scope.property.getGeometryByPins(where, 0, $scope.config.map.wkid).then(function (data) {
 									addGeometriesToMap(data.features, $scope.selectionMultiple, [255,255,0]);
 								});
 							}

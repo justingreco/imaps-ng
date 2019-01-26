@@ -37,8 +37,14 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				break;																
 		}
 		where = field + " IN " + where;
+		
 		if (type === 'street name') {
 			where = field + " LIKE '%" + values[0] + "'";
+		} else {
+			debugger
+			if(where.substr(where.length - 1) != ")"){
+				return deferred.promise;
+			}
 		}
 		var orderByFields = field;
 		if (field === 'PIN_NUM') {
