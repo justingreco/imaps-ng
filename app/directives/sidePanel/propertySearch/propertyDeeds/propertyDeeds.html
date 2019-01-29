@@ -4,7 +4,7 @@
 	<div ng-show="deed.attributes.DEED_DOC_NUM">
 		<span class="selectable">Book {{deed.attributes.DEED_BOOK}} Page {{deed.attributes.DEED_PAGE}}</span>
 		<br/>
-		<span class="selectable">{{deed.attributes.DEED_DATE | date: 'dd/MM/yyyy'}}</span>
+		<span class="selectable">{{deed.attributes.DEED_DATE | date: 'MM/dd/yyyy'}}</span>
 		<br/><br/>
 		<a analytics-on="click" analytics-category="Property Search" analytics-event="Deed Clicked" analytics-label="View" class="btn btn-default btn-sm" ng-href="http://services.wakegov.com/booksweb/docview.aspx?docid={{deed.attributes.DEED_DOC_NUM}}" target="_blank">View</a>
 		<a analytics-on="click" analytics-category="Property Search" analytics-event="Deed Clicked" analytics-label="PDF" class="btn btn-default btn-sm" ng-href="http://services.wakegov.com/booksweb/pdfview.aspx?docid={{deed.attributes.DEED_DOC_NUM}}&RecordDate=" target="_blank">PDF</a>
