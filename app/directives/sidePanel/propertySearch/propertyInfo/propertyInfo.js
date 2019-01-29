@@ -15,7 +15,11 @@ angular.module('imapsNgApp')
 				var dateFields = ['DEED_DATE', 'SALE_DATE'];
 				var date = null;
 				angular.forEach($scope.fields, function (f) {
+					debugger
 					if (f.name != "OBJECTID") {
+						if (f.type === 'esriFieldTypeDouble') {
+							account.attributes[f.name] = Math.round(account.attributes[f.name] * 100) / 100;
+						}
 						if (currencyFields.indexOf(f.name) > -1) {
 							account.attributes[f.name] = $filter('currency')(account.attributes[f.name], '$', 0);
 						}
@@ -28,6 +32,7 @@ angular.module('imapsNgApp')
 					    if (!account.attributes[f.name]) {
 							account.attributes[f.name] = '';
 						}
+
 					   $scope.accountInfo.push({field: f.alias, value: account.attributes[f.name]});
 					}
 				});
