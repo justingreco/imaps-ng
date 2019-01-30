@@ -7,11 +7,23 @@ angular.module('imapsNgApp')
 			$scope.resultHeader = [];
 			$scope.accounts = [];
 				$scope.$on('accountUpdate', function (e, accounts) {
+					
 					if (!accounts) {
 						accounts = [];
 					}
 					$scope.accountExports = [];
+					var date = null;
+
 					accounts.forEach(function(account) { 
+						$scope.fields.forEach(function (f) {
+							if (f.type === 'esriFieldTypeDate') {
+								date = new Date(account.attributes[f.name]);
+								account.attributes[f.name] = date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear();
+							}
+							if (f.type === 'esriFieldTypeDouble') {
+								account.attributes[f.name] = Math.round(account.attributes[f.name] * 100) / 100;
+							} 					
+						});
 						$scope.accountExports.push(account.attributes);
 					});
 					$scope.accounts = accounts;
