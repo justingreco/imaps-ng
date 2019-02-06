@@ -383,12 +383,12 @@ angular.module('imapsNgApp')
 						break;
 						case "Addresses":
 							if ($scope.account.attributes.PLANNING_JURISDICTION === 'RA'){
-								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID, $scope.geometry).then(function (addresses) {
+								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID, true).then(function (addresses) {
 									$scope.addresses = addresses.features;
 									debugger
 								});
 							} else {
-								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID).then(function (addresses) {
+								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID, false).then(function (addresses) {
 									$scope.addresses = addresses.features;
 									debugger
 								});

@@ -92,9 +92,9 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		}).success(deferred.resolve);
 		return deferred.promise;
 	}
-	function getAddresses (pin, reid, geom) {
+	function getAddresses (pin, reid, raleigh) {
 		var deferred = $q.defer();
-		if (!geom) {
+		if (!raleigh) {
 			$http({
 				method: 'GET',
 				url: propertyService + "4/query",
@@ -108,12 +108,11 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 		} else {
 			$http({
 				method: 'GET',
-				url: addressService,
+				url: propertyService + "5/query",
 				params: {
 					outFields: '*',
 					orderByFields: 'ADDRESS',	
-					geometry:stringify(geom),
-					geometryType: 'esriGeometryPolygon',
+					where: "PIN_NUM = '" + pin + "'",
 					f: "json"
 				}
 			}).success(deferred.resolve);		

@@ -11,7 +11,7 @@
 		"labels": "https://maps.raleighnc.gov/arcgis/rest/services/Labels/MapServer",
 		"basemaps": {
 			"streets" : {
-				"thumbnail": "basemap.1a6f70d5.png",
+				"thumbnail": "basemap.png",
 				"layers": [
 				{
 					"name": "Base Map",
@@ -31,7 +31,7 @@
 				}
 			]},
 			"images" : {
-				"thumbnail": "aerials.6bfef6e6.png",
+				"thumbnail": "aerials.png",
 				"layers": [
 					{
 						"name": "2017",
