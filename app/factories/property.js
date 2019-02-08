@@ -111,7 +111,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 				url: propertyService + "5/query",
 				params: {
 					outFields: '*',
-					orderByFields: 'ADDRESS',	
+					orderByFields: 'ADDRESS,SUITE',	
 					where: "PIN_NUM = '" + pin + "'",
 					f: "json"
 				}

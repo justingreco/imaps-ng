@@ -194,7 +194,7 @@ angular.module('imapsNgApp')
 						}
 					});
 				} else {
-					searchForRealEstate(c, [b.value]);
+					searchForRealEstate(c, [b.value.replace(/\'/g, "''")]);
 
 				}
 			}
@@ -222,7 +222,7 @@ angular.module('imapsNgApp')
 					url: propertyService + "1/query?f=json&returnDistinctValues=true&outFields=OWNER&orderByFields=OWNER&returnGeomtry=false%resultRecordCount=10",
 					filter: autocompleteFilter,
 					replace: function(url, uriEncodedQuery) {
-						uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "")).toUpperCase().replace(/%20/g, '+');
+						uriEncodedQuery = encodeURIComponent(uriEncodedQuery.replace(/\'/g, "''")).toUpperCase().replace(/%20/g, '+');
 						var newUrl = url + "&where=OWNER like '" + uriEncodedQuery+"%'";
 						return newUrl;
 					}
