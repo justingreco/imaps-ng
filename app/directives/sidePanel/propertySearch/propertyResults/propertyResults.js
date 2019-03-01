@@ -16,11 +16,11 @@ angular.module('imapsNgApp')
 
 					accounts.forEach(function(account) { 
 						$scope.fields.forEach(function (f) {
-							if (f.type === 'esriFieldTypeDate') {
+							if (f.type === 'esriFieldTypeDate' && account.attributes[f.name]) {
 								date = new Date(account.attributes[f.name]);
 								account.attributes[f.name] = date.getMonth()+1+'/'+date.getDate()+'/'+date.getFullYear();
 							}
-							if (f.type === 'esriFieldTypeDouble') {
+							if (f.type === 'esriFieldTypeDouble' && account.attributes[f.name]) {
 								account.attributes[f.name] = Math.round(account.attributes[f.name] * 100) / 100;
 							} 					
 						});

@@ -15,7 +15,6 @@ angular.module('imapsNgApp')
 				var dateFields = ['DEED_DATE', 'SALE_DATE'];
 				var date = null;
 				angular.forEach($scope.fields, function (f) {
-					debugger
 					if (f.name != "OBJECTID") {
 						if (f.type === 'esriFieldTypeDouble') {
 							account.attributes[f.name] = Math.round(account.attributes[f.name] * 100) / 100;

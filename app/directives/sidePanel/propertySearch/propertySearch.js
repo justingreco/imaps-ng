@@ -167,7 +167,6 @@ angular.module('imapsNgApp')
 
 					}
 					//$scope.geometry = null;
-					debugger
 					$scope.fields = accounts.fields;
 					$scope.accounts = accounts.features;
 					$scope.$parent.account = null;
@@ -385,12 +384,12 @@ angular.module('imapsNgApp')
 							if ($scope.account.attributes.PLANNING_JURISDICTION === 'RA'){
 								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID, true).then(function (addresses) {
 									$scope.addresses = addresses.features;
-									debugger
+									
 								});
 							} else {
 								$scope.property.getAddresses($scope.account.attributes.PIN_NUM, $scope.account.attributes.REID, false).then(function (addresses) {
 									$scope.addresses = addresses.features;
-									debugger
+									
 								});
 							}
 
