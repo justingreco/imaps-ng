@@ -57,7 +57,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			data: $.param({
 				outFields: "*",
 				orderByFields: orderByFields,
-				where: where,
+				where: "PARCEL_STATUS = 'ACT' AND " + where,
 				f: "json"
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -199,7 +199,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			method: 'POST',
 			url: propertyService + "/" + lid + "/query",
 			data: $.param({
-				where: where,
+				where: "TAXABLE_STATUS = 'ACTIVE' AND " + where,
 				returnGeometry: true,
 				outFields: 'PIN_NUM,SITE_ADDRESS,OWNER',
 				outSR: wkid,

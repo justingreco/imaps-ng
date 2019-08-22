@@ -215,13 +215,15 @@ angular.module('imapsNgApp')
 					template.preserveScale = true;
 					template.outScale = getScale(scaleUtils);
 					params.template = template;
+					gl = $scope.map.getLayer('printFrame');				
 					cfpLoadingBar.start();
 					$scope.printing = true;
 					$scope.printMessage = "Generating PDF...";
  					$analytics.eventTrack('Export PDF', {category: 'size', label: $scope.printSize.value});
  					$analytics.eventTrack('Export PDF', {category: 'layout', label: $scope.printOrient.value});
  					$analytics.eventTrack('Export PDF', {category: 'attributes', label: attributes != ""});
- 					gl.setVisibility(false);
+					gl.setVisibility(false);
+					
 					printTask.execute(params, function (result) {
 						window.open(result.url);
 						cfpLoadingBar.complete();
@@ -231,7 +233,9 @@ angular.module('imapsNgApp')
 						$scope.printing = false;
 						console.log(error);
 					});
-					gl.setVisibility(true);
+					$timeout(function () {
+						gl.setVisibility(true);	
+					}, 1000)
 				});
 			};
 			$scope.printFormatChanged = function (format) {

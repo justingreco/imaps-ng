@@ -22,7 +22,10 @@ angular.module('imapsNgApp')
 							}
 							if (f.type === 'esriFieldTypeDouble' && account.attributes[f.name]) {
 								account.attributes[f.name] = Math.round(account.attributes[f.name] * 100) / 100;
-							} 					
+							} 		
+							if (f.name === 'PIN_EXT' && account.attributes['PIN_EXT'] != '000') {
+								account.attributes.PIN_NUM += ' ' + account.attributes.PIN_EXT;
+							}			
 						});
 						$scope.accountExports.push(account.attributes);
 					});
