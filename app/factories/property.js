@@ -57,7 +57,7 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			data: $.param({
 				outFields: "*",
 				orderByFields: orderByFields,
-				where: "PARCEL_STATUS = 'ACT' AND " + where,
+				where: "(PARCEL_STATUS in ('ACT', 'ASSB') or PARCEL_STATUS IS NULL) AND " + where,
 				f: "json"
 			}),
         headers: {'Content-Type': 'application/x-www-form-urlencoded'}
@@ -94,29 +94,29 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 	}
 	function getAddresses (pin, reid, raleigh) {
 		var deferred = $q.defer();
-		if (!raleigh) {
+		//if (!raleigh) {
 			$http({
 				method: 'GET',
 				url: propertyService + "4/query",
 				params: {
-					where: "PIN_NUM = '" + pin + "'",
+					where: "PIN_NUM = '" + pin + "' AND ADDR_LIST = 'Yes'",
 					outFields: '*',
 					orderByFields: 'ADDRESS',	
 					f: "json"
 				}
 			}).success(deferred.resolve);
-		} else {
-			$http({
-				method: 'GET',
-				url: propertyService + "5/query",
-				params: {
-					outFields: '*',
-					orderByFields: 'ADDRESS,SUITE',	
-					where: "PIN_NUM = '" + pin + "'",
-					f: "json"
-				}
-			}).success(deferred.resolve);		
-		}
+		// } else {
+		// 	$http({
+		// 		method: 'GET',
+		// 		url: propertyService + "5/query",
+		// 		params: {
+		// 			outFields: '*',
+		// 			orderByFields: 'ADDRESS,SUITE',	
+		// 			where: "PIN_NUM = '" + pin + "'",
+		// 			f: "json"
+		// 		}
+		// 	}).success(deferred.resolve);		
+		// }
 
 		return deferred.promise;
 	}

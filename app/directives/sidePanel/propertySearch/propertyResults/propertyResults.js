@@ -15,6 +15,7 @@ angular.module('imapsNgApp')
 					var date = null;
 
 					accounts.forEach(function(account) { 
+						account.attributes.PIN_FULL  = account.attributes.PIN_NUM;
 						$scope.fields.forEach(function (f) {
 							if (f.type === 'esriFieldTypeDate' && account.attributes[f.name]) {
 								date = new Date(account.attributes[f.name]);
@@ -23,8 +24,11 @@ angular.module('imapsNgApp')
 							if (f.type === 'esriFieldTypeDouble' && account.attributes[f.name]) {
 								account.attributes[f.name] = Math.round(account.attributes[f.name] * 100) / 100;
 							} 		
-							if (f.name === 'PIN_EXT' && account.attributes['PIN_EXT'] != '000') {
-								account.attributes.PIN_NUM += ' ' + account.attributes.PIN_EXT;
+							if (f.name === 'PIN_EXT' && account.attributes['PIN_EXT']) {
+								if (account.attributes['PIN_EXT'] != '000' ) {
+									account.attributes.PIN_FULL = account.attributes.PIN_NUM + ' ' + account.attributes.PIN_EXT;
+
+								}
 							}			
 						});
 						$scope.accountExports.push(account.attributes);
@@ -55,7 +59,7 @@ angular.module('imapsNgApp')
 			  			displayName: 'Owner'
 			  		},
 			  		{
-			  			field: 'attributes.PIN_NUM',
+			  			field: 'attributes.PIN_FULL',
 			  			displayName: 'PIN'
 			  		}
 			  	],
