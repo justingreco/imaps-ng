@@ -159,9 +159,9 @@ angular.module('imapsNgApp').factory('property', ['$http', '$q', function($http,
 			method: 'GET',
 			url: "https://maps.raleighnc.gov/arcgis/rest/services/Environmental/SepticTanks/MapServer/0/query",
 			params: {
-				outFields: 'PIN_NUM', 
+				outFields: 'CURRENT_PIN', 
 				returnGeometry: false,
-				where: "PIN_NUM = '" + pin + "'",
+				where: "CURRENT_PIN = '" + pin + "'",
 				f: "json"
 			}
 		}).success(deferred.resolve);

@@ -36,7 +36,7 @@ angular.module('imapsNgApp')
 					}
 				});
 				$rootScope.accountInfo = $scope.accountInfo;
-			//	setGrid();
+				setGrid();
 			};
 			var getSepticPermits = function (pin) {
 				property.getSepticPermits(pin).then(function (data) {
