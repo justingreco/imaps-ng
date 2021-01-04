@@ -26,7 +26,11 @@
     "typeahead.js": "0.10.5",
     "angular-loading-bar": "^0.9.0",
     "ng-pageslide": "~1.0.4",
+<<<<<<< HEAD
+    "gray": "~1.4.5"
+=======
     "angular-bootstrap-colorpicker": "~3.0.24"
+>>>>>>> upstream/master
   },
   "devDependencies": {
     "angular-mocks": "~1.2.0",
